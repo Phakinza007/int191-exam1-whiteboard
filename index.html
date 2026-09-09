@@ -191,6 +191,114 @@
   .gap-note b{color:var(--red);}
   .gap-note ul{margin:9px 0 0; padding-left:20px;}
   .gap-note li{margin-bottom:5px;}
+  /* ---- cram sheet ---- */
+  .cram{
+    background:var(--surface); border:2px solid var(--accent); border-radius:12px;
+    padding:20px 22px 18px; box-shadow:var(--shadow); margin-bottom:42px;
+  }
+  .cram h3{font-family:var(--font-marker); font-size:18px; margin-bottom:3px; color:var(--accent);}
+  .cram > p{font-size:12.8px; color:var(--ink-soft); margin:0 0 16px; line-height:1.65;}
+  .cram-list{
+    margin:0; padding:0; list-style:none; counter-reset:cram;
+    columns:2; column-gap:26px;
+  }
+  @media (max-width:760px){ .cram-list{columns:1;} }
+  .cram-list li{
+    break-inside:avoid; margin:0 0 11px; padding-left:26px; position:relative;
+    font-size:12.9px; line-height:1.68; color:var(--ink-soft);
+  }
+  .cram-list li::before{
+    counter-increment:cram; content:counter(cram);
+    position:absolute; left:0; top:1px; width:19px; height:19px; border-radius:5px;
+    background:var(--accent-soft); color:var(--accent);
+    font-family:var(--font-mono); font-size:10.5px; font-weight:700;
+    display:grid; place-items:center;
+  }
+  .cram-list b{color:var(--ink);}
+  .cram-list code{font-family:var(--font-mono); font-size:.94em; background:var(--surface-2); padding:1px 4px; border-radius:3px;}
+
+  /* ---- multiple choice ---- */
+  .mcq-wrap{display:grid; gap:9px;}
+  .mcq{background:var(--surface); border:1px solid var(--line); border-radius:9px; overflow:hidden;}
+  .mcq > summary{
+    cursor:pointer; list-style:none; padding:12px 14px; font-size:13.2px; line-height:1.65;
+    color:var(--ink); display:flex; gap:9px; align-items:flex-start;
+  }
+  .mcq > summary::-webkit-details-marker{display:none;}
+  .mcq > summary::before{
+    content:attr(data-n); flex:none; min-width:20px; height:20px; padding:0 4px; border-radius:5px;
+    background:var(--violet-soft); color:var(--violet); font-family:var(--font-mono);
+    font-size:11px; font-weight:700; display:grid; place-items:center; margin-top:1px;
+  }
+  .mcq[open] > summary::before{background:var(--green-soft); color:var(--green);}
+  .mcq > summary:hover{background:var(--surface-2);}
+  .opts{margin:0; padding:0 14px 0 43px; list-style:none;}
+  .opts li{
+    font-size:12.7px; line-height:1.6; padding:6px 10px; margin-bottom:5px;
+    border:1px solid var(--line); border-radius:7px; color:var(--ink-soft);
+    display:flex; gap:8px; align-items:baseline;
+  }
+  .opts li::before{
+    content:counter(opt, lower-alpha) ")"; counter-increment:opt;
+    font-family:var(--font-mono); font-size:11px; color:var(--ink-faint); flex:none;
+  }
+  .opts{counter-reset:opt;}
+  .mcq[open] .right{
+    background:var(--green-soft); border-color:var(--green); color:var(--ink); font-weight:600;
+  }
+  .mcq[open] .right::before{content:"\2713"; color:var(--green); font-weight:700;}
+  .mcq > summary{flex-direction:column; align-items:stretch; gap:0;}
+  .mcq > summary::before{margin-bottom:8px; align-self:flex-start; justify-self:start;}
+  .mcq > summary .qtext{display:block; margin-bottom:10px;}
+  .mcq > summary:hover{background:transparent;}
+  .mcq > summary .tap{
+    display:block; margin-top:2px; font-family:var(--font-mono); font-size:11px;
+    color:var(--accent); font-weight:600;
+  }
+  .mcq[open] > summary .tap{color:var(--ink-faint);}
+  .mcq .opts{padding-left:0;}
+  .mcq .why{margin-left:14px;}
+  .mcq .why{
+    margin:9px 14px 13px 43px; padding-top:9px; border-top:1px dashed var(--line);
+    font-size:12.4px; line-height:1.72; color:var(--ink-soft);
+  }
+  .mcq .why b{color:var(--ink);}
+  .mcq .why code{font-family:var(--font-mono); font-size:.94em; background:var(--surface-2); padding:1px 4px; border-radius:3px;}
+  .mcq-tools{
+    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;
+  }
+  .mcq-tools button{
+    cursor:pointer; border:1.5px solid var(--line-strong); background:var(--surface); color:var(--ink-soft);
+    border-radius:7px; padding:6px 12px; font-family:var(--font-mono); font-size:11.5px; font-weight:600;
+  }
+  .mcq-tools button:hover{background:var(--surface-2); color:var(--ink);}
+
+  /* ---- print ---- */
+  @media print{
+    :root{
+      --wall:#fff; --frame:#fff; --bg:#fff; --grid-line:#fff;
+      --surface:#fff; --surface-2:#f3f4f7;
+      --ink:#111; --ink-soft:#333; --ink-faint:#666;
+      --line:#bbb; --line-strong:#888;
+      --accent:#1a44b8; --accent-soft:#e8edfb;
+      --shadow:none;
+    }
+    body{background:#fff;}
+    .board-frame{border:none; box-shadow:none; background:#fff; margin:0; max-width:none;}
+    .marker-tray, .lang-toggle, .mcq-tools{display:none !important;}
+    .wrap{padding:0; max-width:none;}
+    figure.diagram{transform:none; break-inside:avoid; box-shadow:none;}
+    figure.diagram::before, .card::before{display:none;}
+    .card{transform:none; box-shadow:none; break-inside:avoid;}
+    .band{break-inside:auto;}
+    .fact, .trap, .q, .mcq, .gl-term, .cram{break-inside:avoid; box-shadow:none;}
+    details{display:block;}
+    details > summary{list-style:none;}
+    .qa, .opts, .mcq .why{display:block !important;}
+    .mcq .right{background:#e6f4ec !important; border-color:#337a52 !important; font-weight:700;}
+    .mcq .tap{display:none !important;}
+    a[href]::after{content:"";}
+  }
 </style>
 
 <div class="board-frame">
@@ -217,6 +325,45 @@
       <span data-th="สอบสัปดาห์ที่ 6 · <b>ทฤษฎีล้วน 30%</b> ครอบคลุมคาบ 1–5 · <b>Quiz#1 ถูกยกเลิกแล้ว</b> อาจารย์ประกาศในคาบ 4 ว่าให้ถือว่าไม่มี เหลือแต่ Quiz#2 ที่กินคะแนน 5% เต็มในสัปดาห์ 9 · และข้อที่อาจารย์ย้ำซ้ำที่สุดตลอดคาบ 4: <b>ต้องใช้ UML notation ตามสไลด์เท่านั้น</b> ทั้งใน lab, group project และข้อสอบ — ห้ามวาด ER ด้วย MySQL Workbench"> Week 6 · <b>theory only, 30%</b>, covering classes 1–5. <b>Quiz#1 is cancelled</b> — announced in class 4, to be treated as never having existed, leaving Quiz#2 to carry the full 5% in week 9. And the thing the lecturer repeated most often in class 4: <b>the notation must be the UML notation from the slides</b> — in the lab, in the group project, and in the exam. Do not draw the ER diagram in MySQL Workbench.</span>
     </div>
   </header>
+
+  <div class="cram">
+    <h3 data-th="ยี่สิบนาทีสุดท้าย">The last twenty minutes</h3>
+    <p data-th="ถ้าเหลือเวลาอ่านรอบเดียว ให้อ่านตรงนี้ · ทุกข้อคือสิ่งที่เขียนเป็นข้อสอบได้ตรงๆ เรียงตามคาบ ไม่มีคำอธิบายยาว เพราะรายละเอียดอยู่ข้างล่างแล้ว">If there is time for one pass only, make it this one. Every line is something that can be written as a question directly, in class order, with no elaboration — the detail is all below.</p>
+    <ol class="cram-list">
+      <li data-th="<b>SQL</b> เดิมชื่อ SEQUEL โดย Chamberlin และ Boyce ที่ IBM · เปลี่ยนชื่อก่อนขายจริง <b>1979</b> · ANSI <b>1986</b> · ISO <b>1987</b>"><b>SQL</b> was SEQUEL, by Chamberlin and Boyce at IBM. Renamed before commercial release in <b>1979</b>; ANSI <b>1986</b>, ISO <b>1987</b>.</li>
+      <li data-th="<b>สี่กลุ่มคำสั่ง</b> DDL (CREATE/ALTER/DROP) · DML (SELECT/INSERT/UPDATE/DELETE) · DCL (<b>GRANT/REVOKE</b>) · Transaction (COMMIT/ROLLBACK/SAVEPOINT)"><b>Four SQL groups:</b> DDL (CREATE/ALTER/DROP) · DML (SELECT/INSERT/UPDATE/DELETE) · DCL (<b>GRANT/REVOKE</b>) · Transaction (COMMIT/ROLLBACK/SAVEPOINT).</li>
+      <li data-th="<b>สามข้อที่ DBMS ต้องทำได้</b> Data Persistency · System Reliability · Scalability"><b>The three requirements:</b> Data Persistency · System Reliability · Scalability.</li>
+      <li data-th="<b>Data Administrator</b> = Plan, Define ตอนต้น · <b>Database Administrator</b> = Config, Maintain/Tune ตอนปลาย"><b>Data Administrator</b> = Plan, Define, at the start. <b>Database Administrator</b> = Config, Maintain/Tune, at the end.</li>
+      <li data-th="<b>ลำดับขั้น</b> System Planning → System Definition → Requirement Collection → Database Design → Implementation → Maintenance"><b>The stage sequence:</b> System Planning → System Definition → Requirement Collection → Database Design → Implementation → Maintenance.</li>
+      <li data-th="<b>Meta-data</b> = คำอธิบายโครงสร้างข้อมูล เก็บใน DBMS catalog เรียกอีกชื่อว่า data dictionary หรือ system catalog · เก็บ<b>แยก</b>จากตัวข้อมูล"><b>Meta-data</b> = the description of the data, in the DBMS catalog, also called the data dictionary or system catalog. Stored <b>separately</b> from the data.</li>
+      <li data-th="<b>ANSI-SPARC</b> External / Conceptual / Internal · เสนอ <b>1975</b> · <b>ไม่เคยเป็นมาตรฐานทางการ</b> · ANSI = American National Standards Institute · SPARC = Standards Planning And Requirements Committee"><b>ANSI-SPARC</b> = External / Conceptual / Internal, proposed <b>1975</b>, and <b>never a formal standard</b>. ANSI = American National Standards Institute; SPARC = Standards Planning And Requirements Committee.</li>
+      <li data-th="<b>DBMS ดูแล</b> external + conceptual + internal · <b>OS ดูแล</b> ไฟล์จริงบนดิสก์เท่านั้น"><b>The DBMS owns</b> external + conceptual + internal. <b>The OS owns</b> only the real files on disk.</li>
+      <li data-th="<b>Data independence</b> = schema ระดับบนไม่กระทบเมื่อ schema ระดับล่างเปลี่ยน"><b>Data independence</b> = a schema at an upper level is unaffected when a lower one changes.</li>
+      <li data-th="<b>ออกแบบสามขั้น</b> Conceptual → <b>ER diagram</b> · Logical → <b>ตารางและ constraint</b> · Physical → <b>ไฟล์, index, partition</b> · ก่อนหน้าทั้งหมดคือ Requirement Collection and Analysis"><b>Three design stages:</b> Conceptual → <b>ER diagram</b> · Logical → <b>tables and constraints</b> · Physical → <b>files, indexes, partitions</b>. Everything starts from Requirement Collection and Analysis.</li>
+      <li data-th="<b>Data model ห้าแบบ</b> Hierarchical → Network → Relational → Object-oriented → Object-relational · นิยาม data model มีสามส่วน: structural, manipulative, integrity constraint"><b>Five data models:</b> Hierarchical → Network → Relational → Object-oriented → Object-relational. A data model has three parts: structural, manipulative, integrity constraint.</li>
+      <li data-th="<b>สถาปัตยกรรม</b> Teleprocessing → File-Server → Two-tier (client <b>อ้วน</b>) → Three-tier (client <b>ผอม</b>, load balance ง่ายกว่า, modular กว่า) · ODBC = Microsoft · JDBC = Java"><b>Architectures:</b> Teleprocessing → File-Server → Two-tier (<b>fat</b> client) → Three-tier (<b>thin</b> client, easier load balancing, more modular). ODBC = Microsoft; JDBC = Java.</li>
+      <li data-th="<b>Relational model</b> โดย <b>Codd</b> ที่ IBM Research · <b>1970</b> · CACM มิถุนายน 1970 · ได้ <b>ACM Turing Award</b> · ตั้งอยู่บน set theory"><b>The relational model:</b> <b>Codd</b>, IBM Research, <b>1970</b>, CACM June 1970, won the <b>ACM Turing Award</b>. Built on set theory.</li>
+      <li data-th="<b>คู่คำ</b> Relation=Table · Attribute=Column · Tuple=Row · Schema of a relation=Table definition · Domain=ค่าที่คอลัมน์เป็นได้ทั้งหมด"><b>The pairs:</b> Relation=Table · Attribute=Column · Tuple=Row · Schema of a relation=Table definition · Domain=all possible column values.</li>
+      <li data-th="<b>Cardinality = จำนวนแถว</b> (เปลี่ยนตามข้อมูล) · <b>Degree = จำนวนคอลัมน์</b> (ตายตัวตาม schema) — คนละความหมายกับคาบ 4 สิ้นเชิง"><b>Cardinality = rows</b> (changes with the instance). <b>Degree = columns</b> (fixed by the schema). Both mean something else entirely in class 4.</li>
+      <li data-th="<b>คุณสมบัติ relation</b> ทุกช่องเก็บค่า atomic เดียว · ห้ามมี tuple ซ้ำ · <b>ลำดับแถวไม่สำคัญ</b> · <b>ลำดับคอลัมน์สำคัญ</b> ตอน INSERT ที่ไม่ระบุชื่อคอลัมน์"><b>Relation properties:</b> one atomic value per cell · no duplicate tuples · <b>row order does not matter</b> · <b>column order does</b>, on an INSERT that names no columns.</li>
+      <li data-th="<b>ลำดับคีย์</b> Superkey ⊃ Candidate (uniqueness + <b>irreducibility</b>) → เลือกหนึ่งเป็น Primary → ที่เหลือเป็น Alternate · คีย์หลายแอตทริบิวต์ = composite · คีย์ที่สร้างเอง = surrogate"><b>Key hierarchy:</b> Superkey ⊃ Candidate (uniqueness + <b>irreducibility</b>) → one becomes Primary → the rest are Alternate. Several attributes = composite; invented = surrogate.</li>
+      <li data-th="<b>Entity integrity</b> ทุก relation ต้องมี PK และ PK ห้าม null · <b>Referential integrity</b> FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null · <b>General</b> = Unique, Check, Not Null"><b>Entity integrity:</b> every relation has a PK and it may never be null. <b>Referential integrity:</b> an FK matches an existing PK, or is null. <b>General:</b> Unique, Check, Not Null.</li>
+      <li data-th="<b>Referential actions</b> ไม่เขียนอะไรเลย = <b>RESTRICT</b> (ค่าเริ่มต้น) · CASCADE ลบตามไป · SET NULL ตั้งเป็น null (คอลัมน์ห้ามเป็น NOT NULL) · <b>ไม่ช่วยเรื่อง INSERT เลย</b>"><b>Referential actions:</b> writing nothing = <b>RESTRICT</b> (the default) · CASCADE deletes on through · SET NULL nulls the child FK (that column must not be NOT NULL). <b>None of them help an INSERT.</b></li>
+      <li data-th="<b>ใครละเมิดอะไรได้</b> INSERT = ทุกชนิด · <b>DELETE = referential integrity อย่างเดียว</b> · UPDATE = domain/NOT NULL ของตัวที่แก้ และมากกว่านั้นถ้าแก้ PK หรือ FK"><b>Who violates what:</b> INSERT = every kind · <b>DELETE = referential integrity only</b> · UPDATE = domain/NOT NULL of the attribute changed, and more if it is a PK or FK.</li>
+      <li data-th="<b>ER model เป็น top-down</b> · เริ่มที่เอนทิตีและความสัมพันธ์ แล้วค่อยลงแอตทริบิวต์ · bottom-up เริ่มที่แอตทริบิวต์"><b>The ER model is top-down</b> — entities and relationships first, attributes after. Bottom-up starts at the attributes.</li>
+      <li data-th="<b>สามองค์ประกอบ</b> Entity Type (สี่เหลี่ยม) · Attribute · Relationship Type (เส้นที่<b>ต้องมีชื่อ</b>) · แอตทริบิวต์เป็นของ relationship ก็ได้"><b>Three components:</b> Entity Type (a rectangle) · Attribute · Relationship Type (a line that <b>must be named</b>). An attribute may belong to a relationship too.</li>
+      <li data-th="<b>Degree ของ relationship</b> = <b>จำนวนเอนทิตี</b> · 2 binary (พบบ่อยสุด) · 3 ternary · 4 quaternary · วนกลับตัวเอง = recursive = ที่มาของ SELF JOIN"><b>Degree of a relationship</b> = <b>how many entities</b> · 2 binary (most common) · 3 ternary · 4 quaternary · looping back = recursive = where SELF JOIN comes from.</li>
+      <li data-th="<b>แอตทริบิวต์สามแกน</b> Single↔Composite (ส่วนประกอบ) · Single-valued↔Multiple-valued (<b>หลายค่าพร้อมกัน</b>) · Derived (คำนวณได้ อาจอยู่คนละเอนทิตี)"><b>Attributes on three axes:</b> Single↔Composite (components) · Single-valued↔Multiple-valued (<b>several at once</b>) · Derived (computed, possibly from another entity).</li>
+      <li data-th="<b>สัญกรณ์</b> <code>{PK}</code> primary key · <code>/x</code> derived · ย่อหน้า = composite · <code>[1..3]</code> multi-valued · ชื่อบนเส้นบังคับ ลูกศรไม่บังคับ"><b>Notation:</b> <code>{PK}</code> primary key · <code>/x</code> derived · indentation = composite · <code>[1..3]</code> multi-valued. The line's name is required; the arrow is not.</li>
+      <li data-th="<b>ไดอะแกรม conceptual มีแค่ PK</b> ไม่มี FK ไม่มี unique/check/not null"><b>A conceptual diagram carries primary keys only</b> — no FKs, no unique/check/not null.</li>
+      <li data-th="<b>min..max</b> · min = <b>participation</b> (0 optional, 1 mandatory) · max = <b>cardinality</b> (1 หรือ many) · อ่าน A→B ให้<b>ดูเลขฝั่ง B</b>"><b>min..max</b> · min = <b>participation</b> (0 optional, 1 mandatory) · max = <b>cardinality</b> (1 or many). Reading A→B, <b>look at the number on B's side</b>.</li>
+      <li data-th="<b>ตั้งชื่อ 1:1 / 1:* / *:*</b> ดู <b>max ทั้งสองฝั่งเท่านั้น</b> ไม่สนใจ min"><b>Naming 1:1 / 1:* / *:*</b> uses <b>the max on both sides only</b> — ignore min.</li>
+      <li data-th="<b>Strong</b> มี PK ของตัวเอง · <b>Weak</b> ไม่มี ต้องยืม PK ของ strong ผ่าน <b>identifying relationship</b> มาต่อเป็น composite key (หรือใช้ surrogate key แทนก็ได้)"><b>Strong</b> has its own PK. <b>Weak</b> does not, and borrows the strong entity's PK through an <b>identifying relationship</b> into a composite key (or you invent a surrogate key instead).</li>
+      <li data-th="<b>แอตทริบิวต์ของ relationship</b> ถ้าข้อมูลเกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้น ให้ห้อยจากเส้นด้วย<b>เส้นประ</b> ลงกล่องที่<b>เว้นหัวว่าง</b>"><b>A relationship's attributes:</b> if the data exists only once the relationship occurs, hang it off the line with a <b>dashed line</b> into a box with a <b>blank header</b>.</li>
+      <li data-th="<b>constraint มาจาก business requirement</b> ไม่ใช่สิ่งที่ผู้ออกแบบคิดเอง · เดาเองได้เฉพาะตอนโจทย์เงียบ"><b>Constraints come from the business requirements</b>, not from the designer. Fill gaps only where the brief is silent.</li>
+      <li data-th="<b>สอบ</b> สัปดาห์ 6 · ทฤษฎีล้วน 30% · <b>Quiz#1 ยกเลิก</b> · ER ต้องใช้ <b>UML notation ตามสไลด์</b> ห้ามวาดด้วย MySQL Workbench"><b>The exam:</b> week 6, theory only, 30%. <b>Quiz#1 is cancelled.</b> ER must use the <b>UML notation from the slides</b> — not MySQL Workbench.</li>
+    </ol>
+  </div>
 
   <div class="glossary">
     <h3 data-th="คู่คำที่สับสนกันบ่อยที่สุด">The pairs that get confused</h3>
@@ -792,7 +939,7 @@
       </div>
     </div>
 
-    <div class="sub-h" data-th="ลองตอบเอง — เปิดดูเฉลยได้ทีละข้อ">Try them yourself — each opens to its answer</div>
+    <div class="sub-h" data-th="คำถามปลายเปิด — ตอบเป็นคำอธิบาย">Open questions — answer in your own words</div>
 
     <div class="quiz">
 
@@ -853,6 +1000,232 @@
       </details>
 
     </div>
+
+    <div class="sub-h" data-th="ข้อสอบปรนัยลองทำ — 20 ข้อ">Multiple choice, exam-shaped — 20 questions</div>
+
+    <div class="mcq-tools">
+      <button type="button" id="mcqOpen" data-th="เปิดเฉลยทั้งหมด">Reveal all</button>
+      <button type="button" id="mcqClose" data-th="ปิดเฉลยทั้งหมด">Hide all</button>
+    </div>
+
+    <div class="mcq-wrap">
+
+      <details class="mcq"><summary data-n="1"><span class="qtext" data-th="เดิมที SQL ถูกเรียกว่าอะไร">What was SQL originally called?</span>
+        <ol class="opts">
+          <li class="right">SEQUEL</li><li>QUEL</li><li>SQUARE</li><li>ISBL</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>SEQUEL</b> = Structured English Query Language พัฒนาโดย Donald Chamberlin และ Raymond Boyce ที่ IBM ในยุค 1970s แล้วเปลี่ยนชื่อเป็น SQL ก่อนขายจริงปี 1979 · ตัวเลือกอื่นเป็นภาษาคิวรียุคเดียวกันจริง แต่ไม่ใช่ชื่อเดิมของ SQL"><b>SEQUEL</b> = Structured English Query Language, by Donald Chamberlin and Raymond Boyce at IBM in the 1970s, renamed to SQL before its 1979 commercial release. The others are real query languages of the era, but not SQL's former name.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="2"><span class="qtext" data-th="GRANT และ REVOKE อยู่ในกลุ่มคำสั่งใด">Which group do <code>GRANT</code> and <code>REVOKE</code> belong to?</span>
+        <ol class="opts">
+          <li>DDL</li><li>DML</li><li class="right">DCL</li><li data-th="Transaction Control">Transaction Control</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>DCL = Data Control Language</b> คุมสิทธิ์ · DDL นิยามโครงสร้าง (CREATE/ALTER/DROP) · DML จัดการข้อมูล (SELECT/INSERT/UPDATE/DELETE) · Transaction Control คือ COMMIT/ROLLBACK/SAVEPOINT"><b>DCL = Data Control Language</b>, which governs privileges. DDL defines structure (CREATE/ALTER/DROP); DML manipulates data (SELECT/INSERT/UPDATE/DELETE); Transaction Control is COMMIT/ROLLBACK/SAVEPOINT.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="3"><span class="qtext" data-th="ข้อใด <b>ไม่ใช่</b> หนึ่งในสามข้อที่ระบบฐานข้อมูลต้องทำได้">Which is <b>not</b> one of the three requirements a database system must satisfy?</span>
+        <ol class="opts">
+          <li>Data Persistency</li><li>System Reliability</li><li>Scalability</li><li class="right">Portability</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="สไลด์ให้มาสามข้อพอดี: <b>Persistency</b> (ข้อมูลอยู่นานกว่าโปรแกรมที่สร้างมัน) · <b>Reliability</b> (กู้คืนได้ถูกและเร็วเมื่อระบบล่ม) · <b>Scalability</b> (รับข้อมูลปริมาณมากและผู้ใช้พร้อมกันหลายคน) · Portability ไม่ได้อยู่ในรายการนี้">The slide gives exactly three: <b>Persistency</b> (data outlives the program that made it), <b>Reliability</b> (correct and fast recovery after a crash), <b>Scalability</b> (large volumes and many concurrent users). Portability is not on the list.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="4"><span class="qtext" data-th="บทบาทใดทำหน้าที่ Plan และ Define ในช่วงต้นของโครงการ">Which role does Plan and Define at the start of the project?</span>
+        <ol class="opts">
+          <li class="right" data-th="Data Administrator">Data Administrator</li>
+          <li data-th="Database Administrator">Database Administrator</li>
+          <li data-th="Database Designer/Analyst">Database Designer/Analyst</li>
+          <li data-th="Application Developer">Application Developer</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="ชื่อสองอันแรกคล้ายกันมากจนเป็นตัวลวงชั้นดี · <b>Data Administrator</b> ทำ Plan → System Planning และ Define → System Definition ที่ต้นทาง · <b>Database Administrator</b> ทำ Config → System Implementation และ Maintain/Tune → System Maintenance ที่ปลายทาง">The first two names are close enough to make an excellent distractor. The <b>Data Administrator</b> does Plan → System Planning and Define → System Definition, at the start. The <b>Database Administrator</b> does Config → System Implementation and Maintain/Tune → System Maintenance, at the end.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="5"><span class="qtext" data-th="ข้อใดถูกต้องเกี่ยวกับสถาปัตยกรรม ANSI-SPARC">Which statement about the ANSI-SPARC architecture is correct?</span>
+        <ol class="opts">
+          <li data-th="เป็นมาตรฐาน ISO ตั้งแต่ปี 1975">It became an ISO standard in 1975</li>
+          <li class="right" data-th="ถูกเสนอในปี 1975 แต่ไม่เคยกลายเป็นมาตรฐานทางการ">It was proposed in 1975 but never became a formal standard</li>
+          <li data-th="เป็นมาตรฐาน ANSI ตั้งแต่ปี 1986">It became an ANSI standard in 1986</li>
+          <li data-th="มีสี่ระดับ">It has four levels</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="สไลด์เขียนไว้ตรงๆ ว่า <b>never became a formal standard</b> แต่ยังใช้เป็นฐานความเข้าใจการทำงานของ DBMS มาตลอด · ปี 1986/1987 เป็นปีที่ ANSI/ISO รับ <b>SQL</b> เป็นมาตรฐาน คนละเรื่องกัน · และมีสามระดับ ไม่ใช่สี่">The slide says outright that it <b>never became a formal standard</b>, yet it is still the basis for understanding how a DBMS works. 1986/1987 are the years ANSI and ISO standardised <b>SQL</b> — a different thing entirely. And there are three levels, not four.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="6"><span class="qtext" data-th="ในภาพ ANSI-SPARC ส่วนใดเป็นงานของระบบปฏิบัติการ ไม่ใช่ของ DBMS">In the ANSI-SPARC picture, which part is the operating system's job rather than the DBMS's?</span>
+        <ol class="opts">
+          <li data-th="External level">The external level</li>
+          <li data-th="Conceptual level">The conceptual level</li>
+          <li data-th="Internal level">The internal level</li>
+          <li class="right" data-th="ไฟล์จริงบนดิสก์ ที่อยู่ใต้ internal level">The real files on disk, below the internal level</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="สไลด์วางป้าย DBMS ไว้ข้าง Conceptual กับ Internal และป้าย OS ไว้ข้าง Database · DBMS ดูแลทั้ง external, conceptual และ internal ส่วน OS ดูแลการจัดเก็บจริง · <b>ตัวลวงที่แรงที่สุดคือ internal level</b> เพราะฟังดูเหมือนเรื่องฮาร์ดแวร์ แต่มันยังเป็นของ DBMS อยู่ — internal schema คือ<i>คำอธิบาย</i>ว่าเก็บยังไง ไม่ใช่ตัวไฟล์">The slide puts a DBMS label beside Conceptual and Internal, and an OS label beside Database. The DBMS owns external, conceptual and internal; the OS owns the actual storage. <b>The strongest distractor is the internal level</b>, because it sounds like hardware — but it is still the DBMS's: the internal schema is the <i>description</i> of how it is stored, not the files themselves.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="7"><span class="qtext" data-th="ผลลัพธ์ของขั้น conceptual database design คืออะไร">What is the output of conceptual database design?</span>
+        <ol class="opts">
+          <li class="right" data-th="Entity Relationship Diagram">An Entity Relationship Diagram</li>
+          <li data-th="ตารางและ constraint">Tables and constraints</li>
+          <li data-th="Data files และ index">Data files and indexes</li>
+          <li data-th="Requirement specification">A requirement specification</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="สามขั้นเรียงกันชัด: <b>Conceptual → ER diagram</b> (ยังไม่ผูกกับ DBMS ตัวไหน) · <b>Logical → ตารางและ constraint</b> · <b>Physical → data files, index, partition, data block size</b> · ส่วน requirement specification เป็นผลลัพธ์ของขั้น System Definition ซึ่งมา<i>ก่อน</i>ทั้งสามขั้นนี้">The three stages line up cleanly: <b>Conceptual → ER diagram</b> (no DBMS chosen yet) · <b>Logical → tables and constraints</b> · <b>Physical → data files, indexes, partitions, block sizes</b>. A requirement specification is the output of System Definition, which comes <i>before</i> all three.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="8"><span class="qtext" data-th="สถาปัตยกรรมใดที่ client เป็นแบบ “อ้วน” (fat client)">Which architecture has a "fat" client?</span>
+        <ol class="opts">
+          <li>Teleprocessing</li><li>File-Server</li><li class="right" data-th="Two-tier client-server">Two-tier client-server</li><li data-th="Three-tier client-server">Three-tier client-server</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="ใน two-tier ตัว client รับผิดชอบทั้งการแสดงผลและ business logic จึงกินทรัพยากรมาก สไลด์เรียกว่า <b>fat</b> และระบุเป็นข้อเสีย · ส่วน three-tier ย้าย logic ไปไว้ที่ application server ทำให้ client เป็น <b>thin</b> · teleprocessing ใช้ terminal แบบ “dumb” ซึ่งคำนวณเองไม่ได้เลย จึงไม่ใช่ทั้ง fat และ thin ในความหมายนี้">In two-tier the client handles both presentation and the business logic, so it consumes more resources — the slide calls it <b>fat</b> and lists it as a drawback. Three-tier moves the logic to an application server, making the client <b>thin</b>. Teleprocessing uses "dumb" terminals that cannot compute at all, so neither word applies.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="9"><span class="qtext" data-th="ODBC เป็นมาตรฐานของใคร">Whose standard is ODBC?</span>
+        <ol class="opts">
+          <li class="right">Microsoft</li><li>Oracle</li><li>IBM</li><li data-th="Java (Sun/Oracle)">Java (Sun/Oracle)</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>ODBC</b> (Open Database Connectivity) เป็นของ <b>Microsoft</b> ให้อินเทอร์เฟซเดียวเข้าถึงฐานข้อมูลได้หลายชนิดผ่าน driver · ส่วน <b>JDBC</b> เป็นชุดเมธอดฝั่ง <b>Java</b> ที่ทำหน้าที่เดียวกัน · ทั้งคู่คือ database-oriented middleware"><b>ODBC</b> (Open Database Connectivity) is <b>Microsoft's</b> — one interface reaching many kinds of database through drivers. <b>JDBC</b> is the <b>Java</b> set of methods doing the same job. Both are database-oriented middleware.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="10"><span class="qtext" data-th="ใครเสนอ relational model และเมื่อไหร่">Who proposed the relational model, and when?</span>
+        <ol class="opts">
+          <li data-th="Donald Chamberlin, 1974">Donald Chamberlin, 1974</li>
+          <li class="right" data-th="E. F. Codd, 1970">E. F. Codd, 1970</li>
+          <li data-th="Peter Chen, 1976">Peter Chen, 1976</li>
+          <li data-th="E. F. Codd, 1979">E. F. Codd, 1979</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>Dr. E. F. Codd</b> แห่ง IBM Research เสนอในเปเปอร์ <i>A Relational Model for Large Shared Data Banks</i> ลง Communications of the ACM เดือนมิถุนายน <b>1970</b> และได้ <b>ACM Turing Award</b> จากงานชิ้นนี้ · Chamberlin เป็นคนทำ SEQUEL/SQL ซึ่งคนละเรื่อง · 1979 เป็นปีที่ SQL ออกขายเชิงพาณิชย์"><b>Dr. E. F. Codd</b> of IBM Research, in <i>A Relational Model for Large Shared Data Banks</i>, Communications of the ACM, June <b>1970</b> — the work that won him the <b>ACM Turing Award</b>. Chamberlin did SEQUEL/SQL, a different thing; 1979 is SQL's commercial release.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="11"><span class="qtext" data-th="relation หนึ่งมี 6 tuple และ 8 attribute · degree เท่ากับเท่าไหร่">A relation holds 6 tuples and 8 attributes. What is its degree?</span>
+        <ol class="opts">
+          <li>6</li><li class="right">8</li><li>48</li><li data-th="ตอบไม่ได้ ต้องดูข้อมูล ณ ขณะนั้น">It depends on the current instance</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>Degree = จำนวนแอตทริบิวต์ (คอลัมน์)</b> = 8 และตายตัวตาม schema · <b>Cardinality = จำนวน tuple (แถว)</b> = 6 และเปลี่ยนไปตามข้อมูล ณ ขณะนั้น · ตัวเลือกสุดท้ายเป็นคำอธิบายของ cardinality ไม่ใช่ degree · ระวังว่าในคาบ 4 คำสองคำนี้แปลคนละอย่างสิ้นเชิง"><b>Degree = the number of attributes (columns)</b> = 8, fixed by the schema. <b>Cardinality = the number of tuples (rows)</b> = 6, and that does change with the instance — which is what the last option describes. Note that both words mean something else entirely in class 4.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="12"><span class="qtext" data-th="ข้อใด <b>ไม่ใช่</b> คุณสมบัติของ relation">Which is <b>not</b> a property of a relation?</span>
+        <ol class="opts">
+          <li data-th="ทุกช่องเก็บค่า atomic เพียงค่าเดียว">Each cell holds exactly one atomic value</li>
+          <li data-th="ห้ามมี tuple ซ้ำกัน">There are no duplicate tuples</li>
+          <li class="right" data-th="ลำดับของ tuple มีความสำคัญ">The order of the tuples matters</li>
+          <li data-th="ค่าของแอตทริบิวต์เดียวกันมาจาก domain เดียวกัน">All values of one attribute come from the same domain</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>ลำดับแถวไม่สำคัญ</b> — relation เป็นเซตของ tuple สลับแถวยังเป็น relation เดิม · สิ่งที่<i>สำคัญ</i>คือ<b>ลำดับคอลัมน์</b> เพราะ tuple นิยามเป็นรายการค่าที่เรียงลำดับ ดังนั้น INSERT ที่ไม่ระบุชื่อคอลัมน์ต้องเรียงตามที่ประกาศไว้ · นี่คือจุดที่สไลด์ดูขัดกันเองแต่จริงๆ พูดคนละมุม"><b>Row order does not matter</b> — a relation is a set of tuples, and reordering them leaves the same relation. What <i>does</i> matter is <b>column order</b>, because a tuple is defined as an ordered list of values, so an INSERT naming no columns must follow the declared order. This is the point where the slides look self-contradictory but are speaking from two angles.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="13"><span class="qtext" data-th="superkey ที่ลดทอนต่อไปอีกไม่ได้ เรียกว่าอะไร">A superkey none of whose proper subsets is itself a superkey is called a…</span>
+        <ol class="opts">
+          <li data-th="Primary key">Primary key</li><li class="right" data-th="Candidate key">Candidate key</li>
+          <li data-th="Alternate key">Alternate key</li><li data-th="Composite key">Composite key</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="นั่นคือคุณสมบัติ <b>irreducibility</b> ซึ่งคู่กับ <b>uniqueness</b> เป็นนิยามของ <b>candidate key</b> · <b>primary key</b> คือ candidate key ที่<i>ถูกเลือก</i> · <b>alternate key</b> คือ candidate ที่<i>ไม่ถูกเลือก</i> · <b>composite key</b> พูดถึงคีย์ที่ประกอบจากหลายแอตทริบิวต์ ซึ่งเป็นคนละแกนของการจำแนก">That is the <b>irreducibility</b> property, which together with <b>uniqueness</b> defines a <b>candidate key</b>. A <b>primary key</b> is the candidate that <i>was chosen</i>; an <b>alternate key</b> is one that <i>was not</i>. A <b>composite key</b> describes a key built from several attributes — a different axis of classification altogether.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="14"><span class="qtext" data-th="entity integrity constraint กล่าวว่าอะไร">What does the entity integrity constraint state?</span>
+        <ol class="opts">
+          <li data-th="ค่า FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null">An FK's value must match an existing PK, or be null</li>
+          <li class="right" data-th="ทุก relation ต้องมี primary key และ primary key ห้ามเป็น null">Every relation must have a primary key, and it may never be null</li>
+          <li data-th="ทุกช่องต้องเก็บค่า atomic">Every cell must hold an atomic value</li>
+          <li data-th="ค่าต้องอยู่ใน domain ของแอตทริบิวต์นั้น">A value must lie within its attribute's domain</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="ตัวเลือกแรกคือ <b>referential integrity</b> ซึ่งเป็นตัวลวงที่แรงที่สุดเพราะสองคำนี้มักถูกจำสลับกัน · ตัวเลือกที่สามเป็นคุณสมบัติของ relation ไม่ใช่ integrity constraint · ตัวเลือกที่สี่คือ <b>domain constraint</b>">The first option is <b>referential integrity</b> — the strongest distractor, because the two are routinely swapped. The third is a property of a relation, not an integrity constraint. The fourth is a <b>domain constraint</b>.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="15"><span class="qtext" data-th="foreign key ที่ไม่ได้เขียน ON DELETE ไว้เลย มีพฤติกรรมเทียบเท่าข้อใด">A foreign key with no <code>ON DELETE</code> clause behaves the same as which action?</span>
+        <ol class="opts">
+          <li class="right">RESTRICT</li><li>CASCADE</li><li>SET NULL</li><li data-th="SET DEFAULT">SET DEFAULT</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>RESTRICT เป็นค่าเริ่มต้น</b> ดังนั้นการเขียน RESTRICT กับไม่เขียนอะไรเลยให้ผลเหมือนกันทุกประการ (NO ACTION ก็อย่างเดียวกัน) · จะให้ลบตามไปต้อง DROP constraint เดิมแล้ว ADD กลับพร้อม ON DELETE CASCADE · และใน MySQL Workbench ช่อง Related Tables จะแสดง On Update: RESTRICT / On Delete: RESTRICT ให้เห็นตรงๆ"><b>RESTRICT is the default</b>, so writing it and writing nothing are identical (NO ACTION likewise). To make it cascade you must DROP the constraint and ADD it back with ON DELETE CASCADE. MySQL Workbench shows this plainly — the Related Tables panel reads On Update: RESTRICT / On Delete: RESTRICT.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="16"><span class="qtext" data-th="คำสั่ง DELETE ละเมิด integrity constraint ชนิดใดได้">Which integrity constraint can a <code>DELETE</code> violate?</span>
+        <ol class="opts">
+          <li data-th="Domain constraint">Domain constraint</li>
+          <li data-th="Entity integrity">Entity integrity</li>
+          <li class="right" data-th="Referential integrity">Referential integrity</li>
+          <li data-th="ละเมิดได้ทุกชนิด">All of them</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="DELETE ไม่ได้ใส่ค่าใหม่เข้าไป จึงละเมิด domain, key หรือ entity integrity ไม่ได้เลย · ทางเดียวที่มันผิดพลาดได้คือเมื่อ PK ของแถวที่ถูกลบยังถูกอ้างจากที่อื่น · ตัวเลือกสุดท้ายเป็นคำตอบของ <b>INSERT</b> ซึ่งละเมิดได้ครบทุกชนิด">A DELETE puts no new value in, so it cannot violate a domain, a key, or entity integrity. The only way it can go wrong is when the PK of the removed row is still referenced. The last option is the answer for <b>INSERT</b>, which can violate every kind.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="17"><span class="qtext" data-th="ความสัมพันธ์ Registers ที่เชื่อม Staff, Branch และ Client มี degree เท่าไหร่">A <code>Registers</code> relationship joining Staff, Branch and Client has what degree?</span>
+        <ol class="opts">
+          <li data-th="2 — binary">2 — binary</li><li class="right" data-th="3 — ternary">3 — ternary</li>
+          <li data-th="4 — quaternary">4 — quaternary</li><li data-th="ขึ้นกับจำนวนแอตทริบิวต์">It depends on how many attributes it has</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="<b>Degree ของ relationship = จำนวนเอนทิตีที่ร่วมอยู่</b> ซึ่งที่นี่คือสาม จึงเป็น ternary · การลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน · ตัวเลือกสุดท้ายเป็นตัวลวงที่อาศัยความสับสนกับ degree ของ <b>relation</b> ในคาบ 3 ซึ่งนับคอลัมน์"><b>A relationship's degree is how many entities take part</b> — three here, so ternary. One registration must record all three things: which client, with which member of staff, at which branch. The last option is a distractor trading on class 3's degree of a <b>relation</b>, which counts columns.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="18"><span class="qtext" data-th="ใน multiplicity <code>0..*</code> เลข 0 บอกอะไร">In the multiplicity <code>0..*</code>, what does the <code>0</code> tell you?</span>
+        <ol class="opts">
+          <li class="right" data-th="participation — การเข้าร่วมเป็นทางเลือก ไม่บังคับ">Participation — taking part is optional</li>
+          <li data-th="cardinality — เกี่ยวได้มากที่สุดศูนย์ตัว">Cardinality — at most zero occurrences</li>
+          <li data-th="ว่าความสัมพันธ์นี้เป็น one-to-many">That the relationship is one-to-many</li>
+          <li data-th="ว่าแอตทริบิวต์นี้เป็น null ได้">That the attribute may be null</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="เขียนเป็น <b>min..max</b> เสมอ · <b>min = participation</b> ตอบว่าบังคับไหม (0 = optional, 1 = mandatory) · <b>max = cardinality</b> ตอบว่าถ้ามีแล้วมากสุดกี่ตัว · ตัวเลือกที่สองสลับสองคำนี้ · ตัวเลือกที่สามผิดเพราะการตั้งชื่อ 1:1/1:*/*:* ดู max ทั้งสองฝั่ง ไม่ได้ดูตัวเลขนี้ตัวเดียว"><b>min..max</b>, always. <b>min = participation</b> — is it compulsory? (0 = optional, 1 = mandatory). <b>max = cardinality</b> — if it exists, how many at most? The second option swaps the two. The third is wrong because naming 1:1 / 1:* / *:* uses the max on <i>both</i> sides, not this one number.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="19"><span class="qtext" data-th="<code>telNo [1..3]</code> ในสัญกรณ์ UML หมายถึงอะไร">In the UML notation, what does <code>telNo [1..3]</code> mean?</span>
+        <ol class="opts">
+          <li data-th="composite attribute ที่มีสามส่วนประกอบ">A composite attribute with three components</li>
+          <li class="right" data-th="multi-valued attribute เก็บได้ตั้งแต่ 1 ถึง 3 ค่า">A multi-valued attribute holding between 1 and 3 values</li>
+          <li data-th="derived attribute ที่คำนวณจากสามแอตทริบิวต์">A derived attribute computed from three others</li>
+          <li data-th="multiplicity ของความสัมพันธ์">The multiplicity of a relationship</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="วงเล็บเหลี่ยมหลังชื่อแอตทริบิวต์คือสัญกรณ์ของ <b>multi-valued attribute</b> อ่านว่า “ต้องมีอย่างน้อย 1 เบอร์ และเก็บได้มากสุด 3 เบอร์” · <b>composite</b> ใช้การ<i>ย่อหน้า</i>ใต้แอตทริบิวต์แม่ · <b>derived</b> ใช้เครื่องหมาย <code>/</code> นำหน้า · ส่วน multiplicity เขียนไว้บน<i>เส้น</i>ระหว่างกล่อง ไม่ใช่หลังชื่อแอตทริบิวต์">Square brackets after an attribute name are the notation for a <b>multi-valued attribute</b>, read as "at least 1 number, and at most 3 stored". <b>Composite</b> uses <i>indentation</i> under a parent attribute; <b>derived</b> uses a leading <code>/</code>; and a multiplicity is written on the <i>line</i> between boxes, not after an attribute name.</p>
+      </details>
+
+      <details class="mcq"><summary data-n="20"><span class="qtext" data-th="บนไดอะแกรม ER ระดับ conceptual ต้องแสดงอะไรบ้าง">On a conceptual-level ER diagram, what do you show?</span>
+        <ol class="opts">
+          <li class="right" data-th="primary key เท่านั้น">Primary keys only</li>
+          <li data-th="primary key และ foreign key">Primary keys and foreign keys</li>
+          <li data-th="primary key, foreign key และ not null">Primary keys, foreign keys and NOT NULL</li>
+          <li data-th="ทั้ง key ทั้ง constraint ครบทุกอย่าง">All keys and every constraint</li>
+        </ol>
+          <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
+        </summary>
+        <p class="why" data-th="อาจารย์ระบุว่านี่คือข้อสำคัญที่สุดของขั้นนี้ · ระดับ conceptual ยัง<b>ไม่ถึงขั้นติดตั้ง</b> จึงถามแค่สามอย่าง: ข้อมูลหลักคืออะไร สัมพันธ์กันยังไง และ primary key คือตัวไหน · foreign key กับ unique/check/not null เป็นเรื่องของขั้น <b>logical</b> ซึ่งเป็นเนื้อหาสัปดาห์ 8">She flagged this as the single most important rule of this stage. The conceptual level has <b>not reached implementation</b>, so it asks only three things: what the main data is, how it relates, and which attribute is the primary key. Foreign keys and unique/check/not null belong to the <b>logical</b> stage — week 8's material.</p>
+      </details>
+
+    </div>
   </section>
 
 </div>
@@ -898,5 +1271,29 @@
   var saved = '';
   try{ saved = localStorage.getItem(KEY) || ''; }catch(e){}
   if(saved === 'th'){ apply('th'); }
+})();
+</script>
+
+<script>
+(function(){
+  function all(){ return document.querySelectorAll('details.mcq'); }
+  var o=document.getElementById('mcqOpen'), c=document.getElementById('mcqClose');
+  if(o) o.addEventListener('click', function(){ all().forEach(function(d){ d.open=true; }); });
+  if(c) c.addEventListener('click', function(){ all().forEach(function(d){ d.open=false; }); });
+
+  // printing: expand everything, then put it back exactly as it was
+  var wasOpen = null;
+  function everyDetails(){ return document.querySelectorAll('details'); }
+  window.addEventListener('beforeprint', function(){
+    var ds = everyDetails();
+    wasOpen = [];
+    for(var i=0;i<ds.length;i++){ wasOpen.push(ds[i].open); ds[i].open = true; }
+  });
+  window.addEventListener('afterprint', function(){
+    if(!wasOpen) return;
+    var ds = everyDetails();
+    for(var i=0;i<ds.length;i++){ ds[i].open = wasOpen[i]; }
+    wasOpen = null;
+  });
 })();
 </script>
