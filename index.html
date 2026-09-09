@@ -325,6 +325,10 @@
   .ol-tab tr.ex td{background:var(--amber-soft);}
   .ol-tab tr.dim td{opacity:.5;}
   .ol-tab tr.dim.ex td{opacity:.5; background:var(--surface-2);}
+  .ol-tab .sub{
+    display:block; margin-top:3px; font-size:11.2px; line-height:1.5; color:var(--ink-faint);
+  }
+  .ol-tab .sub.none{color:var(--red); font-style:italic;}
   .ol-marks{
     display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:14px; padding-top:12px;
     border-top:1px dashed var(--line); font-size:12.2px; color:var(--ink-soft);
@@ -364,14 +368,14 @@
 
   <div class="outline">
     <h3 data-th="ภาพรวมทั้งวิชา — สอบวันนี้อยู่ตรงไหน">The whole course, and where today sits in it</h3>
-    <p data-th="12 สัปดาห์ · แถวสีคือสัปดาห์ที่อยู่ในขอบเขตสอบวันนี้ · แถวจางคือยังไม่สอบ เก็บไว้สอบ 2">Twelve weeks. The coloured rows are what today's paper covers; the faint ones are not examined until Exam 2.</p>
+    <p data-th="12 สัปดาห์ พร้อมหัวข้อย่อยที่แต่ละสัปดาห์สอนจริง · แถวสีคือสัปดาห์ที่อยู่ในขอบเขตสอบวันนี้ · แถวจางคือยังไม่สอบ เก็บไว้สอบ 2">Twelve weeks, with the sub-topics each one actually covered. The coloured rows are what today's paper covers; the faint ones are not examined until Exam 2.</p>
     <div class="ol-wrap">
       <table class="ol-tab">
-        <tr><td class="wk">1</td><td data-th="แนะนำฐานข้อมูล">Introduction to DB</td><td class="lab" data-th="Lab Setup &amp; SQL Review">Lab Setup &amp; SQL Review</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
-        <tr><td class="wk">2</td><td data-th="สถาปัตยกรรมและสภาพแวดล้อม">DB Architecture &amp; Environment</td><td class="lab" data-th="ออกแบบฐานข้อมูล &amp; SQL">Design a database &amp; SQL</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
-        <tr><td class="wk">3</td><td data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</td><td class="lab" data-th="ออกแบบฐานข้อมูล">Design a database</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
-        <tr><td class="wk">4</td><td data-th="ER Model (1/3)">Conceptual DB Design: ER Model (1/3)</td><td class="lab" data-th="ใช้ MySQL Workbench ออกแบบฐานข้อมูล">MySQL Workbench</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
-        <tr><td class="wk">5</td><td data-th="ER Model (2/3)">Conceptual DB Design: ER Model (2/3)</td><td class="lab" data-th="นำเสนอความคืบหน้า Group Project">Group Project progress</td><td class="tag gapt" data-th="ออกสอบ · ไม่มีโน้ต">in scope · no notes</td></tr>
+        <tr><td class="wk">1</td><td><span class="topic" data-th="แนะนำฐานข้อมูล">Introduction to DB</span><span class="sub" data-th="SQL Review · แนวคิดฐานข้อมูล · องค์ประกอบของระบบฐานข้อมูล · DBMS · บทบาทคนในสภาพแวดล้อมฐานข้อมูล">SQL Review &middot; Database Concept &middot; Components in a Database System &middot; DBMS &middot; Actors in the Database Environment</span></td><td class="lab" data-th="Lab Setup &amp; SQL Review">Lab Setup &amp; SQL Review</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">2</td><td><span class="topic" data-th="สถาปัตยกรรมและสภาพแวดล้อม">DB Architecture &amp; Environment</span><span class="sub" data-th="สถาปัตยกรรม ANSI-SPARC · แนวคิดการออกแบบฐานข้อมูล · หน้าที่ของ DBMS · สถาปัตยกรรมแบบหลายผู้ใช้ · องค์ประกอบของ DBMS">The ANSI-SPARC Architecture &middot; Database Design Concept &middot; Functions of a DBMS &middot; Multi-user DBMS Architectures &middot; Components of a DBMS</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล &amp; SQL">Design a database &amp; SQL</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">3</td><td><span class="topic" data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</span><span class="sub" data-th="แนวคิดและศัพท์ของแบบจำลองเชิงสัมพันธ์ · คีย์ (Relational Key) · ข้อจำกัดความถูกต้อง">Relational Model Concepts and Terminology &middot; Relational Key &middot; Integrity Constraint</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล">Design a database</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">4</td><td><span class="topic" data-th="ER Model (1/3)">Conceptual DB Design: ER Model (1/3)</span><span class="sub" data-th="ออกแบบฐานข้อมูลด้วย ERD · แนวคิดพื้นฐานของ ER Model">Database Design with ERD &middot; Basic Concepts of the ER Model</span></td><td class="lab" data-th="ใช้ MySQL Workbench ออกแบบฐานข้อมูล">MySQL Workbench</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">5</td><td><span class="topic" data-th="ER Model (2/3)">Conceptual DB Design: ER Model (2/3)</span><span class="sub none" data-th="ไม่ทราบหัวข้อย่อย — ไม่มีสไลด์หรือโน้ตของสัปดาห์นี้ในโฟลเดอร์วิชา">sub-topics unknown &mdash; no slides or notes for this week in the course folder</span></td><td class="lab" data-th="นำเสนอความคืบหน้า Group Project">Group Project progress</td><td class="tag gapt" data-th="ออกสอบ · ไม่มีโน้ต">in scope · no notes</td></tr>
         <tr class="ex"><td class="wk">6</td><td colspan="2" data-th="<b>Exam#1 — ทฤษฎีล้วน 30%</b> ← วันนี้"><b>Exam#1 — Theory only, 30%</b> &larr; today</td><td class="tag now" data-th="วันนี้">today</td></tr>
         <tr class="dim"><td class="wk">7</td><td data-th="ER Model (3/3)">Conceptual DB Design: ER Model (3/3)</td><td class="lab" data-th="ใช้ MySQL Workbench">MySQL Workbench</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
         <tr class="dim"><td class="wk">8</td><td data-th="Logical DB Design — ERD Mapping">Logical DB Design — ERD Mapping</td><td class="lab" data-th="แปลง ER เป็นตาราง">ER conversion to tables</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
