@@ -293,7 +293,7 @@
           <tr><td data-th="Transaction">Transaction</td><td data-th="COMMIT, ROLLBACK, SAVEPOINT, SET ISOLATION">COMMIT, ROLLBACK, SAVEPOINT, SET ISOLATION</td></tr>
         </table>
         <ul style="margin-top:12px;">
-          <li data-th="เดิมชื่อ <strong>SEQUEL</strong> (Structured English Query Language) โดย Donald Chamberlin ที่ IBM ยุค 1970s เปลี่ยนชื่อเป็น SQL ก่อนขายจริงปี <strong>1979</strong>">Originally <strong>SEQUEL</strong> (Structured English Query Language), Donald Chamberlin at IBM in the 1970s; renamed SQL before commercial release in <strong>1979</strong>.</li>
+          <li data-th="เดิมชื่อ <strong>SEQUEL</strong> (Structured English Query Language) โดย <strong>Donald Chamberlin และ Raymond Boyce</strong> ที่ IBM ยุค 1970s เปลี่ยนชื่อเป็น SQL ก่อนขายจริงปี <strong>1979</strong>">Originally <strong>SEQUEL</strong> (Structured English Query Language), by <strong>Donald Chamberlin and Raymond Boyce</strong> at IBM in the 1970s; renamed SQL before commercial release in <strong>1979</strong>.</li>
           <li data-th="<strong>ANSI</strong> ทำให้เป็นมาตรฐานปี 1986 · <strong>ISO</strong> ตามมาปี 1987">Standardised by <strong>ANSI</strong> in 1986 and by <strong>ISO</strong> in 1987.</li>
         </ul>
       </div>
@@ -415,8 +415,8 @@
     <div class="band-head">
       <span class="wk-pill">W3</span>
       <h2 data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</h2>
-      <span class="band-date">19 Aug 2026</span>
-      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน”">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary."</span>
+      <span class="band-date">20 Aug 2026</span>
+      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน” · <b>หมายเหตุ:</b> โน้ตที่ใช้ทำแบนด์นี้จดจากคาบ <b>วันพุธ (G1)</b> วันที่ 19 ส.ค. ไม่ใช่คาบวันพฤหัสฯ — สไลด์ชุดเดียวกัน แต่สิ่งที่อาจารย์พูดนอกสไลด์อาจต่างกันได้">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary." <b>Note:</b> the notes behind this band were taken in the <b>Wednesday (G1)</b> session on 19 Aug, not the Thursday one — the slides are the same, but anything said off-slide may have differed.</span>
     </div>
 
     <figure class="diagram">
@@ -720,14 +720,14 @@
 
       <div class="fact a">
         <h3 data-th="Two-tier เทียบ Three-tier — คาบ 2">Two-tier vs three-tier — class 2</h3>
-        <p class="lede" data-th="สไลด์เว้นบางช่องไว้ให้เติมในห้อง — ที่เติมได้แน่จากสไลด์มีสี่แถวนี้">The slide leaves some cells blank as an in-class exercise. These four are the ones the slide itself fills in.</p>
+        <p class="lede" data-th="สไลด์เว้นไว้สองแถวจากห้าแถวให้เติมในห้อง · สามแถวแรกข้างล่างคือที่สไลด์กรอกไว้เอง ส่วนแถวที่สี่มาจากเนื้อความรอบๆ ไม่ใช่จากตารางนั้น">The slide leaves two of its five rows blank as an in-class exercise. The first three below are the ones it does fill in; the fourth comes from the surrounding prose, not that table.</p>
         <table class="ftab">
           <tr><td data-th="ราคาเครื่อง client">client hardware cost</td><td data-th="two-tier <strong>สูง</strong> · three-tier <strong>ต่ำ</strong>">two-tier <strong>high</strong> · three-tier <strong>low</strong></td></tr>
           <tr><td data-th="ความเป็นโมดูล">modularity</td><td data-th="two-tier <strong>ต่ำ</strong> · three-tier <strong>สูง</strong>">two-tier <strong>low</strong> · three-tier <strong>high</strong></td></tr>
           <tr><td data-th="load balance">load balance</td><td data-th="two-tier <strong>ต่ำ</strong> · three-tier <strong>สูง</strong>">two-tier <strong>low</strong> · three-tier <strong>high</strong></td></tr>
           <tr><td data-th="client อ้วนหรือผอม">fat or thin</td><td data-th="two-tier client <strong>อ้วน</strong> · three-tier client <strong>ผอม</strong>">two-tier's client is <strong>fat</strong> · three-tier's is <strong>thin</strong></td></tr>
         </table>
-        <div class="fnote" data-th="ตารางเทียบ teleprocessing / file-server / two-tier ที่กรอกได้: network traffic = ต่ำ / <strong>สูง</strong> / กลาง · equipment cost = สูงที่เครื่องกลาง / สูงที่ workstation / สูงที่ server · performance ต่อ cost = ต่ำ / กลาง / <strong>สูง</strong>">The teleprocessing / file-server / two-tier table, where it is filled in: network traffic = low / <strong>high</strong> / medium · equipment cost = high centrally / high on the workstation / high on the server · performance per cost = low / medium / <strong>high</strong>.</div>
+        <div class="fnote" data-th="ตารางเทียบ teleprocessing / file-server / two-tier ที่กรอกได้: network traffic = ต่ำ / <strong>สูง</strong> / กลาง · equipment cost = สูง / สูงที่ workstation / สูงที่ server · performance ต่อ cost = ต่ำ / กลาง / <strong>สูง</strong>">The teleprocessing / file-server / two-tier table, where it is filled in: network traffic = low / <strong>high</strong> / medium · equipment cost = high / high on the workstation / high on the server · performance per cost = low / medium / <strong>high</strong>.</div>
       </div>
 
       <div class="fact">
@@ -743,7 +743,7 @@
 
       <div class="fact r">
         <h3 data-th="โจทย์นับ foreign key — คาบ 3">The FK-counting exercise — class 3</h3>
-        <p class="lede" data-th="สไลด์ให้ schema ของฐานข้อมูล COMPANY มาแล้วถามสองข้อ ซึ่งเป็นรูปแบบที่ยกมาออกข้อสอบได้ตรงๆ">The slide gives the COMPANY schema and asks two questions — a shape that lifts straight onto a paper.</p>
+        <p class="lede" data-th="สไลด์ให้ schema ของฐานข้อมูล COMPANY มาแล้วถามสองข้อ ซึ่งเป็นรูปแบบที่ยกมาออกข้อสอบได้ตรงๆ · <b>คำตอบข้างล่างนี้แกะจาก schema เอง ไม่ใช่เฉลยที่อาจารย์ให้</b> ถ้าในคาบเฉลยต่างจากนี้ ให้ยึดของอาจารย์">The slide gives the COMPANY schema and asks two questions — a shape that lifts straight onto a paper. <b>The answers below are worked out from the schema, not a marking key the lecturer gave out</b> — if hers differed in class, go with that.</p>
         <table class="ftab">
           <tr><td>EMPLOYEE</td><td data-th="<code>Super_ssn</code> → EMPLOYEE.Ssn (<strong>ชี้กลับตัวเอง</strong>) และ <code>Dno</code> → DEPARTMENT · <strong>2 ตัว</strong>"><code>Super_ssn</code> → EMPLOYEE.Ssn (<strong>self-referencing</strong>) and <code>Dno</code> → DEPARTMENT · <strong>2</strong></td></tr>
           <tr><td>WORKS_ON</td><td data-th="<code>Essn</code> และ <code>Pno</code> · <strong>2 ตัว</strong>"><code>Essn</code> and <code>Pno</code> · <strong>2</strong></td></tr>
@@ -829,7 +829,7 @@
       </details>
 
       <details class="q"><summary data-th="ระดับไหนของ ANSI-SPARC ที่ OS ดูแล ไม่ใช่ DBMS">Which part of the ANSI-SPARC picture belongs to the OS rather than the DBMS?</summary>
-        <div class="qa"><span class="ans" data-th="การจัดเก็บจริงบนดิสก์ ที่อยู่ใต้ internal level ลงไป">The physical storage on disk, below the internal level.</span><span data-th="สไลด์วางป้าย “DBMS” ไว้ข้าง Conceptual กับ Internal และป้าย “OS” ไว้ข้าง Database · แปลว่า DBMS ดูแลตั้งแต่ระดับ conceptual ลงมาถึง internal ส่วนไฟล์จริงบนดิสก์เป็นงานของระบบปฏิบัติการ · <strong>internal level ยังเป็นของ DBMS อยู่</strong> ไม่ใช่ของ OS ซึ่งเป็นจุดที่มักตอบผิด">The slide puts a "DBMS" label beside Conceptual and Internal, and an "OS" label beside Database. So the DBMS owns everything from the conceptual level down to the internal one, while the real files on disk are the operating system's job. <strong>The internal level is still the DBMS's</strong> — that is the part people get wrong.</span></div>
+        <div class="qa"><span class="ans" data-th="การจัดเก็บจริงบนดิสก์ ที่อยู่ใต้ internal level ลงไป">The physical storage on disk, below the internal level.</span><span data-th="สไลด์วางป้าย “DBMS” ไว้ข้าง Conceptual กับ Internal และป้าย “OS” ไว้ข้าง Database · DBMS ดูแลทั้งระดับ external, conceptual และ internal ส่วนที่เป็นงานของระบบปฏิบัติการคือไฟล์จริงบนดิสก์เท่านั้น · <strong>internal level ยังเป็นของ DBMS อยู่</strong> ไม่ใช่ของ OS ซึ่งเป็นจุดที่มักตอบผิด">The slide puts a "DBMS" label beside Conceptual and Internal, and an "OS" label beside Database. The DBMS owns the external, conceptual and internal levels; only the real files on disk are the operating system's job. <strong>The internal level is still the DBMS's</strong> — that is the part people get wrong.</span></div>
       </details>
 
       <details class="q"><summary data-th="ER model เป็น bottom-up หรือ top-down">Is the ER model bottom-up or top-down?</summary>
