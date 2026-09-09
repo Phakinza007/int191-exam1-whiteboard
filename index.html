@@ -1,0 +1,902 @@
+<title>INT191 Exam 1 Whiteboard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Mali:wght@400;700&display=swap">
+<style>
+  :root{
+    --wall:#c8ccd4; --frame:#ecedf1; --bg:#eef0f4; --grid-line:#dde1ea;
+    --surface:#ffffff; --surface-2:#e8ecf3;
+    --ink:#161c2a; --ink-soft:#4f5871; --ink-faint:#7f889e;
+    --line:#d0d5e0; --line-strong:#adb5c6;
+    --accent:#2d5bd7; --accent-ink:#ffffff; --accent-soft:#dde5fb;
+    --amber:#a1701c; --amber-soft:#f4e8cd;
+    --red:#b03f36; --red-soft:#f8dfdc;
+    --green:#337a52; --green-soft:#d8efe3;
+    --violet:#6a4bbd; --violet-soft:#e7e0f9;
+    --rose:#bd3a6b; --rose-soft:#f8dce7;
+    --note-yellow:#fbeead; --note-blue:#d3e7f3;
+    --shadow:0 1px 2px rgba(22,28,42,.06), 0 8px 24px rgba(22,28,42,.07);
+    --font-sans:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    --font-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+    --font-marker:"Mali","IBM Plex Sans Thai","IBM Plex Sans",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --wall:#05070b; --frame:#222834; --bg:#0e121a; --grid-line:#171d27;
+      --surface:#151b26; --surface-2:#1b2231;
+      --ink:#e9ecf3; --ink-soft:#a4adc2; --ink-faint:#727c94;
+      --line:#2a3142; --line-strong:#3d4557;
+      --accent:#7ea6ff; --accent-ink:#0a1226; --accent-soft:#1c2740;
+      --amber:#e0ad57; --amber-soft:#3a3018;
+      --red:#e58a7e; --red-soft:#3c231f;
+      --green:#79ccA0; --green-soft:#17331f;
+      --violet:#ad95ef; --violet-soft:#2a2444;
+      --rose:#ef8bb0; --rose-soft:#3a2030;
+      --note-yellow:#3c331c; --note-blue:#1c2f3c;
+      --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --wall:#05070b; --frame:#222834; --bg:#0e121a; --grid-line:#171d27;
+    --surface:#151b26; --surface-2:#1b2231;
+    --ink:#e9ecf3; --ink-soft:#a4adc2; --ink-faint:#727c94;
+    --line:#2a3142; --line-strong:#3d4557;
+    --accent:#7ea6ff; --accent-ink:#0a1226; --accent-soft:#1c2740;
+    --amber:#e0ad57; --amber-soft:#3a3018;
+    --red:#e58a7e; --red-soft:#3c231f;
+    --green:#79ccA0; --green-soft:#17331f;
+    --violet:#ad95ef; --violet-soft:#2a2444;
+    --rose:#ef8bb0; --rose-soft:#3a2030;
+    --note-yellow:#3c331c; --note-blue:#1c2f3c;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.4);
+  }
+  html.lang-th{ --font-sans:"IBM Plex Sans Thai","IBM Plex Sans","Segoe UI",system-ui,sans-serif; }
+
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--wall); color:var(--ink); font-family:var(--font-sans); -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{text-wrap:balance; margin:0;}
+
+  .board-frame{
+    position:relative; max-width:1180px; margin:28px auto;
+    border:10px solid var(--frame); border-radius:16px; overflow:hidden;
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/100% 28px,
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/28px 100%,
+      var(--bg);
+    box-shadow:0 30px 70px -30px rgba(0,0,0,.4), 0 0 0 1px rgba(0,0,0,.05) inset;
+  }
+  @media (max-width:600px){ .board-frame{border-width:6px; border-radius:10px; margin:14px auto;} }
+  .marker-tray{height:28px; background:var(--frame); display:flex; align-items:center; gap:12px; padding:0 26px; box-shadow:inset 0 3px 6px rgba(0,0,0,.15);}
+  .marker-tray .cap{width:24px; height:8px; border-radius:3px 3px 1px 1px; opacity:.85;}
+  .wrap{max-width:1100px; margin:0 auto; padding:40px 24px 56px; position:relative;}
+
+  /* masthead */
+  .masthead{padding:12px 0 30px; border-bottom:2px solid var(--line-strong); margin-bottom:34px; position:relative;}
+  .eyebrow{font-family:var(--font-mono); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:10px;}
+  .masthead h1{font-family:var(--font-marker); font-size:clamp(27px,4vw,39px); font-weight:700; line-height:1.2;}
+  .masthead p{margin:12px 0 0; max-width:64ch; color:var(--ink-soft); font-size:15.5px; line-height:1.6;}
+  .lang-toggle{
+    position:absolute; top:4px; right:0; cursor:pointer; border:1.5px solid var(--line-strong); background:var(--surface);
+    border-radius:999px; padding:4px; font-family:var(--font-mono); font-size:11.5px; font-weight:700;
+    display:inline-flex; gap:2px; color:var(--ink-soft); box-shadow:var(--shadow); transform:rotate(-2deg);
+  }
+  .lang-toggle span{padding:4px 10px; border-radius:999px; transition:background .15s,color .15s;}
+  .lang-toggle .lt-en{background:var(--accent); color:var(--accent-ink);}
+  .lang-toggle.is-th .lt-en{background:none; color:var(--ink-soft);}
+  .lang-toggle.is-th .lt-th{background:var(--accent); color:var(--accent-ink);}
+  .lang-toggle .lt-sep{color:var(--ink-faint); padding:4px 0;}
+  @media (max-width:600px){ .lang-toggle{position:static; margin-bottom:14px; transform:none;} }
+
+  .roadmap{display:flex; flex-wrap:wrap; align-items:center; gap:0; margin-top:26px;}
+  .rchip{font-family:var(--font-mono); font-size:12px; font-weight:600; padding:7px 12px; border:1.5px solid var(--line-strong); border-radius:7px; background:var(--surface); color:var(--ink-soft); white-space:nowrap;}
+  .rchip.on{background:var(--accent); border-color:var(--accent); color:var(--accent-ink);}
+  .rchip.exam{background:var(--amber-soft); border-color:var(--amber); color:var(--amber);}
+  .rchip.gap{background:var(--red-soft); border-color:var(--red); color:var(--red);}
+  .rchip.faint{opacity:.5; font-weight:500;}
+  .rjoin{width:18px; height:1.5px; background:var(--line-strong); flex:0 0 18px;}
+
+  .scope{
+    margin-top:22px; background:var(--amber-soft); border-left:3px solid var(--amber);
+    border-radius:0 10px 10px 0; padding:13px 16px; font-size:13.4px; line-height:1.68; color:var(--ink);
+  }
+  .scope b{color:var(--amber);}
+  .scope code{font-family:var(--font-mono); font-size:.94em;}
+
+  /* bands */
+  .band{margin-bottom:52px;}
+  .band-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:18px;}
+  .wk-pill{font-family:var(--font-mono); font-weight:700; font-size:14px; background:var(--ink); color:var(--bg); border-radius:6px; padding:4px 10px; flex:0 0 auto;}
+  .band-head h2{font-family:var(--font-marker); font-size:23px; font-weight:700;}
+  .band-date{font-family:var(--font-mono); font-size:12.5px; color:var(--ink-faint); margin-left:auto;}
+  .band-tag{font-size:13px; color:var(--ink-soft); background:var(--surface-2); border:1px solid var(--line); border-radius:999px; padding:3px 12px; width:100%; margin-top:2px; line-height:1.6;}
+
+  figure.diagram{
+    position:relative; transform:rotate(-0.25deg); margin:22px 0; background:var(--surface);
+    border:1px solid var(--line); border-radius:12px; padding:18px 18px 14px; box-shadow:var(--shadow); overflow-x:auto;
+  }
+  figure.diagram::before{content:""; position:absolute; top:-7px; left:50%; width:14px; height:14px; margin-left:-7px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff, var(--rose) 62%); box-shadow:0 2px 3px rgba(0,0,0,.35);}
+  figure.diagram svg{display:block; width:100%; height:auto; min-width:560px;}
+  figure.diagram figcaption{font-size:13px; color:var(--ink-soft); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); line-height:1.65;}
+  svg text{font-family:var(--font-sans); fill:currentColor;}
+  svg .mono{font-family:var(--font-mono);}
+  svg .lbl{font-size:11.5px; fill:var(--ink-soft);}
+  svg .strong{font-weight:600;}
+
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:860px){.cards{grid-template-columns:1fr;}}
+  .card{position:relative; background:var(--note-yellow); border:1px solid var(--line); border-radius:6px; padding:18px 18px 16px; box-shadow:var(--shadow); transform:rotate(-0.6deg); min-width:0;}
+  .cards .card:nth-child(2){background:var(--note-blue); transform:rotate(0.5deg);}
+  .cards .card:nth-child(3){transform:rotate(-0.3deg);}
+  .card::before{content:""; position:absolute; top:-9px; left:50%; width:48px; height:18px; margin-left:-24px; background:rgba(255,255,255,.4); border:1px solid rgba(255,255,255,.55); transform:rotate(-3deg); box-shadow:0 1px 2px rgba(0,0,0,.15);}
+  .card h3{font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); font-weight:600; margin-bottom:12px;}
+  .card ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .card li{font-size:13.4px; line-height:1.62; padding-left:15px; position:relative;}
+  .card li::before{content:"–"; position:absolute; left:0; color:var(--ink-faint);}
+  .card code{font-family:var(--font-mono); font-size:12.2px; background:rgba(0,0,0,.07); border-radius:4px; padding:1px 5px;}
+  .cmdtable{width:100%; border-collapse:collapse; font-size:12.4px;}
+  .cmdtable td{padding:6px 0; border-top:1px solid rgba(0,0,0,.09); vertical-align:top; line-height:1.6;}
+  .cmdtable tr:first-child td{border-top:none;}
+  .cmdtable td:first-child{font-family:var(--font-mono); padding-right:12px; color:var(--ink); white-space:nowrap;}
+  .cmdtable td:last-child{color:var(--ink-soft);}
+  .watch{background:var(--red-soft);}
+  .watch li::before{content:"!"; color:var(--red); font-weight:700; font-family:var(--font-mono);}
+  .watch h3{color:var(--red);}
+  .watch code{background:rgba(0,0,0,.09);}
+
+  /* glossary */
+  .glossary{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:20px 22px; box-shadow:var(--shadow); margin-bottom:42px;}
+  .glossary h3{font-family:var(--font-marker); font-size:17px; margin-bottom:4px;}
+  .glossary > p{font-size:13px; color:var(--ink-soft); margin:0 0 16px; line-height:1.6;}
+  .gl-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr)); gap:14px 20px;}
+  .gl-term{font-size:13.2px; line-height:1.6;}
+  .gl-term dt{font-family:var(--font-mono); font-weight:700; color:var(--accent); margin:0 0 2px; font-size:12.4px;}
+  .gl-term dd{margin:0; color:var(--ink-soft);}
+
+  /* theory section */
+  .sub-h{margin:30px 0 13px; font-size:12px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint); font-weight:700; display:flex; align-items:center; gap:9px;}
+  .sub-h::after{content:""; flex:1; height:1px; background:var(--line);}
+  .fact-grid{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));}
+  .fact{background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:14px 15px 13px; box-shadow:var(--shadow); min-width:0;}
+  .fact > h3{margin:0 0 4px; font-size:14px; letter-spacing:-.01em; color:var(--ink); display:flex; align-items:center; gap:7px;}
+  .fact > h3::before{content:""; width:9px; height:9px; border-radius:2px; background:var(--accent); flex:none;}
+  .fact.v > h3::before{background:var(--violet);}
+  .fact.a > h3::before{background:var(--amber);}
+  .fact.r > h3::before{background:var(--rose);}
+  .fact.g > h3::before{background:var(--green);}
+  .fact > p.lede{margin:0 0 10px; font-size:12.5px; color:var(--ink-faint); line-height:1.65;}
+  .ftab{width:100%; border-collapse:collapse; font-size:12.6px;}
+  .ftab td{padding:7px 8px 7px 0; border-top:1px solid var(--line); vertical-align:top; line-height:1.65;}
+  .ftab tr:first-child td{border-top:none;}
+  .ftab td:first-child{font-family:var(--font-mono); font-size:12px; color:var(--ink); white-space:nowrap; padding-right:14px; font-weight:600; width:1%; overflow-wrap:anywhere;}
+  .ftab td:last-child{color:var(--ink-soft);}
+  .fact code{font-family:var(--font-mono); font-size:.94em; background:var(--surface-2); padding:1px 4px; border-radius:3px;}
+  .fnote{margin-top:11px; padding-top:9px; border-top:1px dashed var(--line); font-size:12.2px; color:var(--ink-soft); line-height:1.72;}
+  .fnote b{color:var(--rose);}
+
+  .traps{display:grid; gap:11px; grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr)); margin-top:6px;}
+  .trap{background:var(--red-soft); border-left:3px solid var(--red); border-radius:0 9px 9px 0; padding:11px 13px; font-size:12.7px; line-height:1.68; color:var(--ink); min-width:0;}
+  .trap b{display:block; color:var(--red); font-size:13px; margin-bottom:3px;}
+  .trap code{font-family:var(--font-mono); font-size:.93em;}
+
+  .quiz{display:grid; gap:9px;}
+  .q{background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:0; overflow:hidden;}
+  .q > summary{cursor:pointer; list-style:none; padding:12px 14px; font-size:13.2px; line-height:1.65; color:var(--ink); display:flex; gap:9px; align-items:flex-start;}
+  .q > summary::-webkit-details-marker{display:none;}
+  .q > summary::before{content:"?"; flex:none; width:19px; height:19px; border-radius:50%; background:var(--accent-soft); color:var(--accent); font-family:var(--font-mono); font-size:11.5px; font-weight:700; display:grid; place-items:center; margin-top:1px;}
+  .q[open] > summary::before{content:"\2713"; background:var(--green-soft); color:var(--green);}
+  .q > summary:hover{background:var(--surface-2);}
+  .qa{padding:0 14px 13px 42px; font-size:12.7px; line-height:1.72; color:var(--ink-soft);}
+  .qa .ans{display:block; color:var(--green); font-weight:600; margin-bottom:4px; font-size:13px;}
+  .qa code{font-family:var(--font-mono); font-size:.94em; background:var(--surface-2); padding:1px 4px; border-radius:3px;}
+
+  .gap-note{background:var(--red-soft); border:1px dashed var(--red); border-radius:11px; padding:16px 18px; font-size:13.2px; line-height:1.72; color:var(--ink);}
+  .gap-note b{color:var(--red);}
+  .gap-note ul{margin:9px 0 0; padding-left:20px;}
+  .gap-note li{margin-bottom:5px;}
+</style>
+
+<div class="board-frame">
+<div class="wrap">
+  <header class="masthead">
+    <button id="langToggle" class="lang-toggle" type="button" aria-pressed="false" aria-label="Switch language / สลับภาษา">
+      <span class="lt-en">EN</span><span class="lt-sep">/</span><span class="lt-th">TH</span>
+    </button>
+    <div class="eyebrow">INT191 Relational Database Concepts and Design · 2026</div>
+    <h1 data-th="ไวท์บอร์ดทวนสอบ 1 — สัปดาห์ 1–5">Exam 1 Whiteboard — Weeks 1–5</h1>
+    <p data-th="เส้นทางของวิชานี้คือการเดินจาก “ฐานข้อมูลคืออะไร” ไปสู่ “ออกแบบมันก่อนที่มันจะมีอยู่จริงได้ยังไง” · คาบ 1 นิยาม คาบ 2 สถาปัตยกรรม คาบ 3 ตารางหน้าตาเป็นยังไง คาบ 4–5 วาดมันก่อนสร้าง · สอบ 1 เป็น<strong>ทฤษฎีล้วน 30%</strong> ไม่มีภาคปฏิบัติ">This course walks from "what is a database" to "how do you design one before it exists". Class 1 defines it, class 2 gives it an architecture, class 3 says what a table actually is, classes 4–5 draw one before building it. Exam 1 is <strong>theory only, 30%</strong> — there is no practical half.</p>
+    <div class="roadmap">
+      <span class="rchip on" data-th="W1 · แนะนำฐานข้อมูล">W1 · Intro to DB</span><span class="rjoin"></span>
+      <span class="rchip on" data-th="W2 · สถาปัตยกรรม">W2 · Architecture</span><span class="rjoin"></span>
+      <span class="rchip on" data-th="W3 · Relational Model">W3 · Relational Model</span><span class="rjoin"></span>
+      <span class="rchip on" data-th="W4 · ER 1/3">W4 · ER 1/3</span><span class="rjoin"></span>
+      <span class="rchip gap" data-th="W5 · ER 2/3">W5 · ER 2/3</span><span class="rjoin"></span>
+      <span class="rchip exam">EXAM 1 · 30%</span><span class="rjoin"></span>
+      <span class="rchip faint" data-th="W7–11 · ER 3/3, Mapping, Normalization">W7–11 · ER 3/3, Mapping, Normalization</span><span class="rjoin"></span>
+      <span class="rchip faint">EXAM 2 · 35%</span>
+    </div>
+    <div class="scope">
+      <b data-th="ขอบเขตและสิ่งที่ต้องรู้ก่อนเข้าห้อง:">Scope, and what to know before you walk in:</b>
+      <span data-th="สอบสัปดาห์ที่ 6 · <b>ทฤษฎีล้วน 30%</b> ครอบคลุมคาบ 1–5 · <b>Quiz#1 ถูกยกเลิกแล้ว</b> อาจารย์ประกาศในคาบ 4 ว่าให้ถือว่าไม่มี เหลือแต่ Quiz#2 ที่กินคะแนน 5% เต็มในสัปดาห์ 9 · และข้อที่อาจารย์ย้ำซ้ำที่สุดตลอดคาบ 4: <b>ต้องใช้ UML notation ตามสไลด์เท่านั้น</b> ทั้งใน lab, group project และข้อสอบ — ห้ามวาด ER ด้วย MySQL Workbench"> Week 6 · <b>theory only, 30%</b>, covering classes 1–5. <b>Quiz#1 is cancelled</b> — announced in class 4, to be treated as never having existed, leaving Quiz#2 to carry the full 5% in week 9. And the thing the lecturer repeated most often in class 4: <b>the notation must be the UML notation from the slides</b> — in the lab, in the group project, and in the exam. Do not draw the ER diagram in MySQL Workbench.</span>
+    </div>
+  </header>
+
+  <div class="glossary">
+    <h3 data-th="คู่คำที่สับสนกันบ่อยที่สุด">The pairs that get confused</h3>
+    <p data-th="ข้อสอบทฤษฎีวัดคำศัพท์เป็นหลัก และคำที่พลาดกันมากที่สุดคือคำที่หน้าตาคล้ายกันแต่คนละเรื่อง อ่านตรงนี้ก่อนแล้วค่อยไล่ W1–W5">A theory paper is mostly a vocabulary test, and the words that cost marks are the ones that look alike but mean different things. Read these before working through W1–W5.</p>
+    <dl class="gl-grid">
+      <div class="gl-term"><dt>Cardinality (W3 vs W4)</dt><dd data-th="คาบ 3: จำนวน<strong>แถว</strong>ใน relation · คาบ 4: ค่า <strong>max</strong> ของ multiplicity คือมากที่สุดกี่ตัว · ชื่อเดียวกัน คนละความหมายสิ้นเชิง">class 3: the number of <strong>rows</strong> in a relation. class 4: the <strong>max</strong> half of a multiplicity — at most how many. Same word, unrelated meanings.</dd></div>
+      <div class="gl-term"><dt>Degree (W3 vs W4)</dt><dd data-th="คาบ 3: จำนวน<strong>คอลัมน์</strong>ของ relation · คาบ 4: จำนวน<strong>เอนทิตี</strong>ที่ร่วมใน relationship (2=binary, 3=ternary)">class 3: the number of <strong>columns</strong> a relation has. class 4: the number of <strong>entities</strong> taking part in a relationship (2 = binary, 3 = ternary).</dd></div>
+      <div class="gl-term"><dt data-th="Data Administrator vs Database Administrator">Data vs Database Administrator</dt><dd data-th="คนละบทบาทกันทั้งที่ชื่อคล้ายมาก · Data Administrator วางแผนและนิยามระบบตอนต้น (Plan, Define) · Database Administrator ตั้งค่าและดูแลตอนปลาย (Config, Maintain/Tune)">Two different roles despite the names. The Data Administrator plans and defines the system at the start (Plan, Define); the Database Administrator configures and maintains it at the end (Config, Maintain/Tune).</dd></div>
+      <div class="gl-term"><dt>Superkey / Candidate / Primary</dt><dd data-th="Superkey = ระบุแถวได้ อาจมีของเกิน · Candidate = superkey ที่ลดไม่ได้อีกแล้ว · Primary = candidate ที่ถูกเลือก · ที่เหลือกลายเป็น Alternate key">Superkey identifies a row and may carry surplus attributes. Candidate is a superkey that cannot be reduced further. Primary is the candidate that was chosen; the rest become alternate keys.</dd></div>
+      <div class="gl-term"><dt data-th="Participation vs Cardinality">min .. max</dt><dd data-th="ตัวหน้า (min) = participation บอกว่า<strong>บังคับไหม</strong> (0=optional, 1=mandatory) · ตัวหลัง (max) = cardinality บอกว่า<strong>ถ้ามี มากสุดกี่ตัว</strong>">The first number (min) is participation — <strong>is it compulsory?</strong> (0 = optional, 1 = mandatory). The second (max) is cardinality — <strong>if it exists, how many at most?</strong></dd></div>
+      <div class="gl-term"><dt data-th="Composite vs Multi-valued">Composite vs Multi-valued</dt><dd data-th="Composite = หนึ่งค่าที่แยกเป็นหลาย<strong>ส่วนประกอบ</strong> เช่น address = street+city+postcode · Multi-valued = <strong>หลายค่าพร้อมกัน ณ เวลาเดียว</strong> เช่น เบอร์โทร 3 เบอร์ · คนละแกนกัน">Composite = one value made of several <strong>components</strong> (address = street + city + postcode). Multi-valued = <strong>several values at the same moment</strong> (three phone numbers). Different axes entirely.</dd></div>
+      <div class="gl-term"><dt data-th="Strong vs Weak entity">Strong vs Weak entity</dt><dd data-th="Strong = มี primary key ของตัวเอง ไม่ต้องยืมใคร · Weak = ระบุตัวเองด้วยแอตทริบิวต์ตัวเองไม่ได้ ต้องยืม PK ของ strong มาต่อเป็น composite key ผ่าน identifying relationship">Strong = has a primary key of its own and borrows from nobody. Weak = cannot identify itself from its own attributes, so it borrows the strong entity's PK into a composite key through an identifying relationship.</dd></div>
+      <div class="gl-term"><dt data-th="Entity vs Referential integrity">Entity vs Referential integrity</dt><dd data-th="Entity integrity = ทุก relation ต้องมี primary key และ PK ห้ามเป็น null · Referential integrity = ค่า FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null ทั้งหมด">Entity integrity: every relation must have a primary key and it may never be null. Referential integrity: a foreign key's value must match an existing primary key, or be wholly null.</dd></div>
+      <div class="gl-term"><dt data-th="ER Diagram vs Instance Diagram">ER vs Instance Diagram</dt><dd data-th="ER Diagram = <strong>schema</strong> คือกล่อง เส้น และแอตทริบิวต์ ตอนออกแบบ · Instance Diagram = <strong>ข้อมูลจริง</strong> ที่เก็บอยู่และเส้นโยงระหว่างค่า หลังระบบทำงานแล้ว">ER Diagram = the <strong>schema</strong> — boxes, lines, attributes, at design time. Instance Diagram = the <strong>actual stored data</strong> and the links between values, once the system is running.</dd></div>
+      <div class="gl-term"><dt data-th="Bottom-up vs Top-down">Bottom-up vs Top-down</dt><dd data-th="Bottom-up เริ่มที่<strong>แอตทริบิวต์</strong> (ใบเสร็จในมือ แกะออกมาทีละชิ้น) · Top-down เริ่มที่<strong>เอนทิตี</strong> (ภาพใหญ่ก่อนแล้วค่อยลงรายละเอียด) · <strong>ER model เป็น top-down</strong>">Bottom-up starts at the <strong>attributes</strong> (a receipt in your hand, picked apart). Top-down starts at the <strong>entities</strong> (the big picture, refined downward). <strong>The ER model is top-down.</strong></dd></div>
+      <div class="gl-term"><dt>ANSI-SPARC</dt><dd data-th="สถาปัตยกรรมสามระดับ External / Conceptual / Internal เสนอปี 1975 · <strong>ไม่เคยกลายเป็นมาตรฐานจริง</strong> แต่ใช้เป็นฐานความเข้าใจ DBMS มาตลอด">The three-level architecture — External / Conceptual / Internal — proposed in 1975. <strong>It never became a formal standard</strong>, yet it is still the basis for understanding how a DBMS works.</dd></div>
+      <div class="gl-term"><dt data-th="Derived attribute">Derived attribute</dt><dd data-th="แอตทริบิวต์ที่คำนวณได้จากตัวอื่น <strong>ซึ่งอาจอยู่คนละเอนทิตีก็ได้</strong> เขียนนำหน้าด้วย / เช่น /totalAmount">An attribute computable from others, <strong>not necessarily in the same entity type</strong>. Written with a leading slash: <code>/totalAmount</code>.</dd></div>
+    </dl>
+  </div>
+
+  <!-- ================= WEEK 1 ================= -->
+  <section class="band">
+    <div class="band-head">
+      <span class="wk-pill">W1</span>
+      <h2 data-th="แนะนำฐานข้อมูล">Introduction to Database</h2>
+      <span class="band-date">6 Aug 2026</span>
+      <span class="band-tag" data-th="คำถามของคาบนี้: ฐานข้อมูลคืออะไร ต่างจากไฟล์ธรรมดายังไง และใครทำอะไรบ้างรอบๆ มัน">What a database is, how it differs from a pile of files, and who does what around it.</span>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 760 400" role="img" aria-label="The simplified database system environment: users and programmers issue application programs and queries, which reach the DBMS software; that software processes queries and then accesses stored data, reaching both the stored database definition (metadata) and the stored database itself.">
+        <defs>
+          <marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <rect x="240" y="18" width="280" height="44" rx="8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <text x="380" y="45" text-anchor="middle" font-size="13" class="strong" data-th="ผู้ใช้ / โปรแกรมเมอร์">Users / Programmers</text>
+        <line x1="380" y1="62" x2="380" y2="90" stroke="currentColor" marker-end="url(#m1)"/>
+        <rect x="240" y="92" width="280" height="46" rx="8" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="380" y="113" text-anchor="middle" font-size="12.5" fill="var(--accent)" class="strong" data-th="โปรแกรมประยุกต์ / คำสั่งค้นหา">Application Programs / Queries</text>
+        <text x="380" y="129" text-anchor="middle" class="lbl" data-th="ที่ที่ SQL ถูกเขียน">where the SQL gets written</text>
+        <line x1="380" y1="138" x2="380" y2="166" stroke="currentColor" marker-end="url(#m1)"/>
+
+        <rect x="150" y="168" width="460" height="118" rx="10" fill="none" stroke="var(--violet)" stroke-width="1.8"/>
+        <text x="166" y="188" font-size="11.5" fill="var(--violet)" class="strong">DBMS SOFTWARE</text>
+        <rect x="180" y="198" width="400" height="34" rx="7" fill="var(--violet-soft)" stroke="var(--violet)"/>
+        <text x="380" y="220" text-anchor="middle" font-size="12" data-th="ซอฟต์แวร์ประมวลผลคำสั่ง / โปรแกรม">Software to Process Queries / Programs</text>
+        <line x1="380" y1="232" x2="380" y2="242" stroke="currentColor" marker-end="url(#m1)"/>
+        <rect x="180" y="244" width="400" height="34" rx="7" fill="var(--violet-soft)" stroke="var(--violet)"/>
+        <text x="380" y="266" text-anchor="middle" font-size="12" data-th="ซอฟต์แวร์เข้าถึงข้อมูลที่จัดเก็บ">Software to Access Stored Data</text>
+
+        <line x1="280" y1="286" x2="250" y2="318" stroke="currentColor" marker-end="url(#m1)"/>
+        <line x1="480" y1="286" x2="510" y2="318" stroke="currentColor" marker-end="url(#m1)"/>
+
+        <rect x="90" y="320" width="270" height="60" rx="8" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.4"/>
+        <text x="225" y="343" text-anchor="middle" font-size="12" fill="var(--amber)" class="strong" data-th="นิยามฐานข้อมูลที่เก็บไว้">Stored Database Definition</text>
+        <text x="225" y="362" text-anchor="middle" class="mono lbl">META-DATA</text>
+
+        <rect x="400" y="320" width="270" height="60" rx="8" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.4"/>
+        <text x="535" y="343" text-anchor="middle" font-size="12" fill="var(--green)" class="strong" data-th="ฐานข้อมูลที่เก็บไว้">Stored Database</text>
+        <text x="535" y="362" text-anchor="middle" class="lbl" data-th="ตัวข้อมูลจริง">the data itself</text>
+      </svg>
+      <figcaption data-th="จุดที่ภาพนี้ต้องการบอก: <strong>metadata กับตัวข้อมูลถูกเก็บแยกกัน</strong> แต่ทั้งคู่เข้าถึงผ่านชั้นซอฟต์แวร์เดียวกัน · การที่ฐานข้อมูลอธิบายตัวเองได้ (self-describing) คือสิ่งที่ทำให้มันไม่ใช่แค่กองไฟล์ (Elmasri &amp; Navathe, Figure 1.1)">The point of this picture: <strong>the metadata and the data are stored separately</strong>, yet both are reached through the same layer of DBMS software. A database describing itself is exactly what makes it more than a pile of files. (Elmasri &amp; Navathe, Figure 1.1)</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-th="SQL แบ่งเป็นสี่กลุ่ม">SQL, in four groups</h3>
+        <table class="cmdtable">
+          <tr><td>DDL</td><td data-th="Data Definition — CREATE, ALTER, DROP">Data Definition — CREATE, ALTER, DROP</td></tr>
+          <tr><td>DML</td><td data-th="Data Manipulation — SELECT, INSERT, UPDATE, DELETE">Data Manipulation — SELECT, INSERT, UPDATE, DELETE</td></tr>
+          <tr><td>DCL</td><td data-th="Data Control — GRANT, REVOKE">Data Control — GRANT, REVOKE</td></tr>
+          <tr><td data-th="Transaction">Transaction</td><td data-th="COMMIT, ROLLBACK, SAVEPOINT, SET ISOLATION">COMMIT, ROLLBACK, SAVEPOINT, SET ISOLATION</td></tr>
+        </table>
+        <ul style="margin-top:12px;">
+          <li data-th="เดิมชื่อ <strong>SEQUEL</strong> (Structured English Query Language) โดย Donald Chamberlin ที่ IBM ยุค 1970s เปลี่ยนชื่อเป็น SQL ก่อนขายจริงปี <strong>1979</strong>">Originally <strong>SEQUEL</strong> (Structured English Query Language), Donald Chamberlin at IBM in the 1970s; renamed SQL before commercial release in <strong>1979</strong>.</li>
+          <li data-th="<strong>ANSI</strong> ทำให้เป็นมาตรฐานปี 1986 · <strong>ISO</strong> ตามมาปี 1987">Standardised by <strong>ANSI</strong> in 1986 and by <strong>ISO</strong> in 1987.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-th="ลักษณะร่วมของระบบฐานข้อมูล">What makes it a database system</h3>
+        <ul>
+          <li data-th="<strong>Self-describing</strong> — DBMS catalog เก็บคำอธิบายโครงสร้าง ชนิดข้อมูล และ constraint ไว้ นั่นคือ meta-data"><strong>Self-describing</strong> — the DBMS catalog stores the structure, data types and constraints. That is the meta-data.</li>
+          <li data-th="<strong>Program-data independence</strong> — เปลี่ยนโครงสร้างหรือรูปแบบจัดเก็บได้โดยไม่ต้องแก้โปรแกรม"><strong>Program-data independence</strong> — the structure or storage format can change without rewriting the programs.</li>
+          <li data-th="<strong>Data abstraction</strong> — data model ซ่อนรายละเอียดการจัดเก็บจริง"><strong>Data abstraction</strong> — the data model hides the real storage details.</li>
+          <li data-th="<strong>Multiple views</strong> — ผู้ใช้แต่ละกลุ่มเห็นเฉพาะส่วนที่ตัวเองสนใจ"><strong>Multiple views</strong> — each group of users sees only the slice it cares about.</li>
+          <li data-th="<strong>Multi-user</strong> — concurrency control คุมความถูกต้องตอนหลายคนใช้พร้อมกัน และ recovery subsystem รับประกันว่าธุรกรรมที่จบแล้วถูกบันทึกถาวร"><strong>Multi-user</strong> — concurrency control keeps it correct when many work at once, and the recovery subsystem guarantees a finished transaction is recorded permanently.</li>
+        </ul>
+      </div>
+      <div class="card watch">
+        <h3 data-th="ระวังไว้">Watch out</h3>
+        <ul>
+          <li data-th="<strong>Data Administrator ≠ Database Administrator</strong> — ชื่อคล้ายมากแต่คนละบทบาท ตัวแรก Plan/Define ตอนต้นทาง ตัวหลัง Config/Maintain ตอนปลายทาง"><strong>Data Administrator ≠ Database Administrator.</strong> Nearly the same name, different jobs: the first plans and defines at the start, the second configures and maintains at the end.</li>
+          <li data-th="เป้าหมายของระบบฐานข้อมูลมีสามข้อและมักถูกถามเป็นชุด: <strong>Data Persistency</strong> (ข้อมูลอยู่นานกว่าโปรแกรมที่สร้างมัน) · <strong>System Reliability</strong> (กู้คืนได้ถูกและเร็ว) · <strong>Scalability</strong>">The three requirements come as a set: <strong>Data Persistency</strong> (data outlives the program that made it), <strong>System Reliability</strong> (correct and fast recovery), <strong>Scalability</strong>.</li>
+          <li data-th="ลำดับขั้นตอนหลักในภาพ Actors: System Planning → System Definition → <strong>Requirement Collection</strong> → <strong>Database Design</strong> → System Implementation → System Maintenance">The main sequence in the Actors diagram: System Planning → System Definition → <strong>Requirement Collection</strong> → <strong>Database Design</strong> → System Implementation → System Maintenance.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WEEK 2 ================= -->
+  <section class="band">
+    <div class="band-head">
+      <span class="wk-pill">W2</span>
+      <h2 data-th="สภาพแวดล้อมและสถาปัตยกรรมฐานข้อมูล">Database Environment &amp; Architecture</h2>
+      <span class="band-date">13 Aug 2026</span>
+      <span class="band-tag" data-th="สามระดับที่แยกสิ่งที่ผู้ใช้เห็น ออกจากสิ่งที่เก็บจริง — และเหตุผลว่าทำไมการแยกนี้ถึงมีค่า">The three levels that separate what a user sees from what is actually stored — and why that separation is worth having.</span>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 800 380" role="img" aria-label="The ANSI-SPARC three-level architecture: several users each hold their own external view, all views converge on a single conceptual schema, which maps down to one internal schema and then to the physical database. The DBMS owns the external, conceptual and internal levels; the operating system owns the physical storage.">
+        <defs>
+          <marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <text x="60" y="30" font-size="11" fill="var(--ink-faint)" class="strong" data-th="ระดับภายนอก">EXTERNAL</text>
+        <rect x="150" y="16" width="140" height="42" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+        <text x="220" y="42" text-anchor="middle" font-size="12">View 1</text>
+        <rect x="330" y="16" width="140" height="42" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+        <text x="400" y="42" text-anchor="middle" font-size="12">View 2</text>
+        <rect x="510" y="16" width="140" height="42" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+        <text x="580" y="42" text-anchor="middle" font-size="12">View n</text>
+        <text x="400" y="76" text-anchor="middle" class="lbl" data-th="ผู้ใช้แต่ละกลุ่มเห็นเฉพาะข้อมูลที่ตัวเองสนใจ · ฟอร์ม รายงาน แอป view">each group of users sees only what it cares about — forms, reports, applications, views</text>
+
+        <line x1="220" y1="58" x2="380" y2="104" stroke="currentColor" marker-end="url(#m2)"/>
+        <line x1="400" y1="58" x2="400" y2="104" stroke="currentColor" marker-end="url(#m2)"/>
+        <line x1="580" y1="58" x2="420" y2="104" stroke="currentColor" marker-end="url(#m2)"/>
+
+        <text x="60" y="132" font-size="11" fill="var(--ink-faint)" class="strong" data-th="ระดับแนวคิด">CONCEPTUAL</text>
+        <rect x="230" y="106" width="340" height="52" rx="8" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="1.6"/>
+        <text x="400" y="127" text-anchor="middle" font-size="12.5" class="strong" data-th="Conceptual schema">Conceptual schema</text>
+        <text x="400" y="146" text-anchor="middle" class="lbl" data-th="โครงสร้างตรรกะทั้งหมด — เอนทิตีอะไรบ้าง สัมพันธ์กันยังไง">the whole logical structure — which entities, and how they relate</text>
+
+        <line x1="400" y1="158" x2="400" y2="192" stroke="currentColor" marker-end="url(#m2)"/>
+
+        <text x="60" y="220" font-size="11" fill="var(--ink-faint)" class="strong" data-th="ระดับภายใน">INTERNAL</text>
+        <rect x="230" y="194" width="340" height="52" rx="8" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.6"/>
+        <text x="400" y="215" text-anchor="middle" font-size="12.5" class="strong" data-th="Internal schema">Internal schema</text>
+        <text x="400" y="234" text-anchor="middle" class="lbl" data-th="เก็บจริงยังไงให้เร็วและประหยัดที่ — struct, index">how it is really stored for speed and space — structs, indexes</text>
+
+        <line x1="400" y1="246" x2="400" y2="286" stroke="currentColor" stroke-dasharray="4 3" marker-end="url(#m2)"/>
+        <line x1="120" y1="266" x2="690" y2="266" stroke="var(--red)" stroke-width="1.4" stroke-dasharray="6 4"/>
+        <text x="694" y="263" font-size="10.5" fill="var(--red)" data-th="เส้นแบ่ง">boundary</text>
+
+        <rect x="270" y="288" width="260" height="52" rx="8" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.6"/>
+        <text x="400" y="309" text-anchor="middle" font-size="12.5" class="strong" data-th="ฐานข้อมูล (การจัดเก็บจริง)">Database (physical storage)</text>
+        <text x="400" y="328" text-anchor="middle" class="lbl" data-th="ไฟล์บนดิสก์จริง">real files on disk</text>
+
+        <rect x="640" y="106" width="118" height="140" rx="8" fill="none" stroke="var(--violet)" stroke-dasharray="4 3"/>
+        <text x="699" y="170" text-anchor="middle" font-size="12" fill="var(--violet)" class="strong">DBMS</text>
+        <text x="699" y="188" text-anchor="middle" class="lbl" data-th="ดูแลตั้งแต่ตรงนี้ขึ้นไป">owns from here up</text>
+        <rect x="640" y="288" width="118" height="52" rx="8" fill="none" stroke="var(--green)" stroke-dasharray="4 3"/>
+        <text x="699" y="318" text-anchor="middle" font-size="12" fill="var(--green)" class="strong">OS</text>
+      </svg>
+      <figcaption data-th="<strong>Data independence คือทั้งหมดที่ภาพนี้ซื้อมาให้</strong> — schema ระดับบนไม่กระทบเมื่อ schema ระดับล่างเปลี่ยน · เพิ่ม index ที่ระดับ internal ได้โดยที่ view ของผู้ใช้ไม่ต้องรู้เรื่อง และ DBA แก้โครงสร้าง conceptual ได้โดยไม่กวนผู้ใช้คนไหนเลย · เสนอปี 1975 และ<strong>ไม่เคยเป็นมาตรฐานทางการ</strong>"><strong>Data independence is what this picture buys.</strong> A schema at an upper level is unaffected when a lower one changes: add an index at the internal level and no user's view need know, and the DBA can change the conceptual structure without disturbing anyone. Proposed in 1975 — and <strong>it never became a formal standard</strong>.</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-th="ออกแบบฐานข้อมูล สามขั้น">Database design, three stages</h3>
+        <table class="cmdtable">
+          <tr><td data-th="1 Conceptual">1 Conceptual</td><td data-th="ไม่ผูกกับ DBMS ตัวไหนเลย → ได้ <strong>ER Diagram</strong>">independent of any DBMS → an <strong>ER Diagram</strong></td></tr>
+          <tr><td data-th="2 Logical">2 Logical</td><td data-th="เริ่มผูกกับรายละเอียดการติดตั้ง → ได้ <strong>ตารางและ constraint</strong>">depends on implementation → <strong>tables and constraints</strong></td></tr>
+          <tr><td data-th="3 Physical">3 Physical</td><td data-th="เก็บยังไงให้เข้าถึงได้เร็ว → ได้ <strong>data files, index, partition</strong>">how it is stored for efficient access → <strong>files, indexes, partitions</strong></td></tr>
+        </table>
+        <ul style="margin-top:12px;">
+          <li data-th="ทุกอย่างเริ่มจาก <strong>Requirement Collection and Analysis</strong> ก่อนขั้นที่ 1 เสมอ">It all starts from <strong>Requirement Collection and Analysis</strong>, before stage 1.</li>
+          <li data-th="อุปมาในสไลด์: แปลนบ้าน 2 มิติ = conceptual/logical · โมเดลบ้าน 3 มิติที่มีวัสดุและสีจริง = physical">The slide's analogy: a 2D floor plan is the conceptual/logical model; a 3D model with real materials and colours is the physical one.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-th="สถาปัตยกรรมหลายผู้ใช้ สี่แบบ">Multi-user architectures</h3>
+        <table class="cmdtable">
+          <tr><td data-th="Teleprocessing">Teleprocessing</td><td data-th="เครื่องกลางเครื่องเดียวแรงๆ ต่อกับ terminal โง่ๆ หลายตัว · ภาระตกที่เครื่องกลางหมด">one powerful central machine with many "dumb" terminals; the load all falls centrally</td></tr>
+          <tr><td data-th="File-Server">File-Server</td><td data-th="เซิร์ฟเวอร์แจกไฟล์อย่างเดียว · ต้องลง DBMS เต็มตัวทุก workstation และข้อมูลวิ่งบนเน็ตเวิร์กเยอะมาก">the server does nothing but serve files; a full DBMS on every workstation and a great deal of data crossing the network</td></tr>
+          <tr><td data-th="Two-Tier">Two-Tier</td><td data-th="client แสดงผล + logic (client อ้วน) · server เสิร์ฟข้อมูล">client presents and runs the logic (a <em>fat</em> client); server serves data</td></tr>
+          <tr><td data-th="Three-Tier">Three-Tier</td><td data-th="client ผอม · application server ถือ business logic · database server ถือข้อมูล">thin client · application server holds the business logic · database server holds the data</td></tr>
+        </table>
+      </div>
+      <div class="card watch">
+        <h3 data-th="ระวังไว้">Watch out</h3>
+        <ul>
+          <li data-th="<strong>Data model มีห้าแบบ</strong> เรียงตามที่สไลด์ให้: Hierarchical (ต้นไม้ พ่อได้คนเดียว) → Network (กราฟ many-to-many) → Relational (ตาราง) → Object-oriented → Object-relational"><strong>Five kinds of data model</strong>, in the slide's order: Hierarchical (a tree, one parent) → Network (a many-to-many graph) → Relational (plain tables) → Object-oriented → Object-relational.</li>
+          <li data-th="นิยาม data model ในสไลด์มีสามส่วน: structural part, <strong>manipulative part</strong>, <strong>integrity constraint part</strong>">A data model is defined in three parts: a structural part, a <strong>manipulative part</strong>, and an <strong>integrity constraint part</strong>.</li>
+          <li data-th="<strong>ODBC</strong> เป็นของ Microsoft · <strong>JDBC</strong> เป็นของฝั่ง Java · ทั้งคู่คือ database-oriented middleware"><strong>ODBC</strong> is Microsoft's; <strong>JDBC</strong> is Java's. Both are database-oriented middleware.</li>
+          <li data-th="ข้อดีของ three-tier ที่ถูกถามบ่อย: ฮาร์ดแวร์ถูกลง · ดูแล logic ที่เดียว · โมดูลาร์ · <strong>load balancing ง่ายขึ้น</strong>">Three-tier's advantages, often asked: cheaper hardware, one place to maintain the logic, modularity, and easier <strong>load balancing</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WEEK 3 ================= -->
+  <section class="band">
+    <div class="band-head">
+      <span class="wk-pill">W3</span>
+      <h2 data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</h2>
+      <span class="band-date">19 Aug 2026</span>
+      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน”">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary."</span>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 800 340" role="img" aria-label="The hierarchy of keys drawn as nested sets: all superkeys contain the candidate keys; one candidate key is chosen as the primary key and the remaining candidates become alternate keys.">
+        <ellipse cx="250" cy="170" rx="215" ry="140" fill="none" stroke="var(--ink-faint)" stroke-width="1.5"/>
+        <text x="250" y="52" text-anchor="middle" font-size="13" class="strong" data-th="Superkey ทั้งหมด">All superkeys</text>
+        <text x="250" y="70" text-anchor="middle" class="lbl" data-th="ระบุแถวได้ · มีแอตทริบิวต์เกินได้">identifies a row · may carry surplus attributes</text>
+
+        <ellipse cx="250" cy="196" rx="150" ry="95" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.8"/>
+        <text x="250" y="132" text-anchor="middle" font-size="12.5" fill="var(--green)" class="strong" data-th="Candidate key">Candidate keys</text>
+        <text x="250" y="149" text-anchor="middle" class="lbl" data-th="uniqueness + irreducibility">uniqueness + irreducibility</text>
+
+        <ellipse cx="196" cy="212" rx="76" ry="58" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"/>
+        <text x="196" y="207" text-anchor="middle" font-size="12" fill="var(--accent)" class="strong" data-th="Primary key">Primary key</text>
+        <text x="196" y="224" text-anchor="middle" class="lbl" data-th="ตัวที่ถูกเลือก">the chosen one</text>
+
+        <ellipse cx="330" cy="212" rx="62" ry="48" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="1.6"/>
+        <text x="330" y="208" text-anchor="middle" font-size="11.5" fill="var(--amber)" class="strong" data-th="Alternate key">Alternate keys</text>
+        <text x="330" y="224" text-anchor="middle" class="lbl" data-th="ที่ไม่ถูกเลือก">the ones not chosen</text>
+
+        <line x1="470" y1="90" x2="510" y2="90" stroke="var(--line-strong)"/>
+        <text x="520" y="72" font-size="12" class="strong" data-th="ตัวอย่างจากสไลด์:">Worked on the slide's example:</text>
+        <text x="520" y="94" class="mono" font-size="11">Students(StudentNo, Firstname,</text>
+        <text x="520" y="110" class="mono" font-size="11">         Lastname, DOB, Email)</text>
+        <text x="520" y="138" font-size="11.5" data-th="StudentNo · Email → candidate key">StudentNo · Email → candidate keys</text>
+        <text x="520" y="158" font-size="11.5" data-th="{StudentNo, Email} → superkey เท่านั้น">{StudentNo, Email} → superkey only</text>
+        <text x="520" y="174" class="lbl" data-th="ตัดตัวไหนออกก็ยังระบุแถวได้ = ลดได้อีก">drop either and it still works = reducible</text>
+        <text x="520" y="196" font-size="11.5" data-th="{Firstname, Lastname} → ไม่ใช่ทั้งคู่">{Firstname, Lastname} → neither</text>
+        <text x="520" y="212" class="lbl" data-th="คนชื่อซ้ำกันมีจริง">two people really can share a name</text>
+        <text x="520" y="244" font-size="11.5" fill="var(--violet)" class="strong" data-th="Surrogate key">Surrogate key</text>
+        <text x="520" y="262" class="lbl" data-th="คีย์ที่สร้างขึ้นเอง เช่น AUTO_INCREMENT">an invented key — AUTO_INCREMENT, say</text>
+        <text x="520" y="278" class="lbl" data-th="ใช้เมื่อไม่มีแอตทริบิวต์จริงตัวไหนเหมาะ">for when no real attribute suits</text>
+      </svg>
+      <figcaption data-th="<strong>Irreducibility คือคำที่แยก candidate ออกจาก superkey</strong> — superkey แค่ต้องระบุแถวได้ ส่วน candidate ต้องระบุได้และตัดอะไรออกไม่ได้อีกแล้ว · relation เดียวมี candidate key ได้หลายตัว และคีย์ที่ประกอบจากหลายแอตทริบิวต์เรียก <strong>composite key</strong> · การหา candidate key ต้องรู้<strong>ความหมายจริงของข้อมูล</strong> ดูแค่แถวตัวอย่างไม่พอ"><strong>Irreducibility is the word that separates a candidate from a superkey.</strong> A superkey need only identify the row; a candidate must identify it and have nothing left to remove. One relation may have several candidate keys, and a key built from more than one attribute is a <strong>composite key</strong>. Finding a candidate key requires knowing what the data <strong>means</strong> — sample rows are not enough.</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-th="ศัพท์ทางการ ↔ ศัพท์ที่ใช้จริง">Formal ↔ informal terms</h3>
+        <table class="cmdtable">
+          <tr><td>Relation</td><td data-th="Table — ตาราง">Table</td></tr>
+          <tr><td>Attribute</td><td data-th="Column / Field — คอลัมน์">Column / Field</td></tr>
+          <tr><td>Tuple</td><td data-th="Row / Record — แถว">Row / Record</td></tr>
+          <tr><td>Domain</td><td data-th="ค่าที่คอลัมน์นั้นเป็นได้ทั้งหมด">all possible column values</td></tr>
+          <tr><td data-th="Schema ของ relation">Schema of a Relation</td><td data-th="Table Definition — R(A1, A2, …, An)">Table Definition — R(A1, A2, …, An)</td></tr>
+          <tr><td>Cardinality</td><td data-th="จำนวน<strong>แถว</strong> · เปลี่ยนตามข้อมูล ณ ขณะนั้น">the number of <strong>rows</strong> — changes with the instance</td></tr>
+          <tr><td>Degree</td><td data-th="จำนวน<strong>คอลัมน์</strong> · ตายตัวตาม schema">the number of <strong>columns</strong> — fixed by the schema</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3 data-th="คุณสมบัติของ relation">Properties of a relation</h3>
+        <ul>
+          <li data-th="ชื่อ relation ต้อง<strong>ไม่ซ้ำ</strong>ใครใน schema เดียวกัน">Its name is <strong>distinct</strong> from every other relation.</li>
+          <li data-th="ทุกช่องเก็บค่า <strong>atomic</strong> เพียงค่าเดียว — แตกย่อยอีกไม่ได้">Every cell holds exactly one <strong>atomic</strong> value — it cannot be broken down further.</li>
+          <li data-th="ค่าของแอตทริบิวต์เดียวกันมาจาก domain เดียวกันทั้งหมด">All values of one attribute come from the same domain.</li>
+          <li data-th="<strong>ห้ามมี tuple ซ้ำ</strong>"><strong>No duplicate tuples.</strong></li>
+          <li data-th="<strong>ลำดับแถวไม่สำคัญ</strong> · แต่<strong>ลำดับคอลัมน์สำคัญ</strong> เพราะ tuple คือรายการค่าที่เรียงลำดับ"><strong>Row order does not matter</strong>, but <strong>column order does</strong> — a tuple is an ordered list of values.</li>
+          <li data-th="<strong>null</strong> คือค่าพิเศษ แปลว่าไม่รู้ ไม่มี หรือใช้ไม่ได้กับแถวนั้น"><strong>null</strong> is the special value meaning unknown, not available, or inapplicable to that tuple.</li>
+        </ul>
+      </div>
+      <div class="card watch">
+        <h3 data-th="ระวังไว้">Watch out</h3>
+        <ul>
+          <li data-th="สไลด์เขียนขัดกันเอง: หน้า 6 บอก “ลำดับแอตทริบิวต์ไม่สำคัญ” แต่คุณสมบัติข้อ 7 บอก “สำคัญ” — <strong>ไม่ขัดกันจริง</strong> · ในทฤษฎีเซต relation คือเซตของแอตทริบิวต์ ลำดับจึงไม่มีความหมาย · แต่ตอน INSERT ที่ไม่ระบุชื่อคอลัมน์ ต้องเรียงตามที่ประกาศไว้ ไม่งั้นข้อมูลลงผิดช่อง">The slides look self-contradictory — slide 6 says attribute order is irrelevant, property 7 says it matters. <strong>They do not actually conflict.</strong> In set theory a relation is a set of attributes, so order is meaningless; in practice an <code>INSERT</code> naming no columns must list values in the declared order or the data lands in the wrong columns.</li>
+          <li data-th="สไลด์พิมพ์ผิด: <code>STUDENTS</code> เขียนว่า “four attributes” แล้วลิสต์มาห้าตัว — <strong>ค่าที่ถูกคือ 5</strong> (degree = 5)">A slide typo: <code>STUDENTS</code> says "four attributes" then lists five. <strong>Five is correct</strong> (degree = 5).</li>
+          <li data-th="ในภาพศัพท์ ตัวเลข cardinality = 4 และ degree = 5 วัดจาก <strong>PrivateOwner</strong> ไม่ใช่ PropertyForRent (ซึ่งมี 6 แถว 8 คอลัมน์) — ข้อสอบชอบถามให้สับสน">In the terminology figure, cardinality = 4 and degree = 5 are measured on <strong>PrivateOwner</strong>, not PropertyForRent (which has 6 rows and 8 columns). An exam question will use that.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WEEK 4 ================= -->
+  <section class="band">
+    <div class="band-head">
+      <span class="wk-pill">W4</span>
+      <h2 data-th="ER Model (1/3) — ออกแบบเชิงแนวคิด">ER Model (1/3) — Conceptual Design</h2>
+      <span class="band-date">27 Aug 2026</span>
+      <span class="band-tag" data-th="ย้ายจาก “ตารางหน้าตาเป็นยังไง” มาเป็น “จะออกแบบมันยังไงก่อนที่มันจะมีอยู่จริง” · อาจารย์ย้ำหลายรอบว่า notation ที่ใช้ต้องเป็นของในสไลด์ (UML notation) ทั้งใน lab, project และข้อสอบ">From "what a table looks like" to "how you design one before it exists". The lecturer repeated many times that the notation must be the one in the slides — UML notation — in the lab, the project, and the exam.</span>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 820 400" role="img" aria-label="The UML notation reference: an entity box with the entity name in the header band and attributes below, showing PK braces, a leading slash for a derived attribute, indentation for a composite attribute and square brackets for a multi-valued attribute; plus the multiplicity reading rule showing min as participation and max as cardinality.">
+        <defs>
+          <marker id="m4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <!-- Staff box -->
+        <rect x="20" y="26" width="200" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="120" y="44" text-anchor="middle" font-size="12.5" class="strong">Staff</text>
+        <rect x="20" y="52" width="200" height="118" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="34" y="72" class="mono" font-size="11.5">staffNo {PK}</text>
+        <text x="34" y="92" class="mono" font-size="11.5">name</text>
+        <text x="34" y="112" class="mono" font-size="11.5">position</text>
+        <text x="34" y="132" class="mono" font-size="11.5">salary</text>
+        <text x="34" y="152" class="mono" font-size="11.5" fill="var(--violet)">/totalStaff</text>
+
+        <!-- Branch box -->
+        <rect x="300" y="26" width="210" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="405" y="44" text-anchor="middle" font-size="12.5" class="strong">Branch</text>
+        <rect x="300" y="52" width="210" height="118" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="314" y="72" class="mono" font-size="11.5">branchNo {PK}</text>
+        <text x="314" y="92" class="mono" font-size="11.5" fill="var(--green)">address</text>
+        <text x="330" y="110" class="mono" font-size="11" fill="var(--green)">street</text>
+        <text x="330" y="127" class="mono" font-size="11" fill="var(--green)">city</text>
+        <text x="330" y="144" class="mono" font-size="11" fill="var(--green)">postcode</text>
+        <text x="314" y="163" class="mono" font-size="11.5" fill="var(--amber)">telNo [1..3]</text>
+
+        <line x1="220" y1="88" x2="298" y2="88" stroke="currentColor" marker-end="url(#m4)"/>
+        <text x="259" y="80" text-anchor="middle" class="lbl">Manages</text>
+        <line x1="298" y1="126" x2="222" y2="126" stroke="currentColor" marker-end="url(#m4)"/>
+        <text x="259" y="145" text-anchor="middle" class="lbl">Has</text>
+
+        <!-- legend -->
+        <text x="560" y="42" font-size="12" class="strong" data-th="สัญลักษณ์ที่ต้องท่อง">The notation to memorise</text>
+        <text x="560" y="66" class="mono" font-size="11.5">{PK}</text>
+        <text x="628" y="66" font-size="11" data-th="primary key">primary key</text>
+        <text x="560" y="88" class="mono" font-size="11.5" fill="var(--violet)">/name</text>
+        <text x="628" y="88" font-size="11" data-th="derived — คำนวณได้">derived — computed</text>
+        <text x="560" y="110" font-size="11.5" fill="var(--green)" data-th="ย่อหน้าเข้าไป">indented</text>
+        <text x="628" y="110" font-size="11" data-th="composite attribute">composite attribute</text>
+        <text x="560" y="132" class="mono" font-size="11.5" fill="var(--amber)">[1..3]</text>
+        <text x="628" y="132" font-size="11" data-th="multi-valued">multi-valued</text>
+        <text x="560" y="154" font-size="11.5" data-th="ชื่อบนเส้น">name on line</text>
+        <text x="628" y="154" font-size="11" data-th="บังคับเสมอ">always required</text>
+
+        <!-- multiplicity reading -->
+        <line x1="20" y1="200" x2="800" y2="200" stroke="var(--line)"/>
+        <text x="20" y="226" font-size="12.5" class="strong" data-th="กฎการอ่านตัวเลข — ที่คนพลาดมากที่สุด">The reading rule — the single commonest mistake</text>
+
+        <rect x="30" y="246" width="180" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <text x="120" y="268" text-anchor="middle" font-size="12">Staff</text>
+        <text x="120" y="286" text-anchor="middle" class="mono lbl">staffNo</text>
+        <text x="248" y="262" text-anchor="middle" class="mono" font-size="12" fill="var(--rose)">1..1</text>
+        <line x1="210" y1="272" x2="380" y2="272" stroke="currentColor"/>
+        <text x="295" y="266" text-anchor="middle" class="lbl">Manages &#9654;</text>
+        <text x="345" y="262" text-anchor="middle" class="mono" font-size="12" fill="var(--rose)">0..1</text>
+        <rect x="382" y="246" width="180" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <text x="472" y="268" text-anchor="middle" font-size="12">Branch</text>
+        <text x="472" y="286" text-anchor="middle" class="mono lbl">branchNo</text>
+
+        <text x="30" y="326" font-size="11.5" data-th="อ่าน Staff → Branch: ดูเลขฝั่ง Branch (0..1)">Staff &#8594; Branch: read the number on the <tspan font-weight="700">Branch</tspan> side (0..1)</text>
+        <text x="30" y="344" class="lbl" data-th="“พนักงานหนึ่งคนไม่จำเป็นต้องจัดการสาขาใดเลย (min=0) แต่ถ้ามี ก็มากที่สุดหนึ่งสาขา (max=1)”">"one member of staff need not manage a branch (min=0), but if they do, at most one (max=1)"</text>
+        <text x="30" y="368" font-size="11.5" data-th="อ่าน Branch → Staff: ดูเลขฝั่ง Staff (1..1)">Branch &#8594; Staff: read the number on the <tspan font-weight="700">Staff</tspan> side (1..1)</text>
+        <text x="30" y="386" class="lbl" data-th="“สาขาหนึ่งต้องมีผู้จัดการ (min=1) และมีได้คนเดียวเท่านั้น (max=1)”">"one branch must have a manager (min=1), and exactly one (max=1)"</text>
+
+        <rect x="592" y="240" width="216" height="150" rx="9" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="1.4"/>
+        <text x="702" y="264" text-anchor="middle" class="mono strong" font-size="14">min .. max</text>
+        <line x1="640" y1="274" x2="640" y2="292" stroke="var(--rose)" marker-end="url(#m4)"/>
+        <line x1="762" y1="274" x2="762" y2="292" stroke="var(--rose)" marker-end="url(#m4)"/>
+        <text x="640" y="308" text-anchor="middle" font-size="11" fill="var(--rose)" class="strong" data-th="participation">participation</text>
+        <text x="762" y="308" text-anchor="middle" font-size="11" fill="var(--rose)" class="strong" data-th="cardinality">cardinality</text>
+        <text x="640" y="326" text-anchor="middle" font-size="10.5" data-th="บังคับไหม">is it required?</text>
+        <text x="762" y="326" text-anchor="middle" font-size="10.5" data-th="มากสุดกี่ตัว">how many at most?</text>
+        <text x="640" y="344" text-anchor="middle" class="mono" font-size="10.5">0 = optional</text>
+        <text x="762" y="344" text-anchor="middle" class="mono" font-size="10.5">1 = at most 1</text>
+        <text x="640" y="360" text-anchor="middle" class="mono" font-size="10.5">1 = mandatory</text>
+        <text x="762" y="360" text-anchor="middle" class="mono" font-size="10.5">* / n = many</text>
+        <text x="702" y="382" text-anchor="middle" font-size="10.5" fill="var(--rose)" data-th="ตั้งชื่อ 1:1 / 1:* / *:* ดูแค่ max">naming 1:1 / 1:* / *:* uses max only</text>
+      </svg>
+      <figcaption data-th="<strong>สูตรอ่านของอาจารย์:</strong> 1) ตัดสินใจก่อนว่าอ่านจากเอนทิตีไหน ไปหาเอนทิตีไหน 2) <strong>ดูตัวเลขฝั่งปลายทางเสมอ</strong> 3) ขึ้นประโยคด้วย “หนึ่ง[ต้นทาง]…” 4) min ตอบว่าบังคับไหม max ตอบว่าถ้ามีแล้วมากสุดเท่าไหร่ · และข้อที่สำคัญที่สุดของขั้นนี้: <strong>ไดอะแกรมระดับ conceptual มีแค่ primary key</strong> ไม่มี foreign key ไม่มี unique/check/not null เพราะยังไม่ถึงขั้นติดตั้ง"><strong>The lecturer's formula:</strong> 1) decide which entity you are reading from and to; 2) <strong>always look at the number on the destination side</strong>; 3) open with "one [source] …"; 4) min answers "is it required?", max answers "if so, how many at most?". And the single most important rule of this stage: <strong>a conceptual diagram carries primary keys only</strong> — no foreign keys, no unique/check/not null, because implementation has not been reached.</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card">
+        <h3 data-th="สามองค์ประกอบ และ degree">Three components, and degree</h3>
+        <table class="cmdtable">
+          <tr><td data-th="Entity Type">Entity Type</td><td data-th="กลุ่มของสิ่งที่มีคุณสมบัติเหมือนกัน — วาดเป็น<strong>สี่เหลี่ยม</strong>">things with the same properties — drawn as a <strong>rectangle</strong></td></tr>
+          <tr><td>Attribute</td><td data-th="คุณสมบัติของเอนทิตี<strong>หรือของ relationship ก็ได้</strong>">a property of an entity type <strong>or of a relationship</strong></td></tr>
+          <tr><td data-th="Relationship">Relationship</td><td data-th="เส้นเชื่อมที่<strong>ต้องมีชื่อเสมอ</strong> · ชื่อมักเป็นคำกริยา">a connecting line that <strong>must always be named</strong> — usually a verb</td></tr>
+          <tr><td>Binary (2)</td><td data-th="พบบ่อยที่สุด">the most common</td></tr>
+          <tr><td>Ternary (3)</td><td data-th="เช่น Staff–Branch–Client ผ่าน Registers">Staff–Branch–Client via Registers</td></tr>
+          <tr><td>Quaternary (4)</td><td data-th="เช่น Solicitor–Buyer–FinancialInstitution–Bid">Solicitor–Buyer–FinancialInstitution–Bid</td></tr>
+          <tr><td>Recursive</td><td data-th="วนกลับหาเอนทิตีตัวเอง — <strong>ที่มาของ SELF JOIN</strong>">loops back to the same entity — <strong>where SELF JOIN comes from</strong></td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3 data-th="แอตทริบิวต์ สามแกน">Attributes, on three axes</h3>
+        <ul>
+          <li data-th="<strong>จำนวนส่วนประกอบ</strong> — Single (staffNo) กับ Composite (name = fname+lname)"><strong>Components</strong> — Single (<code>staffNo</code>) vs Composite (<code>name</code> = fname + lname).</li>
+          <li data-th="<strong>จำนวนค่า</strong> — Single-valued กับ Multiple-valued เช่น requisiteCourseNos ของ INT207 = INT102, INT203"><strong>Values</strong> — Single-valued vs Multiple-valued: INT207's <code>requisiteCourseNos</code> holds both INT102 and INT203.</li>
+          <li data-th="<strong>ที่มาของค่า</strong> — Derived คำนวณจากตัวอื่น <strong>ซึ่งอาจอยู่คนละเอนทิตีก็ได้</strong> เช่น /totalAmount ใน Orders คำนวณจาก /amount ใน Order_Items"><strong>Where the value comes from</strong> — Derived, computed from others <strong>possibly in another entity</strong>: <code>/totalAmount</code> on Orders comes from <code>/amount</code> on Order_Items.</li>
+          <li data-th="แอตทริบิวต์ของ <strong>relationship</strong>: ถ้าข้อมูลนั้นเกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้ว (dateAdvert, cost) ให้ห้อยจากเส้นด้วย<strong>เส้นประ</strong> ลงกล่องที่<strong>เว้นหัวไว้ว่างๆ</strong>">A <strong>relationship's</strong> attributes: if the data can only exist once the relationship occurs (<code>dateAdvert</code>, <code>cost</code>), hang it off the line with a <strong>dashed line</strong> into a box whose header is <strong>deliberately blank</strong>.</li>
+        </ul>
+      </div>
+      <div class="card watch">
+        <h3 data-th="ระวังไว้">Watch out</h3>
+        <ul>
+          <li data-th="<strong>Multiple-valued แปลว่าหลายค่า ณ เวลาเดียวกัน</strong> — การเปลี่ยนชื่อ<strong>ไม่ใช่</strong> multiple-valued เพราะ ณ ขณะใดขณะหนึ่งเรามีชื่อเดียวเสมอ (อาจารย์วางกับดักนี้ไว้ล่วงหน้า)"><strong>Multiple-valued means several values at the same moment.</strong> Changing your name is <strong>not</strong> multi-valued — at any one time you have exactly one name. The lecturer set this trap deliberately.</li>
+          <li data-th="ตั้งชื่อ <strong>1:1 / 1:* / *:*</strong> ให้ดู <strong>max ทั้งสองฝั่งเท่านั้น</strong> ไม่ต้องสนใจ min เลย">To name a relationship <strong>1:1 / 1:* / *:*</strong>, look only at the <strong>max on both sides</strong> and ignore min entirely.</li>
+          <li data-th="<strong>constraint ไม่ใช่ของที่เราคิดขึ้นเอง</strong> — ต้องมาจาก business requirement · จะเดาเองได้เฉพาะตอนที่โจทย์เงียบหรือไม่ชัดเท่านั้น"><strong>The constraints are not yours to invent</strong> — they come from the business requirements. Only where the brief is silent or unclear may you fill in the gaps.</li>
+          <li data-th="เอนทิตีคู่เดิมมี relationship ได้<strong>หลายเส้น</strong> ถ้าแต่ละเส้นความหมายต่างกัน (Staff–Branch มีทั้ง Manages และ Has) และตอนนั้นต้องใส่ <strong>role name</strong> กำกับปลายเส้น">The same pair of entities may carry <strong>several relationship lines</strong> if each means something different (Staff–Branch has both Manages and Has) — and then each end needs a <strong>role name</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WEEK 5 ================= -->
+  <section class="band">
+    <div class="band-head">
+      <span class="wk-pill">W5</span>
+      <h2 data-th="ER Model (2/3) — ช่องที่ยังว่างอยู่">ER Model (2/3) — the gap on this board</h2>
+      <span class="band-date">3 Sep 2026</span>
+      <span class="band-tag" data-th="สัปดาห์นี้อยู่ในขอบเขตสอบ แต่ไม่มีโน้ตอยู่ในโฟลเดอร์วิชา — ระบุไว้ตรงๆ ดีกว่าเดาเนื้อหาให้">This week is in scope, but there are no notes for it in the course folder. Saying so plainly beats inventing the content.</span>
+    </div>
+
+    <div class="gap-note">
+      <b data-th="ผมไม่มีเนื้อหาสัปดาห์ที่ 5 บนเครื่อง">I have no week 5 material on this machine.</b>
+      <span data-th=" โฟลเดอร์ <code>INT191/</code> มี week1 ถึง week4 เท่านั้น ไม่มีสไลด์ ไม่มีโน้ต ไม่มี lab ของสัปดาห์ 5 · มีแต่ไฟล์ <code>INT191-summary.m4a</code> กับ <code>.mp4</code> ลงวันที่ 4 ก.ย. ซึ่งน่าจะเป็นบันทึกคาบวันที่ 3 ก.ย. แต่ผมถอดเสียงให้ไม่ได้"> The <code>INT191/</code> folder holds week1 through week4 and nothing else — no slides, no notes, no lab for week 5. There is an <code>INT191-summary.m4a</code> and <code>.mp4</code> dated 4 Sep, presumably a recording of the 3 Sep class, but I cannot transcribe audio.</span>
+      <b style="display:block; margin-top:10px;" data-th="สิ่งที่พอรู้ได้จากเอกสารอื่น:">What the other documents do tell us:</b>
+      <ul>
+        <li data-th="Course outline ระบุหัวข้อสัปดาห์ 5 ว่า <strong>Conceptual DB Design: ER Model (2/3)</strong> และ lab คือ <strong>Group Project Progress Presentation</strong>">The outline lists week 5's topic as <strong>Conceptual DB Design: ER Model (2/3)</strong> with <strong>Group Project Progress Presentation</strong> as the lab.</li>
+        <li data-th="ตอนจบคาบ 4 อาจารย์บอกเองว่าคาบหน้าคือ Conceptual Database Design ต่อ ยังตัดสินใจไม่ได้ว่าจะเป็น lab หรือทฤษฎีเพิ่ม แต่<strong>ส่วนหนึ่งของคาบเป็นการนำเสนอความคืบหน้าแน่นอน</strong> และจะ<strong>เฉลย Lab 04</strong> ด้วย">At the end of class 4 she said the next session continues Conceptual Database Design, that she had not yet decided whether it would be a lab or more theory, that <strong>part of it would certainly be the progress presentations</strong>, and that she would <strong>go through the Lab 04 answers</strong>.</li>
+        <li data-th="เดาได้อย่างมีเหตุผลว่าเนื้อหาต่อจาก 1/3 คือส่วนที่สไลด์คาบ 4 ยังไม่ได้ลงลึก — แต่<strong>ผมไม่เดาให้</strong> เพราะเดาผิดในคืนก่อนสอบแย่กว่าไม่มี">It is reasonable to guess it continues where the class 4 slides stopped — but <strong>I am not going to guess for you</strong>. A wrong guess the night before an exam is worse than a gap.</li>
+      </ul>
+      <span style="display:block; margin-top:10px;" data-th="ถ้าหาสไลด์คาบ 5 มาวางในโฟลเดอร์ได้ บอกผมแล้วเดี๋ยวเติมแบนด์นี้ให้ครบเหมือนสัปดาห์อื่น">Drop the week 5 slides into the folder and tell me, and I will fill this band in like the others.</span>
+    </div>
+  </section>
+
+  <!-- ================= THEORY ================= -->
+  <section class="band" style="margin-top:44px;">
+    <div class="band-head">
+      <span class="wk-pill">theory</span>
+      <h2 data-th="ตารางที่ออกข้อสอบทฤษฎีได้ง่ายที่สุด">The facts most easily turned into an exam question</h2>
+      <span class="band-tag" data-th="สอบนี้เป็นทฤษฎีล้วน ไม่มีภาคปฏิบัติ · สิ่งที่วัดได้คือคำจำกัดความ คู่คำที่สับสน ตารางที่มีลำดับชัดเจน และการอ่านไดอะแกรม — ทั้งหมดข้างล่างนี้มาจากสไลด์และสิ่งที่อาจารย์พูดในคาบ">This paper is theory only — no practical half. What that can test is definitions, confusable pairs, tables with a clear ordering, and reading a diagram. Everything below comes from the slides or from what was said in class.</span>
+    </div>
+
+    <div class="fact-grid">
+
+      <div class="fact r">
+        <h3 data-th="ข้อจำกัดความถูกต้อง สี่กลุ่ม — คาบ 3">Integrity constraints, four groups — class 3</h3>
+        <p class="lede" data-th="จุดประสงค์ของทั้งหมดนี้คือ <strong>กันข้อมูลเสียหายโดยไม่ตั้งใจ</strong>">The purpose of all of them: to <strong>prevent accidental damage</strong> to the data.</p>
+        <table class="ftab">
+          <tr><td data-th="Key">Key</td><td data-th="ชุดแอตทริบิวต์ที่ระบุแต่ละ tuple ได้อย่างไม่ซ้ำกัน">the set of attributes that identifies each tuple uniquely</td></tr>
+          <tr><td data-th="Entity integrity">Entity integrity</td><td data-th="ทุก relation <strong>ต้องมี</strong> primary key และ primary key <strong>ห้ามเป็น null</strong>">every relation <strong>must have</strong> a primary key, and a primary key <strong>may never be null</strong></td></tr>
+          <tr><td data-th="Referential integrity">Referential<br>integrity</td><td data-th="ค่า FK ต้องตรงกับ PK ที่<strong>มีอยู่จริง</strong>ใน relation ที่ถูกอ้าง <strong>หรือเป็น null ทั้งหมด</strong>">an FK's value must match a primary key that <strong>actually exists</strong> in the referenced relation, <strong>or be wholly null</strong></td></tr>
+          <tr><td data-th="General">General</td><td data-th="Unique, Check, Not Null — กฎเพิ่มที่ผู้ใช้หรือ DBA ตั้งตามเงื่อนไขทางธุรกิจ เช่น Check (salary &gt; 15000)">Unique, Check, Not Null — extra rules set by a user or the DBA for a business condition, such as <code>Check (salary &gt; 15000)</code></td></tr>
+        </table>
+        <div class="fnote" data-th="“หรือเป็น null” ใช้ได้เฉพาะเมื่อคอลัมน์ FK นั้น<strong>ไม่ได้ประกาศ NOT NULL</strong> · และถ้าตั้งใจจะใช้ <code>ON DELETE SET NULL</code> คอลัมน์นั้น<strong>ห้ามเป็น NOT NULL เด็ดขาด</strong>">"Or be null" applies only when that FK column is <strong>not declared NOT NULL</strong> — and if you intend to use <code>ON DELETE SET NULL</code>, that column must <strong>never</strong> be NOT NULL.</div>
+      </div>
+
+      <div class="fact a">
+        <h3 data-th="Referential actions — คาบ 3">Referential actions — class 3</h3>
+        <p class="lede" data-th="เกิดขึ้นเมื่อ UPDATE หรือ DELETE แตะค่า key ในตารางแม่ที่ยังมีลูกอ้างอยู่">What happens when an UPDATE or DELETE touches a parent key that child rows still reference.</p>
+        <table class="ftab">
+          <tr><td>RESTRICT</td><td data-th="ปฏิเสธการลบหรือแก้ตารางแม่ · <strong>เขียน RESTRICT เท่ากับไม่เขียนอะไรเลย เพราะมันเป็นค่าเริ่มต้น</strong> (NO ACTION ก็อย่างเดียวกัน)">refuses the delete or update. <strong>Naming RESTRICT is the same as writing nothing — it is the default</strong> (NO ACTION likewise)</td></tr>
+          <tr><td>CASCADE</td><td data-th="ลบหรือแก้แถวแม่ แล้วลบหรือแก้แถวลูกที่ตรงกันตามไปด้วยอัตโนมัติ">deletes or updates the parent, then does the same to the matching child rows</td></tr>
+          <tr><td>SET NULL</td><td data-th="ลบหรือแก้แถวแม่ แล้วตั้งคอลัมน์ FK ในตารางลูกเป็น NULL">deletes or updates the parent, then sets the child rows' FK column to NULL</td></tr>
+        </table>
+        <div class="fnote" data-th="<b>กับดักที่ต้องรู้:</b> referential action <strong>ไม่ช่วยเรื่อง INSERT เลย</strong> · <code>ON DELETE</code>/<code>ON UPDATE</code> ควบคุมเฉพาะสิ่งที่เกิดกับ<strong>แถวลูกเมื่อแถวแม่ถูกลบหรือแก้</strong> · การ INSERT แถวลูกที่ชี้ไปยัง key ที่ไม่มีอยู่จริง ถูกปฏิเสธเสมอ ไม่ว่าตั้ง action ไหนไว้"><b>The trap:</b> a referential action <strong>does nothing for INSERT</strong>. <code>ON DELETE</code>/<code>ON UPDATE</code> govern only what happens to <strong>child rows when a parent is deleted or updated</strong>. Inserting a child row pointing at a key that does not exist is refused regardless of which action is set.</div>
+      </div>
+
+      <div class="fact v">
+        <h3 data-th="คำสั่งไหนละเมิดอะไรได้บ้าง — คาบ 3">Which operation can violate what — class 3</h3>
+        <p class="lede" data-th="ตารางนี้มีลำดับชัดและไม่สมมาตร จึงเป็นข้อสอบปรนัยชั้นดี">An asymmetric table with a clear pattern — ideal multiple-choice material.</p>
+        <table class="ftab">
+          <tr><td>INSERT</td><td data-th="ละเมิดได้<strong>ทุกชนิด</strong> — domain, key, referential integrity, entity integrity">can violate <strong>every</strong> kind — domain, key, referential integrity, entity integrity</td></tr>
+          <tr><td>DELETE</td><td data-th="ละเมิดได้<strong>อย่างเดียว</strong>คือ referential integrity — เกิดเมื่อ PK ของแถวที่จะลบยังถูกอ้างจากที่อื่น">can violate <strong>referential integrity and nothing else</strong> — when the PK of the row being deleted is still referenced</td></tr>
+          <tr><td>UPDATE</td><td data-th="ละเมิด domain และ NOT NULL ของแอตทริบิวต์ที่แก้ · และอาจละเมิดอย่างอื่นขึ้นกับว่าแก้ตัวไหน โดยเฉพาะแก้ PK (ลูกหาแม่ไม่เจอ) หรือแก้ FK (ชี้ไปค่าที่ไม่มี)">violates the domain and NOT NULL of the attribute changed, and possibly more depending which — especially changing a PK (children lose their parent) or an FK (it may point at nothing)</td></tr>
+        </table>
+        <div class="fnote" data-th="สำหรับ DELETE ต้อง<strong>เลือกหนึ่งในสาม</strong>ตั้งแต่ตอนออกแบบ สำหรับ foreign key ทุกตัว: RESTRICT ปฏิเสธ · CASCADE ลบตามไป · SET NULL ตั้งเป็น null">For DELETE, <strong>one of three must be chosen at design time</strong>, for every foreign key: RESTRICT refuses, CASCADE deletes on through, SET NULL sets the referencing FK to null.</div>
+      </div>
+
+      <div class="fact">
+        <h3 data-th="ที่มาของ relational model — คาบ 3">Where the relational model came from — class 3</h3>
+        <p class="lede" data-th="ชื่อ ปี และรางวัล เป็นข้อสอบปรนัยที่เขียนง่ายที่สุด">Names, a year and a prize — the easiest multiple-choice item there is to write.</p>
+        <table class="ftab">
+          <tr><td data-th="ผู้เสนอ">who</td><td data-th="<strong>Dr. E. F. Codd</strong> แห่ง IBM Research"><strong>Dr. E. F. Codd</strong>, of IBM Research</td></tr>
+          <tr><td data-th="ปี">when</td><td><strong>1970</strong></td></tr>
+          <tr><td data-th="เอกสาร">the paper</td><td data-th="“A Relational Model for Large Shared Data Banks”, Communications of the ACM, มิถุนายน 1970">"A Relational Model for Large Shared Data Banks", Communications of the ACM, June 1970</td></tr>
+          <tr><td data-th="รางวัล">the prize</td><td data-th="<strong>ACM Turing Award</strong>"><strong>The ACM Turing Award</strong></td></tr>
+          <tr><td data-th="รากฐาน">the foundation</td><td data-th="relation เป็นแนวคิดทางคณิตศาสตร์ที่ตั้งอยู่บน <strong>set theory</strong>">a relation is a mathematical idea resting on <strong>set theory</strong></td></tr>
+        </table>
+        <div class="fnote" data-th="อาจารย์เน้นในคาบว่า <strong>คนคิดทฤษฎี ≠ คนขายซอฟต์แวร์</strong> · Codd เป็นนักวิจัยของ IBM ที่ทำเรื่อง set theory ไม่ใช่ฝ่ายผลิตภัณฑ์ · RDBMS เชิงพาณิชย์เกิดขึ้นเมื่อบริษัทต่างๆ อ่านเปเปอร์นี้แล้วเอาไปทำเป็นซอฟต์แวร์">She stressed in class that <strong>the person who devises the theory is not the person who sells the software</strong>. Codd was an IBM researcher working on set theory, not a product person; commercial RDBMSs began when various companies read this paper and implemented it.</div>
+      </div>
+
+      <div class="fact g">
+        <h3 data-th="สัญกรณ์ multiplicity — คาบ 4">Multiplicity notation — class 4</h3>
+        <p class="lede" data-th="ทั้งหกแบบมาจากสไลด์ตรงๆ · <code>*</code> กับ <code>n</code> ใช้แทนกันได้ ทั้งคู่แปลว่า many">All six come straight off the slide. <code>*</code> and <code>n</code> are interchangeable — both mean many.</p>
+        <table class="ftab">
+          <tr><td>0..1</td><td data-th="ศูนย์หรือหนึ่ง">zero or one occurrence</td></tr>
+          <tr><td data-th="1..1 (หรือ 1)">1..1 (or 1)</td><td data-th="หนึ่งพอดี">exactly one occurrence</td></tr>
+          <tr><td data-th="0..* (หรือ *)">0..* (or *)</td><td data-th="ศูนย์หรือหลาย">zero or many occurrences</td></tr>
+          <tr><td>1..*</td><td data-th="หนึ่งหรือหลาย">one or many occurrences</td></tr>
+          <tr><td>5..10</td><td data-th="อย่างน้อยห้า มากสุดสิบ">a minimum of 5 up to a maximum of 10</td></tr>
+          <tr><td>0, 3, 6&ndash;8</td><td data-th="ศูนย์ หรือสาม หรือหก เจ็ด แปด">zero, or three, or six, seven or eight</td></tr>
+        </table>
+        <div class="fnote" data-th="multiplicity คือการเขียน <strong>business rules</strong> ที่ผู้ใช้หรือบริษัทกำหนดลงไปในไดอะแกรม — ไม่ใช่สิ่งที่ผู้ออกแบบคิดเอาเอง">A multiplicity is how a <strong>business rule</strong>, set by the user or the company, gets written into the diagram. It is not something the designer decides.</div>
+      </div>
+
+      <div class="fact v">
+        <h3 data-th="Strong / Weak entity — คาบ 4">Strong and weak entities — class 4</h3>
+        <table class="ftab">
+          <tr><td data-th="Strong">Strong</td><td data-th="ระบุตัวเองได้ด้วย primary key ของตัวเองเพียงลำพัง — <strong>แข็งแรง ไม่ต้องยืมใคร</strong>">uniquely identifiable by its own primary key alone — <strong>sturdy, borrows from nobody</strong></td></tr>
+          <tr><td data-th="Weak">Weak</td><td data-th="ระบุตัวเองด้วยแอตทริบิวต์ของตัวเองไม่ได้ — <strong>ไม่มี PK เป็นของตัวเอง</strong>">cannot be uniquely identified from its own attributes — <strong>has no primary key of its own</strong></td></tr>
+          <tr><td data-th="Identifying relationship">Identifying<br>relationship</td><td data-th="ความสัมพันธ์ที่ weak entity ใช้<strong>ยืม PK ของ strong</strong> มาต่อเป็น composite key">the relationship through which a weak entity <strong>borrows the strong entity's PK</strong> into a composite key</td></tr>
+        </table>
+        <div class="fnote" data-th="ตัวอย่างที่อาจารย์บอกเองว่า <strong>ไม่ได้อยู่ในสไลด์ ต้องจดเอง</strong>: หอพักมี 4 ตึก A B C D ทุกตึกผังเหมือนกันเป๊ะและเลขห้องซ้ำกันหมด → <code>roomNo = 101</code> มีอยู่ 4 ห้องจริงๆ → <code>roomNo</code> ลำพังเป็น PK ไม่ได้ → <code>Rooms</code> จึงเป็น weak entity · แก้ด้วยการยืม <code>bldgNo</code> มาต่อ (101+A ต่างจาก 101+B) <strong>หรือ</strong>สร้าง surrogate key เช่น <code>roomID</code> ขึ้นมาแทน ก็ไม่ผิด">The example she flagged as <strong>not in the slides — write it down yourself</strong>: a dormitory with four buildings A, B, C, D, every building on the same floor plan and numbering its rooms identically. <code>roomNo = 101</code> then names four different rooms, so <code>roomNo</code> alone cannot be the PK and <code>Rooms</code> is weak. Fix it by borrowing <code>bldgNo</code> (101+A differs from 101+B), <strong>or</strong> by inventing a surrogate key such as <code>roomID</code> — that is not wrong either.</div>
+      </div>
+
+      <div class="fact a">
+        <h3 data-th="Two-tier เทียบ Three-tier — คาบ 2">Two-tier vs three-tier — class 2</h3>
+        <p class="lede" data-th="สไลด์เว้นบางช่องไว้ให้เติมในห้อง — ที่เติมได้แน่จากสไลด์มีสี่แถวนี้">The slide leaves some cells blank as an in-class exercise. These four are the ones the slide itself fills in.</p>
+        <table class="ftab">
+          <tr><td data-th="ราคาเครื่อง client">client hardware cost</td><td data-th="two-tier <strong>สูง</strong> · three-tier <strong>ต่ำ</strong>">two-tier <strong>high</strong> · three-tier <strong>low</strong></td></tr>
+          <tr><td data-th="ความเป็นโมดูล">modularity</td><td data-th="two-tier <strong>ต่ำ</strong> · three-tier <strong>สูง</strong>">two-tier <strong>low</strong> · three-tier <strong>high</strong></td></tr>
+          <tr><td data-th="load balance">load balance</td><td data-th="two-tier <strong>ต่ำ</strong> · three-tier <strong>สูง</strong>">two-tier <strong>low</strong> · three-tier <strong>high</strong></td></tr>
+          <tr><td data-th="client อ้วนหรือผอม">fat or thin</td><td data-th="two-tier client <strong>อ้วน</strong> · three-tier client <strong>ผอม</strong>">two-tier's client is <strong>fat</strong> · three-tier's is <strong>thin</strong></td></tr>
+        </table>
+        <div class="fnote" data-th="ตารางเทียบ teleprocessing / file-server / two-tier ที่กรอกได้: network traffic = ต่ำ / <strong>สูง</strong> / กลาง · equipment cost = สูงที่เครื่องกลาง / สูงที่ workstation / สูงที่ server · performance ต่อ cost = ต่ำ / กลาง / <strong>สูง</strong>">The teleprocessing / file-server / two-tier table, where it is filled in: network traffic = low / <strong>high</strong> / medium · equipment cost = high centrally / high on the workstation / high on the server · performance per cost = low / medium / <strong>high</strong>.</div>
+      </div>
+
+      <div class="fact">
+        <h3 data-th="สิบหน้าที่ของ DBMS — คาบ 2">The ten functions of a DBMS — class 2</h3>
+        <p class="lede" data-th="สไลด์ให้มาสิบข้อพอดี ซึ่งเป็นรูปแบบที่ออกข้อสอบแบบ “ข้อใดไม่ใช่” ได้ง่ายมาก">Exactly ten on the slide — the shape that makes a "which of these is <em>not</em>" question easy to write.</p>
+        <table class="ftab">
+          <tr><td>1&ndash;3</td><td data-th="Data Dictionary Management · Data Storage Management · Data Transformation and Presentation">Data Dictionary Management · Data Storage Management · Data Transformation and Presentation</td></tr>
+          <tr><td>4&ndash;5</td><td data-th="Security Management (<strong>Authorization</strong>) · Multiuser Access Control (<strong>Concurrency control</strong>)">Security Management (<strong>Authorization</strong>) · Multiuser Access Control (<strong>Concurrency control</strong>)</td></tr>
+          <tr><td>6&ndash;7</td><td data-th="Backup and Recovery Management · Data Integrity Management">Backup and Recovery Management · Data Integrity Management</td></tr>
+          <tr><td>8&ndash;10</td><td data-th="Database Access Language and Application · Database Communication Interfaces · Transaction Management">Database Access Language and Application · Database Communication Interfaces · Transaction Management</td></tr>
+        </table>
+      </div>
+
+      <div class="fact r">
+        <h3 data-th="โจทย์นับ foreign key — คาบ 3">The FK-counting exercise — class 3</h3>
+        <p class="lede" data-th="สไลด์ให้ schema ของฐานข้อมูล COMPANY มาแล้วถามสองข้อ ซึ่งเป็นรูปแบบที่ยกมาออกข้อสอบได้ตรงๆ">The slide gives the COMPANY schema and asks two questions — a shape that lifts straight onto a paper.</p>
+        <table class="ftab">
+          <tr><td>EMPLOYEE</td><td data-th="<code>Super_ssn</code> → EMPLOYEE.Ssn (<strong>ชี้กลับตัวเอง</strong>) และ <code>Dno</code> → DEPARTMENT · <strong>2 ตัว</strong>"><code>Super_ssn</code> → EMPLOYEE.Ssn (<strong>self-referencing</strong>) and <code>Dno</code> → DEPARTMENT · <strong>2</strong></td></tr>
+          <tr><td>WORKS_ON</td><td data-th="<code>Essn</code> และ <code>Pno</code> · <strong>2 ตัว</strong>"><code>Essn</code> and <code>Pno</code> · <strong>2</strong></td></tr>
+          <tr><td data-th="อีกสี่ตาราง">the other four</td><td data-th="DEPARTMENT, DEPT_LOCATIONS, PROJECT, DEPENDENT ตารางละ <strong>1 ตัว</strong>">DEPARTMENT, DEPT_LOCATIONS, PROJECT, DEPENDENT — <strong>1 each</strong></td></tr>
+          <tr><td data-th="รวม">total</td><td data-th="<strong>8 foreign key</strong>"><strong>8 foreign keys</strong></td></tr>
+        </table>
+        <div class="fnote" data-th="คำถามที่สองคือลำดับการสร้างตาราง และคำตอบมีจุดคม: <code>EMPLOYEE</code> กับ <code>DEPARTMENT</code> <strong>อ้างอิงกันไปกลับ</strong> (Dno → DEPARTMENT และ Mgr_ssn → EMPLOYEE) จึง<strong>ไม่มีลำดับไหนที่ทำจบได้ในรอบเดียว</strong> — ต้องสร้างตารางหนึ่งก่อนโดยยังไม่ใส่ FK แล้วย้อนมาเติมด้วย <code>ALTER TABLE</code>">The second question asks the creation order, and the sharp point is that <code>EMPLOYEE</code> and <code>DEPARTMENT</code> <strong>reference each other</strong> (Dno → DEPARTMENT and Mgr_ssn → EMPLOYEE), so <strong>no ordering completes both in one pass</strong>. One table must be created with its FK left off and added afterwards with <code>ALTER TABLE</code>.</div>
+      </div>
+
+    </div>
+
+    <div class="sub-h" data-th="ข้อที่คนพลาดบ่อย">The ones people get wrong</div>
+
+    <div class="traps">
+      <div class="trap">
+        <b data-th="สลับ cardinality ของคาบ 3 กับคาบ 4">Mixing up the two cardinalities</b>
+        <span data-th="คาบ 3 cardinality = จำนวนแถว · คาบ 4 cardinality = ค่า max ของ multiplicity · และ degree ก็ซ้ำรอยเดียวกัน คาบ 3 = จำนวนคอลัมน์ คาบ 4 = จำนวนเอนทิตีใน relationship · สองคาบนี้อยู่ในข้อสอบใบเดียวกัน">Class 3's cardinality is the number of rows; class 4's is the max half of a multiplicity. Degree does the same thing: class 3 means columns, class 4 means how many entities take part. Both weeks sit on the same paper.</span>
+      </div>
+      <div class="trap">
+        <b data-th="อ่านตัวเลขผิดฝั่ง">Reading the number on the wrong side</b>
+        <span data-th="อาจารย์บอกเองว่านี่คือข้อที่นักศึกษาพลาดมากที่สุด · เวลาอ่านจาก A ไป B ให้ดู<strong>ตัวเลขฝั่ง B</strong> ไม่ใช่ฝั่ง A แล้วขึ้นประโยคว่า “หนึ่ง A …”">She said outright this is the mistake students make most. Reading from A to B, look at the number on <strong>B's side</strong>, not A's, and open the sentence with "one A …".</span>
+      </div>
+      <div class="trap">
+        <b data-th="ใส่ foreign key ลงในไดอะแกรม conceptual">Putting foreign keys on a conceptual diagram</b>
+        <span data-th="ขั้นนี้มีแค่ <strong>primary key</strong> เท่านั้น · ไม่มี FK ไม่มี unique ไม่มี check ไม่มี not null เพราะยังไม่ถึงขั้นติดตั้ง · ขั้นนี้ถามแค่ว่าข้อมูลหลักคืออะไร สัมพันธ์กันยังไง และ PK คือตัวไหน">This stage carries <strong>primary keys only</strong> — no FKs, no unique, no check, no not null, because implementation has not been reached. It asks only what the main data is, how it relates, and what the primary key is.</span>
+      </div>
+      <div class="trap">
+        <b data-th="คิดว่า referential action ช่วยตอน INSERT">Expecting a referential action to help an INSERT</b>
+        <span data-th="<code>ON DELETE</code>/<code>ON UPDATE</code> ควบคุมเฉพาะสิ่งที่เกิดกับแถวลูกตอนแม่ถูกลบหรือแก้ · การ INSERT แถวลูกที่ชี้ไปยัง key ที่ไม่มีอยู่ ถูกปฏิเสธเสมอไม่ว่าตั้งอะไรไว้"><code>ON DELETE</code>/<code>ON UPDATE</code> govern only what happens to child rows when a parent is deleted or updated. Inserting a child pointing at a key that does not exist is refused whatever you set.</span>
+      </div>
+      <div class="trap">
+        <b data-th="คิดว่าการเปลี่ยนชื่อคือ multi-valued">Thinking a changed value is multi-valued</b>
+        <span data-th="multiple-valued แปลว่า <strong>หลายค่าอยู่พร้อมกัน ณ เวลาเดียว</strong> เช่นเบอร์โทรสามเบอร์ · การเปลี่ยนนามสกุลไม่ใช่ เพราะ ณ ขณะใดขณะหนึ่งเรามีนามสกุลเดียวเสมอ">Multiple-valued means <strong>several values held at the same moment</strong> — three phone numbers. Changing your surname is not: at any one time you have exactly one.</span>
+      </div>
+      <div class="trap">
+        <b data-th="ตั้งชื่อ 1:* โดยดู min">Using min to name a 1:1 or 1:*</b>
+        <span data-th="ตอนเรียกว่า one-to-one / one-to-many / many-to-many ให้ดู <strong>max ทั้งสองฝั่งเท่านั้น</strong> · <code>0..1</code> ↔ <code>0..*</code> ยังเป็น one-to-many อยู่ ถึงแม้ min จะเป็นศูนย์ทั้งคู่">To call something one-to-one / one-to-many / many-to-many, look at <strong>the max on both sides only</strong>. <code>0..1</code> ↔ <code>0..*</code> is still one-to-many even though both mins are zero.</span>
+      </div>
+      <div class="trap">
+        <b data-th="สับสน Data Administrator กับ Database Administrator">Data Administrator vs Database Administrator</b>
+        <span data-th="ชื่อคล้ายกันมากจนเป็นตัวเลือกลวงชั้นดี · Data Administrator ทำ Plan และ Define ที่ต้นทาง · Database Administrator ทำ Config และ Maintain/Tune ที่ปลายทาง">The names are close enough to make an excellent distractor. The Data Administrator does Plan and Define at the start; the Database Administrator does Config and Maintain/Tune at the end.</span>
+      </div>
+      <div class="trap">
+        <b data-th="ลืมชื่อบนเส้น relationship">Leaving a relationship line unnamed</b>
+        <span data-th="ชื่อบนเส้น<strong>บังคับเสมอ</strong> ส่วนลูกศร ▶ ที่บอกทิศทางการอ่าน<strong>ไม่บังคับ</strong> อาจารย์อนุญาตทั้งใส่และไม่ใส่ · ถ้าคิดชื่อไม่ออก ให้ดึงคำกริยาจากประโยค requirement มาใช้ตรงๆ">The name on the line is <strong>always required</strong>; the <code>&#9654;</code> marking reading direction is <strong>not</strong> — she allows it either way. Stuck for a name? Lift the verb straight out of the requirement sentence.</span>
+      </div>
+    </div>
+
+    <div class="sub-h" data-th="ลองตอบเอง — เปิดดูเฉลยได้ทีละข้อ">Try them yourself — each opens to its answer</div>
+
+    <div class="quiz">
+
+      <details class="q"><summary data-th="relation หนึ่งมี 6 แถว 8 คอลัมน์ · cardinality เท่าไหร่ degree เท่าไหร่">A relation has 6 rows and 8 columns. What are its cardinality and degree?</summary>
+        <div class="qa"><span class="ans" data-th="cardinality = 6 · degree = 8">cardinality = 6 · degree = 8</span><span data-th="cardinality นับแถวและ<strong>เปลี่ยนไปตามข้อมูล ณ ขณะนั้น</strong> ลบแถวหนึ่งออกก็เหลือ 5 · degree นับคอลัมน์และ<strong>ตายตัวตาม schema</strong> จะเปลี่ยนได้ก็ต่อเมื่อ ALTER TABLE · ระวังว่าในคาบ 4 คำสองคำนี้แปลว่าอย่างอื่นไปเลย">Cardinality counts rows and <strong>changes with the instance</strong> — delete one and it becomes 5. Degree counts columns and is <strong>fixed by the schema</strong>; only an ALTER TABLE changes it. Note that in class 4 both words mean something else entirely.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="{StudentNo, Email} เป็น candidate key ของ Students หรือไม่ เพราะอะไร">Is <code>{StudentNo, Email}</code> a candidate key of <code>Students</code>?</summary>
+        <div class="qa"><span class="ans" data-th="ไม่ใช่ · เป็นแค่ superkey เพราะลดได้อีก">No — it is only a superkey, because it can be reduced.</span><span data-th="candidate key ต้องมีสองคุณสมบัติ: <strong>uniqueness</strong> และ <strong>irreducibility</strong> · ชุดนี้ระบุแถวได้จริง แต่ตัดตัวไหนออกไปหนึ่งตัวก็ยังระบุได้อยู่ดี จึงยังลดได้ ไม่ผ่านข้อสอง · <code>StudentNo</code> เดี่ยวๆ และ <code>Email</code> เดี่ยวๆ ต่างหากที่เป็น candidate key">A candidate key needs both <strong>uniqueness</strong> and <strong>irreducibility</strong>. This set does identify a row, but drop either attribute and it still does — so it is reducible and fails the second test. <code>StudentNo</code> alone and <code>Email</code> alone are the candidate keys.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="foreign key ที่ไม่ได้เขียน ON DELETE ไว้เลย จะทำอะไรตอนลบแถวแม่ที่มีลูกอยู่">A foreign key with no <code>ON DELETE</code> clause at all — what happens when you delete a parent that still has children?</summary>
+        <div class="qa"><span class="ans" data-th="ปฏิเสธการลบ เพราะค่าเริ่มต้นคือ RESTRICT">The delete is refused — the default is RESTRICT.</span><span data-th="<strong>เขียน RESTRICT เท่ากับไม่เขียนอะไรเลย</strong> ทั้งคู่ให้ผลเดียวกัน (NO ACTION ก็อย่างเดียวกัน) · จะให้ลบตามไปต้อง DROP constraint เดิมแล้ว ADD กลับมาใหม่พร้อม <code>ON DELETE CASCADE</code> · และใน MySQL Workbench ช่อง Related Tables จะแสดง On Update: RESTRICT / On Delete: RESTRICT ให้เห็นตรงๆ"><strong>Writing RESTRICT is identical to writing nothing</strong> (NO ACTION likewise). To make it cascade you must DROP the old constraint and ADD it back with <code>ON DELETE CASCADE</code>. MySQL Workbench shows this plainly: the Related Tables panel reads On Update: RESTRICT / On Delete: RESTRICT.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="คำสั่ง DELETE ละเมิด integrity constraint ชนิดใดได้บ้าง">Which integrity constraints can a <code>DELETE</code> violate?</summary>
+        <div class="qa"><span class="ans" data-th="ชนิดเดียวเท่านั้น — referential integrity">Exactly one — referential integrity.</span><span data-th="เพราะ DELETE ไม่ได้ใส่ค่าใหม่เข้าไป จึงละเมิด domain, key หรือ entity integrity ไม่ได้เลย · มันละเมิดได้อย่างเดียวคือเมื่อ PK ของแถวที่ลบยังถูกอ้างอยู่จากที่อื่น · เทียบกับ INSERT ที่ละเมิดได้ครบทุกชนิด">A DELETE puts no new value in, so it cannot violate a domain, a key, or entity integrity. The only way it can go wrong is when the PK of the row being removed is still referenced elsewhere. Compare INSERT, which can violate every kind.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Staff 1..1 — Manages ▶ — 0..1 Branch · อ่านจาก Branch ไป Staff ว่ายังไง">Given <code>Staff 1..1 — Manages &#9654; — 0..1 Branch</code>, how do you read it from Branch to Staff?</summary>
+        <div class="qa"><span class="ans" data-th="“สาขาหนึ่งต้องมีผู้จัดการ และมีได้คนเดียวเท่านั้น”">"One branch must have a manager, and exactly one."</span><span data-th="อ่านจาก Branch ไป Staff ต้อง<strong>ดูตัวเลขฝั่ง Staff</strong> ซึ่งคือ <code>1..1</code> · min=1 แปลว่าบังคับ (mandatory participation) · max=1 แปลว่ามากสุดหนึ่ง · ถ้าเผลอไปดู <code>0..1</code> ฝั่ง Branch จะได้ประโยคผิดทั้งประโยค นี่คือกับดักที่อาจารย์เตือน">Reading Branch → Staff means <strong>looking at the number on Staff's side</strong>, which is <code>1..1</code>. min=1 makes it mandatory participation; max=1 means at most one. Look at Branch's <code>0..1</code> by mistake and the whole sentence comes out wrong — the trap she warned about.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="dateAdvert กับ cost ควรไปอยู่ที่ Newspaper หรือ PropertyForRent">Should <code>dateAdvert</code> and <code>cost</code> live on <code>Newspaper</code> or on <code>PropertyForRent</code>?</summary>
+        <div class="qa"><span class="ans" data-th="ไม่ใช่ทั้งคู่ — เป็นแอตทริบิวต์ของ relationship">Neither — they are attributes of the relationship.</span><span data-th="วางที่ PropertyForRent ไม่ได้ เพราะบ้านหลังเดียวลงโฆษณาได้หลายฉบับ คนละวัน คนละราคา · วางที่ Newspaper ก็ไม่ได้ เพราะหนังสือพิมพ์ฉบับเดียวลงประกาศได้หลายรายการในราคาต่างกัน · <strong>ข้อมูลนี้เกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้วเท่านั้น</strong> จึงห้อยจากเส้นด้วยเส้นประ ลงกล่องที่เว้นหัวไว้ว่าง">Not on PropertyForRent: one property can be advertised in several papers, on different days, at different prices. Not on Newspaper: one paper carries many listings at differing costs. <strong>This data can only exist once the relationship itself occurs</strong> — so it hangs off the line by a dashed line into a box whose header is left blank.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Rooms(roomNo, roomCapacity) ในธุรกิจหอพักที่มี 4 ตึกผังเหมือนกัน เป็น entity ชนิดไหน">In a dormitory business with four identically laid-out buildings, what kind of entity is <code>Rooms(roomNo, roomCapacity)</code>?</summary>
+        <div class="qa"><span class="ans" data-th="weak entity — เพราะ roomNo ลำพังระบุห้องไม่ได้">A weak entity — <code>roomNo</code> alone cannot identify a room.</span><span data-th="ทั้งสี่ตึกใช้เลขห้องชุดเดียวกัน <code>101</code> จึงหมายถึงห้องจริงสี่ห้อง · แก้ได้สองทาง: (1) ยืม <code>bldgNo</code> จาก <code>Buildings</code> ผ่าน <strong>identifying relationship</strong> มาต่อเป็น composite key ให้ 101+A ต่างจาก 101+B · (2) สร้าง <strong>surrogate key</strong> เช่น <code>roomID</code> แบบรันนิ่งขึ้นมาใช้แทน ซึ่งอาจารย์บอกว่าไม่ผิด">All four buildings number their rooms the same way, so <code>101</code> names four real rooms. Two fixes: (1) borrow <code>bldgNo</code> from <code>Buildings</code> through an <strong>identifying relationship</strong> to form a composite key, making 101+A distinct from 101+B; or (2) invent a <strong>surrogate key</strong> such as a running <code>roomID</code> — which she said is not wrong.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ANSI-SPARC เป็นมาตรฐานทางการหรือไม่">Is ANSI-SPARC a formal standard?</summary>
+        <div class="qa"><span class="ans" data-th="ไม่ · เสนอปี 1975 แต่ไม่เคยกลายเป็นมาตรฐานจริง">No. Proposed in 1975, it never became one.</span><span data-th="สไลด์เขียนไว้ตรงๆ ว่า “never became a formal standard” แต่ยังถูกใช้เป็นฐานความเข้าใจการทำงานของ DBMS มาตลอด · ANSI = American National Standards Institute · SPARC = Standards Planning And Requirements Committee · สิ่งที่มันซื้อมาให้คือ <strong>data independence</strong> — schema ระดับบนไม่กระทบเมื่อระดับล่างเปลี่ยน">The slide says so in as many words, yet it is still used as the basis for understanding how a DBMS works. ANSI = American National Standards Institute; SPARC = Standards Planning And Requirements Committee. What it buys is <strong>data independence</strong> — an upper schema is unaffected when a lower one changes.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ระดับไหนของ ANSI-SPARC ที่ OS ดูแล ไม่ใช่ DBMS">Which part of the ANSI-SPARC picture belongs to the OS rather than the DBMS?</summary>
+        <div class="qa"><span class="ans" data-th="การจัดเก็บจริงบนดิสก์ ที่อยู่ใต้ internal level ลงไป">The physical storage on disk, below the internal level.</span><span data-th="สไลด์วางป้าย “DBMS” ไว้ข้าง Conceptual กับ Internal และป้าย “OS” ไว้ข้าง Database · แปลว่า DBMS ดูแลตั้งแต่ระดับ conceptual ลงมาถึง internal ส่วนไฟล์จริงบนดิสก์เป็นงานของระบบปฏิบัติการ · <strong>internal level ยังเป็นของ DBMS อยู่</strong> ไม่ใช่ของ OS ซึ่งเป็นจุดที่มักตอบผิด">The slide puts a "DBMS" label beside Conceptual and Internal, and an "OS" label beside Database. So the DBMS owns everything from the conceptual level down to the internal one, while the real files on disk are the operating system's job. <strong>The internal level is still the DBMS's</strong> — that is the part people get wrong.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ER model เป็น bottom-up หรือ top-down">Is the ER model bottom-up or top-down?</summary>
+        <div class="qa"><span class="ans" data-th="top-down">Top-down.</span><span data-th="มันเริ่มจากการระบุ<strong>ข้อมูลสำคัญ (เอนทิตี)</strong> และความสัมพันธ์ระหว่างกันก่อน แล้วค่อยลงรายละเอียดเป็นแอตทริบิวต์และ constraint · ส่วน bottom-up เริ่มจากระดับแอตทริบิวต์แล้วจับกลุ่มขึ้นมาเป็นตาราง เหมาะกับฐานข้อมูลเล็กที่มีแอตทริบิวต์ไม่มาก · อุปมาของอาจารย์: bottom-up คือได้<strong>ใบเสร็จ</strong>มาแล้วแกะออกทีละชิ้น · ในงานจริงผสมกันได้ ไม่มีกฎห้าม">It begins by identifying the <strong>important data (entities)</strong> and the relationships between them, and only then adds attributes and constraints. Bottom-up starts at the attribute level and groups upward, which suits small databases. Her analogy: bottom-up is being handed a <strong>receipt</strong> and picking it apart. In real work you can mix the two — no rule forbids it.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Registers ระหว่าง Staff, Branch, Client มี degree เท่าไหร่ และเรียกว่าอะไร">What is the degree of <code>Registers</code> between Staff, Branch and Client, and what is it called?</summary>
+        <div class="qa"><span class="ans" data-th="degree = 3 · เรียกว่า ternary">Degree 3 — a ternary relationship.</span><span data-th="degree ของ relationship = <strong>จำนวนเอนทิตีที่ร่วมอยู่</strong> · 2 = binary (พบบ่อยที่สุด) · 3 = ternary · 4 = quaternary · วนกลับหาตัวเอง = recursive · ที่ Registers ต้องเป็น ternary เพราะการลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน">A relationship's degree is <strong>how many entities take part</strong>: 2 = binary (the most common), 3 = ternary, 4 = quaternary, looping back to itself = recursive. Registers must be ternary because one registration has to record all three things — which client, with which member of staff, at which branch.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="recursive relationship เกี่ยวอะไรกับ SQL ที่เคยเรียนมา">What does a recursive relationship have to do with the SQL you already know?</summary>
+        <div class="qa"><span class="ans" data-th="มันคือที่มาของ SELF JOIN">It is where SELF JOIN comes from.</span><span data-th="ตารางหนึ่ง join กับตัวเองได้ก็เพราะแถวของมันสัมพันธ์กันเอง · ตัวอย่างในสไลด์คือ <code>Supervises</code> ที่ <code>Staff</code> ชี้กลับหา <code>Staff</code> โดยมี role name ว่า Supervisor และ Supervisee · และในสัปดาห์ 3 เราเคยเห็นแบบเดียวกันมาแล้วคือ <code>EMPLOYEE.Super_ssn</code> ที่เป็น FK ชี้กลับหา <code>EMPLOYEE.Ssn</code> ของตัวเอง">A table can join to itself precisely because its own rows relate to one another. The slide's example is <code>Supervises</code>, where <code>Staff</code> points back at <code>Staff</code> with the role names Supervisor and Supervisee. Week 3 showed the same shape already: <code>EMPLOYEE.Super_ssn</code> is an FK pointing back at <code>EMPLOYEE.Ssn</code>.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ทำไมการเก็บที่อยู่เป็นแอตทริบิวต์เดียวถึงไม่ผิดเสมอไป">Why is storing an address as one single attribute not automatically wrong?</summary>
+        <div class="qa"><span class="ans" data-th="เพราะขึ้นกับว่าข้อมูลนั้นเอาไปใช้ทำอะไร">Because it depends on what the data is for.</span><span data-th="อาจารย์ยกตัวอย่างที่ไม่มีในสไลด์: ถ้าจะ<strong>เอาไปวิเคราะห์ทีหลัง</strong> เช่นถามว่าลูกค้าส่วนใหญ่มาจากจังหวัดไหน ให้<strong>แยก</strong> เพราะ GROUP BY และ ORDER BY ทำได้ง่าย · แต่ถ้าเป็น<strong>ข้อมูลสำรองนอกภารกิจหลัก</strong> เช่นที่อยู่ผู้ติดต่อฉุกเฉินในระบบโรงพยาบาล เก็บเป็นก้อนเดียวก็ไม่ผิด · คำสรุปของเธอ: “ไม่มีดีไซน์ไหนถูก 100% มันขึ้นกับเหตุผลเบื้องหลัง” — <strong>ต้องอธิบายเหตุผลของตัวเองได้</strong>">She gave an example not on the slides. If you will <strong>analyse it later</strong> — which province do most customers come from? — <strong>split it</strong>, because GROUP BY and ORDER BY then work easily. If it is <strong>backup data outside the core mission</strong>, such as an emergency contact's address in a hospital system, one attribute is fine. Her summary: "there is no design that is 100% correct; it depends on the reasoning behind it" — you must be able to <strong>justify your choice</strong>.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Quiz#1 ยังมีอยู่ไหม และคะแนนไปไหน">Is Quiz#1 still happening, and where did its marks go?</summary>
+        <div class="qa"><span class="ans" data-th="ยกเลิกแล้ว · Quiz#2 รับคะแนน 5% ไปเต็ม">Cancelled. Quiz#2 takes the full 5%.</span><span data-th="อาจารย์ประกาศในคาบ 4 ว่า Quiz#1 <strong>ยกเลิก</strong> ให้ถือว่าไม่เคยมี และ<strong>ไม่ได้เลื่อนไปสัปดาห์หน้า</strong> · เดิมมีสองครั้งรวมกัน 5 คะแนน ตอนนี้เหลือ Quiz#2 ครั้งเดียวในสัปดาห์ 9 กินคะแนน 5% ทั้งหมด · โครงสร้างคะแนนที่เหลือไม่เปลี่ยน: Exam1 30% + Exam2 35% = 65% · Group Project 15% · Assignment 10% · Attendance 5%">She announced in class 4 that Quiz#1 is <strong>cancelled</strong> and should be treated as never having existed — and that it was <strong>not</strong> pushed to the following week. The two quizzes were worth 5 marks together; now Quiz#2 in week 9 carries all of it. The rest is unchanged: Exam1 30% + Exam2 35% = 65%, Group Project 15%, Assignment 10%, Attendance 5%.</span></div>
+      </details>
+
+    </div>
+  </section>
+
+</div>
+<div class="marker-tray">
+  <span class="cap" style="background:#2b2b2b"></span>
+  <span class="cap" style="background:var(--accent)"></span>
+  <span class="cap" style="background:var(--rose)"></span>
+  <span class="cap" style="background:var(--amber)"></span>
+  <span class="cap" style="background:var(--green)"></span>
+</div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'int191wb-lang';
+  var btn = document.getElementById('langToggle');
+  function swapOne(el, lang){
+    var tag = el.tagName.toLowerCase();
+    var prop = (tag === 'text' || tag === 'tspan') ? 'textContent' : 'innerHTML';
+    if(el.dataset.enCache === undefined){ el.dataset.enCache = el[prop]; }
+    var th = el.dataset.th;
+    if(th === undefined){ return; }
+    el[prop] = (lang === 'th') ? th : el.dataset.enCache;
+  }
+  function apply(lang){
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.classList.toggle('lang-th', lang === 'th');
+    var nodes = document.querySelectorAll('[data-th]');
+    for(var i=0;i<nodes.length;i++){ swapOne(nodes[i], lang); }
+    if(btn){
+      btn.setAttribute('aria-pressed', lang === 'th' ? 'true' : 'false');
+      btn.classList.toggle('is-th', lang === 'th');
+    }
+  }
+  if(btn){
+    btn.addEventListener('click', function(){
+      var cur = document.documentElement.classList.contains('lang-th') ? 'th' : 'en';
+      var next = cur === 'th' ? 'en' : 'th';
+      apply(next);
+      try{ localStorage.setItem(KEY, next); }catch(e){}
+    });
+  }
+  var saved = '';
+  try{ saved = localStorage.getItem(KEY) || ''; }catch(e){}
+  if(saved === 'th'){ apply('th'); }
+})();
+</script>
