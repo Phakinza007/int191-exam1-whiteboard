@@ -299,6 +299,42 @@
     .mcq .tap{display:none !important;}
     a[href]::after{content:"";}
   }
+  /* ---- course outline ---- */
+  .outline{
+    background:var(--surface); border:1px solid var(--line); border-radius:11px;
+    padding:18px 20px 16px; box-shadow:var(--shadow); margin-bottom:34px;
+  }
+  .outline h3{font-family:var(--font-marker); font-size:17px; margin-bottom:3px;}
+  .outline > p{font-size:12.6px; color:var(--ink-soft); margin:0 0 14px; line-height:1.6;}
+  .ol-wrap{overflow-x:auto;}
+  .ol-tab{width:100%; border-collapse:collapse; font-size:12.6px; min-width:520px;}
+  .ol-tab td{padding:6px 10px 6px 0; border-top:1px solid var(--line); vertical-align:top; line-height:1.55;}
+  .ol-tab tr:first-child td{border-top:none;}
+  .ol-tab .wk{
+    font-family:var(--font-mono); font-weight:700; color:var(--ink-faint);
+    width:1%; padding-right:14px; text-align:right;
+  }
+  .ol-tab .lab{color:var(--ink-faint); font-size:12px;}
+  .ol-tab .tag{
+    width:1%; white-space:nowrap; text-align:right; font-family:var(--font-mono);
+    font-size:10.5px; color:var(--ink-faint);
+  }
+  .ol-tab .tag.in{color:var(--accent); font-weight:700;}
+  .ol-tab .tag.gapt{color:var(--red); font-weight:700;}
+  .ol-tab .tag.now{color:var(--amber); font-weight:700;}
+  .ol-tab tr.ex td{background:var(--amber-soft);}
+  .ol-tab tr.dim td{opacity:.5;}
+  .ol-tab tr.dim.ex td{opacity:.5; background:var(--surface-2);}
+  .ol-marks{
+    display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:14px; padding-top:12px;
+    border-top:1px dashed var(--line); font-size:12.2px; color:var(--ink-soft);
+  }
+  .ol-marks b{color:var(--ink);}
+  .ol-note{
+    margin:12px 0 0; padding-top:11px; border-top:1px dashed var(--line);
+    font-size:12.2px; line-height:1.7; color:var(--ink-soft);
+  }
+  .ol-note b{color:var(--rose);}
 </style>
 
 <div class="board-frame">
@@ -325,6 +361,38 @@
       <span data-th="สอบสัปดาห์ที่ 6 · <b>ทฤษฎีล้วน 30%</b> ครอบคลุมคาบ 1–5 · <b>Quiz#1 ถูกยกเลิกแล้ว</b> อาจารย์ประกาศในคาบ 4 ว่าให้ถือว่าไม่มี เหลือแต่ Quiz#2 ที่กินคะแนน 5% เต็มในสัปดาห์ 9 · และข้อที่อาจารย์ย้ำซ้ำที่สุดตลอดคาบ 4: <b>ต้องใช้ UML notation ตามสไลด์เท่านั้น</b> ทั้งใน lab, group project และข้อสอบ — ห้ามวาด ER ด้วย MySQL Workbench"> Week 6 · <b>theory only, 30%</b>, covering classes 1–5. <b>Quiz#1 is cancelled</b> — announced in class 4, to be treated as never having existed, leaving Quiz#2 to carry the full 5% in week 9. And the thing the lecturer repeated most often in class 4: <b>the notation must be the UML notation from the slides</b> — in the lab, in the group project, and in the exam. Do not draw the ER diagram in MySQL Workbench.</span>
     </div>
   </header>
+
+  <div class="outline">
+    <h3 data-th="ภาพรวมทั้งวิชา — สอบวันนี้อยู่ตรงไหน">The whole course, and where today sits in it</h3>
+    <p data-th="12 สัปดาห์ · แถวสีคือสัปดาห์ที่อยู่ในขอบเขตสอบวันนี้ · แถวจางคือยังไม่สอบ เก็บไว้สอบ 2">Twelve weeks. The coloured rows are what today's paper covers; the faint ones are not examined until Exam 2.</p>
+    <div class="ol-wrap">
+      <table class="ol-tab">
+        <tr><td class="wk">1</td><td data-th="แนะนำฐานข้อมูล">Introduction to DB</td><td class="lab" data-th="Lab Setup &amp; SQL Review">Lab Setup &amp; SQL Review</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">2</td><td data-th="สถาปัตยกรรมและสภาพแวดล้อม">DB Architecture &amp; Environment</td><td class="lab" data-th="ออกแบบฐานข้อมูล &amp; SQL">Design a database &amp; SQL</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">3</td><td data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</td><td class="lab" data-th="ออกแบบฐานข้อมูล">Design a database</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">4</td><td data-th="ER Model (1/3)">Conceptual DB Design: ER Model (1/3)</td><td class="lab" data-th="ใช้ MySQL Workbench ออกแบบฐานข้อมูล">MySQL Workbench</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">5</td><td data-th="ER Model (2/3)">Conceptual DB Design: ER Model (2/3)</td><td class="lab" data-th="นำเสนอความคืบหน้า Group Project">Group Project progress</td><td class="tag gapt" data-th="ออกสอบ · ไม่มีโน้ต">in scope · no notes</td></tr>
+        <tr class="ex"><td class="wk">6</td><td colspan="2" data-th="<b>Exam#1 — ทฤษฎีล้วน 30%</b> ← วันนี้"><b>Exam#1 — Theory only, 30%</b> &larr; today</td><td class="tag now" data-th="วันนี้">today</td></tr>
+        <tr class="dim"><td class="wk">7</td><td data-th="ER Model (3/3)">Conceptual DB Design: ER Model (3/3)</td><td class="lab" data-th="ใช้ MySQL Workbench">MySQL Workbench</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
+        <tr class="dim"><td class="wk">8</td><td data-th="Logical DB Design — ERD Mapping">Logical DB Design — ERD Mapping</td><td class="lab" data-th="แปลง ER เป็นตาราง">ER conversion to tables</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
+        <tr class="dim"><td class="wk">9</td><td data-th="Normalization (1/2) + Quiz#2">Normalization (1/2) + Quiz#2</td><td class="lab" data-th="Data redundancy &amp; update anomalies">Redundancy &amp; anomalies</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
+        <tr class="dim"><td class="wk">10</td><td data-th="Normalization (2/2)">Normalization (2/2)</td><td class="lab">Normalization</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
+        <tr class="dim"><td class="wk">11</td><td colspan="2" data-th="นำเสนอ Group Project">Group Project Presentation</td><td class="tag">&mdash;</td></tr>
+        <tr class="dim ex"><td class="wk">12</td><td colspan="2" data-th="<b>Exam#2 — ทฤษฎี 35%</b>"><b>Exam#2 — Theory, 35%</b></td><td class="tag">&mdash;</td></tr>
+      </table>
+    </div>
+    <div class="ol-marks">
+      <span data-th="<b>คะแนน</b>">
+        <b>Marks</b></span>
+      <span data-th="Exam#1 <b>30%</b>">Exam#1 <b>30%</b></span>
+      <span data-th="Exam#2 <b>35%</b>">Exam#2 <b>35%</b></span>
+      <span data-th="Group Project 15%">Group Project 15%</span>
+      <span data-th="Assignment 10%">Assignment 10%</span>
+      <span data-th="Quiz#2 5%">Quiz#2 5%</span>
+      <span data-th="เข้าเรียน 5%">Attendance 5%</span>
+    </div>
+    <p class="ol-note" data-th="สองข้อที่เปลี่ยนไปจากที่พิมพ์ใน outline: <b>Quiz#1 ถูกยกเลิก</b> (อาจารย์ประกาศในคาบ 4 ให้ถือว่าไม่เคยมี ไม่ได้เลื่อน) ทำให้ Quiz#2 รับ 5% ไปเต็มคนเดียวในสัปดาห์ 9 · และเนื้อหาสัปดาห์ 5 ไม่มีเอกสารอยู่ในโฟลเดอร์วิชา จึงเป็นช่องว่างเดียวของบอร์ดนี้">Two things differ from the printed outline: <b>Quiz#1 was cancelled</b> — announced in class 4, to be treated as never having existed and not rescheduled — leaving Quiz#2 in week 9 to carry the whole 5%. And week 5 has no material in the course folder, which is the one gap on this board.</p>
+  </div>
 
   <div class="cram">
     <h3 data-th="ยี่สิบนาทีสุดท้าย">The last twenty minutes</h3>
