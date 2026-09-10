@@ -440,7 +440,7 @@
       <table class="ol-tab">
         <tr><td class="wk">1</td><td><span class="topic" data-th="Introduction to Database">Introduction to DB</span><span class="sub" data-th="SQL Review · แนวคิดฐานข้อมูล · องค์ประกอบของระบบฐานข้อมูล · DBMS · บทบาทคนในสภาพแวดล้อมฐานข้อมูล">SQL Review &middot; Database Concept &middot; Components in a Database System &middot; DBMS &middot; Actors in the Database Environment</span></td><td class="lab" data-th="Lab Setup &amp; SQL Review">Lab Setup &amp; SQL Review</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr><td class="wk">2</td><td><span class="topic" data-th="Database Environment &amp; Architecture">DB Architecture &amp; Environment</span><span class="sub" data-th="ANSI-SPARC architecture · แนวคิดการออกแบบฐานข้อมูล · หน้าที่ของ DBMS · multi-user architecture · องค์ประกอบของ DBMS">The ANSI-SPARC Architecture &middot; Database Design Concept &middot; Functions of a DBMS &middot; Multi-user DBMS Architectures &middot; Components of a DBMS</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล &amp; SQL">Design a database &amp; SQL</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
-        <tr><td class="wk">3</td><td><span class="topic" data-th="Relational Model">The Relational Model</span><span class="sub" data-th="แนวคิดและศัพท์ของRelational Model · คีย์ (Relational Key) · Integrity Constraint">Relational Model Concepts and Terminology &middot; Relational Key &middot; Integrity Constraint</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล">Design a database</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
+        <tr><td class="wk">3</td><td><span class="topic" data-th="Relational Model">The Relational Model</span><span class="sub" data-th="แนวคิดและศัพท์ของ Relational Model · คีย์ (Relational Key) · Integrity Constraint">Relational Model Concepts and Terminology &middot; Relational Key &middot; Integrity Constraint</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล">Design a database</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr><td class="wk">4</td><td><span class="topic" data-th="ER Model (1/3)">Conceptual DB Design: ER Model (1/3)</span><span class="sub" data-th="ออกแบบฐานข้อมูลด้วย ERD · แนวคิดพื้นฐานของ ER Model">Database Design with ERD &middot; Basic Concepts of the ER Model</span></td><td class="lab" data-th="ใช้ MySQL Workbench ออกแบบฐานข้อมูล">MySQL Workbench</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr><td class="wk">5</td><td><span class="topic" data-th="ER Model (2/3)">Conceptual DB Design: ER Model (2/3)</span><span class="sub" data-th="ฝึกแปลงโจทย์เป็น ER diagram ทั้ง bottom-up และ top-down · จาก LAB05">Turning a brief into a diagram, bottom-up and top-down &middot; from LAB05</span></td><td class="lab" data-th="นำเสนอความคืบหน้า Group Project">Group Project progress</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr class="ex"><td class="wk">6</td><td colspan="2" data-th="<b>Exam#1 — ทฤษฎีล้วน 30%</b> ← วันนี้"><b>Exam#1 — Theory only, 30%</b> &larr; today</td><td class="tag now" data-th="วันนี้">today</td></tr>
@@ -485,20 +485,20 @@
       <li data-th="<b>คู่คำ</b> Relation=Table · Attribute=Column · Tuple=Row · Schema of a relation=Table definition · Domain=ค่าที่คอลัมน์เป็นได้ทั้งหมด"><b>The pairs:</b> Relation=Table · Attribute=Column · Tuple=Row · Schema of a relation=Table definition · Domain=all possible column values.</li>
       <li data-th="<b>Cardinality = จำนวนแถว</b> (เปลี่ยนตามข้อมูล) · <b>Degree = จำนวนคอลัมน์</b> (ตายตัวตาม schema) — คนละความหมายกับคาบ 4 สิ้นเชิง"><b>Cardinality = rows</b> (changes with the instance). <b>Degree = columns</b> (fixed by the schema). Both mean something else entirely in class 4.</li>
       <li data-th="<b>คุณสมบัติ relation</b> ทุกช่องเก็บค่า atomic เดียว · ห้ามมี tuple ซ้ำ · <b>ลำดับแถวไม่สำคัญ</b> · <b>ลำดับคอลัมน์สำคัญ</b> ตอน INSERT ที่ไม่ระบุชื่อคอลัมน์"><b>Relation properties:</b> one atomic value per cell · no duplicate tuples · <b>row order does not matter</b> · <b>column order does</b>, on an INSERT that names no columns.</li>
-      <li data-th="<b>ลำดับคีย์</b> Superkey ⊃ Candidate (uniqueness + <b>irreducibility</b>) → เลือกหนึ่งเป็น Primary → ที่เหลือเป็น Alternate · คีย์หลายattribute = composite · คีย์ที่สร้างเอง = surrogate"><b>Key hierarchy:</b> Superkey ⊃ Candidate (uniqueness + <b>irreducibility</b>) → one becomes Primary → the rest are Alternate. Several attributes = composite; invented = surrogate.</li>
+      <li data-th="<b>ลำดับคีย์</b> Superkey ⊃ Candidate (uniqueness + <b>irreducibility</b>) → เลือกหนึ่งเป็น Primary → ที่เหลือเป็น Alternate · คีย์หลาย attribute = composite · คีย์ที่สร้างเอง = surrogate"><b>Key hierarchy:</b> Superkey ⊃ Candidate (uniqueness + <b>irreducibility</b>) → one becomes Primary → the rest are Alternate. Several attributes = composite; invented = surrogate.</li>
       <li data-th="<b>Entity integrity</b> ทุก relation ต้องมี PK และ PK ห้าม null · <b>Referential integrity</b> FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null · <b>General</b> = Unique, Check, Not Null"><b>Entity integrity:</b> every relation has a PK and it may never be null. <b>Referential integrity:</b> an FK matches an existing PK, or is null. <b>General:</b> Unique, Check, Not Null.</li>
       <li data-th="<b>Referential actions</b> ไม่เขียนอะไรเลย = <b>RESTRICT</b> (ค่าเริ่มต้น) · CASCADE ลบตามไป · SET NULL ตั้งเป็น null (คอลัมน์ห้ามเป็น NOT NULL) · <b>ไม่ช่วยเรื่อง INSERT เลย</b>"><b>Referential actions:</b> writing nothing = <b>RESTRICT</b> (the default) · CASCADE deletes on through · SET NULL nulls the child FK (that column must not be NOT NULL). <b>None of them help an INSERT.</b></li>
       <li data-th="<b>ใครละเมิดอะไรได้</b> INSERT = ทุกชนิด · <b>DELETE = referential integrity อย่างเดียว</b> · UPDATE = domain/NOT NULL ของตัวที่แก้ และมากกว่านั้นถ้าแก้ PK หรือ FK"><b>Who violates what:</b> INSERT = every kind · <b>DELETE = referential integrity only</b> · UPDATE = domain/NOT NULL of the attribute changed, and more if it is a PK or FK.</li>
-      <li data-th="<b>ER model เป็น top-down</b> · เริ่มที่entityและความสัมพันธ์ แล้วค่อยลงattribute · bottom-up เริ่มที่attribute"><b>The ER model is top-down</b> — entities and relationships first, attributes after. Bottom-up starts at the attributes.</li>
-      <li data-th="<b>สามองค์ประกอบ</b> Entity Type (สี่เหลี่ยม) · Attribute · Relationship Type (เส้นที่<b>ต้องมีชื่อ</b>) · attributeเป็นของ relationship ก็ได้"><b>Three components:</b> Entity Type (a rectangle) · Attribute · Relationship Type (a line that <b>must be named</b>). An attribute may belong to a relationship too.</li>
-      <li data-th="<b>Degree ของ relationship</b> = <b>จำนวนentity</b> · 2 binary (พบบ่อยสุด) · 3 ternary · 4 quaternary · วนกลับตัวเอง = recursive = ที่มาของ SELF JOIN"><b>Degree of a relationship</b> = <b>how many entities</b> · 2 binary (most common) · 3 ternary · 4 quaternary · looping back = recursive = where SELF JOIN comes from.</li>
-      <li data-th="<b>attributeสามแกน</b> Single↔Composite (ส่วนประกอบ) · Single-valued↔Multiple-valued (<b>หลายค่าพร้อมกัน</b>) · Derived (คำนวณได้ อาจอยู่คนละentity)"><b>Attributes on three axes:</b> Single↔Composite (components) · Single-valued↔Multiple-valued (<b>several at once</b>) · Derived (computed, possibly from another entity).</li>
+      <li data-th="<b>ER model เป็น top-down</b> · เริ่มที่ entity และความสัมพันธ์ แล้วค่อยลง attribute · bottom-up เริ่มที่ attribute"><b>The ER model is top-down</b> — entities and relationships first, attributes after. Bottom-up starts at the attributes.</li>
+      <li data-th="<b>สามองค์ประกอบ</b> Entity Type (สี่เหลี่ยม) · Attribute · Relationship Type (เส้นที่<b>ต้องมีชื่อ</b>) · attribute เป็นของ relationship ก็ได้"><b>Three components:</b> Entity Type (a rectangle) · Attribute · Relationship Type (a line that <b>must be named</b>). An attribute may belong to a relationship too.</li>
+      <li data-th="<b>Degree ของ relationship</b> = <b>จำนวน entity</b> · 2 binary (พบบ่อยสุด) · 3 ternary · 4 quaternary · วนกลับตัวเอง = recursive = ที่มาของ SELF JOIN"><b>Degree of a relationship</b> = <b>how many entities</b> · 2 binary (most common) · 3 ternary · 4 quaternary · looping back = recursive = where SELF JOIN comes from.</li>
+      <li data-th="<b>attribute สามแกน</b> Single↔Composite (ส่วนประกอบ) · Single-valued↔Multiple-valued (<b>หลายค่าพร้อมกัน</b>) · Derived (คำนวณได้ อาจอยู่คนละ entity)"><b>Attributes on three axes:</b> Single↔Composite (components) · Single-valued↔Multiple-valued (<b>several at once</b>) · Derived (computed, possibly from another entity).</li>
       <li data-th="<b>notation</b> <code>{PK}</code> primary key · <code>/x</code> derived · ย่อหน้า = composite · <code>[1..3]</code> multi-valued · ชื่อบนเส้นบังคับ ลูกศรไม่บังคับ"><b>Notation:</b> <code>{PK}</code> primary key · <code>/x</code> derived · indentation = composite · <code>[1..3]</code> multi-valued. The line's name is required; the arrow is not.</li>
       <li data-th="<b>diagram conceptual มีแค่ PK</b> ไม่มี FK ไม่มี unique/check/not null"><b>A conceptual diagram carries primary keys only</b> — no FKs, no unique/check/not null.</li>
       <li data-th="<b>min..max</b> · min = <b>participation</b> (0 optional, 1 mandatory) · max = <b>cardinality</b> (1 หรือ many) · อ่าน A→B ให้<b>ดูเลขฝั่ง B</b>"><b>min..max</b> · min = <b>participation</b> (0 optional, 1 mandatory) · max = <b>cardinality</b> (1 or many). Reading A→B, <b>look at the number on B's side</b>.</li>
       <li data-th="<b>ตั้งชื่อ 1:1 / 1:* / *:*</b> ดู <b>max ทั้งสองฝั่งเท่านั้น</b> ไม่สนใจ min"><b>Naming 1:1 / 1:* / *:*</b> uses <b>the max on both sides only</b> — ignore min.</li>
       <li data-th="<b>Strong</b> มี PK ของตัวเอง · <b>Weak</b> ไม่มี ต้องยืม PK ของ strong ผ่าน <b>identifying relationship</b> มาต่อเป็น composite key (หรือใช้ surrogate key แทนก็ได้)"><b>Strong</b> has its own PK. <b>Weak</b> does not, and borrows the strong entity's PK through an <b>identifying relationship</b> into a composite key (or you invent a surrogate key instead).</li>
-      <li data-th="<b>attributeของ relationship</b> ถ้าข้อมูลเกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้น ให้ห้อยจากเส้นด้วย<b>เส้นประ</b> ลงกล่องที่<b>เว้นหัวว่าง</b>"><b>A relationship's attributes:</b> if the data exists only once the relationship occurs, hang it off the line with a <b>dashed line</b> into a box with a <b>blank header</b>.</li>
+      <li data-th="<b>attribute ของ relationship</b> ถ้าข้อมูลเกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้น ให้ห้อยจากเส้นด้วย<b>เส้นประ</b> ลงกล่องที่<b>เว้นหัวว่าง</b>"><b>A relationship's attributes:</b> if the data exists only once the relationship occurs, hang it off the line with a <b>dashed line</b> into a box with a <b>blank header</b>.</li>
       <li data-th="<b>constraint มาจาก business requirement</b> ไม่ใช่สิ่งที่ผู้ออกแบบคิดเอง · เดาเองได้เฉพาะตอนโจทย์เงียบ"><b>Constraints come from the business requirements</b>, not from the designer. Fill gaps only where the brief is silent.</li>
       <li data-th="<b>สอบ</b> สัปดาห์ 6 · ทฤษฎีล้วน 30% · <b>Quiz#1 ยกเลิก</b> · ER ต้องใช้ <b>UML notation ตามสไลด์</b> ห้ามวาดด้วย MySQL Workbench"><b>The exam:</b> week 6, theory only, 30%. <b>Quiz#1 is cancelled.</b> ER must use the <b>UML notation from the slides</b> — not MySQL Workbench.</li>
     </ol>
@@ -514,12 +514,12 @@
       <div class="gl-term"><dt>Superkey / Candidate / Primary</dt><dd data-th="Superkey = ระบุแถวได้ อาจมีของเกิน · Candidate = superkey ที่ลดไม่ได้อีกแล้ว · Primary = candidate ที่ถูกเลือก · ที่เหลือกลายเป็น Alternate key">Superkey identifies a row and may carry surplus attributes. Candidate is a superkey that cannot be reduced further. Primary is the candidate that was chosen; the rest become alternate keys.</dd></div>
       <div class="gl-term"><dt data-th="Participation vs Cardinality">min .. max</dt><dd data-th="ตัวหน้า (min) = participation บอกว่า<strong>บังคับไหม</strong> (0=optional, 1=mandatory) · ตัวหลัง (max) = cardinality บอกว่า<strong>ถ้ามี มากสุดกี่ตัว</strong>">The first number (min) is participation — <strong>is it compulsory?</strong> (0 = optional, 1 = mandatory). The second (max) is cardinality — <strong>if it exists, how many at most?</strong></dd></div>
       <div class="gl-term"><dt data-th="Composite vs Multi-valued">Composite vs Multi-valued</dt><dd data-th="Composite = หนึ่งค่าที่แยกเป็นหลาย<strong>ส่วนประกอบ</strong> เช่น address = street+city+postcode · Multi-valued = <strong>หลายค่าพร้อมกัน ณ เวลาเดียว</strong> เช่น เบอร์โทร 3 เบอร์ · คนละแกนกัน">Composite = one value made of several <strong>components</strong> (address = street + city + postcode). Multi-valued = <strong>several values at the same moment</strong> (three phone numbers). Different axes entirely.</dd></div>
-      <div class="gl-term"><dt data-th="Strong vs Weak entity">Strong vs Weak entity</dt><dd data-th="Strong = มี primary key ของตัวเอง ไม่ต้องยืมใคร · Weak = ระบุตัวเองด้วยattributeตัวเองไม่ได้ ต้องยืม PK ของ strong มาต่อเป็น composite key ผ่าน identifying relationship">Strong = has a primary key of its own and borrows from nobody. Weak = cannot identify itself from its own attributes, so it borrows the strong entity's PK into a composite key through an identifying relationship.</dd></div>
+      <div class="gl-term"><dt data-th="Strong vs Weak entity">Strong vs Weak entity</dt><dd data-th="Strong = มี primary key ของตัวเอง ไม่ต้องยืมใคร · Weak = ระบุตัวเองด้วย attribute ตัวเองไม่ได้ ต้องยืม PK ของ strong มาต่อเป็น composite key ผ่าน identifying relationship">Strong = has a primary key of its own and borrows from nobody. Weak = cannot identify itself from its own attributes, so it borrows the strong entity's PK into a composite key through an identifying relationship.</dd></div>
       <div class="gl-term"><dt data-th="Entity vs Referential integrity">Entity vs Referential integrity</dt><dd data-th="Entity integrity = ทุก relation ต้องมี primary key และ PK ห้ามเป็น null · Referential integrity = ค่า FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null ทั้งหมด">Entity integrity: every relation must have a primary key and it may never be null. Referential integrity: a foreign key's value must match an existing primary key, or be wholly null.</dd></div>
-      <div class="gl-term"><dt data-th="ER Diagram vs Instance Diagram">ER vs Instance Diagram</dt><dd data-th="ER Diagram = <strong>schema</strong> คือกล่อง เส้น และattribute ตอนออกแบบ · Instance Diagram = <strong>ข้อมูลจริง</strong> ที่เก็บอยู่และเส้นโยงระหว่างค่า หลังระบบทำงานแล้ว">ER Diagram = the <strong>schema</strong> — boxes, lines, attributes, at design time. Instance Diagram = the <strong>actual stored data</strong> and the links between values, once the system is running.</dd></div>
+      <div class="gl-term"><dt data-th="ER Diagram vs Instance Diagram">ER vs Instance Diagram</dt><dd data-th="ER Diagram = <strong>schema</strong> คือกล่อง เส้น และ attribute ตอนออกแบบ · Instance Diagram = <strong>ข้อมูลจริง</strong> ที่เก็บอยู่และเส้นโยงระหว่างค่า หลังระบบทำงานแล้ว">ER Diagram = the <strong>schema</strong> — boxes, lines, attributes, at design time. Instance Diagram = the <strong>actual stored data</strong> and the links between values, once the system is running.</dd></div>
       <div class="gl-term"><dt data-th="Bottom-up vs Top-down">Bottom-up vs Top-down</dt><dd data-th="Bottom-up เริ่มที่<strong>attribute</strong> (ใบเสร็จในมือ แกะออกมาทีละชิ้น) · Top-down เริ่มที่<strong>entity</strong> (ภาพใหญ่ก่อนแล้วค่อยลงรายละเอียด) · <strong>ER model เป็น top-down</strong>">Bottom-up starts at the <strong>attributes</strong> (a receipt in your hand, picked apart). Top-down starts at the <strong>entities</strong> (the big picture, refined downward). <strong>The ER model is top-down.</strong></dd></div>
-      <div class="gl-term"><dt>ANSI-SPARC</dt><dd data-th="architectureสามระดับ External / Conceptual / Internal เสนอปี 1975 · <strong>ไม่เคยกลายเป็นมาตรฐานจริง</strong> แต่ใช้เป็นฐานความเข้าใจ DBMS มาตลอด">The three-level architecture — External / Conceptual / Internal — proposed in 1975. <strong>It never became a formal standard</strong>, yet it is still the basis for understanding how a DBMS works.</dd></div>
-      <div class="gl-term"><dt data-th="Derived attribute">Derived attribute</dt><dd data-th="attributeที่คำนวณได้จากตัวอื่น <strong>ซึ่งอาจอยู่คนละentityก็ได้</strong> เขียนนำหน้าด้วย / เช่น /totalAmount">An attribute computable from others, <strong>not necessarily in the same entity type</strong>. Written with a leading slash: <code>/totalAmount</code>.</dd></div>
+      <div class="gl-term"><dt>ANSI-SPARC</dt><dd data-th="architecture สามระดับ External / Conceptual / Internal เสนอปี 1975 · <strong>ไม่เคยกลายเป็นมาตรฐานจริง</strong> แต่ใช้เป็นฐานความเข้าใจ DBMS มาตลอด">The three-level architecture — External / Conceptual / Internal — proposed in 1975. <strong>It never became a formal standard</strong>, yet it is still the basis for understanding how a DBMS works.</dd></div>
+      <div class="gl-term"><dt data-th="Derived attribute">Derived attribute</dt><dd data-th="attribute ที่คำนวณได้จากตัวอื่น <strong>ซึ่งอาจอยู่คนละ entity ก็ได้</strong> เขียนนำหน้าด้วย / เช่น /totalAmount">An attribute computable from others, <strong>not necessarily in the same entity type</strong>. Written with a leading slash: <code>/totalAmount</code>.</dd></div>
     </dl>
   </div>
 
@@ -636,7 +636,7 @@
         <text x="60" y="132" font-size="11" fill="var(--ink-faint)" class="strong" data-th="ระดับแนวคิด">CONCEPTUAL</text>
         <rect x="230" y="106" width="340" height="52" rx="8" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="1.6"/>
         <text x="400" y="127" text-anchor="middle" font-size="12.5" class="strong" data-th="Conceptual schema">Conceptual schema</text>
-        <text x="400" y="146" text-anchor="middle" class="lbl" data-th="โครงสร้างตรรกะทั้งหมด — entityอะไรบ้าง สัมพันธ์กันยังไง">the whole logical structure — which entities, and how they relate</text>
+        <text x="400" y="146" text-anchor="middle" class="lbl" data-th="โครงสร้างตรรกะทั้งหมด — entity อะไรบ้าง สัมพันธ์กันยังไง">the whole logical structure — which entities, and how they relate</text>
 
         <line x1="400" y1="158" x2="400" y2="192" stroke="currentColor" marker-end="url(#m2)"/>
 
@@ -702,14 +702,14 @@
       <span class="wk-pill">W3</span>
       <h2 data-th="Relational Model">The Relational Model</h2>
       <span class="band-date">20 Aug 2026</span>
-      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน” · สองบล็อกท้ายแบนด์นี้มาจาก LAB02 กับ LAB03 ซึ่งเป็นตอนที่ constraint พวกนี้ถูกเขียนเป็น SQL จริง · <b>หมายเหตุ:</b> โน้ตที่ใช้ทำแบนด์นี้จดจากคาบ <b>วันพุธ (G1)</b> วันที่ 19 ส.ค. ไม่ใช่คาบวันพฤหัสฯ — สไลด์ชุดเดียวกัน แต่สิ่งที่อาจารย์พูดนอกสไลด์อาจต่างกันได้">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary." The two blocks at the foot of this band come from LAB02 and LAB03, where these constraints get written as SQL. <b>Note:</b> the notes behind this band were taken in the <b>Wednesday (G1)</b> session on 19 Aug, not the Thursday one — the slides are the same, but anything said off-slide may have differed.</span>
+      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน” · ตอนที่ constraint พวกนี้ถูกเขียนเป็น SQL จริงอยู่ในแบนด์ของมันเองข้างล่าง · <b>หมายเหตุ:</b> โน้ตที่ใช้ทำแบนด์นี้จดจากคาบ <b>วันพุธ (G1)</b> วันที่ 19 ส.ค. ไม่ใช่คาบวันพฤหัสฯ — สไลด์ชุดเดียวกัน แต่สิ่งที่อาจารย์พูดนอกสไลด์อาจต่างกันได้">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary." Where these constraints get written as SQL is a band of its own, further down. <b>Note:</b> the notes behind this band were taken in the <b>Wednesday (G1)</b> session on 19 Aug, not the Thursday one — the slides are the same, but anything said off-slide may have differed.</span>
     </div>
 
     <figure class="diagram">
       <svg viewBox="0 0 800 340" role="img" aria-label="The hierarchy of keys drawn as nested sets: all superkeys contain the candidate keys; one candidate key is chosen as the primary key and the remaining candidates become alternate keys.">
         <ellipse cx="250" cy="170" rx="215" ry="140" fill="none" stroke="var(--ink-faint)" stroke-width="1.5"/>
         <text x="250" y="52" text-anchor="middle" font-size="13" class="strong" data-th="Superkey ทั้งหมด">All superkeys</text>
-        <text x="250" y="70" text-anchor="middle" class="lbl" data-th="ระบุแถวได้ · มีattributeเกินได้">identifies a row · may carry surplus attributes</text>
+        <text x="250" y="70" text-anchor="middle" class="lbl" data-th="ระบุแถวได้ · มี attribute เกินได้">identifies a row · may carry surplus attributes</text>
 
         <ellipse cx="250" cy="196" rx="150" ry="95" fill="var(--green-soft)" stroke="var(--green)" stroke-width="1.8"/>
         <text x="250" y="132" text-anchor="middle" font-size="12.5" fill="var(--green)" class="strong" data-th="Candidate key">Candidate keys</text>
@@ -734,9 +734,9 @@
         <text x="520" y="212" class="lbl" data-th="คนชื่อซ้ำกันมีจริง">two people really can share a name</text>
         <text x="520" y="244" font-size="11.5" fill="var(--violet)" class="strong" data-th="Surrogate key">Surrogate key</text>
         <text x="520" y="262" class="lbl" data-th="คีย์ที่สร้างขึ้นเอง เช่น AUTO_INCREMENT">an invented key — AUTO_INCREMENT, say</text>
-        <text x="520" y="278" class="lbl" data-th="ใช้เมื่อไม่มีattributeจริงตัวไหนเหมาะ">for when no real attribute suits</text>
+        <text x="520" y="278" class="lbl" data-th="ใช้เมื่อไม่มี attribute จริงตัวไหนเหมาะ">for when no real attribute suits</text>
       </svg>
-      <figcaption data-th="<strong>Irreducibility คือคำที่แยก candidate ออกจาก superkey</strong> — superkey แค่ต้องระบุแถวได้ ส่วน candidate ต้องระบุได้และตัดอะไรออกไม่ได้อีกแล้ว · relation เดียวมี candidate key ได้หลายตัว และคีย์ที่ประกอบจากหลายattributeเรียก <strong>composite key</strong> · การหา candidate key ต้องรู้<strong>ความหมายจริงของข้อมูล</strong> ดูแค่แถวตัวอย่างไม่พอ"><strong>Irreducibility is the word that separates a candidate from a superkey.</strong> A superkey need only identify the row; a candidate must identify it and have nothing left to remove. One relation may have several candidate keys, and a key built from more than one attribute is a <strong>composite key</strong>. Finding a candidate key requires knowing what the data <strong>means</strong> — sample rows are not enough.</figcaption>
+      <figcaption data-th="<strong>Irreducibility คือคำที่แยก candidate ออกจาก superkey</strong> — superkey แค่ต้องระบุแถวได้ ส่วน candidate ต้องระบุได้และตัดอะไรออกไม่ได้อีกแล้ว · relation เดียวมี candidate key ได้หลายตัว และคีย์ที่ประกอบจากหลาย attribute เรียก <strong>composite key</strong> · การหา candidate key ต้องรู้<strong>ความหมายจริงของข้อมูล</strong> ดูแค่แถวตัวอย่างไม่พอ"><strong>Irreducibility is the word that separates a candidate from a superkey.</strong> A superkey need only identify the row; a candidate must identify it and have nothing left to remove. One relation may have several candidate keys, and a key built from more than one attribute is a <strong>composite key</strong>. Finding a candidate key requires knowing what the data <strong>means</strong> — sample rows are not enough.</figcaption>
     </figure>
 
 
@@ -843,7 +843,7 @@
         <text x="216" y="510" class="lbl" data-th="แต่ PropertyForRent ในสไลด์เดียวกัน: cardinality = 6 · degree = 8">But PropertyForRent, on the same slide: cardinality = 6 · degree = 8</text>
         <text x="216" y="528" class="lbl" fill="var(--red)" data-th="ข้อสอบจะถามถึงตารางใดตารางหนึ่ง — อ่านให้ชัดว่าถามอันไหน">A question names one of them. Read which.</text>
       </svg>
-      <figcaption data-th="ตารางเดียวกันนี้คือสไลด์หน้า 5 ของคาบ 3 ที่ติดป้ายศัพท์ทุกคำไว้บนภาพเดียว · <b>คู่ที่ต้องจำ:</b> Relation=Table · Attribute=Column · Tuple=Row · Schema ของ relation=Table definition · Domain=ค่าที่คอลัมน์เป็นได้ทั้งหมด · และคู่ที่พลาดกันบ่อยที่สุดคือ <b>Cardinality นับแถว</b> (เปลี่ยนตามข้อมูล) กับ <b>Degree นับคอลัมน์</b> (ตายตัวตาม schema)">This is class 3's slide 5 — one picture with every term labelled on it. <b>The pairs to memorise:</b> Relation=Table · Attribute=Column · Tuple=Row · Schema of a relation=Table definition · Domain=all possible column values. And the pair most often confused: <b>cardinality counts rows</b> and changes with the data, while <b>degree counts columns</b> and is fixed by the schema.</figcaption>
+      <figcaption data-th="ค่า ownerNo ทั้งสี่มาจากสไลด์จริง ส่วนชื่อ เมือง และเบอร์ในช่องอื่นผมเติมเพื่อให้เห็นภาพ · ตารางเดียวกันนี้คือสไลด์หน้า 5 ของคาบ 3 ที่ติดป้ายศัพท์ทุกคำไว้บนภาพเดียว · <b>คู่ที่ต้องจำ:</b> Relation=Table · Attribute=Column · Tuple=Row · Schema ของ relation=Table definition · Domain=ค่าที่คอลัมน์เป็นได้ทั้งหมด · และคู่ที่พลาดกันบ่อยที่สุดคือ <b>Cardinality นับแถว</b> (เปลี่ยนตามข้อมูล) กับ <b>Degree นับคอลัมน์</b> (ตายตัวตาม schema)">The four <code>ownerNo</code> values are the slide's own; the names, cities and numbers in the other cells are filled in for illustration. This is class 3's slide 5 — one picture with every term labelled on it. <b>The pairs to memorise:</b> Relation=Table · Attribute=Column · Tuple=Row · Schema of a relation=Table definition · Domain=all possible column values. And the pair most often confused: <b>cardinality counts rows</b> and changes with the data, while <b>degree counts columns</b> and is fixed by the schema.</figcaption>
     </figure>
 
     <div class="cards">
@@ -864,7 +864,7 @@
         <ul>
           <li data-th="ชื่อ relation ต้อง<strong>ไม่ซ้ำ</strong>ใครใน schema เดียวกัน">Its name is <strong>distinct</strong> from every other relation.</li>
           <li data-th="ทุกช่องเก็บค่า <strong>atomic</strong> เพียงค่าเดียว — แตกย่อยอีกไม่ได้">Every cell holds exactly one <strong>atomic</strong> value — it cannot be broken down further.</li>
-          <li data-th="ค่าของattributeเดียวกันมาจาก domain เดียวกันทั้งหมด">All values of one attribute come from the same domain.</li>
+          <li data-th="ค่าของ attribute เดียวกันมาจาก domain เดียวกันทั้งหมด">All values of one attribute come from the same domain.</li>
           <li data-th="<strong>ห้ามมี tuple ซ้ำ</strong>"><strong>No duplicate tuples.</strong></li>
           <li data-th="<strong>ลำดับแถวไม่สำคัญ</strong> · แต่<strong>ลำดับคอลัมน์สำคัญ</strong> เพราะ tuple คือรายการค่าที่เรียงลำดับ"><strong>Row order does not matter</strong>, but <strong>column order does</strong> — a tuple is an ordered list of values.</li>
           <li data-th="<strong>null</strong> คือค่าพิเศษ แปลว่าไม่รู้ ไม่มี หรือใช้ไม่ได้กับแถวนั้น"><strong>null</strong> is the special value meaning unknown, not available, or inapplicable to that tuple.</li>
@@ -873,107 +873,11 @@
       <div class="card watch">
         <h3 data-th="ระวังไว้">Watch out</h3>
         <ul>
-          <li data-th="สไลด์เขียนขัดกันเอง: หน้า 6 บอก “ลำดับattributeไม่สำคัญ” แต่คุณสมบัติข้อ 7 บอก “สำคัญ” — <strong>ไม่ขัดกันจริง</strong> · ในทฤษฎีเซต relation คือเซตของattribute ลำดับจึงไม่มีความหมาย · แต่ตอน INSERT ที่ไม่ระบุชื่อคอลัมน์ ต้องเรียงตามที่ประกาศไว้ ไม่งั้นข้อมูลลงผิดช่อง">The slides look self-contradictory — slide 6 says attribute order is irrelevant, property 7 says it matters. <strong>They do not actually conflict.</strong> In set theory a relation is a set of attributes, so order is meaningless; in practice an <code>INSERT</code> naming no columns must list values in the declared order or the data lands in the wrong columns.</li>
+          <li data-th="สไลด์เขียนขัดกันเอง: หน้า 6 บอก “ลำดับ attribute ไม่สำคัญ” แต่คุณสมบัติข้อ 7 บอก “สำคัญ” — <strong>ไม่ขัดกันจริง</strong> · ในทฤษฎีเซต relation คือเซตของ attribute ลำดับจึงไม่มีความหมาย · แต่ตอน INSERT ที่ไม่ระบุชื่อคอลัมน์ ต้องเรียงตามที่ประกาศไว้ ไม่งั้นข้อมูลลงผิดช่อง">The slides look self-contradictory — slide 6 says attribute order is irrelevant, property 7 says it matters. <strong>They do not actually conflict.</strong> In set theory a relation is a set of attributes, so order is meaningless; in practice an <code>INSERT</code> naming no columns must list values in the declared order or the data lands in the wrong columns.</li>
           <li data-th="สไลด์พิมพ์ผิด: <code>STUDENTS</code> เขียนว่า “four attributes” แล้วลิสต์มาห้าตัว — <strong>ค่าที่ถูกคือ 5</strong> (degree = 5)">A slide typo: <code>STUDENTS</code> says "four attributes" then lists five. <strong>Five is correct</strong> (degree = 5).</li>
           <li data-th="ในภาพศัพท์ ตัวเลข cardinality = 4 และ degree = 5 วัดจาก <strong>PrivateOwner</strong> ไม่ใช่ PropertyForRent (ซึ่งมี 6 แถว 8 คอลัมน์) — ข้อสอบชอบถามให้สับสน">In the terminology figure, cardinality = 4 and degree = 5 are measured on <strong>PrivateOwner</strong>, not PropertyForRent (which has 6 rows and 8 columns). An exam question will use that.</li>
         </ul>
       </div>
-    </div>
-
-    <div class="sub-h" data-th="ถอดรหัสประโยค requirement → constraint · ทุกแถวยกมาจาก LAB02 Part 1">Decoding a requirement into a constraint &mdash; every row lifted from LAB02 Part 1</div>
-
-    <div class="dec-wrap">
-      <table class="dec-tab">
-        <tr class="hd"><td data-th="ประโยคในโจทย์">What the brief says</td><td data-th="เขียนเป็น">You write</td><td data-th="เพราะอะไร">Why</td></tr>
-        <tr>
-          <td class="say" data-th="“student ID ระบุนักศึกษาแต่ละคนได้ ห้ามซ้ำ”">"The student ID uniquely identifies each student and must not be duplicated"</td>
-          <td class="wr"><code>PRIMARY KEY</code></td>
-          <td data-th="ระบุได้ไม่ซ้ำ + ห้ามซ้ำ = primary key · ซึ่งพ่วง NOT NULL มาให้เองด้วยตาม <b>entity integrity</b>">Identifies uniquely and must not repeat = a primary key — which brings NOT NULL with it automatically, by <b>entity integrity</b>.</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“อีเมลของนักศึกษาต้องไม่ซ้ำ และต้องมีค่าเสมอ”">"Each student's email must be unique and must always be provided"</td>
-          <td class="wr"><code>UNIQUE</code> +<br><code>NOT NULL</code></td>
-          <td data-th="<b>สองเงื่อนไขคนละตัว</b> — “ไม่ซ้ำ” คือ UNIQUE, “ต้องมีค่าเสมอ” คือ NOT NULL · UNIQUE เพียงอย่างเดียวยังปล่อยให้เป็น null ได้ · นี่คือ <b>alternate key</b> ในภาษาของคาบ 3"><b>Two separate conditions</b> — "unique" is UNIQUE, "always provided" is NOT NULL. UNIQUE alone still permits a null. In class 3's language this is an <b>alternate key</b>.</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“เพศบันทึกได้เฉพาะ M หรือ F เท่านั้น”">"Gender is recorded as either M or F only"</td>
-          <td class="wr"><code>CHECK (gender IN ('M','F'))</code></td>
-          <td data-th="รายการค่าที่ยอมรับ = <b>CHECK</b> · นี่คือ <b>domain constraint</b> เขียนลงเป็น SQL — ตรงกับตาราง domain ในสไลด์คาบ 3 ที่เขียนว่า “character: size 1, value M or F”">A list of permitted values = <b>CHECK</b>. This is a <b>domain constraint</b> written down in SQL — the same thing as the class 3 slide's domain table entry "character: size 1, value M or F".</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“จำนวนหน่วยกิตต้องอยู่ระหว่าง 1 ถึง 6”">"The number of credits must be between 1 and 6"</td>
-          <td class="wr"><code>CHECK (credits BETWEEN 1 AND 6)</code></td>
-          <td data-th="ช่วงค่า = CHECK เหมือนกัน · เทียบกับสไลด์คาบ 3: “monetary: 7 digits, range 6000.00–40000.00” คือ domain แบบช่วงค่าอันเดียวกัน">A range = CHECK as well. Compare the class 3 slide's "monetary: 7 digits, range 6000.00–40000.00" — the same kind of domain, as a range.</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“บันทึกเกรดได้เฉพาะ A, B+, B, C+, C, D+, D, F, W”">"Only these grades may be recorded: A, B+, B, C+, C, D+, D, F, W"</td>
-          <td class="wr"><code>CHECK (grade IN (&hellip;))</code></td>
-          <td data-th="รายการค่าที่ยาวขึ้น แต่เป็น CHECK แบบเดียวกัน · <b>ระวัง:</b> ห้ามใส่ NOT NULL ที่คอลัมน์นี้ เพราะโจทย์บอกว่าเกรดปล่อยว่างตอนลงทะเบียน แล้วค่อยเติมทีหลัง">A longer value list, but the same CHECK. <b>Careful:</b> do not add NOT NULL here — the brief says the grade is left empty at enrolment and filled in later.</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“นักศึกษาคนเดิมต้องลงทะเบียนวิชาเดิมซ้ำในภาคเรียนและปีการศึกษาเดียวกันไม่ได้”">"The same student must not enroll in the same course twice within the same semester and academic year"</td>
-          <td class="wr"><code>UNIQUE (student_id,<br>&nbsp;course_code, semester,<br>&nbsp;academic_year)</code></td>
-          <td data-th="<b>composite unique</b> — ความไม่ซ้ำเกิดจากสี่คอลัมน์ <em>รวมกัน</em> ไม่ใช่ทีละคอลัมน์ · แต่ละคอลัมน์ซ้ำได้ตามลำพัง แต่ชุดทั้งสี่ห้ามซ้ำ · นี่คือ <b>candidate key</b> แบบ composite ในภาษาของคาบ 3"><b>A composite UNIQUE</b> — the uniqueness comes from the four columns <em>together</em>, not one at a time. Each may repeat alone; the combination may not. In class 3's language, a composite <b>candidate key</b>.</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“ห้ามมีรายการลงทะเบียนของนักศึกษาที่ไม่มีอยู่ในระบบ และห้ามลงทะเบียนวิชาที่ไม่มีอยู่”">"Must not allow an enrollment for a student who does not exist, nor enrollment in a course that does not exist"</td>
-          <td class="wr"><code>FOREIGN KEY</code> &times; 2</td>
-          <td data-th="<b>referential integrity</b> ตรงตัว · หนึ่งตัวชี้ไป student อีกตัวชี้ไป course · เป็นเหตุผลที่ตาราง enrollment มี FK สองตัว เหมือน WORKS_ON ในโจทย์ COMPANY"><b>Referential integrity</b>, word for word — one FK to student, one to course. It is why the enrollment table has two of them, exactly like WORKS_ON in the COMPANY exercise.</td>
-        </tr>
-        <tr>
-          <td class="say" data-th="“นักศึกษาหนึ่งคนลงได้หลายวิชา และวิชาหนึ่งมีผู้ลงได้หลายคน”">"One student may enroll in many courses, and one course may have many students"</td>
-          <td class="wr" data-th="ในตาราง: ตารางกลาง <code>enrollment</code><br>ในdiagram: <code>*:*</code>">as tables: the <code>enrollment</code> table<br>on the diagram: <code>*:*</code></td>
-          <td data-th="ความสัมพันธ์ <b>many-to-many</b> · บนdiagramระดับ conceptual เขียนเป็นเส้นเดียว <code>*:*</code> ได้ · แต่ตอนลงเป็นตารางจริงต้องมีตารางกลางที่ถือ FK สองตัว — นั่นคือเนื้อหา <b>สัปดาห์ 8 (ERD Mapping)</b> ยังไม่ออกสอบวันนี้">A <b>many-to-many</b> relationship. On a conceptual diagram it is one line marked <code>*:*</code>; as real tables it needs a table in the middle holding two FKs — which is <b>week 8's</b> material (ERD Mapping) and not on today's paper.</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="fact-grid" style="margin-top:18px;">
-
-      <div class="fact r">
-        <h3 data-th="คำสั่งไหนพังเพราะอะไร — LAB02 ข้อ 6">Which statement fails, and why &mdash; LAB02 Q6</h3>
-        <p class="lede" data-th="lab ให้คำสั่งผิดมาสี่คำสั่ง โดยแต่ละคำสั่งละเมิด constraint คนละตัว · เป็นตัวแยกที่คมที่สุดที่จะเจอ">The lab gives four bad statements, each violating a different constraint. It is the sharpest discriminator you will meet.</p>
-        <table class="ftab">
-          <tr><td>INSERT<br>'CS203'</td><td data-th="วิชานี้ไม่มีอยู่ในตาราง course → <b>referential integrity</b> (FK ชี้ไป PK ที่ไม่มีจริง)">no such course exists → <b>referential integrity</b> — the FK points at a PK that is not there</td></tr>
-          <tr><td>INSERT<br>grade 'H'</td><td data-th="H ไม่อยู่ในรายการเกรดที่ยอมรับ → <b>CHECK / domain constraint</b>">H is not in the permitted grade list → <b>CHECK, a domain constraint</b></td></tr>
-          <tr><td>DELETE<br>student 66001</td><td data-th="ยังมีแถวใน enrollment อ้างถึงอยู่ → <b>referential integrity</b> ฝั่งตรงข้าม และถูกปฏิเสธเพราะค่าเริ่มต้นคือ RESTRICT">enrollment rows still reference it → <b>referential integrity</b> from the other side, refused because the default is RESTRICT</td></tr>
-          <tr><td>UPDATE<br>credits = 8</td><td data-th="หน่วยกิตต้องอยู่ 1–6 → <b>CHECK</b> · แสดงว่า UPDATE ก็ละเมิด domain ได้ ไม่ใช่แค่ INSERT">credits must be 1–6 → <b>CHECK</b>. Proof that an UPDATE violates a domain too, not only an INSERT</td></tr>
-        </table>
-        <div class="fnote" data-th="สังเกตว่าสองคำสั่งแรกเป็น INSERT แต่ละเมิดคนละชนิด และสองคำสั่งหลังยืนยันตารางในบอร์ดนี้: <b>DELETE ละเมิดได้แต่ referential integrity</b> ส่วน <b>UPDATE ละเมิด domain ของคอลัมน์ที่แก้</b>">Note that the first two are both INSERTs yet violate different kinds, and the last two confirm this board's table: <b>DELETE can only violate referential integrity</b>, while <b>UPDATE violates the domain of the column it changed</b>.</div>
-      </div>
-
-      <div class="fact a">
-        <h3 data-th="กฎการตั้งชื่อ constraint — LAB03">Naming a constraint &mdash; LAB03</h3>
-        <table class="ftab">
-          <tr><td data-th="กฎ">the rule</td><td data-th="<b>ทุก constraint ที่สร้างต้องตั้งชื่อเอง</b> ด้วยคีย์เวิร์ด <code>CONSTRAINT</code>"><b>Every constraint you create must be given an explicit name</b> using the <code>CONSTRAINT</code> keyword</td></tr>
-          <tr><td data-th="รูปแบบ">the pattern</td><td data-th="<code>prefix_table_column</code> · ตัวเล็กล้วน · คั่นด้วย underscore · ห้ามเว้นวรรค · ไม่เกิน 64 ตัวอักษร"><code>&lt;prefix&gt;_&lt;table&gt;_&lt;column&gt;</code> · all lowercase · underscores, no spaces · at most 64 characters</td></tr>
-          <tr><td data-th="ถ้าไม่ตั้งชื่อ">if you don't</td><td data-th="MySQL/InnoDB ตั้งให้เองเป็น <code>ตารางname_ibfk_N</code> — <code>ibfk</code> ย่อจาก InnoDB foreign key และ N คือลำดับของ FK ในตารางนั้น">MySQL/InnoDB names it <code>&lt;table&gt;_ibfk_&lt;n&gt;</code> — <code>ibfk</code> is InnoDB foreign key, and <code>n</code> is that FK's position in the table</td></tr>
-        </table>
-        <div class="fnote" data-th="ชื่อที่ตั้งเองอ่านออกตอน error ส่วน <code>enrollment_ibfk_1</code> ไม่บอกอะไรเลย · และการจะ <code>DROP CONSTRAINT</code> ได้ ต้องรู้ชื่อมันก่อนเสมอ — นี่คือเหตุผลจริงที่ต้องตั้งชื่อเอง">A name you chose is readable when an error comes back; <code>enrollment_ibfk_1</code> tells you nothing. And you cannot <code>DROP CONSTRAINT</code> without knowing its name — which is the real reason to name them yourself.</div>
-      </div>
-
-      <div class="fact v">
-        <h3 data-th="lab นับ constraint เป็นห้ากลุ่ม สไลด์นับสี่">The lab counts five groups; the slides count four</h3>
-        <p class="lede" data-th="ต่างกันแค่วิธีจัดกลุ่ม เนื้อหาเหมือนกัน แต่ถ้าข้อสอบถามว่า “มีกี่ชนิด” ต้องรู้ว่าถามตามกรอบไหน">Only the grouping differs, not the content — but if a question asks how many kinds there are, you need to know which framing it is using.</p>
-        <table class="ftab">
-          <tr><td data-th="สไลด์ (คาบ 3)">slides</td><td data-th="Key · Entity integrity · Referential integrity · <b>General</b> (รวม Unique, Check, Not Null ไว้ด้วยกัน) = <b>4 กลุ่ม</b>">Key · Entity integrity · Referential integrity · <b>General</b> (Unique, Check and Not Null together) = <b>4</b></td></tr>
-          <tr><td data-th="LAB03">LAB03</td><td data-th="Key · Entity integrity · Referential integrity · <b>Domain</b> · <b>NOT NULL</b> = <b>5 กลุ่ม</b> — แยก Domain กับ NOT NULL ออกมาเป็นกลุ่มของตัวเอง">Key · Entity integrity · Referential integrity · <b>Domain</b> · <b>NOT NULL</b> = <b>5</b> — Domain and NOT NULL pulled out as groups of their own</td></tr>
-        </table>
-        <div class="fnote" data-th="สามกลุ่มแรกตรงกันทั้งสองที่ ความต่างอยู่ที่ว่าจะยุบ Unique/Check/Not Null เป็น “General” หรือแยก Domain กับ NOT NULL ออกมา · ถ้าโจทย์ไม่ระบุกรอบ ให้ตอบตามสไลด์บรรยาย แล้วอธิบายเพิ่มได้ว่า lab แยกละเอียดกว่า">The first three are identical in both. The difference is whether Unique/Check/Not Null collapse into "General" or Domain and NOT NULL stand alone. If a question does not say which framing, answer from the lecture slides and note that the lab splits it further.</div>
-      </div>
-
-      <div class="fact g">
-        <h3 data-th="DDL ที่ lab ให้มา — LAB02 และ LAB03">The DDL the labs hand you &mdash; LAB02 and LAB03</h3>
-        <table class="ftab">
-          <tr><td>CREATE DATABASE</td><td data-th="<code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] ชื่อ</code> · ตัวเลือก: CHARACTER SET, COLLATE, ENCRYPTION · <b>SCHEMA เป็นคำพ้องของ DATABASE</b> ใน MySQL"><code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name</code> · options: CHARACTER SET, COLLATE, ENCRYPTION. <b>SCHEMA is a synonym for DATABASE</b> in MySQL</td></tr>
-          <tr><td>CREATE TABLE<br>&hellip; AS SELECT</td><td data-th="ก็อปโครงสร้าง<b>และข้อมูล</b>จากตารางที่มีอยู่มาเป็นตารางใหม่ในคำสั่งเดียว">copies both the structure <b>and the rows</b> of an existing table into a new one, in one statement</td></tr>
-          <tr><td>ALTER TABLE</td><td data-th="ADD/DROP COLUMN · ADD/DROP PRIMARY KEY · ADD/DROP CONSTRAINT (UNIQUE, CHECK, FOREIGN KEY) · เป็นส่วนหนึ่งของ <b>DDL</b>">ADD/DROP COLUMN · ADD/DROP PRIMARY KEY · ADD/DROP CONSTRAINT (UNIQUE, CHECK, FOREIGN KEY). It is part of <b>DDL</b></td></tr>
-          <tr><td>DROP TABLE</td><td data-th="ลบทั้ง<b>นิยามตาราง ข้อมูลทั้งหมด และ trigger</b> ของตารางนั้น — lab เตือนเองว่า “Be careful with this statement!”">removes the table definition, <b>all its data, and any triggers on it</b>. The lab's own warning: "Be careful with this statement!"</td></tr>
-          <tr><td data-th="error 1064">error 1064</td><td data-th="<b>syntax error</b> — MySQL ไม่เข้าใจสิ่งที่เราสั่ง ไม่ใช่เรื่อง constraint หรือสิทธิ์">a <b>syntax error</b> — MySQL does not understand what you asked, nothing to do with constraints or privileges</td></tr>
-        </table>
-        <div class="fnote" data-th="จุดที่ lab ย้ำ: <b>ประกาศ constraint ตั้งแต่ตอน CREATE TABLE ถ้าทำได้</b> · ถ้าลืมแล้วมาเพิ่มด้วย ALTER TABLE ทีหลัง ข้อมูลที่มีอยู่แล้ว<b>ต้องผ่านเงื่อนไขก่อน</b> ไม่งั้น error — ต้อง UPDATE ข้อมูลเดิมให้ถูกก่อน">The lab's own emphasis: <b>declare constraints at CREATE TABLE time where you can</b>. Add one later with ALTER TABLE and the existing rows <b>must already satisfy it</b>, or it errors — you have to UPDATE the existing data first.</div>
-      </div>
-
     </div>
 
   </section>
@@ -1068,7 +972,7 @@
         <text x="762" y="360" text-anchor="middle" class="mono" font-size="10.5">* / n = many</text>
         <text x="702" y="382" text-anchor="middle" font-size="10.5" fill="var(--rose)" data-th="ตั้งชื่อ 1:1 / 1:* / *:* ดูแค่ max">naming 1:1 / 1:* / *:* uses max only</text>
       </svg>
-      <figcaption data-th="<strong>สูตรอ่านของอาจารย์:</strong> 1) ตัดสินใจก่อนว่าอ่านจากentityไหน ไปหาentityไหน 2) <strong>ดูตัวเลขฝั่งปลายทางเสมอ</strong> 3) ขึ้นประโยคด้วย “หนึ่ง[ต้นทาง]…” 4) min ตอบว่าบังคับไหม max ตอบว่าถ้ามีแล้วมากสุดเท่าไหร่ · และข้อที่สำคัญที่สุดของขั้นนี้: <strong>diagramระดับ conceptual มีแค่ primary key</strong> ไม่มี foreign key ไม่มี unique/check/not null เพราะยังไม่ถึงขั้นติดตั้ง"><strong>The lecturer's formula:</strong> 1) decide which entity you are reading from and to; 2) <strong>always look at the number on the destination side</strong>; 3) open with "one [source] …"; 4) min answers "is it required?", max answers "if so, how many at most?". And the single most important rule of this stage: <strong>a conceptual diagram carries primary keys only</strong> — no foreign keys, no unique/check/not null, because implementation has not been reached.</figcaption>
+      <figcaption data-th="<strong>สูตรอ่านของอาจารย์:</strong> 1) ตัดสินใจก่อนว่าอ่านจาก entity ไหน ไปหา entity ไหน 2) <strong>ดูตัวเลขฝั่งปลายทางเสมอ</strong> 3) ขึ้นประโยคด้วย “หนึ่ง[ต้นทาง]…” 4) min ตอบว่าบังคับไหม max ตอบว่าถ้ามีแล้วมากสุดเท่าไหร่ · และข้อที่สำคัญที่สุดของขั้นนี้: <strong>diagram ระดับ conceptual มีแค่ primary key</strong> ไม่มี foreign key ไม่มี unique/check/not null เพราะยังไม่ถึงขั้นติดตั้ง"><strong>The lecturer's formula:</strong> 1) decide which entity you are reading from and to; 2) <strong>always look at the number on the destination side</strong>; 3) open with "one [source] …"; 4) min answers "is it required?", max answers "if so, how many at most?". And the single most important rule of this stage: <strong>a conceptual diagram carries primary keys only</strong> — no foreign keys, no unique/check/not null, because implementation has not been reached.</figcaption>
     </figure>
 
     <div class="cards">
@@ -1076,12 +980,12 @@
         <h3 data-th="สามองค์ประกอบ และ degree">Three components, and degree</h3>
         <table class="cmdtable">
           <tr><td data-th="Entity Type">Entity Type</td><td data-th="กลุ่มของสิ่งที่มีคุณสมบัติเหมือนกัน — วาดเป็น<strong>สี่เหลี่ยม</strong>">things with the same properties — drawn as a <strong>rectangle</strong></td></tr>
-          <tr><td>Attribute</td><td data-th="คุณสมบัติของentity<strong>หรือของ relationship ก็ได้</strong>">a property of an entity type <strong>or of a relationship</strong></td></tr>
+          <tr><td>Attribute</td><td data-th="คุณสมบัติของ entity<strong>หรือของ relationship ก็ได้</strong>">a property of an entity type <strong>or of a relationship</strong></td></tr>
           <tr><td data-th="Relationship">Relationship</td><td data-th="เส้นเชื่อมที่<strong>ต้องมีชื่อเสมอ</strong> · ชื่อมักเป็นคำกริยา">a connecting line that <strong>must always be named</strong> — usually a verb</td></tr>
           <tr><td>Binary (2)</td><td data-th="พบบ่อยที่สุด">the most common</td></tr>
           <tr><td>Ternary (3)</td><td data-th="เช่น Staff–Branch–Client ผ่าน Registers">Staff–Branch–Client via Registers</td></tr>
           <tr><td>Quaternary (4)</td><td data-th="เช่น Solicitor–Buyer–FinancialInstitution–Bid">Solicitor–Buyer–FinancialInstitution–Bid</td></tr>
-          <tr><td>Recursive</td><td data-th="วนกลับหาentityตัวเอง — <strong>ที่มาของ SELF JOIN</strong>">loops back to the same entity — <strong>where SELF JOIN comes from</strong></td></tr>
+          <tr><td>Recursive</td><td data-th="วนกลับหา entity ตัวเอง — <strong>ที่มาของ SELF JOIN</strong>">loops back to the same entity — <strong>where SELF JOIN comes from</strong></td></tr>
         </table>
       </div>
       <div class="card">
@@ -1089,8 +993,8 @@
         <ul>
           <li data-th="<strong>จำนวนส่วนประกอบ</strong> — Single (staffNo) กับ Composite (name = fname+lname)"><strong>Components</strong> — Single (<code>staffNo</code>) vs Composite (<code>name</code> = fname + lname).</li>
           <li data-th="<strong>จำนวนค่า</strong> — Single-valued กับ Multiple-valued เช่น requisiteCourseNos ของ INT207 = INT102, INT203"><strong>Values</strong> — Single-valued vs Multiple-valued: INT207's <code>requisiteCourseNos</code> holds both INT102 and INT203.</li>
-          <li data-th="<strong>ที่มาของค่า</strong> — Derived คำนวณจากตัวอื่น <strong>ซึ่งอาจอยู่คนละentityก็ได้</strong> เช่น /totalAmount ใน Orders คำนวณจาก /amount ใน Order_Items"><strong>Where the value comes from</strong> — Derived, computed from others <strong>possibly in another entity</strong>: <code>/totalAmount</code> on Orders comes from <code>/amount</code> on Order_Items.</li>
-          <li data-th="attributeของ <strong>relationship</strong>: ถ้าข้อมูลนั้นเกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้ว (dateAdvert, cost) ให้ห้อยจากเส้นด้วย<strong>เส้นประ</strong> ลงกล่องที่<strong>เว้นหัวไว้ว่างๆ</strong>">A <strong>relationship's</strong> attributes: if the data can only exist once the relationship occurs (<code>dateAdvert</code>, <code>cost</code>), hang it off the line with a <strong>dashed line</strong> into a box whose header is <strong>deliberately blank</strong>.</li>
+          <li data-th="<strong>ที่มาของค่า</strong> — Derived คำนวณจากตัวอื่น <strong>ซึ่งอาจอยู่คนละ entity ก็ได้</strong> เช่น /totalAmount ใน Orders คำนวณจาก /amount ใน Order_Items"><strong>Where the value comes from</strong> — Derived, computed from others <strong>possibly in another entity</strong>: <code>/totalAmount</code> on Orders comes from <code>/amount</code> on Order_Items.</li>
+          <li data-th="attribute ของ <strong>relationship</strong>: ถ้าข้อมูลนั้นเกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้ว (dateAdvert, cost) ให้ห้อยจากเส้นด้วย<strong>เส้นประ</strong> ลงกล่องที่<strong>เว้นหัวไว้ว่างๆ</strong>">A <strong>relationship's</strong> attributes: if the data can only exist once the relationship occurs (<code>dateAdvert</code>, <code>cost</code>), hang it off the line with a <strong>dashed line</strong> into a box whose header is <strong>deliberately blank</strong>.</li>
         </ul>
       </div>
       <div class="card watch">
@@ -1099,7 +1003,7 @@
           <li data-th="<strong>Multiple-valued แปลว่าหลายค่า ณ เวลาเดียวกัน</strong> — การเปลี่ยนชื่อ<strong>ไม่ใช่</strong> multiple-valued เพราะ ณ ขณะใดขณะหนึ่งเรามีชื่อเดียวเสมอ (อาจารย์วางกับดักนี้ไว้ล่วงหน้า)"><strong>Multiple-valued means several values at the same moment.</strong> Changing your name is <strong>not</strong> multi-valued — at any one time you have exactly one name. The lecturer set this trap deliberately.</li>
           <li data-th="ตั้งชื่อ <strong>1:1 / 1:* / *:*</strong> ให้ดู <strong>max ทั้งสองฝั่งเท่านั้น</strong> ไม่ต้องสนใจ min เลย">To name a relationship <strong>1:1 / 1:* / *:*</strong>, look only at the <strong>max on both sides</strong> and ignore min entirely.</li>
           <li data-th="<strong>constraint ไม่ใช่ของที่เราคิดขึ้นเอง</strong> — ต้องมาจาก business requirement · จะเดาเองได้เฉพาะตอนที่โจทย์เงียบหรือไม่ชัดเท่านั้น"><strong>The constraints are not yours to invent</strong> — they come from the business requirements. Only where the brief is silent or unclear may you fill in the gaps.</li>
-          <li data-th="entityคู่เดิมมี relationship ได้<strong>หลายเส้น</strong> ถ้าแต่ละเส้นความหมายต่างกัน (Staff–Branch มีทั้ง Manages และ Has) และตอนนั้นต้องใส่ <strong>role name</strong> กำกับปลายเส้น">The same pair of entities may carry <strong>several relationship lines</strong> if each means something different (Staff–Branch has both Manages and Has) — and then each end needs a <strong>role name</strong>.</li>
+          <li data-th="entity คู่เดิมมี relationship ได้<strong>หลายเส้น</strong> ถ้าแต่ละเส้นความหมายต่างกัน (Staff–Branch มีทั้ง Manages และ Has) และตอนนั้นต้องใส่ <strong>role name</strong> กำกับปลายเส้น">The same pair of entities may carry <strong>several relationship lines</strong> if each means something different (Staff–Branch has both Manages and Has) — and then each end needs a <strong>role name</strong>.</li>
         </ul>
       </div>
     </div>
@@ -1119,7 +1023,7 @@
         <h3 data-th="ฝึกแบบ Bottom-up">Bottom-up practice</h3>
         <ul>
           <li data-th="โจทย์: หน้าหนึ่งจาก <em>Ralph's Raving Recipes</em> · บริษัทสำนักพิมพ์อยากเอาสูตรอาหารขึ้นเว็บให้คนค้นหาได้ง่าย">The brief: one page from <em>Ralph's Raving Recipes</em>. A publisher wants the recipes on the web, easily searchable.</li>
-          <li data-th="ขั้นตอนสามข้อ: <b>1)</b> ไล่ลิสต์ว่าหน้านั้นมีข้อมูลชนิดไหนบ้าง <b>2)</b> จัดกลุ่มเป็นentityและattribute <b>3)</b> ตั้งชื่อความสัมพันธ์แล้ววาด ER พร้อม PK ด้วย UML notation">Three steps: <b>1)</b> list every type of information on the page, <b>2)</b> group them into entities and attributes, <b>3)</b> name the relationships and draw the ER diagram with primary keys, in UML notation.</li>
+          <li data-th="ขั้นตอนสามข้อ: <b>1)</b> ไล่ลิสต์ว่าหน้านั้นมีข้อมูลชนิดไหนบ้าง <b>2)</b> จัดกลุ่มเป็น entity และ attribute <b>3)</b> ตั้งชื่อความสัมพันธ์แล้ววาด ER พร้อม PK ด้วย UML notation">Three steps: <b>1)</b> list every type of information on the page, <b>2)</b> group them into entities and attributes, <b>3)</b> name the relationships and draw the ER diagram with primary keys, in UML notation.</li>
           <li data-th="นี่คืออุปมา “ใบเสร็จ” ที่อาจารย์เล่าไว้ในคาบ 4 เป๊ะ — ได้เอกสารมาหนึ่งใบ แล้วแกะข้อมูลออกมาทีละชิ้นก่อนจัดกลุ่ม">This is exactly the "receipt" analogy from class 4 — you are handed one document and pick the small pieces of data out of it before grouping them.</li>
         </ul>
       </div>
@@ -1128,13 +1032,13 @@
         <ul>
           <li data-th="โจทย์: <b>ระบบจัดการห้องสมุดมหาวิทยาลัย</b> — เก็บ requirement มาจากการสัมภาษณ์เจ้าหน้าที่ห้องสมุด">The brief: a <b>university library management system</b>, its requirements collected by interviewing the library staff.</li>
           <li data-th="หกกลุ่ม: Members · Library branches · Staff · Books · Loans · Reservations">Six sections: Members · Library branches · Staff · Books · Loans · Reservations.</li>
-          <li data-th="โจทย์นี้ใช้ครบทุกแนวคิดของคาบ 4 — composite, multi-valued, derived, ความสัมพันธ์สองเส้นระหว่างคู่เดิม, *:* ที่มีattribute, และ 0..1 · ตารางถัดไปคือคู่มือถอดรหัสประโยคพวกนั้น">It exercises every class 4 concept — composite, multi-valued, derived, two relationships between the same pair, an <code>*:*</code> carrying attributes, and a <code>0..1</code>. The table below is the decoder for those sentences.</li>
+          <li data-th="โจทย์นี้ใช้ครบทุกแนวคิดของคาบ 4 — composite, multi-valued, derived, ความสัมพันธ์สองเส้นระหว่างคู่เดิม, *:* ที่มี attribute, และ 0..1 · ตารางถัดไปคือคู่มือถอดรหัสประโยคพวกนั้น">It exercises every class 4 concept — composite, multi-valued, derived, two relationships between the same pair, an <code>*:*</code> carrying attributes, and a <code>0..1</code>. The table below is the decoder for those sentences.</li>
         </ul>
       </div>
       <div class="card watch">
         <h3 data-th="ระวังไว้">Watch out</h3>
         <ul>
-          <li data-th="<b>“ปล่อยว่างไว้ก่อน แล้วค่อยเติมทีหลัง” ไม่ใช่ multi-valued</b> — วันคืนหนังสือที่ยังว่างอยู่ระหว่างยืม คือattributeธรรมดาที่เป็น null ได้ · multi-valued แปลว่าหลายค่า<em>พร้อมกัน ณ เวลาเดียว</em>"><b>"Left empty and filled in later" is not multi-valued.</b> A return date that is blank while the book is out is an ordinary nullable attribute. Multi-valued means several values <em>at the same moment</em>.</li>
+          <li data-th="<b>“ปล่อยว่างไว้ก่อน แล้วค่อยเติมทีหลัง” ไม่ใช่ multi-valued</b> — วันคืนหนังสือที่ยังว่างอยู่ระหว่างยืม คือ attribute ธรรมดาที่เป็น null ได้ · multi-valued แปลว่าหลายค่า<em>พร้อมกัน ณ เวลาเดียว</em>"><b>"Left empty and filled in later" is not multi-valued.</b> A return date that is blank while the book is out is an ordinary nullable attribute. Multi-valued means several values <em>at the same moment</em>.</li>
           <li data-th="<b>“ห้ามเก็บ ต้องคำนวณเอา” = derived</b> — อายุปัจจุบัน จำนวนเล่มที่ยืมอยู่ และสถานะเกินกำหนด ทั้งสามอันโจทย์สั่งห้ามเก็บตรงๆ ต้องเขียนนำหน้าด้วย <code>/</code>"><b>"Must never be stored, work it out when needed" = derived.</b> Current age, books currently on loan, and whether a loan is overdue — the brief forbids storing all three. Write them with a leading <code>/</code>.</li>
           <li data-th="<b>Staff กับ Branch มีความสัมพันธ์สองเส้น</b> — “ทำงานอยู่สาขาไหน” กับ “ใครเป็นผู้จัดการสาขา” คนละเรื่องกัน จึงต้องแยกเส้นและใส่ role name · นี่คือรูปเดียวกับ Manages/Has ในสไลด์คาบ 4"><b>Staff and Branch carry two relationships</b> — which branch someone works at, and who manages a branch, are different facts. Two lines, with role names. The same shape as Manages/Has on the class 4 slide.</li>
         </ul>
@@ -1154,7 +1058,7 @@
         <tr>
           <td class="say" data-th="“ชื่อเต็มเก็บเป็นชื่อต้นกับนามสกุล และต้องแสดงรวมกันหรือแยกกันก็ได้”">"The full name is recorded as a first name and a last name, and must display together or separately"</td>
           <td class="wr"><code>name</code><br><code>&nbsp;&nbsp;fName</code><br><code>&nbsp;&nbsp;lName</code></td>
-          <td data-th="<b>composite attribute</b> — เขียนย่อหน้าเข้าไปใต้attributeแม่ · เหตุผลที่ต้องแยกอยู่ในประโยคเอง: ต้องใช้แยกกันได้"><b>Composite attribute</b>, written as indentation under the parent. The reason to split is in the sentence itself: they must be usable separately.</td>
+          <td data-th="<b>composite attribute</b> — เขียนย่อหน้าเข้าไปใต้ attribute แม่ · เหตุผลที่ต้องแยกอยู่ในประโยคเอง: ต้องใช้แยกกันได้"><b>Composite attribute</b>, written as indentation under the parent. The reason to split is in the sentence itself: they must be usable separately.</td>
         </tr>
         <tr>
           <td class="say" data-th="“ที่อยู่เก็บเป็นบ้านเลขที่ ถนน เขต รหัสไปรษณีย์ และต้องทำรายชื่อส่งจดหมาย<em>แยกตามเขต</em>ได้”">"The address is a house number, street, district and postal code, and mailing lists must be produced <em>by district alone</em>"</td>
@@ -1189,7 +1093,7 @@
         <tr>
           <td class="say" data-th="“พนักงานทุกคนทำงานที่สาขาเดียว” <b>และ</b> “แต่ละสาขามีผู้จัดการหนึ่งคนพอดี พนักงานหนึ่งคนจัดการได้มากสุดหนึ่งสาขา ส่วนใหญ่ไม่ได้จัดการเลย”">"Every staff works at exactly one branch" <b>and</b> "each branch is managed by exactly one staff; a staff may manage at most one branch; most manage none"</td>
           <td class="wr" data-th="<b>สองเส้น</b> ระหว่างคู่เดิม<br>WorksAt: <code>0..*</code> ↔ <code>1..1</code><br>Manages: <code>0..1</code> ↔ <code>1..1</code>"><b>Two lines</b> between the same pair<br>WorksAt: <code>0..*</code> &harr; <code>1..1</code><br>Manages: <code>0..1</code> &harr; <code>1..1</code></td>
-          <td data-th="entityคู่เดิมมีความสัมพันธ์หลายเส้นได้ ถ้าแต่ละเส้นความหมายต่างกัน · ต้องใส่ <b>role name</b> กำกับปลายเส้น · เป็นรูปเดียวกับ Manages/Has ในสไลด์">The same pair may carry several relationships when each means something different, and then each end needs a <b>role name</b>. The same shape as Manages/Has on the slide.</td>
+          <td data-th="entity คู่เดิมมีความสัมพันธ์หลายเส้นได้ ถ้าแต่ละเส้นความหมายต่างกัน · ต้องใส่ <b>role name</b> กำกับปลายเส้น · เป็นรูปเดียวกับ Manages/Has ในสไลด์">The same pair may carry several relationships when each means something different, and then each end needs a <b>role name</b>. The same shape as Manages/Has on the slide.</td>
         </tr>
         <tr>
           <td class="say" data-th="“หนังสือเล่มหนึ่งมีผู้แต่งได้หลายคน ต้องเก็บครบทุกคน และทุกเล่มมีผู้แต่งอย่างน้อยหนึ่งคน”">"A book may have several authors, all stored, and every book has at least one"</td>
@@ -1199,12 +1103,12 @@
         <tr>
           <td class="say" data-th="“สมาชิกหนึ่งคนยืมได้หลายเล่มตลอดเวลาที่ผ่านมา และหนังสือเล่มหนึ่งถูกยืมโดยหลายคน” + “แต่ละการยืมต้องบันทึกวันยืม วันกำหนดคืน และวันที่คืนจริง”">"One member may borrow many books over time and one book may be borrowed by many members" + "each loan records the borrow date, due date and actual return date"</td>
           <td class="wr"><code>0..*</code> &mdash; Borrows &mdash; <code>0..*</code><br><span class="tiny" data-th="เส้นประลงกล่องหัวว่าง:">dashed line to a blank-headed box:</span><br><code>borrowDate</code> <code>dueDate</code> <code>returnDate</code> <code>/overdue</code></td>
-          <td data-th="<b>*:* ที่มีattributeของตัวเอง</b> — ข้อมูลสามอย่างนี้เกิดได้ก็ต่อเมื่อการยืมเกิดขึ้นแล้ว จึงเป็นattributeของ relationship ไม่ใช่ของ Member หรือ Book · <code>/overdue</code> เป็น derived เพราะโจทย์ห้ามเก็บ ให้เทียบวันกำหนดคืนกับวันนี้เอา"><b>An <code>*:*</code> carrying its own attributes.</b> These three only exist once a loan happens, so they belong to the relationship, not to Member or Book. <code>/overdue</code> is derived: the brief forbids storing it and says to compare the due date with today.</td>
+          <td data-th="<b>*:* ที่มี attribute ของตัวเอง</b> — ข้อมูลสามอย่างนี้เกิดได้ก็ต่อเมื่อการยืมเกิดขึ้นแล้ว จึงเป็น attribute ของ relationship ไม่ใช่ของ Member หรือ Book · <code>/overdue</code> เป็น derived เพราะโจทย์ห้ามเก็บ ให้เทียบวันกำหนดคืนกับวันนี้เอา"><b>An <code>*:*</code> carrying its own attributes.</b> These three only exist once a loan happens, so they belong to the relationship, not to Member or Book. <code>/overdue</code> is derived: the brief forbids storing it and says to compare the due date with today.</td>
         </tr>
         <tr>
           <td class="say" data-th="“วันคืนปล่อยว่างไว้ระหว่างที่ยังยืมอยู่”">"The return date is left empty while the book is still out"</td>
           <td class="wr"><code>returnDate</code> <span class="tiny" data-th="(ธรรมดา · เป็น null ได้)">(ordinary, nullable)</span></td>
-          <td data-th="<b>กับดัก</b> — “ว่างไว้ก่อน” ไม่ได้แปลว่า multi-valued และไม่ได้แปลว่า derived · เป็นattributeธรรมดาที่ยังไม่มีค่า · และในระดับ conceptual เรายัง<b>ไม่เขียน NOT NULL</b> อยู่แล้ว"><b>A trap.</b> "Left empty" means neither multi-valued nor derived — it is an ordinary attribute without a value yet. And at the conceptual level you would <b>not write NOT NULL</b> anyway.</td>
+          <td data-th="<b>กับดัก</b> — “ว่างไว้ก่อน” ไม่ได้แปลว่า multi-valued และไม่ได้แปลว่า derived · เป็น attribute ธรรมดาที่ยังไม่มีค่า · และในระดับ conceptual เรายัง<b>ไม่เขียน NOT NULL</b> อยู่แล้ว"><b>A trap.</b> "Left empty" means neither multi-valued nor derived — it is an ordinary attribute without a value yet. And at the conceptual level you would <b>not write NOT NULL</b> anyway.</td>
         </tr>
         <tr>
           <td class="say" data-th="“การจองหนึ่งครั้งวางโดยสมาชิกหนึ่งคนพอดี สำหรับหนังสือหนึ่งเล่มพอดี · สมาชิกหนึ่งคนถือการจองที่ยังใช้งานได้มากสุดหนึ่งรายการ · คนที่ไม่ได้จองก็ไม่มีเลย”">"Each reservation is placed by exactly one member for exactly one book; a member holds at most one active reservation; one who has not reserved holds none"</td>
@@ -1215,12 +1119,118 @@
     </div>
   </section>
 
+
+  <!-- ================= FROM THE LABS ================= -->
+  <section class="band">
+    <div class="band-head">
+      <span class="wk-pill">labs</span>
+      <h2 data-th="จาก Lab 1–4 — ตอนที่ทฤษฎีกลายเป็น SQL">From labs 1&ndash;4 &mdash; where the theory becomes SQL</h2>
+      <span class="band-tag" data-th="สี่แบนด์ข้างบนมาจากสไลด์บรรยาย · ส่วนนี้มาจาก lab sheet ซึ่งมีของที่สไลด์ไม่มี — และมีจุดที่ lab กับสไลด์<b>นับไม่ตรงกัน</b> ซึ่งควรรู้ก่อนเข้าห้องสอบ">The bands above come from the lecture slides. This comes from the lab sheets, which carry material the slides do not &mdash; and one place where the two <b>count differently</b>, worth knowing before the paper.</span>
+    </div>
+    <div class="sub-h" data-th="ถอดรหัสประโยค requirement → constraint · ทุกแถวยกมาจาก LAB02 Part 1">Decoding a requirement into a constraint &mdash; every row lifted from LAB02 Part 1</div>
+
+    <div class="dec-wrap">
+      <table class="dec-tab">
+        <tr class="hd"><td data-th="ประโยคในโจทย์">What the brief says</td><td data-th="เขียนเป็น">You write</td><td data-th="เพราะอะไร">Why</td></tr>
+        <tr>
+          <td class="say" data-th="“student ID ระบุนักศึกษาแต่ละคนได้ ห้ามซ้ำ”">"The student ID uniquely identifies each student and must not be duplicated"</td>
+          <td class="wr"><code>PRIMARY KEY</code></td>
+          <td data-th="ระบุได้ไม่ซ้ำ + ห้ามซ้ำ = primary key · ซึ่งพ่วง NOT NULL มาให้เองด้วยตาม <b>entity integrity</b>">Identifies uniquely and must not repeat = a primary key — which brings NOT NULL with it automatically, by <b>entity integrity</b>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“อีเมลของนักศึกษาต้องไม่ซ้ำ และต้องมีค่าเสมอ”">"Each student's email must be unique and must always be provided"</td>
+          <td class="wr"><code>UNIQUE</code> +<br><code>NOT NULL</code></td>
+          <td data-th="<b>สองเงื่อนไขคนละตัว</b> — “ไม่ซ้ำ” คือ UNIQUE, “ต้องมีค่าเสมอ” คือ NOT NULL · UNIQUE เพียงอย่างเดียวยังปล่อยให้เป็น null ได้ · นี่คือ <b>alternate key</b> ในภาษาของคาบ 3"><b>Two separate conditions</b> — "unique" is UNIQUE, "always provided" is NOT NULL. UNIQUE alone still permits a null. In class 3's language this is an <b>alternate key</b>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“เพศบันทึกได้เฉพาะ M หรือ F เท่านั้น”">"Gender is recorded as either M or F only"</td>
+          <td class="wr"><code>CHECK (gender IN ('M','F'))</code></td>
+          <td data-th="รายการค่าที่ยอมรับ = <b>CHECK</b> · นี่คือ <b>domain constraint</b> เขียนลงเป็น SQL — ตรงกับตาราง domain ในสไลด์คาบ 3 ที่เขียนว่า “character: size 1, value M or F”">A list of permitted values = <b>CHECK</b>. This is a <b>domain constraint</b> written down in SQL — the same thing as the class 3 slide's domain table entry "character: size 1, value M or F".</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“จำนวนหน่วยกิตต้องอยู่ระหว่าง 1 ถึง 6”">"The number of credits must be between 1 and 6"</td>
+          <td class="wr"><code>CHECK (credits BETWEEN 1 AND 6)</code></td>
+          <td data-th="ช่วงค่า = CHECK เหมือนกัน · เทียบกับสไลด์คาบ 3: “monetary: 7 digits, range 6000.00–40000.00” คือ domain แบบช่วงค่าอันเดียวกัน">A range = CHECK as well. Compare the class 3 slide's "monetary: 7 digits, range 6000.00–40000.00" — the same kind of domain, as a range.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“บันทึกเกรดได้เฉพาะ A, B+, B, C+, C, D+, D, F, W”">"Only these grades may be recorded: A, B+, B, C+, C, D+, D, F, W"</td>
+          <td class="wr"><code>CHECK (grade IN (&hellip;))</code></td>
+          <td data-th="รายการค่าที่ยาวขึ้น แต่เป็น CHECK แบบเดียวกัน · <b>ระวัง:</b> ห้ามใส่ NOT NULL ที่คอลัมน์นี้ เพราะโจทย์บอกว่าเกรดปล่อยว่างตอนลงทะเบียน แล้วค่อยเติมทีหลัง">A longer value list, but the same CHECK. <b>Careful:</b> do not add NOT NULL here — the brief says the grade is left empty at enrolment and filled in later.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“นักศึกษาคนเดิมต้องลงทะเบียนวิชาเดิมซ้ำในภาคเรียนและปีการศึกษาเดียวกันไม่ได้”">"The same student must not enroll in the same course twice within the same semester and academic year"</td>
+          <td class="wr"><code>UNIQUE (student_id,<br>&nbsp;course_code, semester,<br>&nbsp;academic_year)</code></td>
+          <td data-th="<b>composite unique</b> — ความไม่ซ้ำเกิดจากสี่คอลัมน์ <em>รวมกัน</em> ไม่ใช่ทีละคอลัมน์ · แต่ละคอลัมน์ซ้ำได้ตามลำพัง แต่ชุดทั้งสี่ห้ามซ้ำ · นี่คือ <b>candidate key</b> แบบ composite ในภาษาของคาบ 3"><b>A composite UNIQUE</b> — the uniqueness comes from the four columns <em>together</em>, not one at a time. Each may repeat alone; the combination may not. In class 3's language, a composite <b>candidate key</b>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“ห้ามมีรายการลงทะเบียนของนักศึกษาที่ไม่มีอยู่ในระบบ และห้ามลงทะเบียนวิชาที่ไม่มีอยู่”">"Must not allow an enrollment for a student who does not exist, nor enrollment in a course that does not exist"</td>
+          <td class="wr"><code>FOREIGN KEY</code> &times; 2</td>
+          <td data-th="<b>referential integrity</b> ตรงตัว · หนึ่งตัวชี้ไป student อีกตัวชี้ไป course · เป็นเหตุผลที่ตาราง enrollment มี FK สองตัว เหมือน WORKS_ON ในโจทย์ COMPANY"><b>Referential integrity</b>, word for word — one FK to student, one to course. It is why the enrollment table has two of them, exactly like WORKS_ON in the COMPANY exercise.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“นักศึกษาหนึ่งคนลงได้หลายวิชา และวิชาหนึ่งมีผู้ลงได้หลายคน”">"One student may enroll in many courses, and one course may have many students"</td>
+          <td class="wr" data-th="ในตาราง: ตารางกลาง <code>enrollment</code><br>ใน diagram: <code>*:*</code>">as tables: the <code>enrollment</code> table<br>on the diagram: <code>*:*</code></td>
+          <td data-th="ความสัมพันธ์ <b>many-to-many</b> · บน diagram ระดับ conceptual เขียนเป็นเส้นเดียว <code>*:*</code> ได้ · แต่ตอนลงเป็นตารางจริงต้องมีตารางกลางที่ถือ FK สองตัว — นั่นคือเนื้อหา <b>สัปดาห์ 8 (ERD Mapping)</b> ยังไม่ออกสอบวันนี้">A <b>many-to-many</b> relationship. On a conceptual diagram it is one line marked <code>*:*</code>; as real tables it needs a table in the middle holding two FKs — which is <b>week 8's</b> material (ERD Mapping) and not on today's paper.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="fact-grid" style="margin-top:18px;">
+
+      <div class="fact r">
+        <h3 data-th="คำสั่งไหนพังเพราะอะไร — LAB02 ข้อ 6">Which statement fails, and why &mdash; LAB02 Q6</h3>
+        <p class="lede" data-th="lab ให้คำสั่งผิดมาสี่คำสั่ง โดยแต่ละคำสั่งละเมิด constraint คนละตัว · เป็นตัวแยกที่คมที่สุดที่จะเจอ">The lab gives four bad statements, each violating a different constraint. It is the sharpest discriminator you will meet.</p>
+        <table class="ftab">
+          <tr><td>INSERT<br>'CS203'</td><td data-th="วิชานี้ไม่มีอยู่ในตาราง course → <b>referential integrity</b> (FK ชี้ไป PK ที่ไม่มีจริง)">no such course exists → <b>referential integrity</b> — the FK points at a PK that is not there</td></tr>
+          <tr><td>INSERT<br>grade 'H'</td><td data-th="H ไม่อยู่ในรายการเกรดที่ยอมรับ → <b>CHECK / domain constraint</b>">H is not in the permitted grade list → <b>CHECK, a domain constraint</b></td></tr>
+          <tr><td>DELETE<br>student 66001</td><td data-th="ยังมีแถวใน enrollment อ้างถึงอยู่ → <b>referential integrity</b> ฝั่งตรงข้าม และถูกปฏิเสธเพราะค่าเริ่มต้นคือ RESTRICT">enrollment rows still reference it → <b>referential integrity</b> from the other side, refused because the default is RESTRICT</td></tr>
+          <tr><td>UPDATE<br>credits = 8</td><td data-th="หน่วยกิตต้องอยู่ 1–6 → <b>CHECK</b> · แสดงว่า UPDATE ก็ละเมิด domain ได้ ไม่ใช่แค่ INSERT">credits must be 1–6 → <b>CHECK</b>. Proof that an UPDATE violates a domain too, not only an INSERT</td></tr>
+        </table>
+        <div class="fnote" data-th="สังเกตว่าสองคำสั่งแรกเป็น INSERT แต่ละเมิดคนละชนิด และสองคำสั่งหลังยืนยันตารางในบอร์ดนี้: <b>DELETE ละเมิดได้แต่ referential integrity</b> ส่วน <b>UPDATE ละเมิด domain ของคอลัมน์ที่แก้</b>">Note that the first two are both INSERTs yet violate different kinds, and the last two confirm this board's table: <b>DELETE can only violate referential integrity</b>, while <b>UPDATE violates the domain of the column it changed</b>.</div>
+      </div>
+
+      <div class="fact a">
+        <h3 data-th="กฎการตั้งชื่อ constraint — LAB03">Naming a constraint &mdash; LAB03</h3>
+        <table class="ftab">
+          <tr><td data-th="กฎ">the rule</td><td data-th="<b>ทุก constraint ที่สร้างต้องตั้งชื่อเอง</b> ด้วยคีย์เวิร์ด <code>CONSTRAINT</code>"><b>Every constraint you create must be given an explicit name</b> using the <code>CONSTRAINT</code> keyword</td></tr>
+          <tr><td data-th="รูปแบบ">the pattern</td><td data-th="<code>prefix_table_column</code> · ตัวเล็กล้วน · คั่นด้วย underscore · ห้ามเว้นวรรค · ไม่เกิน 64 ตัวอักษร"><code>&lt;prefix&gt;_&lt;table&gt;_&lt;column&gt;</code> · all lowercase · underscores, no spaces · at most 64 characters</td></tr>
+          <tr><td data-th="ถ้าไม่ตั้งชื่อ">if you don't</td><td data-th="MySQL/InnoDB ตั้งให้เองเป็น <code>ตาราง name_ibfk_N</code> — <code>ibfk</code> ย่อจาก InnoDB foreign key และ N คือลำดับของ FK ในตารางนั้น">MySQL/InnoDB names it <code>&lt;table&gt;_ibfk_&lt;n&gt;</code> — <code>ibfk</code> is InnoDB foreign key, and <code>n</code> is that FK's position in the table</td></tr>
+        </table>
+        <div class="fnote" data-th="ชื่อที่ตั้งเองอ่านออกตอน error ส่วน <code>enrollment_ibfk_1</code> ไม่บอกอะไรเลย · และการจะ <code>DROP CONSTRAINT</code> ได้ ต้องรู้ชื่อมันก่อนเสมอ — นี่คือเหตุผลจริงที่ต้องตั้งชื่อเอง">A name you chose is readable when an error comes back; <code>enrollment_ibfk_1</code> tells you nothing. And you cannot <code>DROP CONSTRAINT</code> without knowing its name — which is the real reason to name them yourself.</div>
+      </div>
+
+      <div class="fact v">
+        <h3 data-th="lab นับ constraint เป็นห้ากลุ่ม สไลด์นับสี่">The lab counts five groups; the slides count four</h3>
+        <p class="lede" data-th="ต่างกันแค่วิธีจัดกลุ่ม เนื้อหาเหมือนกัน แต่ถ้าข้อสอบถามว่า “มีกี่ชนิด” ต้องรู้ว่าถามตามกรอบไหน">Only the grouping differs, not the content — but if a question asks how many kinds there are, you need to know which framing it is using.</p>
+        <table class="ftab">
+          <tr><td data-th="สไลด์ (คาบ 3)">slides</td><td data-th="Key · Entity integrity · Referential integrity · <b>General</b> (รวม Unique, Check, Not Null ไว้ด้วยกัน) = <b>4 กลุ่ม</b>">Key · Entity integrity · Referential integrity · <b>General</b> (Unique, Check and Not Null together) = <b>4</b></td></tr>
+          <tr><td data-th="LAB03">LAB03</td><td data-th="Key · Entity integrity · Referential integrity · <b>Domain</b> · <b>NOT NULL</b> = <b>5 กลุ่ม</b> — แยก Domain กับ NOT NULL ออกมาเป็นกลุ่มของตัวเอง">Key · Entity integrity · Referential integrity · <b>Domain</b> · <b>NOT NULL</b> = <b>5</b> — Domain and NOT NULL pulled out as groups of their own</td></tr>
+        </table>
+        <div class="fnote" data-th="สามกลุ่มแรกตรงกันทั้งสองที่ ความต่างอยู่ที่ว่าจะยุบ Unique/Check/Not Null เป็น “General” หรือแยก Domain กับ NOT NULL ออกมา · ถ้าโจทย์ไม่ระบุกรอบ ให้ตอบตามสไลด์บรรยาย แล้วอธิบายเพิ่มได้ว่า lab แยกละเอียดกว่า">The first three are identical in both. The difference is whether Unique/Check/Not Null collapse into "General" or Domain and NOT NULL stand alone. If a question does not say which framing, answer from the lecture slides and note that the lab splits it further.</div>
+      </div>
+
+      <div class="fact g">
+        <h3 data-th="DDL ที่ lab ให้มา — LAB02 และ LAB03">The DDL the labs hand you &mdash; LAB02 and LAB03</h3>
+        <table class="ftab">
+          <tr><td>CREATE DATABASE</td><td data-th="<code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] ชื่อ</code> · ตัวเลือก: CHARACTER SET, COLLATE, ENCRYPTION · <b>SCHEMA เป็นคำพ้องของ DATABASE</b> ใน MySQL"><code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name</code> · options: CHARACTER SET, COLLATE, ENCRYPTION. <b>SCHEMA is a synonym for DATABASE</b> in MySQL</td></tr>
+          <tr><td>CREATE TABLE<br>&hellip; AS SELECT</td><td data-th="ก็อปโครงสร้าง<b>และข้อมูล</b>จากตารางที่มีอยู่มาเป็นตารางใหม่ในคำสั่งเดียว">copies both the structure <b>and the rows</b> of an existing table into a new one, in one statement</td></tr>
+          <tr><td>ALTER TABLE</td><td data-th="ADD/DROP COLUMN · ADD/DROP PRIMARY KEY · ADD/DROP CONSTRAINT (UNIQUE, CHECK, FOREIGN KEY) · เป็นส่วนหนึ่งของ <b>DDL</b>">ADD/DROP COLUMN · ADD/DROP PRIMARY KEY · ADD/DROP CONSTRAINT (UNIQUE, CHECK, FOREIGN KEY). It is part of <b>DDL</b></td></tr>
+          <tr><td>DROP TABLE</td><td data-th="ลบทั้ง<b>นิยามตาราง ข้อมูลทั้งหมด และ trigger</b> ของตารางนั้น — lab เตือนเองว่า “Be careful with this statement!”">removes the table definition, <b>all its data, and any triggers on it</b>. The lab's own warning: "Be careful with this statement!"</td></tr>
+          <tr><td data-th="error 1064">error 1064</td><td data-th="<b>syntax error</b> — MySQL ไม่เข้าใจสิ่งที่เราสั่ง ไม่ใช่เรื่อง constraint หรือสิทธิ์">a <b>syntax error</b> — MySQL does not understand what you asked, nothing to do with constraints or privileges</td></tr>
+        </table>
+        <div class="fnote" data-th="จุดที่ lab ย้ำ: <b>ประกาศ constraint ตั้งแต่ตอน CREATE TABLE ถ้าทำได้</b> · ถ้าลืมแล้วมาเพิ่มด้วย ALTER TABLE ทีหลัง ข้อมูลที่มีอยู่แล้ว<b>ต้องผ่านเงื่อนไขก่อน</b> ไม่งั้น error — ต้อง UPDATE ข้อมูลเดิมให้ถูกก่อน">The lab's own emphasis: <b>declare constraints at CREATE TABLE time where you can</b>. Add one later with ALTER TABLE and the existing rows <b>must already satisfy it</b>, or it errors — you have to UPDATE the existing data first.</div>
+      </div>
+
+    </div>
+
+  </section>
+
   <!-- ================= THEORY ================= -->
   <section class="band" style="margin-top:44px;">
     <div class="band-head">
       <span class="wk-pill">theory</span>
       <h2 data-th="ตารางที่ออกข้อสอบทฤษฎีได้ง่ายที่สุด">The facts most easily turned into an exam question</h2>
-      <span class="band-tag" data-th="สอบนี้เป็นทฤษฎีล้วน ไม่มีภาคปฏิบัติ · สิ่งที่วัดได้คือคำจำกัดความ คู่คำที่สับสน ตารางที่มีลำดับชัดเจน และการอ่านdiagram — ทั้งหมดข้างล่างนี้มาจากสไลด์และสิ่งที่อาจารย์พูดในคาบ">This paper is theory only — no practical half. What that can test is definitions, confusable pairs, tables with a clear ordering, and reading a diagram. Everything below comes from the slides or from what was said in class.</span>
+      <span class="band-tag" data-th="สอบนี้เป็นทฤษฎีล้วน ไม่มีภาคปฏิบัติ · สิ่งที่วัดได้คือคำจำกัดความ คู่คำที่สับสน ตารางที่มีลำดับชัดเจน และการอ่าน diagram — ทั้งหมดข้างล่างนี้มาจากสไลด์และสิ่งที่อาจารย์พูดในคาบ">This paper is theory only — no practical half. What that can test is definitions, confusable pairs, tables with a clear ordering, and reading a diagram. Everything below comes from the slides or from what was said in class.</span>
     </div>
 
     <div class="fact-grid">
@@ -1229,7 +1239,7 @@
         <h3 data-th="Integrity Constraint สี่กลุ่ม — คาบ 3">Integrity constraints, four groups — class 3</h3>
         <p class="lede" data-th="จุดประสงค์ของทั้งหมดนี้คือ <strong>กันข้อมูลเสียหายโดยไม่ตั้งใจ</strong>">The purpose of all of them: to <strong>prevent accidental damage</strong> to the data.</p>
         <table class="ftab">
-          <tr><td data-th="Key">Key</td><td data-th="ชุดattributeที่ระบุแต่ละ tuple ได้อย่างไม่ซ้ำกัน">the set of attributes that identifies each tuple uniquely</td></tr>
+          <tr><td data-th="Key">Key</td><td data-th="ชุด attribute ที่ระบุแต่ละ tuple ได้อย่างไม่ซ้ำกัน">the set of attributes that identifies each tuple uniquely</td></tr>
           <tr><td data-th="Entity integrity">Entity integrity</td><td data-th="ทุก relation <strong>ต้องมี</strong> primary key และ primary key <strong>ห้ามเป็น null</strong>">every relation <strong>must have</strong> a primary key, and a primary key <strong>may never be null</strong></td></tr>
           <tr><td data-th="Referential integrity">Referential<br>integrity</td><td data-th="ค่า FK ต้องตรงกับ PK ที่<strong>มีอยู่จริง</strong>ใน relation ที่ถูกอ้าง <strong>หรือเป็น null ทั้งหมด</strong>">an FK's value must match a primary key that <strong>actually exists</strong> in the referenced relation, <strong>or be wholly null</strong></td></tr>
           <tr><td data-th="General">General</td><td data-th="Unique, Check, Not Null — กฎเพิ่มที่ผู้ใช้หรือ DBA ตั้งตามเงื่อนไขทางธุรกิจ เช่น Check (salary &gt; 15000)">Unique, Check, Not Null — extra rules set by a user or the DBA for a business condition, such as <code>Check (salary &gt; 15000)</code></td></tr>
@@ -1254,7 +1264,7 @@
         <table class="ftab">
           <tr><td>INSERT</td><td data-th="ละเมิดได้<strong>ทุกชนิด</strong> — domain, key, referential integrity, entity integrity">can violate <strong>every</strong> kind — domain, key, referential integrity, entity integrity</td></tr>
           <tr><td>DELETE</td><td data-th="ละเมิดได้<strong>อย่างเดียว</strong>คือ referential integrity — เกิดเมื่อ PK ของแถวที่จะลบยังถูกอ้างจากที่อื่น">can violate <strong>referential integrity and nothing else</strong> — when the PK of the row being deleted is still referenced</td></tr>
-          <tr><td>UPDATE</td><td data-th="ละเมิด domain และ NOT NULL ของattributeที่แก้ · และอาจละเมิดอย่างอื่นขึ้นกับว่าแก้ตัวไหน โดยเฉพาะแก้ PK (ลูกหาแม่ไม่เจอ) หรือแก้ FK (ชี้ไปค่าที่ไม่มี)">violates the domain and NOT NULL of the attribute changed, and possibly more depending which — especially changing a PK (children lose their parent) or an FK (it may point at nothing)</td></tr>
+          <tr><td>UPDATE</td><td data-th="ละเมิด domain และ NOT NULL ของ attribute ที่แก้ · และอาจละเมิดอย่างอื่นขึ้นกับว่าแก้ตัวไหน โดยเฉพาะแก้ PK (ลูกหาแม่ไม่เจอ) หรือแก้ FK (ชี้ไปค่าที่ไม่มี)">violates the domain and NOT NULL of the attribute changed, and possibly more depending which — especially changing a PK (children lose their parent) or an FK (it may point at nothing)</td></tr>
         </table>
         <div class="fnote" data-th="สำหรับ DELETE ต้อง<strong>เลือกหนึ่งในสาม</strong>ตั้งแต่ตอนออกแบบ สำหรับ foreign key ทุกตัว: RESTRICT ปฏิเสธ · CASCADE ลบตามไป · SET NULL ตั้งเป็น null">For DELETE, <strong>one of three must be chosen at design time</strong>, for every foreign key: RESTRICT refuses, CASCADE deletes on through, SET NULL sets the referencing FK to null.</div>
       </div>
@@ -1283,14 +1293,14 @@
           <tr><td>5..10</td><td data-th="อย่างน้อยห้า มากสุดสิบ">a minimum of 5 up to a maximum of 10</td></tr>
           <tr><td>0, 3, 6&ndash;8</td><td data-th="ศูนย์ หรือสาม หรือหก เจ็ด แปด">zero, or three, or six, seven or eight</td></tr>
         </table>
-        <div class="fnote" data-th="multiplicity คือการเขียน <strong>business rules</strong> ที่ผู้ใช้หรือบริษัทกำหนดลงไปในdiagram — ไม่ใช่สิ่งที่ผู้ออกแบบคิดเอาเอง">A multiplicity is how a <strong>business rule</strong>, set by the user or the company, gets written into the diagram. It is not something the designer decides.</div>
+        <div class="fnote" data-th="multiplicity คือการเขียน <strong>business rules</strong> ที่ผู้ใช้หรือบริษัทกำหนดลงไปใน diagram — ไม่ใช่สิ่งที่ผู้ออกแบบคิดเอาเอง">A multiplicity is how a <strong>business rule</strong>, set by the user or the company, gets written into the diagram. It is not something the designer decides.</div>
       </div>
 
       <div class="fact v">
         <h3 data-th="Strong / Weak entity — คาบ 4">Strong and weak entities — class 4</h3>
         <table class="ftab">
           <tr><td data-th="Strong">Strong</td><td data-th="ระบุตัวเองได้ด้วย primary key ของตัวเองเพียงลำพัง — <strong>แข็งแรง ไม่ต้องยืมใคร</strong>">uniquely identifiable by its own primary key alone — <strong>sturdy, borrows from nobody</strong></td></tr>
-          <tr><td data-th="Weak">Weak</td><td data-th="ระบุตัวเองด้วยattributeของตัวเองไม่ได้ — <strong>ไม่มี PK เป็นของตัวเอง</strong>">cannot be uniquely identified from its own attributes — <strong>has no primary key of its own</strong></td></tr>
+          <tr><td data-th="Weak">Weak</td><td data-th="ระบุตัวเองด้วย attribute ของตัวเองไม่ได้ — <strong>ไม่มี PK เป็นของตัวเอง</strong>">cannot be uniquely identified from its own attributes — <strong>has no primary key of its own</strong></td></tr>
           <tr><td data-th="Identifying relationship">Identifying<br>relationship</td><td data-th="ความสัมพันธ์ที่ weak entity ใช้<strong>ยืม PK ของ strong</strong> มาต่อเป็น composite key">the relationship through which a weak entity <strong>borrows the strong entity's PK</strong> into a composite key</td></tr>
         </table>
         <div class="fnote" data-th="ตัวอย่างที่อาจารย์บอกเองว่า <strong>ไม่ได้อยู่ในสไลด์ ต้องจดเอง</strong>: หอพักมี 4 ตึก A B C D ทุกตึกผังเหมือนกันเป๊ะและเลขห้องซ้ำกันหมด → <code>roomNo = 101</code> มีอยู่ 4 ห้องจริงๆ → <code>roomNo</code> ลำพังเป็น PK ไม่ได้ → <code>Rooms</code> จึงเป็น weak entity · แก้ด้วยการยืม <code>bldgNo</code> มาต่อ (101+A ต่างจาก 101+B) <strong>หรือ</strong>สร้าง surrogate key เช่น <code>roomID</code> ขึ้นมาแทน ก็ไม่ผิด">The example she flagged as <strong>not in the slides — write it down yourself</strong>: a dormitory with four buildings A, B, C, D, every building on the same floor plan and numbering its rooms identically. <code>roomNo = 101</code> then names four different rooms, so <code>roomNo</code> alone cannot be the PK and <code>Rooms</code> is weak. Fix it by borrowing <code>bldgNo</code> (101+A differs from 101+B), <strong>or</strong> by inventing a surrogate key such as <code>roomID</code> — that is not wrong either.</div>
@@ -1334,6 +1344,43 @@
     </div>
 
 
+    <div class="sub-h" data-th="ข้อที่คนพลาดบ่อย">The ones people get wrong</div>
+
+    <div class="traps">
+      <div class="trap">
+        <b data-th="สลับ cardinality ของคาบ 3 กับคาบ 4">Mixing up the two cardinalities</b>
+        <span data-th="คาบ 3 cardinality = จำนวนแถว · คาบ 4 cardinality = ค่า max ของ multiplicity · และ degree ก็ซ้ำรอยเดียวกัน คาบ 3 = จำนวนคอลัมน์ คาบ 4 = จำนวน entity ใน relationship · สองคาบนี้อยู่ในข้อสอบใบเดียวกัน">Class 3's cardinality is the number of rows; class 4's is the max half of a multiplicity. Degree does the same thing: class 3 means columns, class 4 means how many entities take part. Both weeks sit on the same paper.</span>
+      </div>
+      <div class="trap">
+        <b data-th="อ่านตัวเลขผิดฝั่ง">Reading the number on the wrong side</b>
+        <span data-th="อาจารย์บอกเองว่านี่คือข้อที่นักศึกษาพลาดมากที่สุด · เวลาอ่านจาก A ไป B ให้ดู<strong>ตัวเลขฝั่ง B</strong> ไม่ใช่ฝั่ง A แล้วขึ้นประโยคว่า “หนึ่ง A …”">She said outright this is the mistake students make most. Reading from A to B, look at the number on <strong>B's side</strong>, not A's, and open the sentence with "one A …".</span>
+      </div>
+      <div class="trap">
+        <b data-th="ใส่ foreign key ลงใน diagram conceptual">Putting foreign keys on a conceptual diagram</b>
+        <span data-th="ขั้นนี้มีแค่ <strong>primary key</strong> เท่านั้น · ไม่มี FK ไม่มี unique ไม่มี check ไม่มี not null เพราะยังไม่ถึงขั้นติดตั้ง · ขั้นนี้ถามแค่ว่าข้อมูลหลักคืออะไร สัมพันธ์กันยังไง และ PK คือตัวไหน">This stage carries <strong>primary keys only</strong> — no FKs, no unique, no check, no not null, because implementation has not been reached. It asks only what the main data is, how it relates, and what the primary key is.</span>
+      </div>
+      <div class="trap">
+        <b data-th="คิดว่า referential action ช่วยตอน INSERT">Expecting a referential action to help an INSERT</b>
+        <span data-th="<code>ON DELETE</code>/<code>ON UPDATE</code> ควบคุมเฉพาะสิ่งที่เกิดกับแถวลูกตอนแม่ถูกลบหรือแก้ · การ INSERT แถวลูกที่ชี้ไปยัง key ที่ไม่มีอยู่ ถูกปฏิเสธเสมอไม่ว่าตั้งอะไรไว้"><code>ON DELETE</code>/<code>ON UPDATE</code> govern only what happens to child rows when a parent is deleted or updated. Inserting a child pointing at a key that does not exist is refused whatever you set.</span>
+      </div>
+      <div class="trap">
+        <b data-th="คิดว่าการเปลี่ยนชื่อคือ multi-valued">Thinking a changed value is multi-valued</b>
+        <span data-th="multiple-valued แปลว่า <strong>หลายค่าอยู่พร้อมกัน ณ เวลาเดียว</strong> เช่นเบอร์โทรสามเบอร์ · การเปลี่ยนนามสกุลไม่ใช่ เพราะ ณ ขณะใดขณะหนึ่งเรามีนามสกุลเดียวเสมอ">Multiple-valued means <strong>several values held at the same moment</strong> — three phone numbers. Changing your surname is not: at any one time you have exactly one.</span>
+      </div>
+      <div class="trap">
+        <b data-th="ตั้งชื่อ 1:* โดยดู min">Using min to name a 1:1 or 1:*</b>
+        <span data-th="ตอนเรียกว่า one-to-one / one-to-many / many-to-many ให้ดู <strong>max ทั้งสองฝั่งเท่านั้น</strong> · <code>0..1</code> ↔ <code>0..*</code> ยังเป็น one-to-many อยู่ ถึงแม้ min จะเป็นศูนย์ทั้งคู่">To call something one-to-one / one-to-many / many-to-many, look at <strong>the max on both sides only</strong>. <code>0..1</code> ↔ <code>0..*</code> is still one-to-many even though both mins are zero.</span>
+      </div>
+      <div class="trap">
+        <b data-th="สับสน Data Administrator กับ Database Administrator">Data Administrator vs Database Administrator</b>
+        <span data-th="ชื่อคล้ายกันมากจนเป็นตัวเลือกลวงชั้นดี · Data Administrator ทำ Plan และ Define ที่ต้นทาง · Database Administrator ทำ Config และ Maintain/Tune ที่ปลายทาง">The names are close enough to make an excellent distractor. The Data Administrator does Plan and Define at the start; the Database Administrator does Config and Maintain/Tune at the end.</span>
+      </div>
+      <div class="trap">
+        <b data-th="ลืมชื่อบนเส้น relationship">Leaving a relationship line unnamed</b>
+        <span data-th="ชื่อบนเส้น<strong>บังคับเสมอ</strong> ส่วนลูกศร ▶ ที่บอกทิศทางการอ่าน<strong>ไม่บังคับ</strong> อาจารย์อนุญาตทั้งใส่และไม่ใส่ · ถ้าคิดชื่อไม่ออก ให้ดึงคำกริยาจากประโยค requirement มาใช้ตรงๆ">The name on the line is <strong>always required</strong>; the <code>&#9654;</code> marking reading direction is <strong>not</strong> — she allows it either way. Stuck for a name? Lift the verb straight out of the requirement sentence.</span>
+      </div>
+    </div>
+
     <div class="sub-h" data-th="ทำไม่ได้ / ทำแล้วพัง — เรียงตามหัวข้อ">What you cannot do, and what happens when you try</div>
     <p class="cn-lede" data-th="การ์ด “ระวังไว้” ในแต่ละสัปดาห์พูดถึงความเข้าใจผิดเชิงแนวคิด · ส่วนตรงนี้เป็นสถานการณ์จริง: <b>ลองทำอะไร → เกิดอะไรขึ้น → เพราะอะไร → แก้ยังไง</b> ซึ่งเป็นรูปที่ข้อสอบชอบเอามาถามมากที่สุด">The "watch out" cards in each week deal with conceptual confusions. This is the operational version: <b>what you try → what happens → why → how to fix it</b>. It is the shape a question most often takes.</p>
 
@@ -1372,7 +1419,7 @@
           </tr>
           <tr>
             <td class="act" data-th="INSERT โดยไม่ระบุชื่อคอลัมน์ แต่เรียงค่าตามใจ">Insert without naming columns, in your own order</td>
-            <td><b data-th="ข้อมูลลงผิดช่อง">The data lands in the wrong columns.</b> <span data-th="tuple นิยามเป็น<b>รายการค่าที่เรียงลำดับ</b> ดังนั้นต้องเรียงตามที่ประกาศไว้ใน CREATE TABLE · นี่คือเหตุผลที่คุณสมบัติข้อ 7 บอกว่า “ลำดับคอลัมน์สำคัญ” ทั้งที่สไลด์หน้า 6 บอกว่าลำดับattributeไม่สำคัญ — พูดคนละมุม ไม่ได้ขัดกัน">A tuple is defined as an <b>ordered list of values</b>, so the order must match the CREATE TABLE declaration. This is why property 7 says column order matters while slide 6 says attribute order does not — two angles, not a contradiction.</span></td>
+            <td><b data-th="ข้อมูลลงผิดช่อง">The data lands in the wrong columns.</b> <span data-th="tuple นิยามเป็น<b>รายการค่าที่เรียงลำดับ</b> ดังนั้นต้องเรียงตามที่ประกาศไว้ใน CREATE TABLE · นี่คือเหตุผลที่คุณสมบัติข้อ 7 บอกว่า “ลำดับคอลัมน์สำคัญ” ทั้งที่สไลด์หน้า 6 บอกว่าลำดับ attribute ไม่สำคัญ — พูดคนละมุม ไม่ได้ขัดกัน">A tuple is defined as an <b>ordered list of values</b>, so the order must match the CREATE TABLE declaration. This is why property 7 says column order matters while slide 6 says attribute order does not — two angles, not a contradiction.</span></td>
           </tr>
         </table>
       </div>
@@ -1381,15 +1428,15 @@
         <h4 data-th="ER diagram — คาบ 4">The ER diagram — class 4</h4>
         <table class="cn-tab">
           <tr>
-            <td class="act" data-th="ใส่ foreign key ลงในdiagram conceptual">Put foreign keys on a conceptual diagram</td>
+            <td class="act" data-th="ใส่ foreign key ลงใน diagram conceptual">Put foreign keys on a conceptual diagram</td>
             <td><b data-th="ผิดขั้นตอน">Wrong stage.</b> <span data-th="ระดับ conceptual มีแค่ <b>primary key</b> · ไม่มี FK ไม่มี unique ไม่มี check ไม่มี not null เพราะยังไม่ถึงขั้นติดตั้ง · FK เป็นเรื่องของขั้น <b>logical</b> ซึ่งคือเนื้อหาสัปดาห์ 8 · อาจารย์ระบุว่านี่คือข้อสำคัญที่สุดของขั้นนี้">The conceptual level carries <b>primary keys only</b> — no FK, no unique, no check, no not null, because implementation has not been reached. FKs belong to the <b>logical</b> stage, week 8's material. She flagged this as the single most important rule of the stage.</span></td>
           </tr>
           <tr>
-            <td class="act" data-th="ให้ weak entity ใช้attributeของตัวเองเป็น PK">Let a weak entity key on its own attributes</td>
+            <td class="act" data-th="ให้ weak entity ใช้ attribute ของตัวเองเป็น PK">Let a weak entity key on its own attributes</td>
             <td><b data-th="ระบุแถวไม่ได้">It cannot identify a row.</b> <span data-th="ตัวอย่างหอพักสี่ตึกผังเหมือนกัน: <code>roomNo = 101</code> หมายถึงห้องจริงสี่ห้อง · <b>แก้:</b> ยืม PK ของ strong entity ผ่าน <b>identifying relationship</b> มาต่อเป็น composite key (101+A ต่างจาก 101+B) <b>หรือ</b> สร้าง surrogate key เช่น <code>roomID</code> ขึ้นมาแทน ซึ่งอาจารย์บอกว่าไม่ผิด">The dormitory example: with four identically-numbered buildings, <code>roomNo = 101</code> names four real rooms. <b>Fix:</b> borrow the strong entity's PK through an <b>identifying relationship</b> into a composite key (101+A differs from 101+B), <b>or</b> invent a surrogate key such as <code>roomID</code> — she said that is not wrong either.</span></td>
           </tr>
           <tr>
-            <td class="act" data-th="วางattributeของ relationship ไว้บนentityข้างใดข้างหนึ่ง">Hang a relationship's attributes on one of the entities</td>
+            <td class="act" data-th="วาง attribute ของ relationship ไว้บน entity ข้างใดข้างหนึ่ง">Hang a relationship's attributes on one of the entities</td>
             <td><b data-th="เก็บค่าไม่ได้">The value has nowhere to live.</b> <span data-th="<code>dateAdvert</code>/<code>cost</code> วางบน PropertyForRent ไม่ได้ เพราะบ้านหลังเดียวลงโฆษณาได้หลายฉบับคนละวันคนละราคา · วางบน Newspaper ก็ไม่ได้ ด้วยเหตุผลกลับกัน · <b>แก้:</b> ห้อยจากเส้นด้วย<b>เส้นประ</b> ลงกล่องที่<b>เว้นหัวไว้ว่าง</b>"><code>dateAdvert</code>/<code>cost</code> cannot sit on PropertyForRent — one property is advertised in several papers on different days at different prices — nor on Newspaper, for the mirror reason. <b>Fix:</b> a <b>dashed line</b> from the relationship line into a box with a <b>blank header</b>.</span></td>
           </tr>
           <tr>
@@ -1406,7 +1453,7 @@
           </tr>
           <tr>
             <td class="act" data-th="คิด multiplicity เองจากสามัญสำนึก">Invent a multiplicity from common sense</td>
-            <td><b data-th="ไม่ใช่หน้าที่ของผู้ออกแบบ">Not the designer's call.</b> <span data-th="multiplicity คือการเขียน <b>business rule</b> ที่ผู้ใช้หรือบริษัทกำหนดลงไปในdiagram · อาจารย์ย้ำว่า constraint ต้องมาจาก requirement · เดาเองได้<b>เฉพาะตอนที่โจทย์เงียบหรือไม่ชัด</b> และต้องอธิบายเหตุผลได้">A multiplicity is how a <b>business rule</b>, set by the user or the company, gets written down. Constraints come from the requirements; you may fill a gap <b>only where the brief is silent</b>, and must be able to justify it.</span></td>
+            <td><b data-th="ไม่ใช่หน้าที่ของผู้ออกแบบ">Not the designer's call.</b> <span data-th="multiplicity คือการเขียน <b>business rule</b> ที่ผู้ใช้หรือบริษัทกำหนดลงไปใน diagram · อาจารย์ย้ำว่า constraint ต้องมาจาก requirement · เดาเองได้<b>เฉพาะตอนที่โจทย์เงียบหรือไม่ชัด</b> และต้องอธิบายเหตุผลได้">A multiplicity is how a <b>business rule</b>, set by the user or the company, gets written down. Constraints come from the requirements; you may fill a gap <b>only where the brief is silent</b>, and must be able to justify it.</span></td>
           </tr>
           <tr>
             <td class="act" data-th="วาด ER ด้วย MySQL Workbench แล้วส่ง">Draw the ER diagram in MySQL Workbench and submit that</td>
@@ -1440,105 +1487,6 @@
           </tr>
         </table>
       </div>
-
-    </div>
-
-    <div class="sub-h" data-th="ข้อที่คนพลาดบ่อย">The ones people get wrong</div>
-
-    <div class="traps">
-      <div class="trap">
-        <b data-th="สลับ cardinality ของคาบ 3 กับคาบ 4">Mixing up the two cardinalities</b>
-        <span data-th="คาบ 3 cardinality = จำนวนแถว · คาบ 4 cardinality = ค่า max ของ multiplicity · และ degree ก็ซ้ำรอยเดียวกัน คาบ 3 = จำนวนคอลัมน์ คาบ 4 = จำนวนentityใน relationship · สองคาบนี้อยู่ในข้อสอบใบเดียวกัน">Class 3's cardinality is the number of rows; class 4's is the max half of a multiplicity. Degree does the same thing: class 3 means columns, class 4 means how many entities take part. Both weeks sit on the same paper.</span>
-      </div>
-      <div class="trap">
-        <b data-th="อ่านตัวเลขผิดฝั่ง">Reading the number on the wrong side</b>
-        <span data-th="อาจารย์บอกเองว่านี่คือข้อที่นักศึกษาพลาดมากที่สุด · เวลาอ่านจาก A ไป B ให้ดู<strong>ตัวเลขฝั่ง B</strong> ไม่ใช่ฝั่ง A แล้วขึ้นประโยคว่า “หนึ่ง A …”">She said outright this is the mistake students make most. Reading from A to B, look at the number on <strong>B's side</strong>, not A's, and open the sentence with "one A …".</span>
-      </div>
-      <div class="trap">
-        <b data-th="ใส่ foreign key ลงในdiagram conceptual">Putting foreign keys on a conceptual diagram</b>
-        <span data-th="ขั้นนี้มีแค่ <strong>primary key</strong> เท่านั้น · ไม่มี FK ไม่มี unique ไม่มี check ไม่มี not null เพราะยังไม่ถึงขั้นติดตั้ง · ขั้นนี้ถามแค่ว่าข้อมูลหลักคืออะไร สัมพันธ์กันยังไง และ PK คือตัวไหน">This stage carries <strong>primary keys only</strong> — no FKs, no unique, no check, no not null, because implementation has not been reached. It asks only what the main data is, how it relates, and what the primary key is.</span>
-      </div>
-      <div class="trap">
-        <b data-th="คิดว่า referential action ช่วยตอน INSERT">Expecting a referential action to help an INSERT</b>
-        <span data-th="<code>ON DELETE</code>/<code>ON UPDATE</code> ควบคุมเฉพาะสิ่งที่เกิดกับแถวลูกตอนแม่ถูกลบหรือแก้ · การ INSERT แถวลูกที่ชี้ไปยัง key ที่ไม่มีอยู่ ถูกปฏิเสธเสมอไม่ว่าตั้งอะไรไว้"><code>ON DELETE</code>/<code>ON UPDATE</code> govern only what happens to child rows when a parent is deleted or updated. Inserting a child pointing at a key that does not exist is refused whatever you set.</span>
-      </div>
-      <div class="trap">
-        <b data-th="คิดว่าการเปลี่ยนชื่อคือ multi-valued">Thinking a changed value is multi-valued</b>
-        <span data-th="multiple-valued แปลว่า <strong>หลายค่าอยู่พร้อมกัน ณ เวลาเดียว</strong> เช่นเบอร์โทรสามเบอร์ · การเปลี่ยนนามสกุลไม่ใช่ เพราะ ณ ขณะใดขณะหนึ่งเรามีนามสกุลเดียวเสมอ">Multiple-valued means <strong>several values held at the same moment</strong> — three phone numbers. Changing your surname is not: at any one time you have exactly one.</span>
-      </div>
-      <div class="trap">
-        <b data-th="ตั้งชื่อ 1:* โดยดู min">Using min to name a 1:1 or 1:*</b>
-        <span data-th="ตอนเรียกว่า one-to-one / one-to-many / many-to-many ให้ดู <strong>max ทั้งสองฝั่งเท่านั้น</strong> · <code>0..1</code> ↔ <code>0..*</code> ยังเป็น one-to-many อยู่ ถึงแม้ min จะเป็นศูนย์ทั้งคู่">To call something one-to-one / one-to-many / many-to-many, look at <strong>the max on both sides only</strong>. <code>0..1</code> ↔ <code>0..*</code> is still one-to-many even though both mins are zero.</span>
-      </div>
-      <div class="trap">
-        <b data-th="สับสน Data Administrator กับ Database Administrator">Data Administrator vs Database Administrator</b>
-        <span data-th="ชื่อคล้ายกันมากจนเป็นตัวเลือกลวงชั้นดี · Data Administrator ทำ Plan และ Define ที่ต้นทาง · Database Administrator ทำ Config และ Maintain/Tune ที่ปลายทาง">The names are close enough to make an excellent distractor. The Data Administrator does Plan and Define at the start; the Database Administrator does Config and Maintain/Tune at the end.</span>
-      </div>
-      <div class="trap">
-        <b data-th="ลืมชื่อบนเส้น relationship">Leaving a relationship line unnamed</b>
-        <span data-th="ชื่อบนเส้น<strong>บังคับเสมอ</strong> ส่วนลูกศร ▶ ที่บอกทิศทางการอ่าน<strong>ไม่บังคับ</strong> อาจารย์อนุญาตทั้งใส่และไม่ใส่ · ถ้าคิดชื่อไม่ออก ให้ดึงคำกริยาจากประโยค requirement มาใช้ตรงๆ">The name on the line is <strong>always required</strong>; the <code>&#9654;</code> marking reading direction is <strong>not</strong> — she allows it either way. Stuck for a name? Lift the verb straight out of the requirement sentence.</span>
-      </div>
-    </div>
-
-    <div class="sub-h" data-th="คำถามปลายเปิด — ตอบเป็นคำอธิบาย">Open questions — answer in your own words</div>
-
-    <div class="quiz">
-
-      <details class="q"><summary data-th="relation หนึ่งมี 6 แถว 8 คอลัมน์ · cardinality เท่าไหร่ degree เท่าไหร่">A relation has 6 rows and 8 columns. What are its cardinality and degree?</summary>
-        <div class="qa"><span class="ans" data-th="cardinality = 6 · degree = 8">cardinality = 6 · degree = 8</span><span data-th="cardinality นับแถวและ<strong>เปลี่ยนไปตามข้อมูล ณ ขณะนั้น</strong> ลบแถวหนึ่งออกก็เหลือ 5 · degree นับคอลัมน์และ<strong>ตายตัวตาม schema</strong> จะเปลี่ยนได้ก็ต่อเมื่อ ALTER TABLE · ระวังว่าในคาบ 4 คำสองคำนี้แปลว่าอย่างอื่นไปเลย">Cardinality counts rows and <strong>changes with the instance</strong> — delete one and it becomes 5. Degree counts columns and is <strong>fixed by the schema</strong>; only an ALTER TABLE changes it. Note that in class 4 both words mean something else entirely.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="{StudentNo, Email} เป็น candidate key ของ Students หรือไม่ เพราะอะไร">Is <code>{StudentNo, Email}</code> a candidate key of <code>Students</code>?</summary>
-        <div class="qa"><span class="ans" data-th="ไม่ใช่ · เป็นแค่ superkey เพราะลดได้อีก">No — it is only a superkey, because it can be reduced.</span><span data-th="candidate key ต้องมีสองคุณสมบัติ: <strong>uniqueness</strong> และ <strong>irreducibility</strong> · ชุดนี้ระบุแถวได้จริง แต่ตัดตัวไหนออกไปหนึ่งตัวก็ยังระบุได้อยู่ดี จึงยังลดได้ ไม่ผ่านข้อสอง · <code>StudentNo</code> เดี่ยวๆ และ <code>Email</code> เดี่ยวๆ ต่างหากที่เป็น candidate key">A candidate key needs both <strong>uniqueness</strong> and <strong>irreducibility</strong>. This set does identify a row, but drop either attribute and it still does — so it is reducible and fails the second test. <code>StudentNo</code> alone and <code>Email</code> alone are the candidate keys.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="foreign key ที่ไม่ได้เขียน ON DELETE ไว้เลย จะทำอะไรตอนลบแถวแม่ที่มีลูกอยู่">A foreign key with no <code>ON DELETE</code> clause at all — what happens when you delete a parent that still has children?</summary>
-        <div class="qa"><span class="ans" data-th="ปฏิเสธการลบ เพราะค่าเริ่มต้นคือ RESTRICT">The delete is refused — the default is RESTRICT.</span><span data-th="<strong>เขียน RESTRICT เท่ากับไม่เขียนอะไรเลย</strong> ทั้งคู่ให้ผลเดียวกัน (NO ACTION ก็อย่างเดียวกัน) · จะให้ลบตามไปต้อง DROP constraint เดิมแล้ว ADD กลับมาใหม่พร้อม <code>ON DELETE CASCADE</code> · และใน MySQL Workbench ช่อง Related Tables จะแสดง On Update: RESTRICT / On Delete: RESTRICT ให้เห็นตรงๆ"><strong>Writing RESTRICT is identical to writing nothing</strong> (NO ACTION likewise). To make it cascade you must DROP the old constraint and ADD it back with <code>ON DELETE CASCADE</code>. MySQL Workbench shows this plainly: the Related Tables panel reads On Update: RESTRICT / On Delete: RESTRICT.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="คำสั่ง DELETE ละเมิด integrity constraint ชนิดใดได้บ้าง">Which integrity constraints can a <code>DELETE</code> violate?</summary>
-        <div class="qa"><span class="ans" data-th="ชนิดเดียวเท่านั้น — referential integrity">Exactly one — referential integrity.</span><span data-th="เพราะ DELETE ไม่ได้ใส่ค่าใหม่เข้าไป จึงละเมิด domain, key หรือ entity integrity ไม่ได้เลย · มันละเมิดได้อย่างเดียวคือเมื่อ PK ของแถวที่ลบยังถูกอ้างอยู่จากที่อื่น · เทียบกับ INSERT ที่ละเมิดได้ครบทุกชนิด">A DELETE puts no new value in, so it cannot violate a domain, a key, or entity integrity. The only way it can go wrong is when the PK of the row being removed is still referenced elsewhere. Compare INSERT, which can violate every kind.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="Staff 1..1 — Manages ▶ — 0..1 Branch · อ่านจาก Branch ไป Staff ว่ายังไง">Given <code>Staff 1..1 — Manages &#9654; — 0..1 Branch</code>, how do you read it from Branch to Staff?</summary>
-        <div class="qa"><span class="ans" data-th="“สาขาหนึ่งต้องมีผู้จัดการ และมีได้คนเดียวเท่านั้น”">"One branch must have a manager, and exactly one."</span><span data-th="อ่านจาก Branch ไป Staff ต้อง<strong>ดูตัวเลขฝั่ง Staff</strong> ซึ่งคือ <code>1..1</code> · min=1 แปลว่าบังคับ (mandatory participation) · max=1 แปลว่ามากสุดหนึ่ง · ถ้าเผลอไปดู <code>0..1</code> ฝั่ง Branch จะได้ประโยคผิดทั้งประโยค นี่คือกับดักที่อาจารย์เตือน">Reading Branch → Staff means <strong>looking at the number on Staff's side</strong>, which is <code>1..1</code>. min=1 makes it mandatory participation; max=1 means at most one. Look at Branch's <code>0..1</code> by mistake and the whole sentence comes out wrong — the trap she warned about.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="dateAdvert กับ cost ควรไปอยู่ที่ Newspaper หรือ PropertyForRent">Should <code>dateAdvert</code> and <code>cost</code> live on <code>Newspaper</code> or on <code>PropertyForRent</code>?</summary>
-        <div class="qa"><span class="ans" data-th="ไม่ใช่ทั้งคู่ — เป็นattributeของ relationship">Neither — they are attributes of the relationship.</span><span data-th="วางที่ PropertyForRent ไม่ได้ เพราะบ้านหลังเดียวลงโฆษณาได้หลายฉบับ คนละวัน คนละราคา · วางที่ Newspaper ก็ไม่ได้ เพราะหนังสือพิมพ์ฉบับเดียวลงประกาศได้หลายรายการในราคาต่างกัน · <strong>ข้อมูลนี้เกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้วเท่านั้น</strong> จึงห้อยจากเส้นด้วยเส้นประ ลงกล่องที่เว้นหัวไว้ว่าง">Not on PropertyForRent: one property can be advertised in several papers, on different days, at different prices. Not on Newspaper: one paper carries many listings at differing costs. <strong>This data can only exist once the relationship itself occurs</strong> — so it hangs off the line by a dashed line into a box whose header is left blank.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="Rooms(roomNo, roomCapacity) ในธุรกิจหอพักที่มี 4 ตึกผังเหมือนกัน เป็น entity ชนิดไหน">In a dormitory business with four identically laid-out buildings, what kind of entity is <code>Rooms(roomNo, roomCapacity)</code>?</summary>
-        <div class="qa"><span class="ans" data-th="weak entity — เพราะ roomNo ลำพังระบุห้องไม่ได้">A weak entity — <code>roomNo</code> alone cannot identify a room.</span><span data-th="ทั้งสี่ตึกใช้เลขห้องชุดเดียวกัน <code>101</code> จึงหมายถึงห้องจริงสี่ห้อง · แก้ได้สองทาง: (1) ยืม <code>bldgNo</code> จาก <code>Buildings</code> ผ่าน <strong>identifying relationship</strong> มาต่อเป็น composite key ให้ 101+A ต่างจาก 101+B · (2) สร้าง <strong>surrogate key</strong> เช่น <code>roomID</code> แบบรันนิ่งขึ้นมาใช้แทน ซึ่งอาจารย์บอกว่าไม่ผิด">All four buildings number their rooms the same way, so <code>101</code> names four real rooms. Two fixes: (1) borrow <code>bldgNo</code> from <code>Buildings</code> through an <strong>identifying relationship</strong> to form a composite key, making 101+A distinct from 101+B; or (2) invent a <strong>surrogate key</strong> such as a running <code>roomID</code> — which she said is not wrong.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="ANSI-SPARC เป็นมาตรฐานทางการหรือไม่">Is ANSI-SPARC a formal standard?</summary>
-        <div class="qa"><span class="ans" data-th="ไม่ · เสนอปี 1975 แต่ไม่เคยกลายเป็นมาตรฐานจริง">No. Proposed in 1975, it never became one.</span><span data-th="สไลด์เขียนไว้ตรงๆ ว่า “never became a formal standard” แต่ยังถูกใช้เป็นฐานความเข้าใจการทำงานของ DBMS มาตลอด · ANSI = American National Standards Institute · SPARC = Standards Planning And Requirements Committee · สิ่งที่มันซื้อมาให้คือ <strong>data independence</strong> — schema ระดับบนไม่กระทบเมื่อระดับล่างเปลี่ยน">The slide says so in as many words, yet it is still used as the basis for understanding how a DBMS works. ANSI = American National Standards Institute; SPARC = Standards Planning And Requirements Committee. What it buys is <strong>data independence</strong> — an upper schema is unaffected when a lower one changes.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="ระดับไหนของ ANSI-SPARC ที่ OS ดูแล ไม่ใช่ DBMS">Which part of the ANSI-SPARC picture belongs to the OS rather than the DBMS?</summary>
-        <div class="qa"><span class="ans" data-th="การจัดเก็บจริงบนดิสก์ ที่อยู่ใต้ internal level ลงไป">The physical storage on disk, below the internal level.</span><span data-th="สไลด์วางป้าย “DBMS” ไว้ข้าง Conceptual กับ Internal และป้าย “OS” ไว้ข้าง Database · DBMS ดูแลทั้งระดับ external, conceptual และ internal ส่วนที่เป็นงานของระบบปฏิบัติการคือไฟล์จริงบนดิสก์เท่านั้น · <strong>internal level ยังเป็นของ DBMS อยู่</strong> ไม่ใช่ของ OS ซึ่งเป็นจุดที่มักตอบผิด">The slide puts a "DBMS" label beside Conceptual and Internal, and an "OS" label beside Database. The DBMS owns the external, conceptual and internal levels; only the real files on disk are the operating system's job. <strong>The internal level is still the DBMS's</strong> — that is the part people get wrong.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="ER model เป็น bottom-up หรือ top-down">Is the ER model bottom-up or top-down?</summary>
-        <div class="qa"><span class="ans" data-th="top-down">Top-down.</span><span data-th="มันเริ่มจากการระบุ<strong>ข้อมูลสำคัญ (entity)</strong> และความสัมพันธ์ระหว่างกันก่อน แล้วค่อยลงรายละเอียดเป็นattributeและ constraint · ส่วน bottom-up เริ่มจากระดับattributeแล้วจับกลุ่มขึ้นมาเป็นตาราง เหมาะกับฐานข้อมูลเล็กที่มีattributeไม่มาก · อุปมาของอาจารย์: bottom-up คือได้<strong>ใบเสร็จ</strong>มาแล้วแกะออกทีละชิ้น · ในงานจริงผสมกันได้ ไม่มีกฎห้าม">It begins by identifying the <strong>important data (entities)</strong> and the relationships between them, and only then adds attributes and constraints. Bottom-up starts at the attribute level and groups upward, which suits small databases. Her analogy: bottom-up is being handed a <strong>receipt</strong> and picking it apart. In real work you can mix the two — no rule forbids it.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="Registers ระหว่าง Staff, Branch, Client มี degree เท่าไหร่ และเรียกว่าอะไร">What is the degree of <code>Registers</code> between Staff, Branch and Client, and what is it called?</summary>
-        <div class="qa"><span class="ans" data-th="degree = 3 · เรียกว่า ternary">Degree 3 — a ternary relationship.</span><span data-th="degree ของ relationship = <strong>จำนวนentityที่ร่วมอยู่</strong> · 2 = binary (พบบ่อยที่สุด) · 3 = ternary · 4 = quaternary · วนกลับหาตัวเอง = recursive · ที่ Registers ต้องเป็น ternary เพราะการลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน">A relationship's degree is <strong>how many entities take part</strong>: 2 = binary (the most common), 3 = ternary, 4 = quaternary, looping back to itself = recursive. Registers must be ternary because one registration has to record all three things — which client, with which member of staff, at which branch.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="recursive relationship เกี่ยวอะไรกับ SQL ที่เคยเรียนมา">What does a recursive relationship have to do with the SQL you already know?</summary>
-        <div class="qa"><span class="ans" data-th="มันคือที่มาของ SELF JOIN">It is where SELF JOIN comes from.</span><span data-th="ตารางหนึ่ง join กับตัวเองได้ก็เพราะแถวของมันสัมพันธ์กันเอง · ตัวอย่างในสไลด์คือ <code>Supervises</code> ที่ <code>Staff</code> ชี้กลับหา <code>Staff</code> โดยมี role name ว่า Supervisor และ Supervisee · และในสัปดาห์ 3 เราเคยเห็นแบบเดียวกันมาแล้วคือ <code>EMPLOYEE.Super_ssn</code> ที่เป็น FK ชี้กลับหา <code>EMPLOYEE.Ssn</code> ของตัวเอง">A table can join to itself precisely because its own rows relate to one another. The slide's example is <code>Supervises</code>, where <code>Staff</code> points back at <code>Staff</code> with the role names Supervisor and Supervisee. Week 3 showed the same shape already: <code>EMPLOYEE.Super_ssn</code> is an FK pointing back at <code>EMPLOYEE.Ssn</code>.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="ทำไมการเก็บที่อยู่เป็นattributeเดียวถึงไม่ผิดเสมอไป">Why is storing an address as one single attribute not automatically wrong?</summary>
-        <div class="qa"><span class="ans" data-th="เพราะขึ้นกับว่าข้อมูลนั้นเอาไปใช้ทำอะไร">Because it depends on what the data is for.</span><span data-th="อาจารย์ยกตัวอย่างที่ไม่มีในสไลด์: ถ้าจะ<strong>เอาไปวิเคราะห์ทีหลัง</strong> เช่นถามว่าลูกค้าส่วนใหญ่มาจากจังหวัดไหน ให้<strong>แยก</strong> เพราะ GROUP BY และ ORDER BY ทำได้ง่าย · แต่ถ้าเป็น<strong>ข้อมูลสำรองนอกภารกิจหลัก</strong> เช่นที่อยู่ผู้ติดต่อฉุกเฉินในระบบโรงพยาบาล เก็บเป็นก้อนเดียวก็ไม่ผิด · คำสรุปของเธอ: “ไม่มีดีไซน์ไหนถูก 100% มันขึ้นกับเหตุผลเบื้องหลัง” — <strong>ต้องอธิบายเหตุผลของตัวเองได้</strong>">She gave an example not on the slides. If you will <strong>analyse it later</strong> — which province do most customers come from? — <strong>split it</strong>, because GROUP BY and ORDER BY then work easily. If it is <strong>backup data outside the core mission</strong>, such as an emergency contact's address in a hospital system, one attribute is fine. Her summary: "there is no design that is 100% correct; it depends on the reasoning behind it" — you must be able to <strong>justify your choice</strong>.</span></div>
-      </details>
-
-      <details class="q"><summary data-th="Quiz#1 ยังมีอยู่ไหม และคะแนนไปไหน">Is Quiz#1 still happening, and where did its marks go?</summary>
-        <div class="qa"><span class="ans" data-th="ยกเลิกแล้ว · Quiz#2 รับคะแนน 5% ไปเต็ม">Cancelled. Quiz#2 takes the full 5%.</span><span data-th="อาจารย์ประกาศในคาบ 4 ว่า Quiz#1 <strong>ยกเลิก</strong> ให้ถือว่าไม่เคยมี และ<strong>ไม่ได้เลื่อนไปสัปดาห์หน้า</strong> · เดิมมีสองครั้งรวมกัน 5 คะแนน ตอนนี้เหลือ Quiz#2 ครั้งเดียวในสัปดาห์ 9 กินคะแนน 5% ทั้งหมด · โครงสร้างคะแนนที่เหลือไม่เปลี่ยน: Exam1 30% + Exam2 35% = 65% · Group Project 15% · Assignment 10% · Attendance 5%">She announced in class 4 that Quiz#1 is <strong>cancelled</strong> and should be treated as never having existed — and that it was <strong>not</strong> pushed to the following week. The two quizzes were worth 5 marks together; now Quiz#2 in week 9 carries all of it. The rest is unchanged: Exam1 30% + Exam2 35% = 65%, Group Project 15%, Assignment 10%, Attendance 5%.</span></div>
-      </details>
 
     </div>
 
@@ -1590,7 +1538,7 @@
         <p class="why" data-th="ชื่อสองอันแรกคล้ายกันมากจนเป็นตัวลวงชั้นดี · <b>Data Administrator</b> ทำ Plan → System Planning และ Define → System Definition ที่ต้นทาง · <b>Database Administrator</b> ทำ Config → System Implementation และ Maintain/Tune → System Maintenance ที่ปลายทาง">The first two names are close enough to make an excellent distractor. The <b>Data Administrator</b> does Plan → System Planning and Define → System Definition, at the start. The <b>Database Administrator</b> does Config → System Implementation and Maintain/Tune → System Maintenance, at the end.</p>
       </details>
 
-      <details class="mcq"><summary data-n="5"><span class="qtext" data-th="ข้อใดถูกต้องเกี่ยวกับANSI-SPARC architecture">Which statement about the ANSI-SPARC architecture is correct?</span>
+      <details class="mcq"><summary data-n="5"><span class="qtext" data-th="ข้อใดถูกต้องเกี่ยวกับ ANSI-SPARC architecture">Which statement about the ANSI-SPARC architecture is correct?</span>
         <ol class="opts">
           <li data-th="เป็นมาตรฐาน ISO ตั้งแต่ปี 1975">It became an ISO standard in 1975</li>
           <li class="right" data-th="ถูกเสนอในปี 1975 แต่ไม่เคยกลายเป็นมาตรฐานทางการ">It was proposed in 1975 but never became a formal standard</li>
@@ -1626,7 +1574,7 @@
         <p class="why" data-th="สามขั้นเรียงกันชัด: <b>Conceptual → ER diagram</b> (ยังไม่ผูกกับ DBMS ตัวไหน) · <b>Logical → ตารางและ constraint</b> · <b>Physical → data files, index, partition, data block size</b> · ส่วน requirement specification เป็นผลลัพธ์ของขั้น System Definition ซึ่งมา<i>ก่อน</i>ทั้งสามขั้นนี้">The three stages line up cleanly: <b>Conceptual → ER diagram</b> (no DBMS chosen yet) · <b>Logical → tables and constraints</b> · <b>Physical → data files, indexes, partitions, block sizes</b>. A requirement specification is the output of System Definition, which comes <i>before</i> all three.</p>
       </details>
 
-      <details class="mcq"><summary data-n="8"><span class="qtext" data-th="architectureใดที่ client เป็นแบบ “อ้วน” (fat client)">Which architecture has a "fat" client?</span>
+      <details class="mcq"><summary data-n="8"><span class="qtext" data-th="architecture ใดที่ client เป็นแบบ “อ้วน” (fat client)">Which architecture has a "fat" client?</span>
         <ol class="opts">
           <li>Teleprocessing</li><li>File-Server</li><li class="right" data-th="Two-tier client-server">Two-tier client-server</li><li data-th="Three-tier client-server">Three-tier client-server</li>
         </ol>
@@ -1662,7 +1610,7 @@
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
-        <p class="why" data-th="<b>Degree = จำนวนattribute (คอลัมน์)</b> = 8 และตายตัวตาม schema · <b>Cardinality = จำนวน tuple (แถว)</b> = 6 และเปลี่ยนไปตามข้อมูล ณ ขณะนั้น · ตัวเลือกสุดท้ายเป็นคำอธิบายของ cardinality ไม่ใช่ degree · ระวังว่าในคาบ 4 คำสองคำนี้แปลคนละอย่างสิ้นเชิง"><b>Degree = the number of attributes (columns)</b> = 8, fixed by the schema. <b>Cardinality = the number of tuples (rows)</b> = 6, and that does change with the instance — which is what the last option describes. Note that both words mean something else entirely in class 4.</p>
+        <p class="why" data-th="<b>Degree = จำนวน attribute (คอลัมน์)</b> = 8 และตายตัวตาม schema · <b>Cardinality = จำนวน tuple (แถว)</b> = 6 และเปลี่ยนไปตามข้อมูล ณ ขณะนั้น · ตัวเลือกสุดท้ายเป็นคำอธิบายของ cardinality ไม่ใช่ degree · ระวังว่าในคาบ 4 คำสองคำนี้แปลคนละอย่างสิ้นเชิง"><b>Degree = the number of attributes (columns)</b> = 8, fixed by the schema. <b>Cardinality = the number of tuples (rows)</b> = 6, and that does change with the instance — which is what the last option describes. Note that both words mean something else entirely in class 4.</p>
       </details>
 
       <details class="mcq"><summary data-n="12"><span class="qtext" data-th="ข้อใด <b>ไม่ใช่</b> คุณสมบัติของ relation">Which is <b>not</b> a property of a relation?</span>
@@ -1670,7 +1618,7 @@
           <li data-th="ทุกช่องเก็บค่า atomic เพียงค่าเดียว">Each cell holds exactly one atomic value</li>
           <li data-th="ห้ามมี tuple ซ้ำกัน">There are no duplicate tuples</li>
           <li class="right" data-th="ลำดับของ tuple มีความสำคัญ">The order of the tuples matters</li>
-          <li data-th="ค่าของattributeเดียวกันมาจาก domain เดียวกัน">All values of one attribute come from the same domain</li>
+          <li data-th="ค่าของ attribute เดียวกันมาจาก domain เดียวกัน">All values of one attribute come from the same domain</li>
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
@@ -1684,7 +1632,7 @@
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
-        <p class="why" data-th="นั่นคือคุณสมบัติ <b>irreducibility</b> ซึ่งคู่กับ <b>uniqueness</b> เป็นนิยามของ <b>candidate key</b> · <b>primary key</b> คือ candidate key ที่<i>ถูกเลือก</i> · <b>alternate key</b> คือ candidate ที่<i>ไม่ถูกเลือก</i> · <b>composite key</b> พูดถึงคีย์ที่ประกอบจากหลายattribute ซึ่งเป็นคนละแกนของการจำแนก">That is the <b>irreducibility</b> property, which together with <b>uniqueness</b> defines a <b>candidate key</b>. A <b>primary key</b> is the candidate that <i>was chosen</i>; an <b>alternate key</b> is one that <i>was not</i>. A <b>composite key</b> describes a key built from several attributes — a different axis of classification altogether.</p>
+        <p class="why" data-th="นั่นคือคุณสมบัติ <b>irreducibility</b> ซึ่งคู่กับ <b>uniqueness</b> เป็นนิยามของ <b>candidate key</b> · <b>primary key</b> คือ candidate key ที่<i>ถูกเลือก</i> · <b>alternate key</b> คือ candidate ที่<i>ไม่ถูกเลือก</i> · <b>composite key</b> พูดถึงคีย์ที่ประกอบจากหลาย attribute ซึ่งเป็นคนละแกนของการจำแนก">That is the <b>irreducibility</b> property, which together with <b>uniqueness</b> defines a <b>candidate key</b>. A <b>primary key</b> is the candidate that <i>was chosen</i>; an <b>alternate key</b> is one that <i>was not</i>. A <b>composite key</b> describes a key built from several attributes — a different axis of classification altogether.</p>
       </details>
 
       <details class="mcq"><summary data-n="14"><span class="qtext" data-th="entity integrity constraint กล่าวว่าอะไร">What does the entity integrity constraint state?</span>
@@ -1692,7 +1640,7 @@
           <li data-th="ค่า FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null">An FK's value must match an existing PK, or be null</li>
           <li class="right" data-th="ทุก relation ต้องมี primary key และ primary key ห้ามเป็น null">Every relation must have a primary key, and it may never be null</li>
           <li data-th="ทุกช่องต้องเก็บค่า atomic">Every cell must hold an atomic value</li>
-          <li data-th="ค่าต้องอยู่ใน domain ของattributeนั้น">A value must lie within its attribute's domain</li>
+          <li data-th="ค่าต้องอยู่ใน domain ของ attribute นั้น">A value must lie within its attribute's domain</li>
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
@@ -1723,11 +1671,11 @@
       <details class="mcq"><summary data-n="17"><span class="qtext" data-th="ความสัมพันธ์ Registers ที่เชื่อม Staff, Branch และ Client มี degree เท่าไหร่">A <code>Registers</code> relationship joining Staff, Branch and Client has what degree?</span>
         <ol class="opts">
           <li data-th="2 — binary">2 — binary</li><li class="right" data-th="3 — ternary">3 — ternary</li>
-          <li data-th="4 — quaternary">4 — quaternary</li><li data-th="ขึ้นกับจำนวนattribute">It depends on how many attributes it has</li>
+          <li data-th="4 — quaternary">4 — quaternary</li><li data-th="ขึ้นกับจำนวน attribute">It depends on how many attributes it has</li>
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
-        <p class="why" data-th="<b>Degree ของ relationship = จำนวนentityที่ร่วมอยู่</b> ซึ่งที่นี่คือสาม จึงเป็น ternary · การลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน · ตัวเลือกสุดท้ายเป็นตัวลวงที่อาศัยความสับสนกับ degree ของ <b>relation</b> ในคาบ 3 ซึ่งนับคอลัมน์"><b>A relationship's degree is how many entities take part</b> — three here, so ternary. One registration must record all three things: which client, with which member of staff, at which branch. The last option is a distractor trading on class 3's degree of a <b>relation</b>, which counts columns.</p>
+        <p class="why" data-th="<b>Degree ของ relationship = จำนวน entity ที่ร่วมอยู่</b> ซึ่งที่นี่คือสาม จึงเป็น ternary · การลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน · ตัวเลือกสุดท้ายเป็นตัวลวงที่อาศัยความสับสนกับ degree ของ <b>relation</b> ในคาบ 3 ซึ่งนับคอลัมน์"><b>A relationship's degree is how many entities take part</b> — three here, so ternary. One registration must record all three things: which client, with which member of staff, at which branch. The last option is a distractor trading on class 3's degree of a <b>relation</b>, which counts columns.</p>
       </details>
 
       <details class="mcq"><summary data-n="18"><span class="qtext" data-th="ใน multiplicity <code>0..*</code> เลข 0 บอกอะไร">In the multiplicity <code>0..*</code>, what does the <code>0</code> tell you?</span>
@@ -1735,26 +1683,26 @@
           <li class="right" data-th="participation — การเข้าร่วมเป็นทางเลือก ไม่บังคับ">Participation — taking part is optional</li>
           <li data-th="cardinality — เกี่ยวได้มากที่สุดศูนย์ตัว">Cardinality — at most zero occurrences</li>
           <li data-th="ว่าความสัมพันธ์นี้เป็น one-to-many">That the relationship is one-to-many</li>
-          <li data-th="ว่าattributeนี้เป็น null ได้">That the attribute may be null</li>
+          <li data-th="ว่า attribute นี้เป็น null ได้">That the attribute may be null</li>
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
         <p class="why" data-th="เขียนเป็น <b>min..max</b> เสมอ · <b>min = participation</b> ตอบว่าบังคับไหม (0 = optional, 1 = mandatory) · <b>max = cardinality</b> ตอบว่าถ้ามีแล้วมากสุดกี่ตัว · ตัวเลือกที่สองสลับสองคำนี้ · ตัวเลือกที่สามผิดเพราะการตั้งชื่อ 1:1/1:*/*:* ดู max ทั้งสองฝั่ง ไม่ได้ดูตัวเลขนี้ตัวเดียว"><b>min..max</b>, always. <b>min = participation</b> — is it compulsory? (0 = optional, 1 = mandatory). <b>max = cardinality</b> — if it exists, how many at most? The second option swaps the two. The third is wrong because naming 1:1 / 1:* / *:* uses the max on <i>both</i> sides, not this one number.</p>
       </details>
 
-      <details class="mcq"><summary data-n="19"><span class="qtext" data-th="<code>telNo [1..3]</code> ในnotation UML หมายถึงอะไร">In the UML notation, what does <code>telNo [1..3]</code> mean?</span>
+      <details class="mcq"><summary data-n="19"><span class="qtext" data-th="<code>telNo [1..3]</code> ใน notation UML หมายถึงอะไร">In the UML notation, what does <code>telNo [1..3]</code> mean?</span>
         <ol class="opts">
           <li data-th="composite attribute ที่มีสามส่วนประกอบ">A composite attribute with three components</li>
           <li class="right" data-th="multi-valued attribute เก็บได้ตั้งแต่ 1 ถึง 3 ค่า">A multi-valued attribute holding between 1 and 3 values</li>
-          <li data-th="derived attribute ที่คำนวณจากสามattribute">A derived attribute computed from three others</li>
+          <li data-th="derived attribute ที่คำนวณจากสาม attribute">A derived attribute computed from three others</li>
           <li data-th="multiplicity ของความสัมพันธ์">The multiplicity of a relationship</li>
         </ol>
           <span class="tap" data-th="แตะเพื่อดูเฉลย">tap for the answer</span>
         </summary>
-        <p class="why" data-th="วงเล็บเหลี่ยมหลังชื่อattributeคือnotationของ <b>multi-valued attribute</b> อ่านว่า “ต้องมีอย่างน้อย 1 เบอร์ และเก็บได้มากสุด 3 เบอร์” · <b>composite</b> ใช้การ<i>ย่อหน้า</i>ใต้attributeแม่ · <b>derived</b> ใช้เครื่องหมาย <code>/</code> นำหน้า · ส่วน multiplicity เขียนไว้บน<i>เส้น</i>ระหว่างกล่อง ไม่ใช่หลังชื่อattribute">Square brackets after an attribute name are the notation for a <b>multi-valued attribute</b>, read as "at least 1 number, and at most 3 stored". <b>Composite</b> uses <i>indentation</i> under a parent attribute; <b>derived</b> uses a leading <code>/</code>; and a multiplicity is written on the <i>line</i> between boxes, not after an attribute name.</p>
+        <p class="why" data-th="วงเล็บเหลี่ยมหลังชื่อ attribute คือ notation ของ <b>multi-valued attribute</b> อ่านว่า “ต้องมีอย่างน้อย 1 เบอร์ และเก็บได้มากสุด 3 เบอร์” · <b>composite</b> ใช้การ<i>ย่อหน้า</i>ใต้ attribute แม่ · <b>derived</b> ใช้เครื่องหมาย <code>/</code> นำหน้า · ส่วน multiplicity เขียนไว้บน<i>เส้น</i>ระหว่างกล่อง ไม่ใช่หลังชื่อ attribute">Square brackets after an attribute name are the notation for a <b>multi-valued attribute</b>, read as "at least 1 number, and at most 3 stored". <b>Composite</b> uses <i>indentation</i> under a parent attribute; <b>derived</b> uses a leading <code>/</code>; and a multiplicity is written on the <i>line</i> between boxes, not after an attribute name.</p>
       </details>
 
-      <details class="mcq"><summary data-n="20"><span class="qtext" data-th="บนER diagram ระดับ conceptual ต้องแสดงอะไรบ้าง">On a conceptual-level ER diagram, what do you show?</span>
+      <details class="mcq"><summary data-n="20"><span class="qtext" data-th="บน ER diagram ระดับ conceptual ต้องแสดงอะไรบ้าง">On a conceptual-level ER diagram, what do you show?</span>
         <ol class="opts">
           <li class="right" data-th="primary key เท่านั้น">Primary keys only</li>
           <li data-th="primary key และ foreign key">Primary keys and foreign keys</li>
@@ -1767,7 +1715,69 @@
       </details>
 
     </div>
-  </section>
+<div class="sub-h" data-th="คำถามปลายเปิด — ตอบเป็นคำอธิบาย">Open questions — answer in your own words</div>
+
+    <div class="quiz">
+
+      <details class="q"><summary data-th="relation หนึ่งมี 6 แถว 8 คอลัมน์ · cardinality เท่าไหร่ degree เท่าไหร่">A relation has 6 rows and 8 columns. What are its cardinality and degree?</summary>
+        <div class="qa"><span class="ans" data-th="cardinality = 6 · degree = 8">cardinality = 6 · degree = 8</span><span data-th="cardinality นับแถวและ<strong>เปลี่ยนไปตามข้อมูล ณ ขณะนั้น</strong> ลบแถวหนึ่งออกก็เหลือ 5 · degree นับคอลัมน์และ<strong>ตายตัวตาม schema</strong> จะเปลี่ยนได้ก็ต่อเมื่อ ALTER TABLE · ระวังว่าในคาบ 4 คำสองคำนี้แปลว่าอย่างอื่นไปเลย">Cardinality counts rows and <strong>changes with the instance</strong> — delete one and it becomes 5. Degree counts columns and is <strong>fixed by the schema</strong>; only an ALTER TABLE changes it. Note that in class 4 both words mean something else entirely.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="{StudentNo, Email} เป็น candidate key ของ Students หรือไม่ เพราะอะไร">Is <code>{StudentNo, Email}</code> a candidate key of <code>Students</code>?</summary>
+        <div class="qa"><span class="ans" data-th="ไม่ใช่ · เป็นแค่ superkey เพราะลดได้อีก">No — it is only a superkey, because it can be reduced.</span><span data-th="candidate key ต้องมีสองคุณสมบัติ: <strong>uniqueness</strong> และ <strong>irreducibility</strong> · ชุดนี้ระบุแถวได้จริง แต่ตัดตัวไหนออกไปหนึ่งตัวก็ยังระบุได้อยู่ดี จึงยังลดได้ ไม่ผ่านข้อสอง · <code>StudentNo</code> เดี่ยวๆ และ <code>Email</code> เดี่ยวๆ ต่างหากที่เป็น candidate key">A candidate key needs both <strong>uniqueness</strong> and <strong>irreducibility</strong>. This set does identify a row, but drop either attribute and it still does — so it is reducible and fails the second test. <code>StudentNo</code> alone and <code>Email</code> alone are the candidate keys.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="foreign key ที่ไม่ได้เขียน ON DELETE ไว้เลย จะทำอะไรตอนลบแถวแม่ที่มีลูกอยู่">A foreign key with no <code>ON DELETE</code> clause at all — what happens when you delete a parent that still has children?</summary>
+        <div class="qa"><span class="ans" data-th="ปฏิเสธการลบ เพราะค่าเริ่มต้นคือ RESTRICT">The delete is refused — the default is RESTRICT.</span><span data-th="<strong>เขียน RESTRICT เท่ากับไม่เขียนอะไรเลย</strong> ทั้งคู่ให้ผลเดียวกัน (NO ACTION ก็อย่างเดียวกัน) · จะให้ลบตามไปต้อง DROP constraint เดิมแล้ว ADD กลับมาใหม่พร้อม <code>ON DELETE CASCADE</code> · และใน MySQL Workbench ช่อง Related Tables จะแสดง On Update: RESTRICT / On Delete: RESTRICT ให้เห็นตรงๆ"><strong>Writing RESTRICT is identical to writing nothing</strong> (NO ACTION likewise). To make it cascade you must DROP the old constraint and ADD it back with <code>ON DELETE CASCADE</code>. MySQL Workbench shows this plainly: the Related Tables panel reads On Update: RESTRICT / On Delete: RESTRICT.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="คำสั่ง DELETE ละเมิด integrity constraint ชนิดใดได้บ้าง">Which integrity constraints can a <code>DELETE</code> violate?</summary>
+        <div class="qa"><span class="ans" data-th="ชนิดเดียวเท่านั้น — referential integrity">Exactly one — referential integrity.</span><span data-th="เพราะ DELETE ไม่ได้ใส่ค่าใหม่เข้าไป จึงละเมิด domain, key หรือ entity integrity ไม่ได้เลย · มันละเมิดได้อย่างเดียวคือเมื่อ PK ของแถวที่ลบยังถูกอ้างอยู่จากที่อื่น · เทียบกับ INSERT ที่ละเมิดได้ครบทุกชนิด">A DELETE puts no new value in, so it cannot violate a domain, a key, or entity integrity. The only way it can go wrong is when the PK of the row being removed is still referenced elsewhere. Compare INSERT, which can violate every kind.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Staff 1..1 — Manages ▶ — 0..1 Branch · อ่านจาก Branch ไป Staff ว่ายังไง">Given <code>Staff 1..1 — Manages &#9654; — 0..1 Branch</code>, how do you read it from Branch to Staff?</summary>
+        <div class="qa"><span class="ans" data-th="“สาขาหนึ่งต้องมีผู้จัดการ และมีได้คนเดียวเท่านั้น”">"One branch must have a manager, and exactly one."</span><span data-th="อ่านจาก Branch ไป Staff ต้อง<strong>ดูตัวเลขฝั่ง Staff</strong> ซึ่งคือ <code>1..1</code> · min=1 แปลว่าบังคับ (mandatory participation) · max=1 แปลว่ามากสุดหนึ่ง · ถ้าเผลอไปดู <code>0..1</code> ฝั่ง Branch จะได้ประโยคผิดทั้งประโยค นี่คือกับดักที่อาจารย์เตือน">Reading Branch → Staff means <strong>looking at the number on Staff's side</strong>, which is <code>1..1</code>. min=1 makes it mandatory participation; max=1 means at most one. Look at Branch's <code>0..1</code> by mistake and the whole sentence comes out wrong — the trap she warned about.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="dateAdvert กับ cost ควรไปอยู่ที่ Newspaper หรือ PropertyForRent">Should <code>dateAdvert</code> and <code>cost</code> live on <code>Newspaper</code> or on <code>PropertyForRent</code>?</summary>
+        <div class="qa"><span class="ans" data-th="ไม่ใช่ทั้งคู่ — เป็น attribute ของ relationship">Neither — they are attributes of the relationship.</span><span data-th="วางที่ PropertyForRent ไม่ได้ เพราะบ้านหลังเดียวลงโฆษณาได้หลายฉบับ คนละวัน คนละราคา · วางที่ Newspaper ก็ไม่ได้ เพราะหนังสือพิมพ์ฉบับเดียวลงประกาศได้หลายรายการในราคาต่างกัน · <strong>ข้อมูลนี้เกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้วเท่านั้น</strong> จึงห้อยจากเส้นด้วยเส้นประ ลงกล่องที่เว้นหัวไว้ว่าง">Not on PropertyForRent: one property can be advertised in several papers, on different days, at different prices. Not on Newspaper: one paper carries many listings at differing costs. <strong>This data can only exist once the relationship itself occurs</strong> — so it hangs off the line by a dashed line into a box whose header is left blank.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Rooms(roomNo, roomCapacity) ในธุรกิจหอพักที่มี 4 ตึกผังเหมือนกัน เป็น entity ชนิดไหน">In a dormitory business with four identically laid-out buildings, what kind of entity is <code>Rooms(roomNo, roomCapacity)</code>?</summary>
+        <div class="qa"><span class="ans" data-th="weak entity — เพราะ roomNo ลำพังระบุห้องไม่ได้">A weak entity — <code>roomNo</code> alone cannot identify a room.</span><span data-th="ทั้งสี่ตึกใช้เลขห้องชุดเดียวกัน <code>101</code> จึงหมายถึงห้องจริงสี่ห้อง · แก้ได้สองทาง: (1) ยืม <code>bldgNo</code> จาก <code>Buildings</code> ผ่าน <strong>identifying relationship</strong> มาต่อเป็น composite key ให้ 101+A ต่างจาก 101+B · (2) สร้าง <strong>surrogate key</strong> เช่น <code>roomID</code> แบบรันนิ่งขึ้นมาใช้แทน ซึ่งอาจารย์บอกว่าไม่ผิด">All four buildings number their rooms the same way, so <code>101</code> names four real rooms. Two fixes: (1) borrow <code>bldgNo</code> from <code>Buildings</code> through an <strong>identifying relationship</strong> to form a composite key, making 101+A distinct from 101+B; or (2) invent a <strong>surrogate key</strong> such as a running <code>roomID</code> — which she said is not wrong.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ANSI-SPARC เป็นมาตรฐานทางการหรือไม่">Is ANSI-SPARC a formal standard?</summary>
+        <div class="qa"><span class="ans" data-th="ไม่ · เสนอปี 1975 แต่ไม่เคยกลายเป็นมาตรฐานจริง">No. Proposed in 1975, it never became one.</span><span data-th="สไลด์เขียนไว้ตรงๆ ว่า “never became a formal standard” แต่ยังถูกใช้เป็นฐานความเข้าใจการทำงานของ DBMS มาตลอด · ANSI = American National Standards Institute · SPARC = Standards Planning And Requirements Committee · สิ่งที่มันซื้อมาให้คือ <strong>data independence</strong> — schema ระดับบนไม่กระทบเมื่อระดับล่างเปลี่ยน">The slide says so in as many words, yet it is still used as the basis for understanding how a DBMS works. ANSI = American National Standards Institute; SPARC = Standards Planning And Requirements Committee. What it buys is <strong>data independence</strong> — an upper schema is unaffected when a lower one changes.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ระดับไหนของ ANSI-SPARC ที่ OS ดูแล ไม่ใช่ DBMS">Which part of the ANSI-SPARC picture belongs to the OS rather than the DBMS?</summary>
+        <div class="qa"><span class="ans" data-th="การจัดเก็บจริงบนดิสก์ ที่อยู่ใต้ internal level ลงไป">The physical storage on disk, below the internal level.</span><span data-th="สไลด์วางป้าย “DBMS” ไว้ข้าง Conceptual กับ Internal และป้าย “OS” ไว้ข้าง Database · DBMS ดูแลทั้งระดับ external, conceptual และ internal ส่วนที่เป็นงานของระบบปฏิบัติการคือไฟล์จริงบนดิสก์เท่านั้น · <strong>internal level ยังเป็นของ DBMS อยู่</strong> ไม่ใช่ของ OS ซึ่งเป็นจุดที่มักตอบผิด">The slide puts a "DBMS" label beside Conceptual and Internal, and an "OS" label beside Database. The DBMS owns the external, conceptual and internal levels; only the real files on disk are the operating system's job. <strong>The internal level is still the DBMS's</strong> — that is the part people get wrong.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ER model เป็น bottom-up หรือ top-down">Is the ER model bottom-up or top-down?</summary>
+        <div class="qa"><span class="ans" data-th="top-down">Top-down.</span><span data-th="มันเริ่มจากการระบุ<strong>ข้อมูลสำคัญ (entity)</strong> และความสัมพันธ์ระหว่างกันก่อน แล้วค่อยลงรายละเอียดเป็น attribute และ constraint · ส่วน bottom-up เริ่มจากระดับ attribute แล้วจับกลุ่มขึ้นมาเป็นตาราง เหมาะกับฐานข้อมูลเล็กที่มี attribute ไม่มาก · อุปมาของอาจารย์: bottom-up คือได้<strong>ใบเสร็จ</strong>มาแล้วแกะออกทีละชิ้น · ในงานจริงผสมกันได้ ไม่มีกฎห้าม">It begins by identifying the <strong>important data (entities)</strong> and the relationships between them, and only then adds attributes and constraints. Bottom-up starts at the attribute level and groups upward, which suits small databases. Her analogy: bottom-up is being handed a <strong>receipt</strong> and picking it apart. In real work you can mix the two — no rule forbids it.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Registers ระหว่าง Staff, Branch, Client มี degree เท่าไหร่ และเรียกว่าอะไร">What is the degree of <code>Registers</code> between Staff, Branch and Client, and what is it called?</summary>
+        <div class="qa"><span class="ans" data-th="degree = 3 · เรียกว่า ternary">Degree 3 — a ternary relationship.</span><span data-th="degree ของ relationship = <strong>จำนวน entity ที่ร่วมอยู่</strong> · 2 = binary (พบบ่อยที่สุด) · 3 = ternary · 4 = quaternary · วนกลับหาตัวเอง = recursive · ที่ Registers ต้องเป็น ternary เพราะการลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน">A relationship's degree is <strong>how many entities take part</strong>: 2 = binary (the most common), 3 = ternary, 4 = quaternary, looping back to itself = recursive. Registers must be ternary because one registration has to record all three things — which client, with which member of staff, at which branch.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="recursive relationship เกี่ยวอะไรกับ SQL ที่เคยเรียนมา">What does a recursive relationship have to do with the SQL you already know?</summary>
+        <div class="qa"><span class="ans" data-th="มันคือที่มาของ SELF JOIN">It is where SELF JOIN comes from.</span><span data-th="ตารางหนึ่ง join กับตัวเองได้ก็เพราะแถวของมันสัมพันธ์กันเอง · ตัวอย่างในสไลด์คือ <code>Supervises</code> ที่ <code>Staff</code> ชี้กลับหา <code>Staff</code> โดยมี role name ว่า Supervisor และ Supervisee · และในสัปดาห์ 3 เราเคยเห็นแบบเดียวกันมาแล้วคือ <code>EMPLOYEE.Super_ssn</code> ที่เป็น FK ชี้กลับหา <code>EMPLOYEE.Ssn</code> ของตัวเอง">A table can join to itself precisely because its own rows relate to one another. The slide's example is <code>Supervises</code>, where <code>Staff</code> points back at <code>Staff</code> with the role names Supervisor and Supervisee. Week 3 showed the same shape already: <code>EMPLOYEE.Super_ssn</code> is an FK pointing back at <code>EMPLOYEE.Ssn</code>.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="ทำไมการเก็บที่อยู่เป็น attribute เดียวถึงไม่ผิดเสมอไป">Why is storing an address as one single attribute not automatically wrong?</summary>
+        <div class="qa"><span class="ans" data-th="เพราะขึ้นกับว่าข้อมูลนั้นเอาไปใช้ทำอะไร">Because it depends on what the data is for.</span><span data-th="อาจารย์ยกตัวอย่างที่ไม่มีในสไลด์: ถ้าจะ<strong>เอาไปวิเคราะห์ทีหลัง</strong> เช่นถามว่าลูกค้าส่วนใหญ่มาจากจังหวัดไหน ให้<strong>แยก</strong> เพราะ GROUP BY และ ORDER BY ทำได้ง่าย · แต่ถ้าเป็น<strong>ข้อมูลสำรองนอกภารกิจหลัก</strong> เช่นที่อยู่ผู้ติดต่อฉุกเฉินในระบบโรงพยาบาล เก็บเป็นก้อนเดียวก็ไม่ผิด · คำสรุปของเธอ: “ไม่มีดีไซน์ไหนถูก 100% มันขึ้นกับเหตุผลเบื้องหลัง” — <strong>ต้องอธิบายเหตุผลของตัวเองได้</strong>">She gave an example not on the slides. If you will <strong>analyse it later</strong> — which province do most customers come from? — <strong>split it</strong>, because GROUP BY and ORDER BY then work easily. If it is <strong>backup data outside the core mission</strong>, such as an emergency contact's address in a hospital system, one attribute is fine. Her summary: "there is no design that is 100% correct; it depends on the reasoning behind it" — you must be able to <strong>justify your choice</strong>.</span></div>
+      </details>
+
+      <details class="q"><summary data-th="Quiz#1 ยังมีอยู่ไหม และคะแนนไปไหน">Is Quiz#1 still happening, and where did its marks go?</summary>
+        <div class="qa"><span class="ans" data-th="ยกเลิกแล้ว · Quiz#2 รับคะแนน 5% ไปเต็ม">Cancelled. Quiz#2 takes the full 5%.</span><span data-th="อาจารย์ประกาศในคาบ 4 ว่า Quiz#1 <strong>ยกเลิก</strong> ให้ถือว่าไม่เคยมี และ<strong>ไม่ได้เลื่อนไปสัปดาห์หน้า</strong> · เดิมมีสองครั้งรวมกัน 5 คะแนน ตอนนี้เหลือ Quiz#2 ครั้งเดียวในสัปดาห์ 9 กินคะแนน 5% ทั้งหมด · โครงสร้างคะแนนที่เหลือไม่เปลี่ยน: Exam1 30% + Exam2 35% = 65% · Group Project 15% · Assignment 10% · Attendance 5%">She announced in class 4 that Quiz#1 is <strong>cancelled</strong> and should be treated as never having existed — and that it was <strong>not</strong> pushed to the following week. The two quizzes were worth 5 marks together; now Quiz#2 in week 9 carries all of it. The rest is unchanged: Exam1 30% + Exam2 35% = 65%, Group Project 15%, Assignment 10%, Attendance 5%.</span></div>
+      </details>
+
+    </div>
+
+      </section>
 
 </div>
 <div class="marker-tray">
