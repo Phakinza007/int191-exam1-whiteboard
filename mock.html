@@ -61,6 +61,14 @@
   }
   .lang span{padding:4px 9px; border-radius:999px;}
   .lang .on{background:var(--accent); color:var(--accent-ink);}
+  .tools{position:fixed; top:14px; right:14px; z-index:20; display:flex; gap:8px; align-items:center;}
+  .tools .lang{position:static; top:auto; right:auto;}
+  .theme{
+    cursor:pointer; border:1.5px solid var(--line-strong); background:var(--surface); border-radius:999px; padding:4px;
+    font-size:11px; font-weight:700; display:flex; gap:2px; color:var(--ink-soft); box-shadow:var(--shadow);
+  }
+  .theme span{padding:4px 9px; border-radius:999px; line-height:1;}
+  .theme .on{background:var(--accent); color:var(--accent-ink);}
 
   /* start */
   .topics{display:grid; gap:7px; margin:16px 0 20px;}
@@ -139,10 +147,13 @@
   .fb .expl{display:block; color:var(--ink-soft); padding-top:9px; border-top:1px dashed var(--line-strong);}
   .fb code{font-family:var(--fm); font-size:.92em; background:var(--surface); padding:1px 5px; border-radius:4px;}
   .hide{display:none !important;}
-  @media print{ .lang,.btn{display:none !important;} .rbody{display:block !important;} body{background:#fff;} }
+  @media print{ .tools,.lang,.theme,.btn{display:none !important;} .rbody{display:block !important;} body{background:#fff;} }
 </style>
 
-<button class="lang" id="lang" type="button"><span id="lEN" class="on">EN</span><span id="lTH">TH</span></button>
+<div class="tools">
+  <button class="theme" id="theme" type="button" aria-label="Light or dark"><span id="tLT" class="on">☀</span><span id="tDK">☾</span></button>
+  <button class="lang" id="lang" type="button"><span id="lEN" class="on">EN</span><span id="lTH">TH</span></button>
+</div>
 
 <div class="wrap">
 
@@ -303,10 +314,10 @@ const Q = [
       th:'ODBC (Open Database Connectivity) เป็นของ Microsoft ให้อินเทอร์เฟซเดียวเข้าถึงฐานข้อมูลหลายชนิดผ่าน driver · ส่วน JDBC เป็นชุดเมธอดฝั่ง Java ที่ทำหน้าที่เดียวกัน · ทั้งคู่คือ database-oriented middleware'}},
 
 {t:'w2',
- q:{en:'Which is the correct order of the five data models the slides list?', th:'data model ห้าแบบที่สไลด์ให้มา เรียงลำดับอย่างไร'},
- o:[{en:'Relational → Hierarchical → Network → Object-oriented → Object-relational',th:'Relational → Hierarchical → Network → Object-oriented → Object-relational'},{en:'Network → Hierarchical → Relational → Object-relational → Object-oriented',th:'Network → Hierarchical → Relational → Object-relational → Object-oriented'},{en:'Hierarchical → Relational → Network → Object-oriented → Object-relational',th:'Hierarchical → Relational → Network → Object-oriented → Object-relational'},{en:'Hierarchical → Network → Relational → Object-oriented → Object-relational',th:'Hierarchical → Network → Relational → Object-oriented → Object-relational'}], a:3,
- why:{en:'Hierarchical is a tree where each node has at most one parent; Network is a many-to-many graph; Relational is plain tables; then object-oriented and the object-relational blend.',
-      th:'Hierarchical เป็นต้นไม้ที่แต่ละโหนดมีพ่อได้คนเดียว · Network เป็นกราฟแบบ many-to-many · Relational เป็นตารางธรรมดา · แล้วจึงเป็น object-oriented และ object-relational ที่ผสมสองแบบ'}},
+ q:{en:'Which data model is drawn as a tree in which each node has at most one parent?', th:'data model แบบใดวาดเป็นต้นไม้ที่แต่ละ node มีพ่อได้มากที่สุดหนึ่งตัว'},
+ o:[{en:'Network model',th:'Network model'},{en:'Relational model',th:'Relational model'},{en:'Object-relational model',th:'Object-relational model'},{en:'Hierarchical model',th:'Hierarchical model'}], a:3,
+ why:{en:'The slides illustrate five: <b>Hierarchical</b> — a tree branching top to bottom, each node with at most one parent · <b>Network</b> — a graph connecting in many directions (many-to-many), more complex than the hierarchical one · <b>Object-oriented</b> — data as objects carrying both data and behaviour · <b>Relational</b> — plain tables of rows and columns · <b>Object-relational</b> — tables with objects embedded in some columns, a blend of the two.',
+      th:'สไลด์ยกมาห้าแบบ: <b>Hierarchical</b> — ต้นไม้แตกจากบนลงล่าง แต่ละ node มีพ่อได้มากที่สุดหนึ่งตัว · <b>Network</b> — กราฟที่ต่อกันได้หลายทิศ (many-to-many) ซับซ้อนกว่าแบบ hierarchical · <b>Object-oriented</b> — เก็บข้อมูลเป็น object ที่มีทั้ง data และ behaviour · <b>Relational</b> — ตารางธรรมดาที่มีแถวและคอลัมน์ · <b>Object-relational</b> — ตารางที่ฝัง object ไว้ในบางคอลัมน์ เป็นลูกผสมของสองแบบ'}},
 
 {t:'w2',
  q:{en:'A data model is defined as a collection of concepts and rules made of which three parts?', th:'นิยามของ data model ประกอบด้วยสามส่วนใด'},
@@ -543,10 +554,10 @@ const Q = [
       th:'ช่วงค่าที่ยอมรับได้คือ domain constraint ซึ่งเขียนเป็น SQL ด้วย CHECK · นี่คือ LAB02 ข้อ 6.4 และมันพิสูจน์ว่า UPDATE ก็ละเมิด domain ได้ ไม่ใช่แค่ INSERT'}},
 
 {t:'lab',
- q:{en:'If you do not name a foreign key constraint yourself, what does MySQL/InnoDB call it?', th:'ถ้าไม่ตั้งชื่อ foreign key constraint เอง MySQL/InnoDB จะตั้งชื่อว่าอะไร'},
- o:[{en:'<code>&lt;table&gt;_fk_&lt;n&gt;</code>',th:'&lt;table&gt;_fk_&lt;n&gt;'},{en:'<code>&lt;table&gt;_ibfk_&lt;n&gt;</code>',th:'&lt;table&gt;_ibfk_&lt;n&gt;'},{en:'<code>fk_&lt;column&gt;</code>',th:'fk_&lt;column&gt;'},{en:'It has no name',th:'ไม่มีชื่อ'}], a:1,
- why:{en:'ibfk = InnoDB foreign key, and n is that FK\'s position in the table. LAB03 requires you to name constraints yourself, as prefix_table_column, lowercase, at most 64 characters — partly because you cannot DROP a constraint without knowing its name.',
-      th:'ibfk ย่อจาก InnoDB foreign key และ n คือลำดับของ FK ในตารางนั้น · LAB03 บังคับให้ตั้งชื่อเอง รูปแบบ prefix_table_column ตัวเล็กล้วน ไม่เกิน 64 ตัวอักษร ส่วนหนึ่งเพราะเราจะ DROP constraint ไม่ได้ถ้าไม่รู้ชื่อมัน'}},
+ q:{en:'The class-3 slides count four kinds of integrity constraint. LAB03 lists five. Which five does LAB03 name?', th:'สไลด์คาบ 3 นับ integrity constraint ได้สี่ชนิด แต่ LAB03 ลิสต์มาห้า · LAB03 ระบุห้าชนิดใด'},
+ o:[{en:'Key, Entity integrity, Referential integrity, General, CHECK',th:'Key, Entity integrity, Referential integrity, General, CHECK'},{en:'Key, Entity integrity, Referential integrity, Domain, NOT NULL',th:'Key, Entity integrity, Referential integrity, Domain, NOT NULL'},{en:'Primary, Foreign, Unique, Check, Not null',th:'Primary, Foreign, Unique, Check, Not null'},{en:'Domain, Entity integrity, Referential integrity, CASCADE, RESTRICT',th:'Domain, Entity integrity, Referential integrity, CASCADE, RESTRICT'}], a:1,
+ why:{en:'Same content, different counting — and that is the trap. The slides use four groups and fold Domain, NOT NULL, UNIQUE and CHECK together as <b>General constraints</b>; LAB03 pulls <b>Domain</b> and <b>NOT NULL</b> out as groups of their own. So read the wording of the exam question: if it says four, answer Key / Entity / Referential / General.',
+      th:'เนื้อหาเดียวกัน แต่นับคนละแบบ และตรงนี้แหละคือกับดัก · สไลด์นับสี่กลุ่ม โดยยุบ Domain, NOT NULL, UNIQUE และ CHECK รวมเป็น <b>General constraint</b> · ส่วน LAB03 ดึง <b>Domain</b> และ <b>NOT NULL</b> ออกมาเป็นกลุ่มของตัวเอง · ดังนั้นให้อ่านโจทย์ให้ดี ถ้าโจทย์บอกว่าสี่ ให้ตอบ Key / Entity / Referential / General'}},
 
 {t:'lab',
  q:{en:'You add a CHECK constraint with ALTER TABLE, but existing rows break it. What happens?', th:'คุณเพิ่ม CHECK constraint ด้วย ALTER TABLE แต่ข้อมูลเดิมไม่ผ่านเงื่อนไข จะเกิดอะไรขึ้น'},
@@ -573,6 +584,22 @@ let instant = false, locked = [];
 const $ = id => document.getElementById(id);
 const L = o => (lang === 'th' && o.th) ? o.th : o.en;
 
+/* ---------- theme ---------- */
+const TKEY = 'int191mock-theme';
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('tLT').classList.toggle('on', t === 'light');
+  document.getElementById('tDK').classList.toggle('on', t === 'dark');
+  try { localStorage.setItem(TKEY, t); } catch(e){}
+}
+(function(){
+  let t = 'light';
+  try { const s = localStorage.getItem(TKEY); if (s === 'dark' || s === 'light') t = s; } catch(e){}
+  applyTheme(t);
+  document.getElementById('theme').onclick = () =>
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+})();
+
 /* ---------- language ---------- */
 function paintStatic(){
   document.documentElement.classList.toggle('th', lang === 'th');
@@ -583,8 +610,8 @@ function paintStatic(){
   $('lEN').classList.toggle('on', lang === 'en');
   $('lTH').classList.toggle('on', lang === 'th');
   $('startSub').innerHTML = lang === 'th'
-    ? 'ข้อสอบปรนัย ' + Q.length + ' ข้อ ครอบคลุมคาบ 1–5 และ lab · <b>ไม่เห็นเฉลยจนกว่าจะส่ง</b> เพราะจุดประสงค์คือหาว่าอ่อนหัวข้อไหน ไม่ใช่ทบทวนไปตอบไป · จบแล้วจะสรุปคะแนนรายหัวข้อให้'
-    : ''+Q.length+' multiple-choice questions across classes 1–5 and the labs. <b>Nothing is revealed until you submit</b> — the point is to find out which topics are weak, not to read the answers as you go. You get a per-topic breakdown at the end.';
+    ? 'ข้อสอบปรนัย ' + Q.length + ' ข้อ ครอบคลุมคาบ 1–5 และ lab · ค่าเริ่มต้นคือ<b>บอกถูกผิดทันทีหลังตอบแต่ละข้อ</b> · ถ้าอยากได้บรรยากาศห้องสอบจริง ให้ติ๊กออก แล้วจะไม่เห็นเฉลยจนกว่าจะส่ง · จบแล้วสรุปคะแนนรายหัวข้อให้เสมอ'
+    : ''+Q.length+' multiple-choice questions across classes 1–5 and the labs. By default it <b>tells you right or wrong straight after each answer</b>, with the reason. Untick that for exam conditions — then nothing is revealed until you submit. Either way you get a per-topic breakdown at the end.';
   $('startHint').textContent = lang === 'th'
     ? 'ไม่จำกัดเวลา ถ้าไม่ติ๊กจับเวลา'
     : 'untimed unless you tick the box';

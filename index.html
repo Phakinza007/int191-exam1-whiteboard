@@ -73,17 +73,25 @@
   .eyebrow{font-family:var(--font-mono); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:10px;}
   .masthead h1{font-family:var(--font-marker); font-size:clamp(27px,4vw,39px); font-weight:700; line-height:1.2;}
   .masthead p{margin:12px 0 0; max-width:64ch; color:var(--ink-soft); font-size:15.5px; line-height:1.6;}
+  .board-tools{position:absolute; top:4px; right:0; display:flex; gap:8px; align-items:center;}
   .lang-toggle{
-    position:absolute; top:4px; right:0; cursor:pointer; border:1.5px solid var(--line-strong); background:var(--surface);
+    position:static; cursor:pointer; border:1.5px solid var(--line-strong); background:var(--surface);
     border-radius:999px; padding:4px; font-family:var(--font-mono); font-size:11.5px; font-weight:700;
     display:inline-flex; gap:2px; color:var(--ink-soft); box-shadow:var(--shadow); transform:rotate(-2deg);
   }
+  .theme-toggle{
+    cursor:pointer; border:1.5px solid var(--line-strong); background:var(--surface);
+    border-radius:999px; padding:4px; font-size:11.5px; font-weight:700;
+    display:inline-flex; gap:2px; color:var(--ink-soft); box-shadow:var(--shadow); transform:rotate(-2deg);
+  }
+  .theme-toggle span{padding:4px 10px; border-radius:999px; line-height:1; transition:background .15s,color .15s;}
+  .theme-toggle .tt-on{background:var(--accent); color:var(--accent-ink);}
   .lang-toggle span{padding:4px 10px; border-radius:999px; transition:background .15s,color .15s;}
   .lang-toggle .lt-en{background:var(--accent); color:var(--accent-ink);}
   .lang-toggle.is-th .lt-en{background:none; color:var(--ink-soft);}
   .lang-toggle.is-th .lt-th{background:var(--accent); color:var(--accent-ink);}
   .lang-toggle .lt-sep{color:var(--ink-faint); padding:4px 0;}
-  @media (max-width:600px){ .lang-toggle{position:static; margin-bottom:14px; transform:none;} }
+  @media (max-width:600px){ .board-tools{position:static; margin-bottom:14px;} .lang-toggle,.theme-toggle{transform:none;} }
 
   .roadmap{display:flex; flex-wrap:wrap; align-items:center; gap:0; margin-top:26px;}
   .rchip{font-family:var(--font-mono); font-size:12px; font-weight:600; padding:7px 12px; border:1.5px solid var(--line-strong); border-radius:7px; background:var(--surface); color:var(--ink-soft); white-space:nowrap;}
@@ -285,7 +293,7 @@
     }
     body{background:#fff;}
     .board-frame{border:none; box-shadow:none; background:#fff; margin:0; max-width:none;}
-    .marker-tray, .lang-toggle, .mcq-tools{display:none !important;}
+    .marker-tray, .board-tools, .lang-toggle, .theme-toggle, .mcq-tools{display:none !important;}
     .wrap{padding:0; max-width:none;}
     figure.diagram{transform:none; break-inside:avoid; box-shadow:none;}
     figure.diagram::before, .card::before{display:none;}
@@ -411,9 +419,14 @@
 <div class="board-frame">
 <div class="wrap">
   <header class="masthead">
-    <button id="langToggle" class="lang-toggle" type="button" aria-pressed="false" aria-label="Switch language / สลับภาษา">
-      <span class="lt-en">EN</span><span class="lt-sep">/</span><span class="lt-th">TH</span>
-    </button>
+    <div class="board-tools">
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Light or dark theme">
+        <span class="tt-light tt-on">☀</span><span class="tt-dark">☾</span>
+      </button>
+      <button id="langToggle" class="lang-toggle" type="button" aria-pressed="false" aria-label="Switch language / สลับภาษา">
+        <span class="lt-en">EN</span><span class="lt-sep">/</span><span class="lt-th">TH</span>
+      </button>
+    </div>
     <div class="eyebrow">INT191 Relational Database Concepts and Design · 2026</div>
     <h1 data-th="ไวท์บอร์ดทวนสอบ 1 — สัปดาห์ 1–5">Exam 1 Whiteboard — Weeks 1–5</h1>
     <p data-th="เส้นทางของวิชานี้คือการเดินจาก “ฐานข้อมูลคืออะไร” ไปสู่ “ออกแบบมันก่อนที่มันจะมีอยู่จริงได้ยังไง” · คาบ 1 นิยาม คาบ 2 architecture คาบ 3 ตารางหน้าตาเป็นยังไง คาบ 4–5 วาดมันก่อนสร้าง · สอบ 1 เป็น<strong>ทฤษฎีล้วน 30%</strong> ไม่มีภาคปฏิบัติ">This course walks from "what is a database" to "how do you design one before it exists". Class 1 defines it, class 2 gives it an architecture, class 3 says what a table actually is, classes 4–5 draw one before building it. Exam 1 is <strong>theory only, 30%</strong> — there is no practical half.</p>
@@ -1790,6 +1803,24 @@
 </div>
 
 <script>
+(function(){
+  var TKEY = 'int191wb-theme';
+  var tbtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme', t);
+    if(tbtn){
+      tbtn.querySelector('.tt-light').classList.toggle('tt-on', t === 'light');
+      tbtn.querySelector('.tt-dark').classList.toggle('tt-on', t === 'dark');
+    }
+    try { localStorage.setItem(TKEY, t); } catch(e){}
+  }
+  var t0 = 'light';
+  try { var st = localStorage.getItem(TKEY); if(st === 'dark' || st === 'light'){ t0 = st; } } catch(e){}
+  applyTheme(t0);
+  if(tbtn){ tbtn.addEventListener('click', function(){
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  }); }
+})();
 (function(){
   var KEY = 'int191wb-lang';
   var btn = document.getElementById('langToggle');
