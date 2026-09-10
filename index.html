@@ -700,7 +700,7 @@
       <span class="wk-pill">W3</span>
       <h2 data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</h2>
       <span class="band-date">20 Aug 2026</span>
-      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน” · <b>หมายเหตุ:</b> โน้ตที่ใช้ทำแบนด์นี้จดจากคาบ <b>วันพุธ (G1)</b> วันที่ 19 ส.ค. ไม่ใช่คาบวันพฤหัสฯ — สไลด์ชุดเดียวกัน แต่สิ่งที่อาจารย์พูดนอกสไลด์อาจต่างกันได้">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary." <b>Note:</b> the notes behind this band were taken in the <b>Wednesday (G1)</b> session on 19 Aug, not the Thursday one — the slides are the same, but anything said off-slide may have differed.</span>
+      <span class="band-tag" data-th="คาบที่ศัพท์เยอะที่สุดในห้าคาบ และเป็นคาบที่ข้อสอบทฤษฎีเก็บเกี่ยวได้มากที่สุด — อาจารย์เปิดคาบเองว่า “วันนี้เราจะเข้าใจ relational model ผ่านศัพท์ของมัน” · สองบล็อกท้ายแบนด์นี้มาจาก LAB02 กับ LAB03 ซึ่งเป็นตอนที่ constraint พวกนี้ถูกเขียนเป็น SQL จริง · <b>หมายเหตุ:</b> โน้ตที่ใช้ทำแบนด์นี้จดจากคาบ <b>วันพุธ (G1)</b> วันที่ 19 ส.ค. ไม่ใช่คาบวันพฤหัสฯ — สไลด์ชุดเดียวกัน แต่สิ่งที่อาจารย์พูดนอกสไลด์อาจต่างกันได้">The heaviest vocabulary of the five weeks, and the richest ground for a theory paper. The lecturer opened it herself: "today we will also come to understand the relational model through its vocabulary." The two blocks at the foot of this band come from LAB02 and LAB03, where these constraints get written as SQL. <b>Note:</b> the notes behind this band were taken in the <b>Wednesday (G1)</b> session on 19 Aug, not the Thursday one — the slides are the same, but anything said off-slide may have differed.</span>
     </div>
 
     <figure class="diagram">
@@ -770,6 +770,103 @@
         </ul>
       </div>
     </div>
+
+    <div class="sub-h" data-th="ถอดรหัสประโยค requirement → constraint · ทุกแถวยกมาจาก LAB02 Part 1">Decoding a requirement into a constraint &mdash; every row lifted from LAB02 Part 1</div>
+
+    <div class="dec-wrap">
+      <table class="dec-tab">
+        <tr class="hd"><td data-th="ประโยคในโจทย์">What the brief says</td><td data-th="เขียนเป็น">You write</td><td data-th="เพราะอะไร">Why</td></tr>
+        <tr>
+          <td class="say" data-th="“student ID ระบุนักศึกษาแต่ละคนได้ ห้ามซ้ำ”">"The student ID uniquely identifies each student and must not be duplicated"</td>
+          <td class="wr"><code>PRIMARY KEY</code></td>
+          <td data-th="ระบุได้ไม่ซ้ำ + ห้ามซ้ำ = primary key · ซึ่งพ่วง NOT NULL มาให้เองด้วยตาม <b>entity integrity</b>">Identifies uniquely and must not repeat = a primary key — which brings NOT NULL with it automatically, by <b>entity integrity</b>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“อีเมลของนักศึกษาต้องไม่ซ้ำ และต้องมีค่าเสมอ”">"Each student's email must be unique and must always be provided"</td>
+          <td class="wr"><code>UNIQUE</code> +<br><code>NOT NULL</code></td>
+          <td data-th="<b>สองเงื่อนไขคนละตัว</b> — “ไม่ซ้ำ” คือ UNIQUE, “ต้องมีค่าเสมอ” คือ NOT NULL · UNIQUE เพียงอย่างเดียวยังปล่อยให้เป็น null ได้ · นี่คือ <b>alternate key</b> ในภาษาของคาบ 3"><b>Two separate conditions</b> — "unique" is UNIQUE, "always provided" is NOT NULL. UNIQUE alone still permits a null. In class 3's language this is an <b>alternate key</b>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“เพศบันทึกได้เฉพาะ M หรือ F เท่านั้น”">"Gender is recorded as either M or F only"</td>
+          <td class="wr"><code>CHECK (gender IN ('M','F'))</code></td>
+          <td data-th="รายการค่าที่ยอมรับ = <b>CHECK</b> · นี่คือ <b>domain constraint</b> เขียนลงเป็น SQL — ตรงกับตาราง domain ในสไลด์คาบ 3 ที่เขียนว่า “character: size 1, value M or F”">A list of permitted values = <b>CHECK</b>. This is a <b>domain constraint</b> written down in SQL — the same thing as the class 3 slide's domain table entry "character: size 1, value M or F".</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“จำนวนหน่วยกิตต้องอยู่ระหว่าง 1 ถึง 6”">"The number of credits must be between 1 and 6"</td>
+          <td class="wr"><code>CHECK (credits BETWEEN 1 AND 6)</code></td>
+          <td data-th="ช่วงค่า = CHECK เหมือนกัน · เทียบกับสไลด์คาบ 3: “monetary: 7 digits, range 6000.00–40000.00” คือ domain แบบช่วงค่าอันเดียวกัน">A range = CHECK as well. Compare the class 3 slide's "monetary: 7 digits, range 6000.00–40000.00" — the same kind of domain, as a range.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“บันทึกเกรดได้เฉพาะ A, B+, B, C+, C, D+, D, F, W”">"Only these grades may be recorded: A, B+, B, C+, C, D+, D, F, W"</td>
+          <td class="wr"><code>CHECK (grade IN (&hellip;))</code></td>
+          <td data-th="รายการค่าที่ยาวขึ้น แต่เป็น CHECK แบบเดียวกัน · <b>ระวัง:</b> ห้ามใส่ NOT NULL ที่คอลัมน์นี้ เพราะโจทย์บอกว่าเกรดปล่อยว่างตอนลงทะเบียน แล้วค่อยเติมทีหลัง">A longer value list, but the same CHECK. <b>Careful:</b> do not add NOT NULL here — the brief says the grade is left empty at enrolment and filled in later.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“นักศึกษาคนเดิมต้องลงทะเบียนวิชาเดิมซ้ำในภาคเรียนและปีการศึกษาเดียวกันไม่ได้”">"The same student must not enroll in the same course twice within the same semester and academic year"</td>
+          <td class="wr"><code>UNIQUE (student_id,<br>&nbsp;course_code, semester,<br>&nbsp;academic_year)</code></td>
+          <td data-th="<b>composite unique</b> — ความไม่ซ้ำเกิดจากสี่คอลัมน์ <em>รวมกัน</em> ไม่ใช่ทีละคอลัมน์ · แต่ละคอลัมน์ซ้ำได้ตามลำพัง แต่ชุดทั้งสี่ห้ามซ้ำ · นี่คือ <b>candidate key</b> แบบ composite ในภาษาของคาบ 3"><b>A composite UNIQUE</b> — the uniqueness comes from the four columns <em>together</em>, not one at a time. Each may repeat alone; the combination may not. In class 3's language, a composite <b>candidate key</b>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“ห้ามมีรายการลงทะเบียนของนักศึกษาที่ไม่มีอยู่ในระบบ และห้ามลงทะเบียนวิชาที่ไม่มีอยู่”">"Must not allow an enrollment for a student who does not exist, nor enrollment in a course that does not exist"</td>
+          <td class="wr"><code>FOREIGN KEY</code> &times; 2</td>
+          <td data-th="<b>referential integrity</b> ตรงตัว · หนึ่งตัวชี้ไป student อีกตัวชี้ไป course · เป็นเหตุผลที่ตาราง enrollment มี FK สองตัว เหมือน WORKS_ON ในโจทย์ COMPANY"><b>Referential integrity</b>, word for word — one FK to student, one to course. It is why the enrollment table has two of them, exactly like WORKS_ON in the COMPANY exercise.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“นักศึกษาหนึ่งคนลงได้หลายวิชา และวิชาหนึ่งมีผู้ลงได้หลายคน”">"One student may enroll in many courses, and one course may have many students"</td>
+          <td class="wr" data-th="ในตาราง: ตารางกลาง <code>enrollment</code><br>ในไดอะแกรม: <code>*:*</code>">as tables: the <code>enrollment</code> table<br>on the diagram: <code>*:*</code></td>
+          <td data-th="ความสัมพันธ์ <b>many-to-many</b> · บนไดอะแกรมระดับ conceptual เขียนเป็นเส้นเดียว <code>*:*</code> ได้ · แต่ตอนลงเป็นตารางจริงต้องมีตารางกลางที่ถือ FK สองตัว — นั่นคือเนื้อหา <b>สัปดาห์ 8 (ERD Mapping)</b> ยังไม่ออกสอบวันนี้">A <b>many-to-many</b> relationship. On a conceptual diagram it is one line marked <code>*:*</code>; as real tables it needs a table in the middle holding two FKs — which is <b>week 8's</b> material (ERD Mapping) and not on today's paper.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="fact-grid" style="margin-top:18px;">
+
+      <div class="fact r">
+        <h3 data-th="คำสั่งไหนพังเพราะอะไร — LAB02 ข้อ 6">Which statement fails, and why &mdash; LAB02 Q6</h3>
+        <p class="lede" data-th="lab ให้คำสั่งผิดมาสี่คำสั่ง โดยแต่ละคำสั่งละเมิด constraint คนละตัว · เป็นตัวแยกที่คมที่สุดที่จะเจอ">The lab gives four bad statements, each violating a different constraint. It is the sharpest discriminator you will meet.</p>
+        <table class="ftab">
+          <tr><td>INSERT<br>'CS203'</td><td data-th="วิชานี้ไม่มีอยู่ในตาราง course → <b>referential integrity</b> (FK ชี้ไป PK ที่ไม่มีจริง)">no such course exists → <b>referential integrity</b> — the FK points at a PK that is not there</td></tr>
+          <tr><td>INSERT<br>grade 'H'</td><td data-th="H ไม่อยู่ในรายการเกรดที่ยอมรับ → <b>CHECK / domain constraint</b>">H is not in the permitted grade list → <b>CHECK, a domain constraint</b></td></tr>
+          <tr><td>DELETE<br>student 66001</td><td data-th="ยังมีแถวใน enrollment อ้างถึงอยู่ → <b>referential integrity</b> ฝั่งตรงข้าม และถูกปฏิเสธเพราะค่าเริ่มต้นคือ RESTRICT">enrollment rows still reference it → <b>referential integrity</b> from the other side, refused because the default is RESTRICT</td></tr>
+          <tr><td>UPDATE<br>credits = 8</td><td data-th="หน่วยกิตต้องอยู่ 1–6 → <b>CHECK</b> · แสดงว่า UPDATE ก็ละเมิด domain ได้ ไม่ใช่แค่ INSERT">credits must be 1–6 → <b>CHECK</b>. Proof that an UPDATE violates a domain too, not only an INSERT</td></tr>
+        </table>
+        <div class="fnote" data-th="สังเกตว่าสองคำสั่งแรกเป็น INSERT แต่ละเมิดคนละชนิด และสองคำสั่งหลังยืนยันตารางในบอร์ดนี้: <b>DELETE ละเมิดได้แต่ referential integrity</b> ส่วน <b>UPDATE ละเมิด domain ของคอลัมน์ที่แก้</b>">Note that the first two are both INSERTs yet violate different kinds, and the last two confirm this board's table: <b>DELETE can only violate referential integrity</b>, while <b>UPDATE violates the domain of the column it changed</b>.</div>
+      </div>
+
+      <div class="fact a">
+        <h3 data-th="กฎการตั้งชื่อ constraint — LAB03">Naming a constraint &mdash; LAB03</h3>
+        <table class="ftab">
+          <tr><td data-th="กฎ">the rule</td><td data-th="<b>ทุก constraint ที่สร้างต้องตั้งชื่อเอง</b> ด้วยคีย์เวิร์ด <code>CONSTRAINT</code>"><b>Every constraint you create must be given an explicit name</b> using the <code>CONSTRAINT</code> keyword</td></tr>
+          <tr><td data-th="รูปแบบ">the pattern</td><td data-th="<code>prefix_table_column</code> · ตัวเล็กล้วน · คั่นด้วย underscore · ห้ามเว้นวรรค · ไม่เกิน 64 ตัวอักษร"><code>&lt;prefix&gt;_&lt;table&gt;_&lt;column&gt;</code> · all lowercase · underscores, no spaces · at most 64 characters</td></tr>
+          <tr><td data-th="ถ้าไม่ตั้งชื่อ">if you don't</td><td data-th="MySQL/InnoDB ตั้งให้เองเป็น <code>ตารางname_ibfk_N</code> — <code>ibfk</code> ย่อจาก InnoDB foreign key และ N คือลำดับของ FK ในตารางนั้น">MySQL/InnoDB names it <code>&lt;table&gt;_ibfk_&lt;n&gt;</code> — <code>ibfk</code> is InnoDB foreign key, and <code>n</code> is that FK's position in the table</td></tr>
+        </table>
+        <div class="fnote" data-th="ชื่อที่ตั้งเองอ่านออกตอน error ส่วน <code>enrollment_ibfk_1</code> ไม่บอกอะไรเลย · และการจะ <code>DROP CONSTRAINT</code> ได้ ต้องรู้ชื่อมันก่อนเสมอ — นี่คือเหตุผลจริงที่ต้องตั้งชื่อเอง">A name you chose is readable when an error comes back; <code>enrollment_ibfk_1</code> tells you nothing. And you cannot <code>DROP CONSTRAINT</code> without knowing its name — which is the real reason to name them yourself.</div>
+      </div>
+
+      <div class="fact v">
+        <h3 data-th="lab นับ constraint เป็นห้ากลุ่ม สไลด์นับสี่">The lab counts five groups; the slides count four</h3>
+        <p class="lede" data-th="ต่างกันแค่วิธีจัดกลุ่ม เนื้อหาเหมือนกัน แต่ถ้าข้อสอบถามว่า “มีกี่ชนิด” ต้องรู้ว่าถามตามกรอบไหน">Only the grouping differs, not the content — but if a question asks how many kinds there are, you need to know which framing it is using.</p>
+        <table class="ftab">
+          <tr><td data-th="สไลด์ (คาบ 3)">slides</td><td data-th="Key · Entity integrity · Referential integrity · <b>General</b> (รวม Unique, Check, Not Null ไว้ด้วยกัน) = <b>4 กลุ่ม</b>">Key · Entity integrity · Referential integrity · <b>General</b> (Unique, Check and Not Null together) = <b>4</b></td></tr>
+          <tr><td data-th="LAB03">LAB03</td><td data-th="Key · Entity integrity · Referential integrity · <b>Domain</b> · <b>NOT NULL</b> = <b>5 กลุ่ม</b> — แยก Domain กับ NOT NULL ออกมาเป็นกลุ่มของตัวเอง">Key · Entity integrity · Referential integrity · <b>Domain</b> · <b>NOT NULL</b> = <b>5</b> — Domain and NOT NULL pulled out as groups of their own</td></tr>
+        </table>
+        <div class="fnote" data-th="สามกลุ่มแรกตรงกันทั้งสองที่ ความต่างอยู่ที่ว่าจะยุบ Unique/Check/Not Null เป็น “General” หรือแยก Domain กับ NOT NULL ออกมา · ถ้าโจทย์ไม่ระบุกรอบ ให้ตอบตามสไลด์บรรยาย แล้วอธิบายเพิ่มได้ว่า lab แยกละเอียดกว่า">The first three are identical in both. The difference is whether Unique/Check/Not Null collapse into "General" or Domain and NOT NULL stand alone. If a question does not say which framing, answer from the lecture slides and note that the lab splits it further.</div>
+      </div>
+
+      <div class="fact g">
+        <h3 data-th="DDL ที่ lab ให้มา — LAB02 และ LAB03">The DDL the labs hand you &mdash; LAB02 and LAB03</h3>
+        <table class="ftab">
+          <tr><td>CREATE DATABASE</td><td data-th="<code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] ชื่อ</code> · ตัวเลือก: CHARACTER SET, COLLATE, ENCRYPTION · <b>SCHEMA เป็นคำพ้องของ DATABASE</b> ใน MySQL"><code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name</code> · options: CHARACTER SET, COLLATE, ENCRYPTION. <b>SCHEMA is a synonym for DATABASE</b> in MySQL</td></tr>
+          <tr><td>CREATE TABLE<br>&hellip; AS SELECT</td><td data-th="ก็อปโครงสร้าง<b>และข้อมูล</b>จากตารางที่มีอยู่มาเป็นตารางใหม่ในคำสั่งเดียว">copies both the structure <b>and the rows</b> of an existing table into a new one, in one statement</td></tr>
+          <tr><td>ALTER TABLE</td><td data-th="ADD/DROP COLUMN · ADD/DROP PRIMARY KEY · ADD/DROP CONSTRAINT (UNIQUE, CHECK, FOREIGN KEY) · เป็นส่วนหนึ่งของ <b>DDL</b>">ADD/DROP COLUMN · ADD/DROP PRIMARY KEY · ADD/DROP CONSTRAINT (UNIQUE, CHECK, FOREIGN KEY). It is part of <b>DDL</b></td></tr>
+          <tr><td>DROP TABLE</td><td data-th="ลบทั้ง<b>นิยามตาราง ข้อมูลทั้งหมด และ trigger</b> ของตารางนั้น — lab เตือนเองว่า “Be careful with this statement!”">removes the table definition, <b>all its data, and any triggers on it</b>. The lab's own warning: "Be careful with this statement!"</td></tr>
+          <tr><td data-th="error 1064">error 1064</td><td data-th="<b>syntax error</b> — MySQL ไม่เข้าใจสิ่งที่เราสั่ง ไม่ใช่เรื่อง constraint หรือสิทธิ์">a <b>syntax error</b> — MySQL does not understand what you asked, nothing to do with constraints or privileges</td></tr>
+        </table>
+        <div class="fnote" data-th="จุดที่ lab ย้ำ: <b>ประกาศ constraint ตั้งแต่ตอน CREATE TABLE ถ้าทำได้</b> · ถ้าลืมแล้วมาเพิ่มด้วย ALTER TABLE ทีหลัง ข้อมูลที่มีอยู่แล้ว<b>ต้องผ่านเงื่อนไขก่อน</b> ไม่งั้น error — ต้อง UPDATE ข้อมูลเดิมให้ถูกก่อน">The lab's own emphasis: <b>declare constraints at CREATE TABLE time where you can</b>. Add one later with ALTER TABLE and the existing rows <b>must already satisfy it</b>, or it errors — you have to UPDATE the existing data first.</div>
+      </div>
+
+    </div>
+
   </section>
 
   <!-- ================= WEEK 4 ================= -->
