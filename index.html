@@ -339,6 +339,45 @@
     font-size:12.2px; line-height:1.7; color:var(--ink-soft);
   }
   .ol-note b{color:var(--rose);}
+  /* ---- what you cannot do ---- */
+  .cn-lede{
+    margin:0 0 14px; font-size:12.7px; line-height:1.7; color:var(--ink-soft);
+  }
+  .cn-lede b{color:var(--ink);}
+  .cn-grid{display:grid; gap:14px;}
+  .cn-block{
+    background:var(--surface); border:1px solid var(--line); border-radius:11px;
+    padding:14px 16px 12px; box-shadow:var(--shadow); min-width:0;
+  }
+  .cn-block > h4{
+    margin:0 0 9px; font-size:13.5px; color:var(--ink);
+    display:flex; align-items:center; gap:7px;
+  }
+  .cn-block > h4::before{content:""; width:9px; height:9px; border-radius:2px; background:var(--accent); flex:none;}
+  .cn-block.r > h4::before{background:var(--rose);}
+  .cn-block.v > h4::before{background:var(--violet);}
+  .cn-block.a > h4::before{background:var(--amber);}
+  .cn-tab{width:100%; border-collapse:collapse; font-size:12.5px;}
+  .cn-tab td{padding:9px 0; border-top:1px solid var(--line); vertical-align:top; line-height:1.72;}
+  .cn-tab tr:first-child td{border-top:none;}
+  .cn-tab .act{
+    width:31%; padding-right:16px; color:var(--ink); font-weight:600;
+    border-right:2px solid var(--red-soft); padding-left:0;
+  }
+  .cn-tab .act::before{
+    content:"\00d7"; color:var(--red); font-weight:700; font-family:var(--font-mono);
+    margin-right:6px;
+  }
+  .cn-tab td:last-child{padding-left:14px; color:var(--ink-soft);}
+  .cn-tab td:last-child b{color:var(--red);}
+  .cn-tab code{font-family:var(--font-mono); font-size:.94em; background:var(--surface-2); padding:1px 4px; border-radius:3px;}
+  @media (max-width:620px){
+    .cn-tab tr{display:block; border-top:1px solid var(--line); padding:8px 0;}
+    .cn-tab tr:first-child{border-top:none;}
+    .cn-tab td{display:block; border-top:none; padding:0;}
+    .cn-tab .act{width:auto; border-right:none; padding-right:0; margin-bottom:5px;}
+    .cn-tab td:last-child{padding-left:0;}
+  }
 </style>
 
 <div class="board-frame">
@@ -970,6 +1009,116 @@
           <tr><td data-th="รวม">total</td><td data-th="<strong>8 foreign key</strong>"><strong>8 foreign keys</strong></td></tr>
         </table>
         <div class="fnote" data-th="คำถามที่สองคือลำดับการสร้างตาราง และคำตอบมีจุดคม: <code>EMPLOYEE</code> กับ <code>DEPARTMENT</code> <strong>อ้างอิงกันไปกลับ</strong> (Dno → DEPARTMENT และ Mgr_ssn → EMPLOYEE) จึง<strong>ไม่มีลำดับไหนที่ทำจบได้ในรอบเดียว</strong> — ต้องสร้างตารางหนึ่งก่อนโดยยังไม่ใส่ FK แล้วย้อนมาเติมด้วย <code>ALTER TABLE</code>">The second question asks the creation order, and the sharp point is that <code>EMPLOYEE</code> and <code>DEPARTMENT</code> <strong>reference each other</strong> (Dno → DEPARTMENT and Mgr_ssn → EMPLOYEE), so <strong>no ordering completes both in one pass</strong>. One table must be created with its FK left off and added afterwards with <code>ALTER TABLE</code>.</div>
+      </div>
+
+    </div>
+
+
+    <div class="sub-h" data-th="ทำไม่ได้ / ทำแล้วพัง — เรียงตามหัวข้อ">What you cannot do, and what happens when you try</div>
+    <p class="cn-lede" data-th="การ์ด “ระวังไว้” ในแต่ละสัปดาห์พูดถึงความเข้าใจผิดเชิงแนวคิด · ส่วนตรงนี้เป็นสถานการณ์จริง: <b>ลองทำอะไร → เกิดอะไรขึ้น → เพราะอะไร → แก้ยังไง</b> ซึ่งเป็นรูปที่ข้อสอบชอบเอามาถามมากที่สุด">The "watch out" cards in each week deal with conceptual confusions. This is the operational version: <b>what you try → what happens → why → how to fix it</b>. It is the shape a question most often takes.</p>
+
+    <div class="cn-grid">
+
+      <div class="cn-block r">
+        <h4 data-th="คีย์และข้อจำกัดความถูกต้อง — คาบ 3">Keys and integrity constraints — class 3</h4>
+        <table class="cn-tab">
+          <tr>
+            <td class="act" data-th="ลบแถวแม่ที่ยังมีลูกอ้างอยู่">Delete a parent row that children still reference</td>
+            <td><b data-th="ถูกปฏิเสธ">Refused.</b> <span data-th="ละเมิด referential integrity · ค่าเริ่มต้นของ foreign key คือ <b>RESTRICT</b> ซึ่งเท่ากับไม่เขียน ON DELETE อะไรเลย · <b>แก้:</b> DROP constraint เดิมแล้ว ADD กลับมาใหม่พร้อม <code>ON DELETE CASCADE</code> (ลบลูกตามไป) หรือ <code>ON DELETE SET NULL</code>">Referential integrity. A foreign key's default is <b>RESTRICT</b>, which is what writing no <code>ON DELETE</code> at all means. <b>Fix:</b> DROP the constraint and ADD it back with <code>ON DELETE CASCADE</code> or <code>ON DELETE SET NULL</code>.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="INSERT แถวลูกที่ FK ชี้ไปยัง PK ที่ไม่มีอยู่จริง">Insert a child whose FK points at a PK that does not exist</td>
+            <td><b data-th="ถูกปฏิเสธเสมอ">Always refused.</b> <span data-th="ละเมิด referential integrity · <b>referential action ช่วยไม่ได้เลย</b> — <code>ON DELETE</code>/<code>ON UPDATE</code> คุมเฉพาะสิ่งที่เกิดกับ<i>แถวลูกเมื่อแถวแม่ถูกลบหรือแก้</i> ไม่เกี่ยวกับ INSERT · <b>แก้:</b> สร้างแถวแม่ก่อน">Referential integrity. <b>No referential action helps here</b> — <code>ON DELETE</code>/<code>ON UPDATE</code> govern only what happens to <i>child rows when a parent is deleted or updated</i>. <b>Fix:</b> create the parent row first.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ใส่ null ในคอลัมน์ที่เป็น primary key">Put a null in a primary key column</td>
+            <td><b data-th="ถูกปฏิเสธ">Refused.</b> <span data-th="ละเมิด <b>entity integrity</b> — ทุก relation ต้องมี PK และ PK ห้ามเป็น null · เป็นกฎคนละข้อกับ referential integrity ซึ่งเป็นตัวลวงที่พบบ่อยที่สุดในข้อสอบ"><b>Entity integrity</b> — every relation must have a primary key and it may never be null. A different rule from referential integrity, which is the commonest distractor for it.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ใช้ ON DELETE SET NULL กับคอลัมน์ที่ประกาศ NOT NULL">Use <code>ON DELETE SET NULL</code> on a NOT NULL column</td>
+            <td><b data-th="ใช้ไม่ได้">Will not work.</b> <span data-th="เพราะ action นี้ต้องเขียน null ลงคอลัมน์นั้น แต่คอลัมน์ห้าม null · สไลด์เตือนข้อนี้ไว้เอง · <b>แก้:</b> เอา NOT NULL ออก หรือเปลี่ยนไปใช้ RESTRICT/CASCADE แทน">The action must write a null into a column that forbids one. The slide warns about this itself. <b>Fix:</b> drop the NOT NULL, or use RESTRICT/CASCADE instead.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="แก้ค่า primary key ของแถวแม่ที่มีลูกอยู่">Change the primary key of a parent that has children</td>
+            <td><b data-th="ลูกหาแม่ไม่เจอ">The children lose their parent.</b> <span data-th="เป็นการละเมิด referential integrity เหมือนการลบ · คุมด้วย <code>ON UPDATE</code> ซึ่งมี RESTRICT / CASCADE / SET NULL เหมือนกัน · <b>ระวัง:</b> สไลด์เตือนว่าอย่านิยาม ON UPDATE CASCADE ทับกันหลายกฎบนคอลัมน์เดียวกันทั้งฝั่งแม่และฝั่งลูก">The same referential-integrity violation as a delete, governed by <code>ON UPDATE</code>, which has the same three actions. <b>Careful:</b> the slide warns against defining several <code>ON UPDATE CASCADE</code> rules acting on the same column from both sides.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="สร้างตารางที่มี FK ชี้ไปยังตารางที่ยังไม่ถูกสร้าง">Create a table whose FK points at a table that does not exist yet</td>
+            <td><b data-th="ทำไม่ได้">Cannot be done.</b> <span data-th="ตารางที่ถูกอ้างต้องมีอยู่ก่อนเสมอ · และในกรณี <b>อ้างกันไปกลับ</b> อย่าง EMPLOYEE ↔ DEPARTMENT <b>ไม่มีลำดับไหนที่ทำจบได้ในรอบเดียว</b> · <b>แก้:</b> สร้างตารางหนึ่งโดยยังไม่ใส่ FK แล้วย้อนมาเติมด้วย <code>ALTER TABLE … ADD FOREIGN KEY</code>">The referenced table must exist first. And where two tables <b>reference each other</b> (EMPLOYEE ↔ DEPARTMENT), <b>no ordering completes both in one pass</b>. <b>Fix:</b> create one without its FK, then add it afterwards with <code>ALTER TABLE … ADD FOREIGN KEY</code>.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="เพิ่ม constraint ทีหลังด้วย ALTER TABLE ทั้งที่ข้อมูลเดิมไม่ผ่านเงื่อนไข">Add a constraint later with ALTER TABLE when existing rows break it</td>
+            <td><b data-th="error">Errors out.</b> <span data-th="แถวที่มีอยู่แล้วต้องผ่านเงื่อนไขนั้นก่อน · <b>แก้:</b> <code>UPDATE</code> ข้อมูลเดิมให้ถูกก่อน แล้วค่อยเพิ่ม constraint (ไม่ใช่ INSERT ใหม่ เพราะแถวถูกใส่ไปแล้ว) · ทางที่ดีกว่าคือประกาศ constraint ตั้งแต่ตอน <code>CREATE TABLE</code>">Existing rows must already satisfy it. <b>Fix:</b> <code>UPDATE</code> the existing data first, then add the constraint — not INSERT, since the rows are already in. Better still, declare constraints at <code>CREATE TABLE</code> time.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="INSERT โดยไม่ระบุชื่อคอลัมน์ แต่เรียงค่าตามใจ">Insert without naming columns, in your own order</td>
+            <td><b data-th="ข้อมูลลงผิดช่อง">The data lands in the wrong columns.</b> <span data-th="tuple นิยามเป็น<b>รายการค่าที่เรียงลำดับ</b> ดังนั้นต้องเรียงตามที่ประกาศไว้ใน CREATE TABLE · นี่คือเหตุผลที่คุณสมบัติข้อ 7 บอกว่า “ลำดับคอลัมน์สำคัญ” ทั้งที่สไลด์หน้า 6 บอกว่าลำดับแอตทริบิวต์ไม่สำคัญ — พูดคนละมุม ไม่ได้ขัดกัน">A tuple is defined as an <b>ordered list of values</b>, so the order must match the CREATE TABLE declaration. This is why property 7 says column order matters while slide 6 says attribute order does not — two angles, not a contradiction.</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="cn-block v">
+        <h4 data-th="ไดอะแกรม ER — คาบ 4">The ER diagram — class 4</h4>
+        <table class="cn-tab">
+          <tr>
+            <td class="act" data-th="ใส่ foreign key ลงในไดอะแกรม conceptual">Put foreign keys on a conceptual diagram</td>
+            <td><b data-th="ผิดขั้นตอน">Wrong stage.</b> <span data-th="ระดับ conceptual มีแค่ <b>primary key</b> · ไม่มี FK ไม่มี unique ไม่มี check ไม่มี not null เพราะยังไม่ถึงขั้นติดตั้ง · FK เป็นเรื่องของขั้น <b>logical</b> ซึ่งคือเนื้อหาสัปดาห์ 8 · อาจารย์ระบุว่านี่คือข้อสำคัญที่สุดของขั้นนี้">The conceptual level carries <b>primary keys only</b> — no FK, no unique, no check, no not null, because implementation has not been reached. FKs belong to the <b>logical</b> stage, week 8's material. She flagged this as the single most important rule of the stage.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ให้ weak entity ใช้แอตทริบิวต์ของตัวเองเป็น PK">Let a weak entity key on its own attributes</td>
+            <td><b data-th="ระบุแถวไม่ได้">It cannot identify a row.</b> <span data-th="ตัวอย่างหอพักสี่ตึกผังเหมือนกัน: <code>roomNo = 101</code> หมายถึงห้องจริงสี่ห้อง · <b>แก้:</b> ยืม PK ของ strong entity ผ่าน <b>identifying relationship</b> มาต่อเป็น composite key (101+A ต่างจาก 101+B) <b>หรือ</b> สร้าง surrogate key เช่น <code>roomID</code> ขึ้นมาแทน ซึ่งอาจารย์บอกว่าไม่ผิด">The dormitory example: with four identically-numbered buildings, <code>roomNo = 101</code> names four real rooms. <b>Fix:</b> borrow the strong entity's PK through an <b>identifying relationship</b> into a composite key (101+A differs from 101+B), <b>or</b> invent a surrogate key such as <code>roomID</code> — she said that is not wrong either.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="วางแอตทริบิวต์ของ relationship ไว้บนเอนทิตีข้างใดข้างหนึ่ง">Hang a relationship's attributes on one of the entities</td>
+            <td><b data-th="เก็บค่าไม่ได้">The value has nowhere to live.</b> <span data-th="<code>dateAdvert</code>/<code>cost</code> วางบน PropertyForRent ไม่ได้ เพราะบ้านหลังเดียวลงโฆษณาได้หลายฉบับคนละวันคนละราคา · วางบน Newspaper ก็ไม่ได้ ด้วยเหตุผลกลับกัน · <b>แก้:</b> ห้อยจากเส้นด้วย<b>เส้นประ</b> ลงกล่องที่<b>เว้นหัวไว้ว่าง</b>"><code>dateAdvert</code>/<code>cost</code> cannot sit on PropertyForRent — one property is advertised in several papers on different days at different prices — nor on Newspaper, for the mirror reason. <b>Fix:</b> a <b>dashed line</b> from the relationship line into a box with a <b>blank header</b>.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ลากเส้น relationship โดยไม่ใส่ชื่อ">Draw a relationship line with no name</td>
+            <td><b data-th="ไม่ครบตามที่กำหนด">Incomplete.</b> <span data-th="<b>ชื่อบนเส้นบังคับเสมอ</b> ส่วนลูกศร <code>▶</code> ที่บอกทิศทางการอ่าน<b>ไม่บังคับ</b> อาจารย์อนุญาตทั้งใส่และไม่ใส่ · คิดชื่อไม่ออกให้ดึงคำกริยาจากประโยค requirement มาใช้ตรงๆ ชื่อ relationship มักเป็นคำกริยา"><b>The name on the line is always required</b>; the <code>▶</code> marking reading direction is <b>not</b> — she allows it either way. Stuck for one? Lift the verb out of the requirement sentence; relationship names are usually verbs.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="อ่าน multiplicity โดยดูตัวเลขฝั่งต้นทาง">Read a multiplicity from the number on the source side</td>
+            <td><b data-th="ได้ประโยคผิดทั้งประโยค">The whole sentence comes out wrong.</b> <span data-th="อาจารย์บอกเองว่านี่คือข้อที่พลาดกันมากที่สุด · อ่านจาก A ไป B ต้อง<b>ดูตัวเลขฝั่ง B</b> แล้วขึ้นประโยคว่า “หนึ่ง A …” · min ตอบว่าบังคับไหม max ตอบว่าถ้ามีแล้วมากสุดกี่ตัว">She said outright this is the mistake students make most. Reading A → B means <b>looking at the number on B's side</b>, then opening with "one A …". min answers "is it required?", max answers "if so, how many at most?"</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ตั้งชื่อ 1:1 / 1:* / *:* โดยดูค่า min">Name a 1:1 / 1:* / *:* using the min values</td>
+            <td><b data-th="ตั้งชื่อผิด">You name it wrongly.</b> <span data-th="ตอนตั้งชื่อให้ดู <b>max ทั้งสองฝั่งเท่านั้น</b> ไม่สนใจ min เลย · <code>0..1</code> ↔ <code>0..*</code> ยังเป็น one-to-many อยู่ ถึงแม้ min จะเป็นศูนย์ทั้งคู่">Naming uses <b>the max on both sides only</b>; ignore min entirely. <code>0..1</code> ↔ <code>0..*</code> is still one-to-many even though both mins are zero.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="คิด multiplicity เองจากสามัญสำนึก">Invent a multiplicity from common sense</td>
+            <td><b data-th="ไม่ใช่หน้าที่ของผู้ออกแบบ">Not the designer's call.</b> <span data-th="multiplicity คือการเขียน <b>business rule</b> ที่ผู้ใช้หรือบริษัทกำหนดลงไปในไดอะแกรม · อาจารย์ย้ำว่า constraint ต้องมาจาก requirement · เดาเองได้<b>เฉพาะตอนที่โจทย์เงียบหรือไม่ชัด</b> และต้องอธิบายเหตุผลได้">A multiplicity is how a <b>business rule</b>, set by the user or the company, gets written down. Constraints come from the requirements; you may fill a gap <b>only where the brief is silent</b>, and must be able to justify it.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="วาด ER ด้วย MySQL Workbench แล้วส่ง">Draw the ER diagram in MySQL Workbench and submit that</td>
+            <td><b data-th="ห้ามโดยตรง">Explicitly forbidden.</b> <span data-th="อาจารย์ห้ามไว้ตรงๆ ทั้งใน lab, group project และข้อสอบ · เครื่องมืออะไรก็ได้ แต่ <b>notation ต้องเป็น UML ตามสไลด์</b> เพราะข้อสอบใช้แบบนั้น · คลิปสอน ER บนเน็ตส่วนใหญ่ใช้ Chen หรือ crow's foot ซึ่งผิดบริบทของวิชานี้">She forbade it outright — in the lab, the project and the exam. Any tool is fine, but <b>the notation must be the UML one from the slides</b>, because that is what the paper uses. Most ER tutorials online use Chen or crow's foot, which is wrong in this context.</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="cn-block a">
+        <h4 data-th="นิยามและสถาปัตยกรรม — คาบ 1–2">Definitions and architecture — classes 1–2</h4>
+        <table class="cn-tab">
+          <tr>
+            <td class="act" data-th="เปลี่ยนโครงสร้างการจัดเก็บภายใน แล้วคิดว่าต้องไปแก้ view ของผู้ใช้ด้วย">Change the internal storage and assume the users' views must change too</td>
+            <td><b data-th="ไม่ต้องแก้">They do not.</b> <span data-th="นั่นคือ <b>data independence</b> ทั้งหมด — schema ระดับบนไม่กระทบเมื่อ schema ระดับล่างเปลี่ยน · เพิ่ม index ที่ระดับ internal ได้โดยที่ view ไม่ต้องรู้เรื่อง และ DBA แก้โครงสร้าง conceptual ได้โดยไม่กวนผู้ใช้">That is the whole of <b>data independence</b> — an upper schema is unaffected when a lower one changes. Add an index at the internal level and no view need know; the DBA can change the conceptual structure without disturbing anyone.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ตอบว่า internal level เป็นงานของ OS">Say the internal level is the OS's job</td>
+            <td><b data-th="ผิด">Wrong.</b> <span data-th="DBMS ดูแล <b>external + conceptual + internal</b> · มีแค่<b>ไฟล์จริงบนดิสก์</b>ที่เป็นของ OS · internal schema คือ<i>คำอธิบาย</i>ว่าเก็บยังไง ไม่ใช่ตัวไฟล์ — เป็นตัวลวงที่แรงเพราะฟังดูเหมือนเรื่องฮาร์ดแวร์">The DBMS owns <b>external + conceptual + internal</b>; only the <b>real files on disk</b> are the OS's. The internal schema is the <i>description</i> of how it is stored, not the files — a strong distractor because it sounds like hardware.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="ตอบว่า ANSI-SPARC เป็นมาตรฐาน ANSI หรือ ISO">Call ANSI-SPARC an ANSI or ISO standard</td>
+            <td><b data-th="ผิด">Wrong.</b> <span data-th="สไลด์เขียนตรงๆ ว่า <b>never became a formal standard</b> ถึงจะยังใช้เป็นฐานความเข้าใจ DBMS ก็ตาม · ปี 1986/1987 ที่ ANSI/ISO รับรองคือเรื่องของ <b>SQL</b> คนละเรื่องกัน">The slide says it <b>never became a formal standard</b>, though it remains the basis for understanding a DBMS. The 1986/1987 ANSI/ISO dates belong to <b>SQL</b>, a different matter.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="จัด GRANT / REVOKE ไว้ในกลุ่ม DDL">File <code>GRANT</code> / <code>REVOKE</code> under DDL</td>
+            <td><b data-th="ผิดกลุ่ม">Wrong group.</b> <span data-th="ทั้งคู่เป็น <b>DCL</b> (Data Control Language) ซึ่งคุมสิทธิ์ · DDL คือ CREATE/ALTER/DROP ที่นิยามโครงสร้าง · DML คือ SELECT/INSERT/UPDATE/DELETE · และ COMMIT/ROLLBACK/SAVEPOINT เป็น Transaction Control">Both are <b>DCL</b> (Data Control Language), which governs privileges. DDL is CREATE/ALTER/DROP; DML is SELECT/INSERT/UPDATE/DELETE; COMMIT/ROLLBACK/SAVEPOINT are Transaction Control.</span></td>
+          </tr>
+          <tr>
+            <td class="act" data-th="สลับ Data Administrator กับ Database Administrator">Swap Data Administrator and Database Administrator</td>
+            <td><b data-th="คนละบทบาท">Two different roles.</b> <span data-th="<b>Data Administrator</b> ทำ Plan และ Define ที่<i>ต้นทาง</i> · <b>Database Administrator</b> ทำ Config และ Maintain/Tune ที่<i>ปลายทาง</i> · ชื่อคล้ายกันมากจนเป็นตัวเลือกลวงชั้นดี"><b>Data Administrator</b> does Plan and Define, at the <i>start</i>. <b>Database Administrator</b> does Config and Maintain/Tune, at the <i>end</i>. The names are close enough to make an excellent distractor.</span></td>
+          </tr>
+        </table>
       </div>
 
     </div>
