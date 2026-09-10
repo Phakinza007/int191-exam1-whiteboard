@@ -123,7 +123,11 @@
   figure.diagram::before{content:""; position:absolute; top:-7px; left:50%; width:14px; height:14px; margin-left:-7px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff, var(--rose) 62%); box-shadow:0 2px 3px rgba(0,0,0,.35);}
   figure.diagram svg{display:block; width:100%; height:auto; min-width:560px;}
   figure.diagram figcaption{font-size:13px; color:var(--ink-soft); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); line-height:1.65;}
-  svg text{font-family:var(--font-sans); fill:currentColor;}
+  svg text{font-family:var(--font-sans);}
+  /* only default the fill when the element does not set one itself — a CSS rule
+     outranks a fill="" presentation attribute, which silently killed every
+     colour-coded attribute on these diagrams */
+  svg text:not([fill]), svg tspan:not([fill]){fill:currentColor;}
   svg .mono{font-family:var(--font-mono);}
   svg .lbl{font-size:11.5px; fill:var(--ink-soft);}
   svg .strong{font-weight:600;}
@@ -1056,6 +1060,122 @@
           <li data-th="<b>Staff กับ Branch มีความสัมพันธ์สองเส้น</b> — “ทำงานอยู่สาขาไหน” กับ “ใครเป็นผู้จัดการสาขา” คนละเรื่องกัน จึงต้องแยกเส้นและใส่ role name · นี่คือรูปเดียวกับ Manages/Has ในสไลด์คาบ 4"><b>Staff and Branch carry two relationships</b> — which branch someone works at, and who manages a branch, are different facts. Two lines, with role names. The same shape as Manages/Has on the class 4 slide.</li>
         </ul>
       </div>
+    </div>
+
+    <div class="sub-h" data-th="ตัวอย่าง ER diagram ของโจทย์ LAB05 (top-down) — ระบบห้องสมุดมหาวิทยาลัย">A worked ER diagram for LAB05's top-down brief &mdash; the university library system</div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 1100 790" role="img" aria-label="A worked ER diagram for the LAB05 university library brief in UML notation: Member, Branch, Staff, Book and Reservation entity boxes, with the Manages and WorksAt relationships drawn as two separate lines between Staff and Branch, a many-to-many Borrows relationship between Member and Book carrying its own attribute box on a dashed line, and multiplicities written min dot dot max at every end.">
+        <defs>
+          <marker id="l5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <path d="M240,90 H440" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <text x="340" y="83" text-anchor="middle" class="lbl strong" font-size="11">Manages &#9654;</text>
+        <text x="246" y="105" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">1..1</text>
+        <text x="434" y="105" text-anchor="end" class="mono" font-size="11" fill="var(--rose)">0..1</text>
+        <path d="M240,140 H440" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <text x="340" y="133" text-anchor="middle" class="lbl strong" font-size="11">&#9664; WorksAt</text>
+        <text x="246" y="155" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">1..*</text>
+        <text x="434" y="155" text-anchor="end" class="mono" font-size="11" fill="var(--rose)">1..1</text>
+        <path d="M155,300 V240 H540 V172" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <text x="348" y="233" text-anchor="middle" class="lbl strong" font-size="11">RegisteredAt &#9654;</text>
+        <text x="163" y="272" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">0..*</text>
+        <text x="548" y="202" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">1..1</text>
+        <path d="M270,380 H860" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <text x="762" y="372" text-anchor="middle" class="lbl strong" font-size="11">Borrows &#9654;</text>
+        <text x="278" y="398" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">0..*</text>
+        <text x="852" y="398" text-anchor="end" class="mono" font-size="11" fill="var(--rose)">0..*</text>
+        <path d="M590,380 V420" fill="none" stroke="var(--line-strong)" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <path d="M155,612 V700 H440" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <text x="300" y="693" text-anchor="middle" class="lbl strong" font-size="11">Places &#9654;</text>
+        <text x="163" y="652" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">1..1</text>
+        <text x="432" y="718" text-anchor="end" class="mono" font-size="11" fill="var(--rose)">0..1</text>
+        <path d="M640,700 H960 V432" fill="none" stroke="var(--line-strong)" stroke-width="1.5"/>
+        <text x="792" y="693" text-anchor="middle" class="lbl strong" font-size="11">&#9664; For</text>
+        <text x="648" y="718" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">0..*</text>
+        <text x="968" y="472" text-anchor="start" class="mono" font-size="11" fill="var(--rose)">1..1</text>
+        <rect x="40" y="40" width="200" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="140" y="58" text-anchor="middle" font-size="12.5" class="strong">Staff</text>
+        <rect x="40" y="66" width="200" height="106" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="54" y="84" class="mono" font-size="11.5">staffID {PK}</text>
+        <text x="54" y="102" class="mono" font-size="11.5">firstName</text>
+        <text x="54" y="120" class="mono" font-size="11.5">lastName</text>
+        <text x="54" y="138" class="mono" font-size="11.5">jobTitle</text>
+        <text x="54" y="156" class="mono" font-size="11.5">dateJoined</text>
+        <rect x="440" y="40" width="200" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="540" y="58" text-anchor="middle" font-size="12.5" class="strong">Branch</text>
+        <rect x="440" y="66" width="200" height="106" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="454" y="84" class="mono" font-size="11.5">branchCode {PK}</text>
+        <text x="454" y="102" class="mono" font-size="11.5">branchName</text>
+        <text x="454" y="120" class="mono" font-size="11.5">location</text>
+        <text x="454" y="138" class="mono" font-size="11.5">seatingCapacity</text>
+        <text x="454" y="156" class="mono" font-size="11.5" fill="var(--amber)">openingDay [1..*]</text>
+        <rect x="40" y="300" width="230" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="155" y="318" text-anchor="middle" font-size="12.5" class="strong">Member</text>
+        <rect x="40" y="326" width="230" height="286" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="54" y="344" class="mono" font-size="11.5">memberID {PK}</text>
+        <text x="54" y="362" class="mono" font-size="11.5" fill="var(--green)">name</text>
+        <text x="70" y="380" class="mono" font-size="11" fill="var(--green)">firstName</text>
+        <text x="70" y="398" class="mono" font-size="11" fill="var(--green)">lastName</text>
+        <text x="54" y="416" class="mono" font-size="11.5">dateOfBirth</text>
+        <text x="54" y="434" class="mono" font-size="11.5">email</text>
+        <text x="54" y="452" class="mono" font-size="11.5" fill="var(--green)">address</text>
+        <text x="70" y="470" class="mono" font-size="11" fill="var(--green)">houseNo</text>
+        <text x="70" y="488" class="mono" font-size="11" fill="var(--green)">street</text>
+        <text x="70" y="506" class="mono" font-size="11" fill="var(--green)">district</text>
+        <text x="70" y="524" class="mono" font-size="11" fill="var(--green)">postcode</text>
+        <text x="54" y="542" class="mono" font-size="11.5" fill="var(--amber)">telNo [1..*]</text>
+        <text x="54" y="560" class="mono" font-size="11.5" fill="var(--amber)">academicInterest [0..*]</text>
+        <text x="54" y="578" class="mono" font-size="11.5" fill="var(--violet)">/age</text>
+        <text x="54" y="596" class="mono" font-size="11.5" fill="var(--violet)">/booksOnLoan</text>
+        <rect x="860" y="300" width="200" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="960" y="318" text-anchor="middle" font-size="12.5" class="strong">Book</text>
+        <rect x="860" y="326" width="200" height="106" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="874" y="344" class="mono" font-size="11.5">ISBN {PK}</text>
+        <text x="874" y="362" class="mono" font-size="11.5">title</text>
+        <text x="874" y="380" class="mono" font-size="11.5">yearPublished</text>
+        <text x="874" y="398" class="mono" font-size="11.5">publisher</text>
+        <text x="874" y="416" class="mono" font-size="11.5" fill="var(--amber)">author [1..*]</text>
+        <rect x="440" y="660" width="200" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="540" y="678" text-anchor="middle" font-size="12.5" class="strong">Reservation</text>
+        <rect x="440" y="686" width="200" height="70" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="454" y="704" class="mono" font-size="11.5">reservationNo {PK}</text>
+        <text x="454" y="722" class="mono" font-size="11.5">datePlaced</text>
+        <text x="454" y="740" class="mono" font-size="11.5">dateExpires</text>
+        <rect x="490" y="420" width="200" height="26" rx="6 6 0 0" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4"/>
+        <rect x="490" y="446" width="200" height="88" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+        <text x="504" y="464" class="mono" font-size="11.5">dateBorrowed</text>
+        <text x="504" y="482" class="mono" font-size="11.5">dueDate</text>
+        <text x="504" y="500" class="mono" font-size="11.5">returnDate</text>
+        <text x="504" y="518" class="mono" font-size="11.5" fill="var(--violet)">/isOverdue</text>
+      </svg>
+      <figcaption data-th="<b>นี่คือคำตอบที่เราวาดเอง ไม่ใช่เฉลยของอาจารย์</b> — โจทย์ LAB05 ยังไม่มีเฉลยแจก ให้ใช้เป็นตัวเทียบว่าประโยคไหนกลายเป็น notation อะไร ไม่ใช่ของที่ลอกไปส่ง · <b>สีในภาพ:</b> <span style=\'color:var(--green)\'>เขียว = composite</span> · <span style=\'color:var(--amber)\'>เหลือง = multi-valued</span> · <span style=\'color:var(--violet)\'>ม่วง = derived</span> · <span style=\'color:var(--rose)\'>ชมพู = multiplicity</span> · กล่องที่<b>เว้นหัวว่าง</b>ต่อด้วยเส้นประคือ attribute ของ relationship ไม่ใช่ entity"><b>This is our own answer, not the lecturer's answer key</b> — no key has been handed out for LAB05, so use it to compare which sentence became which notation, not as something to copy in. <b>Colours:</b> <span style="color:var(--green)">green = composite</span> &middot; <span style="color:var(--amber)">amber = multi-valued</span> &middot; <span style="color:var(--violet)">violet = derived</span> &middot; <span style="color:var(--rose)">rose = multiplicity</span>. The <b>blank-headed box</b> on the dashed line holds the relationship's attributes, not an entity's.</figcaption>
+    </figure>
+
+    <div class="traps">
+      <div class="trap" style="background:var(--accent-soft); border-left-color:var(--accent);">
+        <b style="color:var(--accent)" data-th="อ่าน multiplicity ทั้งหกเส้น">Reading all six lines</b>
+        <span data-th="<code>Staff 1..1 — Manages &#9654; — 0..1 Branch</code> · หนึ่งสาขา<b>ต้อง</b>มีผู้จัดการ และมีคนเดียว (ดูเลขฝั่ง Staff) · พนักงานหนึ่งคน<b>ไม่จำเป็น</b>ต้องจัดการสาขา แต่ถ้ามีก็มากสุดหนึ่งสาขา (ดูเลขฝั่ง Branch) — ตรงกับ “most staff manage no branch at all”"><code>Staff 1..1 — Manages &#9654; — 0..1 Branch</code>. One branch <b>must</b> have a manager, and exactly one (read the number on Staff's side). One member of staff <b>need not</b> manage a branch, but manages at most one if they do (read Branch's side) &mdash; that is "most staff manage no branch at all".</span>
+      </div>
+      <div class="trap" style="background:var(--accent-soft); border-left-color:var(--accent);">
+        <b style="color:var(--accent)">Borrows</b>
+        <span data-th="<code>Member 0..* — Borrows &#9654; — 0..* Book</code> เป็น <code>*:*</code> เพราะ “ยืมได้หลายเล่มเมื่อเวลาผ่านไป” และ “หนังสือเล่มหนึ่งถูกยืมได้หลายคน” · min เป็น 0 ทั้งสองฝั่งเพราะ “สมาชิกที่เพิ่งสมัครอาจยังไม่เคยยืม” และ “หนังสือที่เพิ่งลงทะเบียนอาจยังไม่เคยถูกยืม”"><code>Member 0..* — Borrows &#9654; — 0..* Book</code> is <code>*:*</code>, from "many books over time" and "many members over time". Both minimums are 0 because "a newly registered member may have borrowed nothing" and "a newly catalogued book may never have been borrowed".</span>
+      </div>
+      <div class="trap" style="background:var(--accent-soft); border-left-color:var(--accent);">
+        <b style="color:var(--accent)" data-th="Places และ For">Places and For</b>
+        <span data-th="<code>Member 1..1 — Places &#9654; — 0..1 Reservation</code> · เลข <code>0..1</code> ฝั่ง Reservation มาจาก “one member may hold at most one active reservation” · ส่วน <code>Reservation 0..* — &#9664; For — 1..1 Book</code> เพราะการจองหนึ่งครั้งเจาะจงหนังสือเล่มเดียว แต่หนังสือเล่มหนึ่งถูกจองได้หลายครั้ง"><code>Member 1..1 — Places &#9654; — 0..1 Reservation</code> &mdash; the <code>0..1</code> on Reservation's side is "one member may hold at most one active reservation". And <code>Reservation 0..* — &#9664; For — 1..1 Book</code>, because one reservation names exactly one book while one book may be reserved many times.</span>
+      </div>
+    </div>
+
+    <div class="gap-note" style="margin-top:14px;">
+      <b data-th="สามจุดที่เราตัดสินใจเอง เพราะโจทย์ไม่ได้บอก">Three places where we decided, because the brief does not say</b>
+      <ul>
+        <li data-th="<b>WorksAt ฝั่ง Staff เราใส่ <code>1..*</code></b> · โจทย์เขียนแค่ “one branch may have many staff” ไม่ได้บอกว่าสาขาหนึ่งมีพนักงานศูนย์คนได้ไหม · เราเลือก <code>1..*</code> เพราะทุกสาขาต้องมีผู้จัดการอยู่แล้ว ซึ่งก็คือพนักงานหนึ่งคน · ถ้าตอบ <code>0..*</code> ก็ต้องอธิบายได้ว่าทำไม — อาจารย์ย้ำว่าเดาเองได้เฉพาะตอนโจทย์เงียบ และต้องมีเหตุผลรองรับ"><b>WorksAt carries <code>1..*</code> on Staff's side.</b> The brief only says "one branch may have many staff" and never says whether a branch may have none. We chose <code>1..*</code> because every branch must have a manager, who is a member of staff. <code>0..*</code> is defensible too &mdash; but you must be able to justify it, which is exactly the lecturer's rule about filling silent gaps.</li>
+        <li data-th="<b>Loan วาดเป็น relationship ที่มี attribute ไม่ใช่ entity</b> · เพราะสไลด์คาบ 4 สอน <code>*:*</code> ที่มี attribute ไว้แบบนี้ (Newspaper–Advertises–PropertyForRent) · ถ้าจะวาด Loan เป็น entity ของตัวเองก็ไม่ผิด แต่ตอนนั้นมันจะกลายเป็น weak entity ที่ยืม PK ทั้งจาก Member และ Book"><b>Loan is drawn as a relationship carrying attributes, not as an entity.</b> That is how class 4 taught a <code>*:*</code> with attributes (Newspaper–Advertises–PropertyForRent). Drawing Loan as its own entity is not wrong either &mdash; it then becomes a weak entity borrowing a PK from both Member and Book.</li>
+        <li data-th="<b>“ห้ามยืมเล่มเดิมซ้ำในวันเดียวกัน” ไม่ได้อยู่บนภาพ</b> · เพราะระดับ conceptual มีแค่ PK ไม่มี unique/check · กฎข้อนี้จะโผล่ตอน logical stage สัปดาห์ 8 เป็น composite PK ของตาราง Loan คือ (memberID, ISBN, dateBorrowed) ซึ่งบังคับกฎนี้ให้เอง"><b>"Must not borrow the same book twice on the same day" is not on the diagram.</b> A conceptual diagram carries primary keys only &mdash; no unique, no check. That rule appears at the logical stage in week 8, as the composite primary key of the Loan table: <code>(memberID, ISBN, dateBorrowed)</code>, which enforces it for free.</li>
+      </ul>
     </div>
 
     <div class="sub-h" data-th="ถอดรหัสประโยค requirement → notation · ทุกแถวยกมาจากโจทย์ห้องสมุดของ LAB05">Decoding a requirement into notation &mdash; every row lifted from LAB05's library brief</div>
