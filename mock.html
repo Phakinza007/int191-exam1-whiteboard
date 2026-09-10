@@ -1,0 +1,708 @@
+<title>INT191 Mock Exam</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Mali:wght@400;700&display=swap">
+<style>
+  :root{
+    --bg:#eef0f4; --surface:#fff; --surface-2:#e8ecf3; --raised:#fff;
+    --ink:#161c2a; --ink-soft:#4f5871; --ink-faint:#7f889e;
+    --line:#d0d5e0; --line-strong:#adb5c6;
+    --accent:#2d5bd7; --accent-ink:#fff; --accent-soft:#dde5fb;
+    --green:#26794f; --green-soft:#d8efe3;
+    --red:#b03f36; --red-soft:#f8dfdc;
+    --amber:#9a6a14; --amber-soft:#f6ead2;
+    --violet:#6a4bbd; --violet-soft:#e7e0f9;
+    --shadow:0 1px 2px rgba(22,28,42,.06), 0 10px 30px rgba(22,28,42,.08);
+    --fs:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    --fm:"IBM Plex Mono",Consolas,monospace;
+    --fk:"Mali","IBM Plex Sans Thai","IBM Plex Sans",sans-serif;
+  }
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+    --bg:#0e121a; --surface:#151b26; --surface-2:#1b2231; --raised:#1a2130;
+    --ink:#e9ecf3; --ink-soft:#a4adc2; --ink-faint:#727c94;
+    --line:#2a3142; --line-strong:#3d4557;
+    --accent:#7ea6ff; --accent-ink:#0a1226; --accent-soft:#1c2740;
+    --green:#79cca0; --green-soft:#17331f;
+    --red:#e58a7e; --red-soft:#3c231f;
+    --amber:#e0ad57; --amber-soft:#3a3018;
+    --violet:#ad95ef; --violet-soft:#2a2444;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px rgba(0,0,0,.45);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0e121a; --surface:#151b26; --surface-2:#1b2231; --raised:#1a2130;
+    --ink:#e9ecf3; --ink-soft:#a4adc2; --ink-faint:#727c94;
+    --line:#2a3142; --line-strong:#3d4557;
+    --accent:#7ea6ff; --accent-ink:#0a1226; --accent-soft:#1c2740;
+    --green:#79cca0; --green-soft:#17331f;
+    --red:#e58a7e; --red-soft:#3c231f;
+    --amber:#e0ad57; --amber-soft:#3a3018;
+    --violet:#ad95ef; --violet-soft:#2a2444;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 34px rgba(0,0,0,.45);
+  }
+  html.th{--fs:"IBM Plex Sans Thai","IBM Plex Sans",system-ui,sans-serif;}
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--fs); -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px; margin:0 auto; padding:26px 20px 80px;}
+  h1{font-family:var(--fk); font-size:clamp(24px,4vw,32px); margin:0 0 6px; line-height:1.2;}
+  .sub{color:var(--ink-soft); font-size:14px; line-height:1.65; margin:0 0 22px;}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:22px;}
+  .btn{
+    cursor:pointer; border:none; border-radius:10px; padding:11px 20px;
+    font-family:var(--fs); font-size:14px; font-weight:600; background:var(--accent); color:var(--accent-ink);
+  }
+  .btn:disabled{opacity:.4; cursor:not-allowed;}
+  .btn.ghost{background:var(--surface-2); color:var(--ink-soft); border:1px solid var(--line);}
+  .btn.ghost:hover:not(:disabled){color:var(--ink);}
+  .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+  .spacer{flex:1;}
+  .lang{
+    position:fixed; top:14px; right:14px; z-index:20; cursor:pointer;
+    border:1.5px solid var(--line-strong); background:var(--surface); border-radius:999px; padding:4px;
+    font-family:var(--fm); font-size:11px; font-weight:700; display:flex; gap:2px; color:var(--ink-soft);
+    box-shadow:var(--shadow);
+  }
+  .lang span{padding:4px 9px; border-radius:999px;}
+  .lang .on{background:var(--accent); color:var(--accent-ink);}
+
+  /* start */
+  .topics{display:grid; gap:7px; margin:16px 0 20px;}
+  .trow{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-soft);}
+  .tdot{width:9px; height:9px; border-radius:2px; flex:none;}
+  .tn{margin-left:auto; font-family:var(--fm); font-size:11.5px; color:var(--ink-faint);}
+  .optline{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--ink-soft); margin-bottom:9px;}
+  .optline input{width:16px; height:16px; accent-color:var(--accent);}
+
+  /* progress */
+  .bar{height:5px; background:var(--surface-2); border-radius:999px; overflow:hidden; margin-bottom:8px;}
+  .bar i{display:block; height:100%; background:var(--accent); border-radius:999px; transition:width .2s;}
+  .meta{display:flex; align-items:center; gap:10px; font-size:12px; color:var(--ink-faint); font-family:var(--fm); margin-bottom:18px;}
+  .chip{background:var(--violet-soft); color:var(--violet); border-radius:6px; padding:2px 8px; font-size:10.5px; font-weight:700;}
+  .clock{margin-left:auto;}
+  .clock.warn{color:var(--red); font-weight:700;}
+
+  /* question */
+  .qtext{font-size:16.5px; line-height:1.6; margin:0 0 18px; font-weight:600;}
+  .qtext code, .why code, .opt code{font-family:var(--fm); font-size:.92em; background:var(--surface-2); padding:1px 5px; border-radius:4px;}
+  .opts{display:grid; gap:9px; margin-bottom:20px;}
+  .opt{
+    display:flex; gap:11px; align-items:flex-start; text-align:left; width:100%;
+    cursor:pointer; background:var(--surface); border:1.5px solid var(--line); border-radius:11px;
+    padding:13px 15px; font-family:var(--fs); font-size:14.2px; line-height:1.55; color:var(--ink);
+  }
+  .opt:hover{border-color:var(--line-strong);}
+  .opt .k{
+    flex:none; width:22px; height:22px; border-radius:6px; background:var(--surface-2);
+    color:var(--ink-faint); font-family:var(--fm); font-size:11px; font-weight:700;
+    display:grid; place-items:center;
+  }
+  .opt.sel{border-color:var(--accent); background:var(--accent-soft);}
+  .opt.sel .k{background:var(--accent); color:var(--accent-ink);}
+  .opt.ok{border-color:var(--green); background:var(--green-soft);}
+  .opt.ok .k{background:var(--green); color:#fff;}
+  .opt.bad{border-color:var(--red); background:var(--red-soft);}
+  .opt.bad .k{background:var(--red); color:#fff;}
+  .opt[disabled]{cursor:default;}
+
+  /* results */
+  .score{display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin-bottom:6px;}
+  .ring{width:112px; height:112px; flex:none;}
+  .ring text{font-family:var(--fm); font-weight:700;}
+  .verdict{font-size:15px; line-height:1.65; color:var(--ink-soft);}
+  .verdict b{color:var(--ink);}
+  .brk{display:grid; gap:11px; margin:20px 0 6px;}
+  .brow{display:grid; grid-template-columns:1fr auto; gap:4px 12px; align-items:center;}
+  .bname{font-size:13.4px; color:var(--ink);}
+  .bnum{font-family:var(--fm); font-size:12px; color:var(--ink-faint);}
+  .bbar{grid-column:1/-1; height:8px; background:var(--surface-2); border-radius:999px; overflow:hidden;}
+  .bbar i{display:block; height:100%; border-radius:999px;}
+  .weak{background:var(--red-soft); border-left:3px solid var(--red); border-radius:0 10px 10px 0; padding:13px 15px; font-size:13.6px; line-height:1.7; margin:18px 0;}
+  .weak b{color:var(--red);}
+  .weak ul{margin:8px 0 0; padding-left:20px;}
+  .weak li{margin-bottom:4px;}
+  .rev{margin-top:12px;}
+  .ritem{border:1px solid var(--line); border-radius:11px; margin-bottom:10px; overflow:hidden; background:var(--surface);}
+  .rhead{display:flex; gap:10px; align-items:flex-start; padding:13px 15px; cursor:pointer; font-size:14px; line-height:1.55;}
+  .rmark{flex:none; width:20px; height:20px; border-radius:50%; display:grid; place-items:center; font-size:11px; font-weight:700; margin-top:1px;}
+  .rmark.ok{background:var(--green-soft); color:var(--green);}
+  .rmark.bad{background:var(--red-soft); color:var(--red);}
+  .rbody{padding:0 15px 14px 45px; display:none;}
+  .ritem.open .rbody{display:block;}
+  .yours{font-size:13px; margin-bottom:8px; color:var(--ink-soft);}
+  .yours b{color:var(--ink);}
+  .why{font-size:13.2px; line-height:1.72; color:var(--ink-soft); padding-top:10px; border-top:1px dashed var(--line);}
+  .why b{color:var(--ink);}
+  .hide{display:none !important;}
+  @media print{ .lang,.btn{display:none !important;} .rbody{display:block !important;} body{background:#fff;} }
+</style>
+
+<button class="lang" id="lang" type="button"><span id="lEN" class="on">EN</span><span id="lTH">TH</span></button>
+
+<div class="wrap">
+
+  <!-- ============ START ============ -->
+  <section id="scStart">
+    <h1 data-en="INT191 Mock Exam" data-th="ข้อสอบจำลอง INT191"></h1>
+    <p class="sub" id="startSub"></p>
+    <div class="card">
+      <div class="topics" id="topicList"></div>
+      <label class="optline"><input type="checkbox" id="optShuffle" checked><span data-en="Shuffle the questions" data-th="สลับลำดับข้อ"></span></label>
+      <label class="optline"><input type="checkbox" id="optTimer"><span data-en="Timed — 45 minutes" data-th="จับเวลา 45 นาที"></span></label>
+      <div class="row" style="margin-top:16px;">
+        <button class="btn" id="btnStart" data-en="Start" data-th="เริ่มทำ"></button>
+        <span class="bnum" id="startHint"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="scQuiz" class="hide">
+    <div class="bar"><i id="pbar"></i></div>
+    <div class="meta">
+      <span id="qpos"></span>
+      <span class="chip" id="qtopic"></span>
+      <span class="clock" id="clock"></span>
+    </div>
+    <div class="card">
+      <p class="qtext" id="qtext"></p>
+      <div class="opts" id="qopts"></div>
+      <div class="row">
+        <button class="btn ghost" id="btnPrev" data-en="Back" data-th="ย้อนกลับ"></button>
+        <span class="spacer"></span>
+        <button class="btn ghost" id="btnSkip" data-en="Skip" data-th="ข้าม"></button>
+        <button class="btn" id="btnNext" data-en="Next" data-th="ถัดไป"></button>
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px;">
+      <span class="bnum" id="answeredCount"></span>
+      <span class="spacer"></span>
+      <button class="btn ghost" id="btnSubmit" data-en="Submit now" data-th="ส่งคำตอบเลย"></button>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="scDone" class="hide">
+    <h1 data-en="Results" data-th="ผลการทำข้อสอบ"></h1>
+    <div class="card">
+      <div class="score">
+        <svg class="ring" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="var(--surface-2)" stroke-width="12"/>
+          <circle id="ringArc" cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="12"
+                  stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 999"/>
+          <text id="ringPct" x="60" y="58" text-anchor="middle" font-size="24" fill="var(--ink)">0%</text>
+          <text id="ringRaw" x="60" y="78" text-anchor="middle" font-size="11" fill="var(--ink-faint)"></text>
+        </svg>
+        <div class="verdict" id="verdict"></div>
+      </div>
+      <div class="brk" id="breakdown"></div>
+      <div class="weak hide" id="weakBox"></div>
+      <div class="row" style="margin-top:6px;">
+        <button class="btn" id="btnRetryWrong" data-en="Retry the ones I got wrong" data-th="ทำเฉพาะข้อที่ผิดอีกรอบ"></button>
+        <button class="btn ghost" id="btnRestart" data-en="Start over" data-th="เริ่มใหม่ทั้งหมด"></button>
+      </div>
+    </div>
+    <h1 style="font-size:19px; margin:26px 0 4px;" data-en="Every question, with the answer" data-th="ทุกข้อ พร้อมเฉลย"></h1>
+    <p class="sub" data-en="Tap a question to see why." data-th="แตะที่ข้อเพื่อดูเหตุผล"></p>
+    <div class="rev" id="review"></div>
+  </section>
+
+</div>
+<script>
+const TOPICS = {
+  w1 : {en:'Introduction to Database',            th:'Introduction to Database',            c:'#2d5bd7'},
+  w2 : {en:'Environment & Architecture',          th:'Environment & Architecture',          c:'#6a4bbd'},
+  w3t: {en:'Relational Model & terminology',      th:'Relational Model และศัพท์',           c:'#26794f'},
+  w3k: {en:'Relational Key',                      th:'Relational Key',                      c:'#9a6a14'},
+  w3c: {en:'Integrity Constraint',                th:'Integrity Constraint',                c:'#b03f36'},
+  w4 : {en:'ER Model',                            th:'ER Model',                            c:'#bd3a6b'},
+  w5 : {en:'Requirement → notation',              th:'Requirement → notation',              c:'#0e8a8a'},
+  lab: {en:'SQL & DDL (labs)',                    th:'SQL และ DDL (จาก lab)',               c:'#7a5cc4'}
+};
+
+const Q = [
+/* ---------------- W1 : Introduction ---------------- */
+{t:'w1',
+ q:{en:'What was SQL originally called?', th:'เดิมที SQL ถูกเรียกว่าอะไร'},
+ o:[{en:'QUEL',th:'QUEL'},{en:'SEQUEL',th:'SEQUEL'},{en:'SQUARE',th:'SQUARE'},{en:'ISBL',th:'ISBL'}], a:1,
+ why:{en:'SEQUEL = Structured English Query Language, by Donald Chamberlin and Raymond Boyce at IBM in the 1970s. Renamed SQL before its 1979 commercial release; ANSI standardised it in 1986 and ISO in 1987.',
+      th:'SEQUEL = Structured English Query Language โดย Donald Chamberlin และ Raymond Boyce ที่ IBM ยุค 1970s · เปลี่ยนชื่อเป็น SQL ก่อนขายจริงปี 1979 · ANSI รับเป็นมาตรฐานปี 1986 และ ISO ปี 1987'}},
+
+{t:'w1',
+ q:{en:'Which group do <code>GRANT</code> and <code>REVOKE</code> belong to?', th:'GRANT และ REVOKE อยู่ในกลุ่มคำสั่งใด'},
+ o:[{en:'DCL',th:'DCL'},{en:'DDL',th:'DDL'},{en:'DML',th:'DML'},{en:'Transaction Control',th:'Transaction Control'}], a:0,
+ why:{en:'DCL = Data Control Language, which governs privileges. DDL defines structure (CREATE/ALTER/DROP), DML manipulates data (SELECT/INSERT/UPDATE/DELETE), and COMMIT/ROLLBACK/SAVEPOINT are Transaction Control.',
+      th:'DCL = Data Control Language คุมเรื่องสิทธิ์ · DDL นิยามโครงสร้าง (CREATE/ALTER/DROP) · DML จัดการข้อมูล (SELECT/INSERT/UPDATE/DELETE) · ส่วน COMMIT/ROLLBACK/SAVEPOINT คือ Transaction Control'}},
+
+{t:'w1',
+ q:{en:'Which is <b>not</b> one of the three requirements a database system must satisfy?', th:'ข้อใด <b>ไม่ใช่</b> หนึ่งในสามข้อที่ระบบฐานข้อมูลต้องทำได้'},
+ o:[{en:'Data Persistency',th:'Data Persistency'},{en:'System Reliability',th:'System Reliability'},{en:'Portability',th:'Portability'},{en:'Scalability',th:'Scalability'}], a:2,
+ why:{en:'The slide gives exactly three: Persistency (data outlives the program that made it), Reliability (correct and fast recovery after a crash), and Scalability (large volumes, many concurrent users).',
+      th:'สไลด์ให้มาสามข้อพอดี: Persistency (ข้อมูลอยู่นานกว่าโปรแกรมที่สร้างมัน) · Reliability (กู้คืนได้ถูกและเร็วเมื่อระบบล่ม) · Scalability (รับข้อมูลปริมาณมากและผู้ใช้พร้อมกันหลายคน)'}},
+
+{t:'w1',
+ q:{en:'Which role does Plan and Define, at the start of the project?', th:'บทบาทใดทำหน้าที่ Plan และ Define ในช่วงต้นของโครงการ'},
+ o:[{en:'Database Administrator',th:'Database Administrator'},{en:'Database Designer / Analyst',th:'Database Designer / Analyst'},{en:'Application Developer',th:'Application Developer'},{en:'Data Administrator',th:'Data Administrator'}], a:3,
+ why:{en:'The names are close enough to make an excellent distractor. The Data Administrator does Plan → System Planning and Define → System Definition, at the start. The Database Administrator does Config and Maintain/Tune, at the end.',
+      th:'ชื่อสองอันนี้คล้ายกันมากจนเป็นตัวลวงชั้นดี · Data Administrator ทำ Plan และ Define ที่ต้นทาง · ส่วน Database Administrator ทำ Config และ Maintain/Tune ที่ปลายทาง'}},
+
+{t:'w1',
+ q:{en:'What is stored in the DBMS catalog, separately from the data itself?', th:'อะไรถูกเก็บใน DBMS catalog แยกจากตัวข้อมูล'},
+ o:[{en:'Backups of every table',th:'สำเนาสำรองของทุกตาราง'},{en:'Meta-data — the description of the data',th:'Meta-data คือคำอธิบายโครงสร้างข้อมูล'},{en:'The transaction log',th:'Transaction log'},{en:'User passwords',th:'รหัสผ่านของผู้ใช้'}], a:1,
+ why:{en:'The self-describing nature of a database system: the catalog holds the structures, data types and constraints — the meta-data, also called the data dictionary or system catalog. Figure 1.1 shows it stored separately from the data yet reached through the same layer of DBMS software.',
+      th:'คุณสมบัติ self-describing ของระบบฐานข้อมูล: catalog เก็บโครงสร้าง ชนิดข้อมูล และ constraint ไว้ นั่นคือ meta-data หรือที่เรียกว่า data dictionary / system catalog · ภาพ Figure 1.1 แสดงว่ามันถูกเก็บแยกจากตัวข้อมูล แต่เข้าถึงผ่านชั้นซอฟต์แวร์เดียวกัน'}},
+
+{t:'w1',
+ q:{en:'What is the correct order of the main stages in the Actors diagram?', th:'ลำดับขั้นหลักในภาพ Actors เรียงอย่างไร'},
+ o:[{en:'System Planning → System Definition → Requirement Collection → Database Design → Implementation → Maintenance',th:'System Planning → System Definition → Requirement Collection → Database Design → Implementation → Maintenance'},{en:'Requirement Collection → System Planning → Database Design → Implementation',th:'Requirement Collection → System Planning → Database Design → Implementation'},{en:'System Definition → System Planning → Database Design → Requirement Collection → Maintenance',th:'System Definition → System Planning → Database Design → Requirement Collection → Maintenance'},{en:'Database Design → Requirement Collection → Implementation → Maintenance',th:'Database Design → Requirement Collection → Implementation → Maintenance'}], a:0,
+ why:{en:'Planning comes first, then the system is defined, then requirements are collected, and only then is the database designed. Design never precedes requirements.',
+      th:'วางแผนก่อน แล้วนิยามระบบ แล้วเก็บ requirement แล้วจึงออกแบบฐานข้อมูล · การออกแบบไม่มีทางมาก่อน requirement'}},
+
+/* ---------------- W2 : Environment & Architecture ---------------- */
+{t:'w2',
+ q:{en:'Which statement about the ANSI-SPARC architecture is correct?', th:'ข้อใดถูกต้องเกี่ยวกับสถาปัตยกรรม ANSI-SPARC'},
+ o:[{en:'It became an ISO standard in 1975',th:'เป็นมาตรฐาน ISO ตั้งแต่ปี 1975'},{en:'It became an ANSI standard in 1986',th:'เป็นมาตรฐาน ANSI ตั้งแต่ปี 1986'},{en:'It has four levels',th:'มีสี่ระดับ'},{en:'It was proposed in 1975 but never became a formal standard',th:'ถูกเสนอในปี 1975 แต่ไม่เคยกลายเป็นมาตรฐานทางการ'}], a:3,
+ why:{en:'The slide says outright it never became a formal standard, yet it remains the basis for understanding a DBMS. 1986/1987 are the years ANSI and ISO standardised SQL — a different matter. And it has three levels, not four.',
+      th:'สไลด์เขียนตรงๆ ว่าไม่เคยเป็นมาตรฐานทางการ แต่ยังใช้เป็นฐานความเข้าใจ DBMS มาตลอด · ปี 1986/1987 เป็นปีที่ ANSI/ISO รับ SQL เป็นมาตรฐาน คนละเรื่องกัน · และมีสามระดับ ไม่ใช่สี่'}},
+
+{t:'w2',
+ q:{en:'In the ANSI-SPARC picture, which part belongs to the operating system rather than the DBMS?', th:'ในภาพ ANSI-SPARC ส่วนใดเป็นงานของระบบปฏิบัติการ ไม่ใช่ของ DBMS'},
+ o:[{en:'The external level',th:'External level'},{en:'The conceptual level',th:'Conceptual level'},{en:'The real files on disk, below the internal level',th:'ไฟล์จริงบนดิสก์ ที่อยู่ใต้ internal level'},{en:'The internal level',th:'Internal level'}], a:2,
+ why:{en:'The DBMS owns external, conceptual and internal; only the actual storage is the OS\'s. The strongest distractor is the internal level, because it sounds like hardware — but the internal schema is the <i>description</i> of how data is stored, not the files themselves.',
+      th:'DBMS ดูแล external, conceptual และ internal ส่วนที่เป็นของ OS คือการจัดเก็บจริงเท่านั้น · ตัวลวงที่แรงที่สุดคือ internal level เพราะฟังดูเหมือนเรื่องฮาร์ดแวร์ แต่ internal schema คือ<i>คำอธิบาย</i>ว่าเก็บยังไง ไม่ใช่ตัวไฟล์'}},
+
+{t:'w2',
+ q:{en:'What does data independence mean?', th:'data independence หมายความว่าอะไร'},
+ o:[{en:'A schema at an upper level is unaffected when a lower-level schema changes',th:'schema ระดับบนไม่กระทบเมื่อ schema ระดับล่างเปลี่ยน'},{en:'Each user may keep a private copy of the data',th:'ผู้ใช้แต่ละคนเก็บสำเนาข้อมูลของตัวเองได้'},{en:'The database can run without a DBMS',th:'ฐานข้อมูลทำงานได้โดยไม่ต้องมี DBMS'},{en:'Data may be stored in any file format',th:'ข้อมูลเก็บในรูปแบบไฟล์ใดก็ได้'}], a:0,
+ why:{en:'This is what the three-level architecture buys: add an index at the internal level and no user view need change, and the DBA can alter the conceptual structure without disturbing anyone.',
+      th:'นี่คือสิ่งที่สถาปัตยกรรมสามระดับซื้อมาให้: เพิ่ม index ที่ระดับ internal ได้โดยที่ view ของผู้ใช้ไม่ต้องรู้เรื่อง และ DBA แก้โครงสร้าง conceptual ได้โดยไม่กวนใคร'}},
+
+{t:'w2',
+ q:{en:'What is the output of <b>conceptual</b> database design?', th:'ผลลัพธ์ของขั้น conceptual database design คืออะไร'},
+ o:[{en:'Tables and constraints',th:'ตารางและ constraint'},{en:'Data files and indexes',th:'Data files และ index'},{en:'A requirement specification',th:'Requirement specification'},{en:'An Entity Relationship Diagram',th:'Entity Relationship Diagram'}], a:3,
+ why:{en:'Conceptual → ER diagram (no DBMS chosen yet) · Logical → tables and constraints · Physical → files, indexes, partitions. A requirement specification is the output of System Definition, which comes before all three.',
+      th:'Conceptual → ER diagram (ยังไม่เลือก DBMS) · Logical → ตารางและ constraint · Physical → ไฟล์ index partition · ส่วน requirement specification เป็นผลของขั้น System Definition ซึ่งมาก่อนทั้งสามขั้น'}},
+
+{t:'w2',
+ q:{en:'Which architecture has a "fat" client?', th:'สถาปัตยกรรมใดที่ client เป็นแบบ “อ้วน” (fat client)'},
+ o:[{en:'Two-tier client-server',th:'Two-tier client-server'},{en:'Teleprocessing',th:'Teleprocessing'},{en:'File-Server',th:'File-Server'},{en:'Three-tier client-server',th:'Three-tier client-server'}], a:0,
+ why:{en:'In two-tier the client handles both presentation and business logic, so it consumes more resources — the slide calls it fat and lists it as a drawback. Three-tier moves the logic to an application server, making the client thin.',
+      th:'ใน two-tier ตัว client รับผิดชอบทั้งการแสดงผลและ business logic จึงกินทรัพยากรมาก สไลด์เรียกว่า fat และระบุเป็นข้อเสีย · ส่วน three-tier ย้าย logic ไปที่ application server ทำให้ client เป็น thin'}},
+
+{t:'w2',
+ q:{en:'Whose standard is ODBC?', th:'ODBC เป็นมาตรฐานของใคร'},
+ o:[{en:'Microsoft',th:'Microsoft'},{en:'Oracle',th:'Oracle'},{en:'IBM',th:'IBM'},{en:'Java (Sun / Oracle)',th:'Java (Sun / Oracle)'}], a:0,
+ why:{en:'ODBC (Open Database Connectivity) is Microsoft\'s — one interface reaching many kinds of database through drivers. JDBC is the Java set of methods doing the same job. Both are database-oriented middleware.',
+      th:'ODBC (Open Database Connectivity) เป็นของ Microsoft ให้อินเทอร์เฟซเดียวเข้าถึงฐานข้อมูลหลายชนิดผ่าน driver · ส่วน JDBC เป็นชุดเมธอดฝั่ง Java ที่ทำหน้าที่เดียวกัน · ทั้งคู่คือ database-oriented middleware'}},
+
+{t:'w2',
+ q:{en:'Which is the correct order of the five data models the slides list?', th:'data model ห้าแบบที่สไลด์ให้มา เรียงลำดับอย่างไร'},
+ o:[{en:'Relational → Hierarchical → Network → Object-oriented → Object-relational',th:'Relational → Hierarchical → Network → Object-oriented → Object-relational'},{en:'Network → Hierarchical → Relational → Object-relational → Object-oriented',th:'Network → Hierarchical → Relational → Object-relational → Object-oriented'},{en:'Hierarchical → Relational → Network → Object-oriented → Object-relational',th:'Hierarchical → Relational → Network → Object-oriented → Object-relational'},{en:'Hierarchical → Network → Relational → Object-oriented → Object-relational',th:'Hierarchical → Network → Relational → Object-oriented → Object-relational'}], a:3,
+ why:{en:'Hierarchical is a tree where each node has at most one parent; Network is a many-to-many graph; Relational is plain tables; then object-oriented and the object-relational blend.',
+      th:'Hierarchical เป็นต้นไม้ที่แต่ละโหนดมีพ่อได้คนเดียว · Network เป็นกราฟแบบ many-to-many · Relational เป็นตารางธรรมดา · แล้วจึงเป็น object-oriented และ object-relational ที่ผสมสองแบบ'}},
+
+{t:'w2',
+ q:{en:'A data model is defined as a collection of concepts and rules made of which three parts?', th:'นิยามของ data model ประกอบด้วยสามส่วนใด'},
+ o:[{en:'Structural, manipulative, and integrity constraint',th:'structural, manipulative, และ integrity constraint'},{en:'External, conceptual, and internal',th:'external, conceptual, และ internal'},{en:'Entity, attribute, and relationship',th:'entity, attribute, และ relationship'},{en:'Conceptual, logical, and physical',th:'conceptual, logical, และ physical'}], a:0,
+ why:{en:'A structural part, a manipulative part and an integrity constraint part. The other options are real triples from this course, which is what makes them good distractors: external/conceptual/internal are the ANSI-SPARC levels, entity/attribute/relationship are the ER components, and conceptual/logical/physical are the design stages.',
+      th:'ส่วนโครงสร้าง ส่วนการจัดการข้อมูล และส่วนข้อจำกัดความถูกต้อง · ตัวเลือกอื่นเป็นชุดสามที่มีจริงในวิชานี้ จึงเป็นตัวลวงที่ดี — external/conceptual/internal คือระดับของ ANSI-SPARC, entity/attribute/relationship คือองค์ประกอบของ ER, ส่วน conceptual/logical/physical คือขั้นการออกแบบ'}},
+
+{t:'w2',
+ q:{en:'Which is an advantage of three-tier over two-tier?', th:'ข้อใดเป็นข้อดีของ three-tier เหนือ two-tier'},
+ o:[{en:'Higher client hardware cost',th:'ราคาเครื่อง client สูงกว่า'},{en:'Lower modularity',th:'ความเป็นโมดูลต่ำกว่า'},{en:'Easier load balancing and centralised application maintenance',th:'ทำ load balancing ง่ายกว่า และดูแล logic ที่เดียว'},{en:'It removes the need for a database server',th:'ไม่ต้องมี database server อีกต่อไป'}], a:2,
+ why:{en:'The slide lists cheaper hardware (the client is thin), centralised application maintenance on one application server, modularity, and easier load balancing because business logic is separated from database functions. Three-tier still has a database server — it is the third tier.',
+      th:'สไลด์ระบุว่าฮาร์ดแวร์ถูกลง (client ผอม) ดูแล logic ที่เดียวบน application server เป็นโมดูลมากกว่า และทำ load balancing ง่ายกว่าเพราะแยก business logic ออกจากงานฐานข้อมูล · three-tier ยังมี database server อยู่ นั่นคือชั้นที่สาม'}},
+
+/* ---------------- W3t : Relational Model & terminology ---------------- */
+{t:'w3t',
+ q:{en:'Who proposed the relational model, and when?', th:'ใครเสนอ relational model และเมื่อไหร่'},
+ o:[{en:'Donald Chamberlin, 1974',th:'Donald Chamberlin, 1974'},{en:'E. F. Codd, 1970',th:'E. F. Codd, 1970'},{en:'Peter Chen, 1976',th:'Peter Chen, 1976'},{en:'E. F. Codd, 1979',th:'E. F. Codd, 1979'}], a:1,
+ why:{en:'Dr E. F. Codd of IBM Research, in "A Relational Model for Large Shared Data Banks", Communications of the ACM, June 1970 — the work that won him the ACM Turing Award. Chamberlin did SEQUEL/SQL, a different thing; 1979 is SQL\'s commercial release.',
+      th:'Dr. E. F. Codd แห่ง IBM Research ในเปเปอร์ “A Relational Model for Large Shared Data Banks” ลง Communications of the ACM มิถุนายน 1970 และได้ ACM Turing Award จากงานชิ้นนี้ · Chamberlin ทำ SEQUEL/SQL ซึ่งคนละเรื่อง · 1979 คือปีที่ SQL ออกขายเชิงพาณิชย์'}},
+
+{t:'w3t',
+ q:{en:'A relation holds 6 tuples and 8 attributes. What is its <b>degree</b>?', th:'relation หนึ่งมี 6 tuple และ 8 attribute · degree เท่ากับเท่าไหร่'},
+ o:[{en:'6',th:'6'},{en:'48',th:'48'},{en:'It depends on the current instance',th:'ขึ้นกับข้อมูล ณ ขณะนั้น'},{en:'8',th:'8'}], a:3,
+ why:{en:'Degree = the number of attributes (columns) = 8, fixed by the schema. Cardinality = the number of tuples (rows) = 6, and that does change with the instance — which is what the "it depends on the current instance" option describes. Both words mean something else entirely in class 4.',
+      th:'Degree = จำนวน attribute (คอลัมน์) = 8 ตายตัวตาม schema · Cardinality = จำนวน tuple (แถว) = 6 และเปลี่ยนไปตามข้อมูล ซึ่งเป็นสิ่งที่ตัวเลือก “ขึ้นกับข้อมูล ณ ขณะนั้น” อธิบาย · คำสองคำนี้แปลคนละอย่างสิ้นเชิงในคาบ 4'}},
+
+{t:'w3t',
+ q:{en:'Which is <b>not</b> a property of a relation?', th:'ข้อใด <b>ไม่ใช่</b> คุณสมบัติของ relation'},
+ o:[{en:'Each cell holds exactly one atomic value',th:'ทุกช่องเก็บค่า atomic เพียงค่าเดียว'},{en:'There are no duplicate tuples',th:'ห้ามมี tuple ซ้ำกัน'},{en:'All values of one attribute come from the same domain',th:'ค่าของ attribute เดียวกันมาจาก domain เดียวกัน'},{en:'The order of the tuples matters',th:'ลำดับของ tuple มีความสำคัญ'}], a:3,
+ why:{en:'Row order does not matter — a relation is a set of tuples, and reordering them leaves the same relation. What does matter is column order, because a tuple is an ordered list of values, so an INSERT naming no columns must follow the declared order.',
+      th:'ลำดับแถวไม่สำคัญ — relation คือเซตของ tuple สลับแถวก็ยังเป็น relation เดิม · สิ่งที่สำคัญคือลำดับคอลัมน์ เพราะ tuple นิยามเป็นรายการค่าที่เรียงลำดับ ดังนั้น INSERT ที่ไม่ระบุชื่อคอลัมน์ต้องเรียงตามที่ประกาศไว้'}},
+
+{t:'w3t',
+ q:{en:'What is a <b>domain</b>?', th:'domain คืออะไร'},
+ o:[{en:'The set of permitted values for one attribute',th:'ชุดค่าที่ attribute หนึ่งเป็นได้ทั้งหมด'},{en:'The name of the database server',th:'ชื่อของ database server'},{en:'The number of columns in a relation',th:'จำนวนคอลัมน์ของ relation'},{en:'The set of tables a user may see',th:'ชุดตารางที่ผู้ใช้มองเห็นได้'}], a:0,
+ why:{en:'And it states more than a data type — the slide\'s domain table gives a meaning and a range too: "character: size 1, value M or F", "monetary: 7 digits, range 6000.00–40000.00". Those become CHECK constraints in SQL.',
+      th:'และมันบอกมากกว่าชนิดข้อมูล — ตาราง domain ในสไลด์ระบุความหมายและช่วงค่าด้วย เช่น “character: size 1, value M or F” หรือ “monetary: 7 digits, range 6000.00–40000.00” · สิ่งเหล่านี้กลายเป็น CHECK constraint ใน SQL'}},
+
+{t:'w3t',
+ q:{en:'The special value standing for unknown, not available, or inapplicable is called…', th:'ค่าพิเศษที่แปลว่าไม่รู้ ไม่มี หรือใช้ไม่ได้กับแถวนั้น เรียกว่าอะไร'},
+ o:[{en:'zero',th:'zero'},{en:'blank',th:'blank'},{en:'null',th:'null'},{en:'default',th:'default'}], a:2,
+ why:{en:'null is not zero and not an empty string — it means the value is unknown, unavailable, or does not apply to that tuple. It is also the value a foreign key may hold instead of matching a primary key.',
+      th:'null ไม่ใช่ศูนย์และไม่ใช่สตริงว่าง — มันแปลว่าค่านั้นไม่รู้ ไม่มี หรือใช้กับ tuple นั้นไม่ได้ · และเป็นค่าที่ foreign key ถืออยู่ได้แทนการชี้ไปยัง primary key'}},
+
+{t:'w3t',
+ q:{en:'What is the formal term for a table definition, written <code>R(A1, A2, …, An)</code>?', th:'ศัพท์ทางการของ table definition ที่เขียนเป็น R(A1, A2, …, An) คืออะไร'},
+ o:[{en:'The instance of the relation',th:'instance ของ relation'},{en:'The domain of the relation',th:'domain ของ relation'},{en:'The cardinality of the relation',th:'cardinality ของ relation'},{en:'The schema of the relation',th:'schema ของ relation'}], a:3,
+ why:{en:'R is the relation name and A1…An are all of its attributes. Note the slide\'s own typo on the Students example: it says "defined over the four attributes" then lists five — five is correct, so that relation has degree 5.',
+      th:'R คือชื่อ relation และ A1…An คือ attribute ทั้งหมด · สังเกตว่าสไลด์พิมพ์ผิดในตัวอย่าง Students: เขียนว่า “four attributes” แล้วลิสต์มาห้าตัว — ค่าที่ถูกคือ 5 ดังนั้น relation นั้นมี degree = 5'}},
+
+/* ---------------- W3k : Keys ---------------- */
+{t:'w3k',
+ q:{en:'A superkey none of whose proper subsets is itself a superkey is called a…', th:'superkey ที่ลดทอนต่อไปอีกไม่ได้ เรียกว่าอะไร'},
+ o:[{en:'Primary key',th:'Primary key'},{en:'Alternate key',th:'Alternate key'},{en:'Candidate key',th:'Candidate key'},{en:'Composite key',th:'Composite key'}], a:2,
+ why:{en:'That is the irreducibility property, which together with uniqueness defines a candidate key. A primary key is the candidate that was chosen; an alternate key is one that was not. A composite key describes a key built from several attributes — a different axis of classification.',
+      th:'นั่นคือคุณสมบัติ irreducibility ซึ่งคู่กับ uniqueness เป็นนิยามของ candidate key · primary key คือ candidate ที่ถูกเลือก · alternate key คือ candidate ที่ไม่ถูกเลือก · ส่วน composite key พูดถึงคีย์ที่ประกอบจากหลาย attribute ซึ่งเป็นคนละแกนของการจำแนก'}},
+
+{t:'w3k',
+ q:{en:'Given <code>Students(StudentNo, Firstname, Lastname, DOB, Email)</code> where StudentNo and Email are each unique, is <code>{StudentNo, Email}</code> a candidate key?', th:'ถ้า Students(StudentNo, Firstname, Lastname, DOB, Email) โดย StudentNo และ Email ต่างก็ไม่ซ้ำ · {StudentNo, Email} เป็น candidate key หรือไม่'},
+ o:[{en:'Yes, because it identifies a row uniquely',th:'ใช่ เพราะระบุแถวได้ไม่ซ้ำ'},{en:'No — it is only a superkey, because it can be reduced',th:'ไม่ใช่ — เป็นแค่ superkey เพราะลดได้อีก'},{en:'Yes, because it is composite',th:'ใช่ เพราะเป็น composite'},{en:'No, because a candidate key must be a single attribute',th:'ไม่ใช่ เพราะ candidate key ต้องเป็น attribute เดียว'}], a:1,
+ why:{en:'It does identify a row, but drop either attribute and it still does — so it is reducible and fails irreducibility. StudentNo alone and Email alone are the candidate keys. And a candidate key certainly may be composite, so the option claiming it must be a single attribute is wrong too.',
+      th:'มันระบุแถวได้จริง แต่ตัด attribute ตัวไหนออกไปหนึ่งตัวก็ยังระบุได้อยู่ดี จึงยังลดได้ ไม่ผ่าน irreducibility · StudentNo เดี่ยวๆ และ Email เดี่ยวๆ ต่างหากที่เป็น candidate key · และ candidate key เป็น composite ได้แน่นอน ตัวเลือกที่บอกว่าต้องเป็น attribute เดียวจึงผิดด้วย'}},
+
+{t:'w3k',
+ q:{en:'A candidate key that was <b>not</b> chosen as the primary key is called…', th:'candidate key ที่ <b>ไม่</b> ถูกเลือกเป็น primary key เรียกว่าอะไร'},
+ o:[{en:'A superkey',th:'Superkey'},{en:'A surrogate key',th:'Surrogate key'},{en:'An alternate key',th:'Alternate key'},{en:'A foreign key',th:'Foreign key'}], a:2,
+ why:{en:'Superkey ⊃ candidate keys → one is chosen as the primary key, the rest become alternate keys. A surrogate key is an artificial one invented when no real attribute suits — MySQL\'s AUTO_INCREMENT is exactly that.',
+      th:'Superkey ⊃ candidate key → เลือกหนึ่งตัวเป็น primary key ที่เหลือกลายเป็น alternate key · ส่วน surrogate key คือคีย์ที่สร้างขึ้นเองเมื่อไม่มี attribute จริงตัวไหนเหมาะ — AUTO_INCREMENT ของ MySQL คือตัวอย่างตรงตัว'}},
+
+{t:'w3k',
+ q:{en:'In the COMPANY schema, <code>EMPLOYEE.Super_ssn</code> points at <code>EMPLOYEE.Ssn</code>. What does that make it?', th:'ใน schema ของ COMPANY · EMPLOYEE.Super_ssn ชี้ไปยัง EMPLOYEE.Ssn · นั่นทำให้มันเป็นอะไร'},
+ o:[{en:'Not a foreign key, because it stays in the same table',th:'ไม่ใช่ foreign key เพราะอยู่ตารางเดียวกัน'},{en:'A composite primary key',th:'composite primary key'},{en:'A self-referencing foreign key',th:'foreign key ที่ชี้กลับหาตัวเอง'},{en:'An alternate key',th:'alternate key'}], a:2,
+ why:{en:'The definition says a foreign key matches a candidate key of another — or of the same — relation. A supervisor is an employee too. This is also where SELF JOIN comes from, and it is the recursive relationship of class 4.',
+      th:'นิยามบอกว่า foreign key ตรงกับ candidate key ของ relation อื่น หรือของ relation เดียวกันก็ได้ · หัวหน้าก็เป็นพนักงานคนหนึ่ง · นี่คือที่มาของ SELF JOIN และเป็น recursive relationship ของคาบ 4'}},
+
+/* ---------------- W3c : Integrity constraints ---------------- */
+{t:'w3c',
+ q:{en:'What does the <b>entity integrity</b> constraint state?', th:'entity integrity constraint กล่าวว่าอะไร'},
+ o:[{en:'An FK\'s value must match an existing PK, or be null',th:'ค่า FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null'},{en:'Every cell must hold an atomic value',th:'ทุกช่องต้องเก็บค่า atomic'},{en:'Every relation must have a primary key, and it may never be null',th:'ทุก relation ต้องมี primary key และ primary key ห้ามเป็น null'},{en:'A value must lie within its attribute\'s domain',th:'ค่าต้องอยู่ใน domain ของ attribute นั้น'}], a:2,
+ why:{en:'"An FK must match an existing PK, or be null" is referential integrity — the strongest distractor, because the two are routinely swapped. "Every cell must hold an atomic value" is a property of a relation, not an integrity constraint. "A value must lie within its domain" is a domain constraint.',
+      th:'ตัวเลือก “FK ต้องตรงกับ PK ที่มีอยู่จริง หรือเป็น null” คือ referential integrity ซึ่งเป็นตัวลวงที่แรงที่สุดเพราะสองคำนี้มักถูกจำสลับกัน · ตัวเลือก “ทุกช่องต้องเก็บค่า atomic” เป็นคุณสมบัติของ relation ไม่ใช่ integrity constraint · ส่วน “ค่าต้องอยู่ใน domain” คือ domain constraint'}},
+
+{t:'w3c',
+ q:{en:'A foreign key with no <code>ON DELETE</code> clause behaves the same as which action?', th:'foreign key ที่ไม่ได้เขียน ON DELETE ไว้เลย มีพฤติกรรมเทียบเท่าข้อใด'},
+ o:[{en:'RESTRICT',th:'RESTRICT'},{en:'CASCADE',th:'CASCADE'},{en:'SET NULL',th:'SET NULL'},{en:'SET DEFAULT',th:'SET DEFAULT'}], a:0,
+ why:{en:'RESTRICT is the default, so writing it and writing nothing are identical (NO ACTION likewise). To make it cascade you must DROP the constraint and ADD it back with ON DELETE CASCADE. MySQL Workbench shows it plainly: On Update: RESTRICT / On Delete: RESTRICT.',
+      th:'RESTRICT เป็นค่าเริ่มต้น ดังนั้นเขียนกับไม่เขียนให้ผลเหมือนกัน (NO ACTION ก็อย่างเดียวกัน) · จะให้ลบตามไปต้อง DROP constraint เดิมแล้ว ADD กลับมาพร้อม ON DELETE CASCADE · MySQL Workbench แสดงให้เห็นตรงๆ ว่า On Update: RESTRICT / On Delete: RESTRICT'}},
+
+{t:'w3c',
+ q:{en:'Which integrity constraint can a <code>DELETE</code> violate?', th:'คำสั่ง DELETE ละเมิด integrity constraint ชนิดใดได้'},
+ o:[{en:'Domain constraint',th:'Domain constraint'},{en:'Referential integrity',th:'Referential integrity'},{en:'Entity integrity',th:'Entity integrity'},{en:'All of them',th:'ละเมิดได้ทุกชนิด'}], a:1,
+ why:{en:'A DELETE puts no new value in, so it cannot violate a domain, a key, or entity integrity. The only way it can go wrong is when the PK of the removed row is still referenced. "All of them" is the answer for INSERT.',
+      th:'DELETE ไม่ได้ใส่ค่าใหม่เข้าไป จึงละเมิด domain, key หรือ entity integrity ไม่ได้ · ทางเดียวที่มันผิดพลาดได้คือเมื่อ PK ของแถวที่ถูกลบยังถูกอ้างอยู่ · ตัวเลือก “ทุกชนิด” เป็นคำตอบของ INSERT'}},
+
+{t:'w3c',
+ q:{en:'You try to insert a child row whose foreign key points at a primary key that does not exist. Which referential action saves you?', th:'คุณ INSERT แถวลูกที่ FK ชี้ไป PK ที่ไม่มีอยู่จริง · referential action ตัวไหนช่วยได้'},
+ o:[{en:'CASCADE',th:'CASCADE'},{en:'SET NULL',th:'SET NULL'},{en:'None — referential actions do not apply to INSERT',th:'ไม่มีเลย — referential action ไม่เกี่ยวกับ INSERT'},{en:'RESTRICT',th:'RESTRICT'}], a:2,
+ why:{en:'ON DELETE and ON UPDATE govern only what happens to child rows when a parent row is deleted or updated. Inserting a child pointing at a key that does not exist is refused whatever you set. Create the parent row first.',
+      th:'ON DELETE และ ON UPDATE คุมเฉพาะสิ่งที่เกิดกับแถวลูกเมื่อแถวแม่ถูกลบหรือแก้ · การ INSERT แถวลูกที่ชี้ไปยังคีย์ที่ไม่มีอยู่ ถูกปฏิเสธเสมอไม่ว่าตั้งอะไรไว้ · ต้องสร้างแถวแม่ก่อน'}},
+
+{t:'w3c',
+ q:{en:'Why can <code>ON DELETE SET NULL</code> not be used on a column declared <code>NOT NULL</code>?', th:'ทำไม ON DELETE SET NULL ใช้กับคอลัมน์ที่ประกาศ NOT NULL ไม่ได้'},
+ o:[{en:'Because SET NULL only works on primary keys',th:'เพราะ SET NULL ใช้ได้กับ primary key เท่านั้น'},{en:'Because the action must write a null into a column that forbids one',th:'เพราะ action นี้ต้องเขียน null ลงคอลัมน์ที่ห้าม null'},{en:'Because MySQL does not support SET NULL',th:'เพราะ MySQL ไม่รองรับ SET NULL'},{en:'Because NOT NULL implies CASCADE',th:'เพราะ NOT NULL หมายถึง CASCADE โดยปริยาย'}], a:1,
+ why:{en:'The two rules contradict each other directly, and the slide warns about it. Either drop the NOT NULL, or use RESTRICT or CASCADE instead.',
+      th:'กฎสองข้อขัดกันตรงๆ และสไลด์เตือนเรื่องนี้ไว้เอง · ทางแก้คือเอา NOT NULL ออก หรือเปลี่ยนไปใช้ RESTRICT หรือ CASCADE แทน'}},
+
+{t:'w3c',
+ q:{en:'Which operation can violate <b>every</b> kind of integrity constraint?', th:'คำสั่งใดละเมิด integrity constraint ได้ <b>ทุกชนิด</b>'},
+ o:[{en:'SELECT',th:'SELECT'},{en:'INSERT',th:'INSERT'},{en:'DELETE',th:'DELETE'},{en:'DROP TABLE',th:'DROP TABLE'}], a:1,
+ why:{en:'INSERT can break a domain constraint, a key constraint, referential integrity and entity integrity all at once, because it supplies fresh values for every column. DELETE can only break referential integrity, and SELECT changes nothing.',
+      th:'INSERT ละเมิดได้ทั้ง domain constraint, key constraint, referential integrity และ entity integrity เพราะมันใส่ค่าใหม่ลงทุกคอลัมน์ · DELETE ละเมิดได้แต่ referential integrity · ส่วน SELECT ไม่เปลี่ยนอะไรเลย'}},
+
+{t:'w3c',
+ q:{en:'Which three referential actions must you choose between for every foreign key at design time?', th:'referential action สามตัวที่ต้องเลือกให้ foreign key ทุกตัวตั้งแต่ตอนออกแบบ คืออะไร'},
+ o:[{en:'COMMIT, ROLLBACK, SAVEPOINT',th:'COMMIT, ROLLBACK, SAVEPOINT'},{en:'RESTRICT, CASCADE, SET NULL',th:'RESTRICT, CASCADE, SET NULL'},{en:'UNIQUE, CHECK, NOT NULL',th:'UNIQUE, CHECK, NOT NULL'},{en:'GRANT, REVOKE, DENY',th:'GRANT, REVOKE, DENY'}], a:1,
+ why:{en:'RESTRICT refuses, CASCADE deletes or updates the children too, SET NULL nulls the child FK. NO ACTION is a synonym for RESTRICT. UNIQUE/CHECK/NOT NULL are the general constraints, a different group entirely.',
+      th:'RESTRICT ปฏิเสธ · CASCADE ลบหรือแก้แถวลูกตามไป · SET NULL ตั้ง FK ของลูกเป็น null · NO ACTION เป็นคำพ้องของ RESTRICT · ส่วน UNIQUE/CHECK/NOT NULL คือ general constraint ซึ่งเป็นคนละกลุ่มกันสิ้นเชิง'}},
+
+{t:'w3c',
+ q:{en:'The COMPANY schema has EMPLOYEE.Dno → DEPARTMENT and DEPARTMENT.Mgr_ssn → EMPLOYEE. In what order can the two tables be created?', th:'schema ของ COMPANY มี EMPLOYEE.Dno → DEPARTMENT และ DEPARTMENT.Mgr_ssn → EMPLOYEE · สร้างสองตารางนี้ตามลำดับใด'},
+ o:[{en:'EMPLOYEE first, then DEPARTMENT',th:'EMPLOYEE ก่อน แล้ว DEPARTMENT'},{en:'No order works in one pass — one FK must be added afterwards with ALTER TABLE',th:'ไม่มีลำดับไหนทำจบได้ในรอบเดียว — ต้องเติม FK ตัวหนึ่งทีหลังด้วย ALTER TABLE'},{en:'DEPARTMENT first, then EMPLOYEE',th:'DEPARTMENT ก่อน แล้ว EMPLOYEE'},{en:'Either order works, because MySQL resolves it automatically',th:'ลำดับไหนก็ได้ เพราะ MySQL จัดการให้เอง'}], a:1,
+ why:{en:'They reference each other, so whichever you create first has a foreign key pointing at a table that does not exist yet. Create one without that FK, then come back and add it. LAB02 asks this same question about the enrollment table.',
+      th:'สองตารางอ้างอิงกันไปกลับ ตารางไหนถูกสร้างก่อนก็จะมี foreign key ชี้ไปยังตารางที่ยังไม่มี · ต้องสร้างตารางหนึ่งโดยยังไม่ใส่ FK แล้วย้อนมาเติม · LAB02 ถามคำถามเดียวกันนี้เกี่ยวกับตาราง enrollment'}},
+
+/* ---------------- W4 : ER Model ---------------- */
+{t:'w4',
+ q:{en:'Is the ER model a bottom-up or a top-down approach?', th:'ER model เป็น bottom-up หรือ top-down'},
+ o:[{en:'Bottom-up',th:'Bottom-up'},{en:'Neither — it is a physical design tool',th:'ไม่ใช่ทั้งคู่ — เป็นเครื่องมือออกแบบ physical'},{en:'It depends on the DBMS',th:'ขึ้นกับ DBMS ที่ใช้'},{en:'Top-down',th:'Top-down'}], a:3,
+ why:{en:'It begins by identifying the important data (entities) and the relationships between them, and only then adds attributes and constraints. Bottom-up starts at the attribute level — the lecturer\'s "here is a receipt, design me a database" analogy.',
+      th:'มันเริ่มจากการระบุข้อมูลสำคัญ (entity) และความสัมพันธ์ระหว่างกันก่อน แล้วค่อยลงรายละเอียดเป็น attribute และ constraint · ส่วน bottom-up เริ่มที่ระดับ attribute — คืออุปมา “ได้ใบเสร็จมาใบหนึ่ง ออกแบบฐานข้อมูลให้หน่อย” ที่อาจารย์เล่า'}},
+
+{t:'w4',
+ q:{en:'A <code>Registers</code> relationship joining Staff, Branch and Client has what degree?', th:'ความสัมพันธ์ Registers ที่เชื่อม Staff, Branch และ Client มี degree เท่าไหร่'},
+ o:[{en:'2 — binary',th:'2 — binary'},{en:'4 — quaternary',th:'4 — quaternary'},{en:'3 — ternary',th:'3 — ternary'},{en:'It depends on how many attributes it has',th:'ขึ้นกับจำนวน attribute'}], a:2,
+ why:{en:'A relationship\'s degree is how many entities take part — three here. One registration must record all three things: which client, with which member of staff, at which branch. The "it depends on how many attributes" option is a distractor trading on class 3\'s degree of a relation, which counts columns.',
+      th:'degree ของ relationship คือจำนวน entity ที่ร่วมอยู่ ซึ่งที่นี่คือสาม · การลงทะเบียนหนึ่งครั้งต้องบันทึกครบสามอย่าง: ลูกค้าคนไหน กับพนักงานคนไหน ที่สาขาไหน · ตัวเลือก “ขึ้นกับจำนวน attribute” เป็นตัวลวงที่อาศัยความสับสนกับ degree ของ relation ในคาบ 3 ซึ่งนับคอลัมน์'}},
+
+{t:'w4',
+ q:{en:'In the multiplicity <code>0..*</code>, what does the <code>0</code> tell you?', th:'ใน multiplicity 0..* เลข 0 บอกอะไร'},
+ o:[{en:'Cardinality — at most zero occurrences',th:'cardinality — เกี่ยวได้มากที่สุดศูนย์ตัว'},{en:'That the relationship is one-to-many',th:'ว่าความสัมพันธ์นี้เป็น one-to-many'},{en:'Participation — taking part is optional',th:'participation — การเข้าร่วมเป็นทางเลือก ไม่บังคับ'},{en:'That the attribute may be null',th:'ว่า attribute นี้เป็น null ได้'}], a:2,
+ why:{en:'Always min..max. min = participation — is it compulsory? (0 optional, 1 mandatory). max = cardinality — if it exists, how many at most? The "at most zero occurrences" option swaps the two. The "it means one-to-many" option is wrong because naming 1:1 / 1:* / *:* uses the max on both sides, not one number.',
+      th:'เขียนเป็น min..max เสมอ · min = participation ตอบว่าบังคับไหม (0 = optional, 1 = mandatory) · max = cardinality ตอบว่าถ้ามีแล้วมากสุดกี่ตัว · ตัวเลือก “เกี่ยวได้มากที่สุดศูนย์ตัว” สลับสองคำนี้ · ส่วนตัวเลือก “แปลว่าเป็น one-to-many” ผิด เพราะการตั้งชื่อ 1:1/1:*/*:* ดู max ทั้งสองฝั่ง ไม่ใช่ตัวเลขตัวเดียว'}},
+
+{t:'w4',
+ q:{en:'Given <code>Staff 1..1 — Manages ▶ — 0..1 Branch</code>, how do you read it from <b>Branch to Staff</b>?', th:'จาก Staff 1..1 — Manages ▶ — 0..1 Branch · อ่านจาก <b>Branch ไป Staff</b> ว่าอย่างไร'},
+ o:[{en:'One branch need not have a manager, but may have at most one',th:'สาขาหนึ่งไม่จำเป็นต้องมีผู้จัดการ แต่ถ้ามีก็มากสุดหนึ่งคน'},{en:'One branch may have many managers',th:'สาขาหนึ่งมีผู้จัดการได้หลายคน'},{en:'One member of staff must manage exactly one branch',th:'พนักงานหนึ่งคนต้องจัดการสาขาหนึ่งพอดี'},{en:'One branch must have a manager, and exactly one',th:'สาขาหนึ่งต้องมีผู้จัดการ และมีได้คนเดียวเท่านั้น'}], a:3,
+ why:{en:'Reading Branch → Staff means looking at the number on Staff\'s side, which is 1..1: min 1 makes it mandatory, max 1 means exactly one. The "need not have a manager, at most one" option is what you get by reading the wrong side (0..1) — the mistake the lecturer says students make most.',
+      th:'อ่านจาก Branch ไป Staff ต้องดูตัวเลขฝั่ง Staff ซึ่งคือ 1..1 · min=1 แปลว่าบังคับ · max=1 แปลว่ามีได้ตัวเดียว · ตัวเลือก “ไม่จำเป็นต้องมีผู้จัดการ แต่ถ้ามีก็มากสุดหนึ่งคน” คือสิ่งที่ได้จากการดูผิดฝั่ง (0..1) ซึ่งเป็นข้อที่อาจารย์บอกว่านักศึกษาพลาดมากที่สุด'}},
+
+{t:'w4',
+ q:{en:'What does <code>telNo [1..3]</code> mean in the UML notation?', th:'telNo [1..3] ใน UML notation หมายถึงอะไร'},
+ o:[{en:'A composite attribute with three components',th:'composite attribute ที่มีสามส่วนประกอบ'},{en:'A multi-valued attribute holding between 1 and 3 values',th:'multi-valued attribute ที่เก็บได้ 1 ถึง 3 ค่า'},{en:'A derived attribute computed from three others',th:'derived attribute ที่คำนวณจากสาม attribute'},{en:'The multiplicity of a relationship',th:'multiplicity ของความสัมพันธ์'}], a:1,
+ why:{en:'Square brackets after an attribute name mark a multi-valued attribute. Composite uses indentation under a parent; derived uses a leading slash; and a multiplicity is written on the line between boxes, not after an attribute name.',
+      th:'วงเล็บเหลี่ยมหลังชื่อ attribute คือ notation ของ multi-valued attribute · composite ใช้การย่อหน้าใต้ attribute แม่ · derived ใช้สแลชนำหน้า · ส่วน multiplicity เขียนบนเส้นระหว่างกล่อง ไม่ใช่หลังชื่อ attribute'}},
+
+{t:'w4',
+ q:{en:'On a <b>conceptual</b> ER diagram, what do you show?', th:'บน ER diagram ระดับ <b>conceptual</b> ต้องแสดงอะไร'},
+ o:[{en:'Primary keys and foreign keys',th:'primary key และ foreign key'},{en:'Primary keys, foreign keys and NOT NULL',th:'primary key, foreign key และ NOT NULL'},{en:'All keys and every constraint',th:'ทั้ง key ทั้ง constraint ครบทุกอย่าง'},{en:'Primary keys only',th:'primary key เท่านั้น'}], a:3,
+ why:{en:'The lecturer flagged this as the single most important rule of the stage. Conceptual has not reached implementation, so it asks only three things: what the main data is, how it relates, and which attribute is the primary key. FKs and unique/check/not null belong to the logical stage, week 8.',
+      th:'อาจารย์ระบุว่านี่คือข้อสำคัญที่สุดของขั้นนี้ · ระดับ conceptual ยังไม่ถึงขั้นติดตั้ง จึงถามแค่สามอย่าง: ข้อมูลหลักคืออะไร สัมพันธ์กันยังไง และ primary key คือตัวไหน · FK และ unique/check/not null เป็นเรื่องของขั้น logical ซึ่งคือสัปดาห์ 8'}},
+
+{t:'w4',
+ q:{en:'A weak entity identifies itself by borrowing a strong entity\'s primary key. Through what?', th:'weak entity ระบุตัวเองได้โดยยืม primary key ของ strong entity · ผ่านอะไร'},
+ o:[{en:'A recursive relationship',th:'recursive relationship'},{en:'A ternary relationship',th:'ternary relationship'},{en:'An identifying relationship',th:'identifying relationship'},{en:'A derived attribute',th:'derived attribute'}], a:2,
+ why:{en:'The borrowed key combines into a composite key: in the dormitory example roomNo + bldgNo makes 101+A distinct from 101+B. Alternatively you may invent a surrogate key such as roomID — the lecturer said that is not wrong either.',
+      th:'คีย์ที่ยืมมาต่อเป็น composite key: ในตัวอย่างหอพัก roomNo + bldgNo ทำให้ 101+A ต่างจาก 101+B · หรือจะสร้าง surrogate key เช่น roomID ขึ้นมาแทนก็ได้ อาจารย์บอกว่าไม่ผิด'}},
+
+{t:'w4',
+ q:{en:'<code>dateAdvert</code> and <code>cost</code> for "Newspaper advertises PropertyForRent" belong where?', th:'dateAdvert และ cost ของ “Newspaper advertises PropertyForRent” ควรอยู่ที่ไหน'},
+ o:[{en:'On the relationship, in a blank-headed box on a dashed line',th:'บน relationship ในกล่องหัวว่างที่ห้อยด้วยเส้นประ'},{en:'On PropertyForRent',th:'บน PropertyForRent'},{en:'On Newspaper',th:'บน Newspaper'},{en:'They should be dropped as redundant',th:'ควรตัดทิ้งเพราะซ้ำซ้อน'}], a:0,
+ why:{en:'Not on PropertyForRent: one property is advertised in several papers on different days at different prices. Not on Newspaper, for the mirror reason. This data only exists once the relationship occurs, so it belongs to the relationship.',
+      th:'วางบน PropertyForRent ไม่ได้ เพราะบ้านหลังเดียวลงโฆษณาได้หลายฉบับ คนละวัน คนละราคา · วางบน Newspaper ก็ไม่ได้ด้วยเหตุผลกลับกัน · ข้อมูลนี้เกิดได้ก็ต่อเมื่อความสัมพันธ์เกิดขึ้นแล้ว จึงเป็นของ relationship'}},
+
+{t:'w4',
+ q:{en:'To call a relationship one-to-one, one-to-many or many-to-many, which numbers do you look at?', th:'การเรียกความสัมพันธ์ว่า one-to-one / one-to-many / many-to-many ให้ดูตัวเลขใด'},
+ o:[{en:'The min on both sides',th:'ค่า min ทั้งสองฝั่ง'},{en:'The max on both sides',th:'ค่า max ทั้งสองฝั่ง'},{en:'The min on one side and the max on the other',th:'min ฝั่งหนึ่ง กับ max อีกฝั่ง'},{en:'The total of all four numbers',th:'ผลรวมของตัวเลขทั้งสี่'}], a:1,
+ why:{en:'Only the max, ignoring min entirely. So 0..1 ↔ 0..* is still one-to-many even though both minimums are zero. min tells you about participation, which is a separate question.',
+      th:'ดูแค่ max ไม่สนใจ min เลย · ดังนั้น 0..1 ↔ 0..* ยังเป็น one-to-many อยู่ ถึงแม้ min จะเป็นศูนย์ทั้งคู่ · ส่วน min บอกเรื่อง participation ซึ่งเป็นคนละคำถาม'}},
+
+{t:'w4',
+ q:{en:'Where do the constraints on an ER diagram come from?', th:'constraint บน ER diagram มาจากไหน'},
+ o:[{en:'The business requirements — you fill gaps only where the brief is silent',th:'business requirement — เดาเองได้เฉพาะตอนที่โจทย์เงียบ'},{en:'The designer\'s own judgement',th:'ดุลยพินิจของผู้ออกแบบเอง'},{en:'The DBMS you have chosen',th:'DBMS ที่เลือกใช้'},{en:'The normalization rules',th:'กฎการทำ normalization'}], a:0,
+ why:{en:'The lecturer stressed this repeatedly: a multiplicity is how a business rule set by the user or company gets written into the diagram. Only where the requirements are silent or unclear may you fill in with experience — and you must be able to justify it.',
+      th:'อาจารย์ย้ำเรื่องนี้หลายรอบ: multiplicity คือการเขียน business rule ที่ผู้ใช้หรือบริษัทกำหนดลงไปในไดอะแกรม · จะเดาเองได้เฉพาะตอนที่ requirement เงียบหรือไม่ชัด และต้องอธิบายเหตุผลได้'}},
+
+{t:'w4',
+ q:{en:'Which is <b>not</b> one of the three components of the ER model?', th:'ข้อใด <b>ไม่ใช่</b> หนึ่งในสามองค์ประกอบของ ER model'},
+ o:[{en:'Entity Type',th:'Entity Type'},{en:'Foreign Key',th:'Foreign Key'},{en:'Attribute',th:'Attribute'},{en:'Relationship Type',th:'Relationship Type'}], a:1,
+ why:{en:'Three components only: entity type (a rectangle), attribute (listed in the box), relationship type (a line that must be named). A foreign key is a logical-design idea and never appears on a conceptual ER diagram.',
+      th:'มีสามองค์ประกอบเท่านั้น: entity type (สี่เหลี่ยม) · attribute (อยู่ในกล่อง) · relationship type (เส้นที่ต้องมีชื่อ) · ส่วน foreign key เป็นแนวคิดของขั้น logical และไม่ปรากฏบน ER diagram ระดับ conceptual เลย'}},
+
+/* ---------------- W5 : Requirement -> notation ---------------- */
+{t:'w5',
+ q:{en:'"A member may register more than one telephone number, all must be stored, and each must provide at least one." How do you write it?', th:'“สมาชิกลงทะเบียนเบอร์โทรได้มากกว่าหนึ่งเบอร์ ต้องเก็บครบทุกเบอร์ และแต่ละคนต้องให้อย่างน้อยหนึ่งเบอร์” เขียนอย่างไร'},
+ o:[{en:'<code>telNo [1..*]</code>',th:'telNo [1..*]'},{en:'<code>telNo [0..*]</code>',th:'telNo [0..*]'},{en:'<code>/telNo</code>',th:'/telNo'},{en:'an indented composite <code>telNo</code>',th:'composite telNo แบบย่อหน้า'}], a:0,
+ why:{en:'A multi-valued attribute, and the numbers come straight from the sentence: "at least one" = 1, no stated maximum = *. Compare academic interests in the same brief, which are [0..*] because "many members register none".',
+      th:'เป็น multi-valued attribute และตัวเลขมาจากประโยคตรงๆ — “อย่างน้อยหนึ่ง” = 1, ไม่บอกค่าสูงสุด = * · เทียบกับความสนใจทางวิชาการในโจทย์เดียวกันที่เป็น [0..*] เพราะ “หลายคนไม่ลงเลย”'}},
+
+{t:'w5',
+ q:{en:'"The system must report each member\'s current age, but the value may never be stored." How do you write it?', th:'“ต้องรายงานอายุปัจจุบันของสมาชิกได้ แต่ห้ามเก็บค่านั้น” เขียนอย่างไร'},
+ o:[{en:'<code>age [0..1]</code>',th:'age [0..1]'},{en:'<code>/age</code>',th:'/age'},{en:'<code>age {PK}</code>',th:'age {PK}'},{en:'an indented composite <code>age</code>',th:'composite age แบบย่อหน้า'}], a:1,
+ why:{en:'"May never be stored, calculated when needed" is always the signal for a derived attribute, written with a leading slash. The same brief marks books-on-loan and whether a loan is overdue the same way.',
+      th:'“ห้ามเก็บ ต้องคำนวณตอนที่ต้องใช้” คือสัญญาณของ derived attribute เสมอ เขียนนำหน้าด้วยสแลช · โจทย์เดียวกันกำกับจำนวนเล่มที่ยืมอยู่และสถานะเกินกำหนดแบบเดียวกัน'}},
+
+{t:'w5',
+ q:{en:'"The return date is left empty while the book is still out on loan." What does that make <code>returnDate</code>?', th:'“วันคืนปล่อยว่างไว้ระหว่างที่ยังยืมอยู่” ทำให้ returnDate เป็นอะไร'},
+ o:[{en:'A multi-valued attribute',th:'multi-valued attribute'},{en:'A derived attribute',th:'derived attribute'},{en:'A composite attribute',th:'composite attribute'},{en:'An ordinary attribute that has no value yet',th:'attribute ธรรมดาที่ยังไม่มีค่า'}], a:3,
+ why:{en:'A deliberate trap. "Left empty and filled in later" is neither multi-valued nor derived — multi-valued means several values at the same moment, and derived means computed from others. And at the conceptual level you would not write NOT NULL anyway.',
+      th:'เป็นกับดักที่วางไว้ตั้งใจ · “ปล่อยว่างไว้ก่อนแล้วค่อยเติม” ไม่ใช่ทั้ง multi-valued และ derived — multi-valued แปลว่าหลายค่าพร้อมกัน ณ เวลาเดียว ส่วน derived แปลว่าคำนวณจากตัวอื่น · และในระดับ conceptual เราไม่เขียน NOT NULL อยู่แล้ว'}},
+
+{t:'w5',
+ q:{en:'"Every staff works at exactly one branch" <b>and</b> "each branch is managed by exactly one staff, who may manage at most one branch". How is that drawn?', th:'“พนักงานทุกคนทำงานที่สาขาเดียว” <b>และ</b> “แต่ละสาขามีผู้จัดการหนึ่งคนพอดี ซึ่งจัดการได้มากสุดหนึ่งสาขา” วาดอย่างไร'},
+ o:[{en:'Two separate relationship lines between the same pair, each with role names',th:'สองเส้นแยกกันระหว่างคู่เดิม พร้อม role name'},{en:'One line with both meanings combined',th:'เส้นเดียวรวมความหมายทั้งสอง'},{en:'A ternary relationship',th:'ternary relationship'},{en:'A recursive relationship on Staff',th:'recursive relationship บน Staff'}], a:0,
+ why:{en:'Which branch someone works at and who manages a branch are different facts, so they need different lines — and when a pair carries several lines, each end needs a role name. It is the same shape as Manages/Has on the class 4 slide.',
+      th:'“ทำงานอยู่สาขาไหน” กับ “ใครเป็นผู้จัดการสาขา” เป็นคนละข้อเท็จจริง จึงต้องแยกเส้น · และเมื่อคู่เดิมมีหลายเส้น ปลายแต่ละเส้นต้องมี role name · เป็นรูปเดียวกับ Manages/Has ในสไลด์คาบ 4'}},
+
+/* ---------------- lab : SQL & DDL ---------------- */
+{t:'lab',
+ q:{en:'"Each student\'s email must be unique and must always be provided." Which constraints?', th:'“อีเมลของนักศึกษาต้องไม่ซ้ำ และต้องมีค่าเสมอ” ใช้ constraint ใด'},
+ o:[{en:'UNIQUE only',th:'UNIQUE อย่างเดียว'},{en:'NOT NULL only',th:'NOT NULL อย่างเดียว'},{en:'PRIMARY KEY',th:'PRIMARY KEY'},{en:'UNIQUE and NOT NULL',th:'UNIQUE และ NOT NULL'}], a:3,
+ why:{en:'Two separate conditions. UNIQUE alone still permits a null, so "always provided" needs NOT NULL as well. In class 3\'s language this is an alternate key — a candidate key that was not chosen as the primary one.',
+      th:'เป็นสองเงื่อนไขคนละตัว · UNIQUE เพียงอย่างเดียวยังปล่อยให้เป็น null ได้ ดังนั้น “ต้องมีค่าเสมอ” ต้องใช้ NOT NULL ด้วย · ในภาษาของคาบ 3 นี่คือ alternate key คือ candidate key ที่ไม่ถูกเลือกเป็น primary'}},
+
+{t:'lab',
+ q:{en:'"The same student must not enroll in the same course twice in the same semester and academic year." Which constraint?', th:'“นักศึกษาคนเดิมลงทะเบียนวิชาเดิมซ้ำในภาคเรียนและปีการศึกษาเดียวกันไม่ได้” ใช้ constraint ใด'},
+ o:[{en:'One UNIQUE over the four columns together',th:'UNIQUE ตัวเดียวครอบสี่คอลัมน์รวมกัน'},{en:'Four separate UNIQUE constraints',th:'UNIQUE สี่ตัวแยกกัน'},{en:'A CHECK constraint',th:'CHECK constraint'},{en:'A FOREIGN KEY',th:'FOREIGN KEY'}], a:0,
+ why:{en:'A composite UNIQUE. The uniqueness comes from the four columns together, not one at a time — each may repeat alone, the combination may not. In class 3\'s language, a composite candidate key.',
+      th:'เป็น composite UNIQUE · ความไม่ซ้ำเกิดจากสี่คอลัมน์รวมกัน ไม่ใช่ทีละคอลัมน์ — แต่ละคอลัมน์ซ้ำได้ตามลำพัง แต่ชุดทั้งสี่ห้ามซ้ำ · ในภาษาของคาบ 3 คือ composite candidate key'}},
+
+{t:'lab',
+ q:{en:'<code>UPDATE course SET credits = 8</code> fails, where credits must be between 1 and 6. Which constraint stopped it?', th:'UPDATE course SET credits = 8 ล้มเหลว โดยหน่วยกิตต้องอยู่ระหว่าง 1 ถึง 6 · constraint ตัวใดหยุดมัน'},
+ o:[{en:'Referential integrity',th:'Referential integrity'},{en:'Entity integrity',th:'Entity integrity'},{en:'A CHECK / domain constraint',th:'CHECK / domain constraint'},{en:'A UNIQUE constraint',th:'UNIQUE constraint'}], a:2,
+ why:{en:'A range of permitted values is a domain constraint, written in SQL as CHECK. This is LAB02 Q6.4, and it proves that an UPDATE violates a domain too, not only an INSERT.',
+      th:'ช่วงค่าที่ยอมรับได้คือ domain constraint ซึ่งเขียนเป็น SQL ด้วย CHECK · นี่คือ LAB02 ข้อ 6.4 และมันพิสูจน์ว่า UPDATE ก็ละเมิด domain ได้ ไม่ใช่แค่ INSERT'}},
+
+{t:'lab',
+ q:{en:'If you do not name a foreign key constraint yourself, what does MySQL/InnoDB call it?', th:'ถ้าไม่ตั้งชื่อ foreign key constraint เอง MySQL/InnoDB จะตั้งชื่อว่าอะไร'},
+ o:[{en:'<code>&lt;table&gt;_fk_&lt;n&gt;</code>',th:'&lt;table&gt;_fk_&lt;n&gt;'},{en:'<code>&lt;table&gt;_ibfk_&lt;n&gt;</code>',th:'&lt;table&gt;_ibfk_&lt;n&gt;'},{en:'<code>fk_&lt;column&gt;</code>',th:'fk_&lt;column&gt;'},{en:'It has no name',th:'ไม่มีชื่อ'}], a:1,
+ why:{en:'ibfk = InnoDB foreign key, and n is that FK\'s position in the table. LAB03 requires you to name constraints yourself, as prefix_table_column, lowercase, at most 64 characters — partly because you cannot DROP a constraint without knowing its name.',
+      th:'ibfk ย่อจาก InnoDB foreign key และ n คือลำดับของ FK ในตารางนั้น · LAB03 บังคับให้ตั้งชื่อเอง รูปแบบ prefix_table_column ตัวเล็กล้วน ไม่เกิน 64 ตัวอักษร ส่วนหนึ่งเพราะเราจะ DROP constraint ไม่ได้ถ้าไม่รู้ชื่อมัน'}},
+
+{t:'lab',
+ q:{en:'You add a CHECK constraint with ALTER TABLE, but existing rows break it. What happens?', th:'คุณเพิ่ม CHECK constraint ด้วย ALTER TABLE แต่ข้อมูลเดิมไม่ผ่านเงื่อนไข จะเกิดอะไรขึ้น'},
+ o:[{en:'It errors — the existing rows must already satisfy it',th:'error — แถวที่มีอยู่ต้องผ่านเงื่อนไขก่อน'},{en:'It succeeds and the bad rows are deleted',th:'สำเร็จ และแถวที่ผิดถูกลบทิ้ง'},{en:'It succeeds and applies only to new rows',th:'สำเร็จ และมีผลกับแถวใหม่เท่านั้น'},{en:'It succeeds and sets the bad values to null',th:'สำเร็จ และตั้งค่าที่ผิดเป็น null'}], a:0,
+ why:{en:'You have to UPDATE the existing data first, then add the constraint — not INSERT, since the rows are already in. Better still, declare constraints at CREATE TABLE time, which is what the lab recommends.',
+      th:'ต้อง UPDATE ข้อมูลเดิมให้ถูกก่อน แล้วค่อยเพิ่ม constraint — ไม่ใช่ INSERT เพราะแถวถูกใส่ไปแล้ว · ทางที่ดีกว่าคือประกาศ constraint ตั้งแต่ตอน CREATE TABLE ซึ่งเป็นสิ่งที่ lab แนะนำ'}},
+
+{t:'lab',
+ q:{en:'What does <code>DROP TABLE</code> remove?', th:'DROP TABLE ลบอะไรบ้าง'},
+ o:[{en:'Only the rows, keeping the structure',th:'เฉพาะข้อมูล เก็บโครงสร้างไว้'},{en:'Only the table definition, keeping the data',th:'เฉพาะนิยามตาราง เก็บข้อมูลไว้'},{en:'The table definition, all its data, and any triggers on it',th:'นิยามตาราง ข้อมูลทั้งหมด และ trigger ของตารางนั้น'},{en:'The whole database',th:'ทั้งฐานข้อมูล'}], a:2,
+ why:{en:'The lab warns "Be careful with this statement!" for exactly this reason. To remove only the rows you would use DELETE (or TRUNCATE), which leaves the structure standing.',
+      th:'lab เตือนว่า “Be careful with this statement!” ด้วยเหตุผลนี้เอง · ถ้าต้องการลบแค่ข้อมูลให้ใช้ DELETE (หรือ TRUNCATE) ซึ่งเก็บโครงสร้างไว้'}},
+
+{t:'lab',
+ q:{en:'In MySQL, <code>CREATE SCHEMA</code> is…', th:'ใน MySQL คำสั่ง CREATE SCHEMA คือ'},
+ o:[{en:'a way to create a view',th:'วิธีสร้าง view'},{en:'a way to create a table group',th:'วิธีสร้างกลุ่มของตาราง'},{en:'not valid SQL',th:'ไม่ใช่คำสั่ง SQL ที่ถูกต้อง'},{en:'a synonym for CREATE DATABASE',th:'คำพ้องของ CREATE DATABASE'}], a:3,
+ why:{en:'The lab quotes it directly: CREATE SCHEMA is a synonym for CREATE DATABASE. The statement also takes IF NOT EXISTS and the options CHARACTER SET, COLLATE and ENCRYPTION.',
+      th:'lab อ้างไว้ตรงๆ ว่า CREATE SCHEMA เป็นคำพ้องของ CREATE DATABASE · คำสั่งนี้รับ IF NOT EXISTS และตัวเลือก CHARACTER SET, COLLATE, ENCRYPTION ด้วย'}}
+];
+
+/* ---------- state ---------- */
+let lang = 'en', order = [], cur = 0, ans = [], timer = null, left = 0, pool = null;
+const $ = id => document.getElementById(id);
+const L = o => (lang === 'th' && o.th) ? o.th : o.en;
+
+/* ---------- language ---------- */
+function paintStatic(){
+  document.documentElement.classList.toggle('th', lang === 'th');
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.innerHTML = (lang === 'th' && el.dataset.th) ? el.dataset.th : el.dataset.en;
+  });
+  $('lEN').classList.toggle('on', lang === 'en');
+  $('lTH').classList.toggle('on', lang === 'th');
+  $('startSub').innerHTML = lang === 'th'
+    ? 'ข้อสอบปรนัย ' + Q.length + ' ข้อ ครอบคลุมคาบ 1–5 และ lab · <b>ไม่เห็นเฉลยจนกว่าจะส่ง</b> เพราะจุดประสงค์คือหาว่าอ่อนหัวข้อไหน ไม่ใช่ทบทวนไปตอบไป · จบแล้วจะสรุปคะแนนรายหัวข้อให้'
+    : ''+Q.length+' multiple-choice questions across classes 1–5 and the labs. <b>Nothing is revealed until you submit</b> — the point is to find out which topics are weak, not to read the answers as you go. You get a per-topic breakdown at the end.';
+  $('startHint').textContent = lang === 'th'
+    ? 'ไม่จำกัดเวลา ถ้าไม่ติ๊กจับเวลา'
+    : 'untimed unless you tick the box';
+  if (!$('scStart').classList.contains('hide')) paintTopics();
+  if (!$('scQuiz').classList.contains('hide')) paintQ();
+  if (!$('scDone').classList.contains('hide')) paintDone();
+}
+function paintTopics(){
+  const c = {};
+  Q.forEach(q => c[q.t] = (c[q.t]||0)+1);
+  $('topicList').innerHTML = Object.keys(TOPICS).map(k =>
+    '<div class="trow"><i class="tdot" style="background:'+TOPICS[k].c+'"></i><span>'+L(TOPICS[k])+'</span><span class="tn">'+(c[k]||0)+'</span></div>'
+  ).join('');
+}
+
+/* ---------- run ---------- */
+function start(subset){
+  pool = subset || null;
+  const idx = subset || Q.map((_,i)=>i);
+  order = idx.slice();
+  if ($('optShuffle').checked) for (let i=order.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; [order[i],order[j]]=[order[j],order[i]]; }
+  ans = new Array(Q.length).fill(-1);
+  cur = 0;
+  $('scStart').classList.add('hide'); $('scDone').classList.add('hide'); $('scQuiz').classList.remove('hide');
+  clearInterval(timer);
+  if ($('optTimer').checked && !subset){
+    left = 45*60;
+    tick();
+    timer = setInterval(tick, 1000);
+  } else { $('clock').textContent = ''; }
+  paintQ();
+  window.scrollTo(0,0);
+}
+function tick(){
+  const m = (left/60)|0, s = left%60;
+  $('clock').textContent = m + ':' + String(s).padStart(2,'0');
+  $('clock').classList.toggle('warn', left <= 300);
+  if (left-- <= 0){ clearInterval(timer); finish(); }
+}
+function paintQ(){
+  const qi = order[cur], q = Q[qi];
+  $('pbar').style.width = ((cur)/order.length*100) + '%';
+  $('qpos').textContent = (lang==='th'?'ข้อ ':'Q ') + (cur+1) + ' / ' + order.length;
+  $('qtopic').textContent = L(TOPICS[q.t]);
+  $('qtext').innerHTML = L(q.q);
+  $('qopts').innerHTML = q.o.map((o,i) =>
+    '<button class="opt'+(ans[qi]===i?' sel':'')+'" data-i="'+i+'"><span class="k">'+'abcd'[i]+'</span><span>'+L(o)+'</span></button>'
+  ).join('');
+  $('qopts').querySelectorAll('.opt').forEach(b => b.onclick = () => {
+    ans[qi] = +b.dataset.i;
+    paintQ();
+    setTimeout(()=>{ if (cur < order.length-1){ cur++; paintQ(); } }, 160);
+  });
+  $('btnPrev').disabled = cur === 0;
+  $('btnNext').textContent = cur === order.length-1 ? (lang==='th'?'ส่งคำตอบ':'Finish') : (lang==='th'?'ถัดไป':'Next');
+  const done = order.filter(i => ans[i] !== -1).length;
+  $('answeredCount').textContent = (lang==='th' ? 'ตอบแล้ว ' : 'answered ') + done + '/' + order.length;
+}
+
+/* ---------- results ---------- */
+function finish(){
+  clearInterval(timer);
+  $('scQuiz').classList.add('hide'); $('scDone').classList.remove('hide');
+  paintDone();
+  window.scrollTo(0,0);
+}
+function paintDone(){
+  const stat = {}, wrong = [];
+  order.forEach(i => {
+    const q = Q[i], ok = ans[i] === q.a;
+    stat[q.t] = stat[q.t] || {n:0, ok:0};
+    stat[q.t].n++; if (ok) stat[q.t].ok++; else wrong.push(i);
+  });
+  const total = order.length, right = total - wrong.length;
+  const pct = Math.round(right/total*100);
+  $('ringPct').textContent = pct + '%';
+  $('ringRaw').textContent = right + '/' + total;
+  const circ = 2*Math.PI*50;
+  $('ringArc').setAttribute('stroke-dasharray', (circ*pct/100) + ' ' + circ);
+  $('ringArc').setAttribute('stroke', pct>=80?'var(--green)':pct>=60?'var(--accent)':'var(--red)');
+
+  $('verdict').innerHTML = lang==='th'
+    ? (pct>=80 ? '<b>แน่นแล้ว</b> เหลือแค่เก็บหัวข้อที่ยังพลาดข้างล่าง'
+      : pct>=60 ? '<b>พอไปได้ แต่ยังมีรู</b> ดูแถบที่สั้นที่สุดข้างล่างก่อน แล้วค่อยกลับมาทำใหม่'
+      : '<b>ยังต้องทบทวนอีกพอควร</b> เริ่มจากหัวข้อที่แถบสั้นที่สุด อย่าเพิ่งไล่อ่านทั้งหมด')
+    : (pct>=80 ? '<b>Solid.</b> Only the topics below still need picking up.'
+      : pct>=60 ? '<b>Workable, with holes.</b> Look at the shortest bars below first, then take it again.'
+      : '<b>Needs real revision.</b> Start with the shortest bar. Do not reread everything.');
+
+  const rows = Object.keys(stat).map(k => ({k, ...stat[k], p: stat[k].ok/stat[k].n}))
+                     .sort((a,b) => a.p - b.p);
+  $('breakdown').innerHTML = rows.map(r =>
+    '<div class="brow"><span class="bname">'+L(TOPICS[r.k])+'</span>'+
+    '<span class="bnum">'+r.ok+'/'+r.n+'</span>'+
+    '<span class="bbar"><i style="width:'+(r.p*100)+'%;background:'+(r.p>=0.8?'var(--green)':r.p>=0.5?'var(--amber)':'var(--red)')+'"></i></span></div>'
+  ).join('');
+
+  const weak = rows.filter(r => r.p < 0.7);
+  if (weak.length){
+    $('weakBox').classList.remove('hide');
+    $('weakBox').innerHTML = '<b>' + (lang==='th'?'อ่อนหัวข้อเหล่านี้ — ทบทวนตามลำดับนี้':'Weakest topics — revise in this order') + '</b><ul>' +
+      weak.map(r => '<li>' + L(TOPICS[r.k]) + ' — <b>' + r.ok + '/' + r.n + '</b></li>').join('') + '</ul>';
+  } else {
+    $('weakBox').classList.add('hide');
+  }
+
+  $('btnRetryWrong').style.display = wrong.length ? '' : 'none';
+  $('btnRetryWrong').onclick = () => start(wrong);
+
+  $('review').innerHTML = order.map(i => {
+    const q = Q[i], ok = ans[i] === q.a;
+    const yours = ans[i] === -1
+      ? (lang==='th'?'<b>ไม่ได้ตอบ</b>':'<b>not answered</b>')
+      : (lang==='th'?'คุณตอบ: <b>':'You answered: <b>') + 'abcd'[ans[i]] + ') ' + L(q.o[ans[i]]) + '</b>';
+    return '<div class="ritem"><div class="rhead">'+
+      '<span class="rmark '+(ok?'ok':'bad')+'">'+(ok?'✓':'✕')+'</span><span>'+L(q.q)+'</span></div>'+
+      '<div class="rbody"><div class="yours">'+yours+'<br>'+
+      (lang==='th'?'เฉลย: <b>':'Correct: <b>')+'abcd'[q.a]+') '+L(q.o[q.a])+'</b></div>'+
+      '<div class="why">'+L(q.why)+'</div></div></div>';
+  }).join('');
+  $('review').querySelectorAll('.rhead').forEach(h => h.onclick = () => h.parentElement.classList.toggle('open'));
+}
+
+/* ---------- wiring ---------- */
+$('lang').onclick = () => { lang = lang==='en' ? 'th' : 'en'; paintStatic(); };
+$('btnStart').onclick = () => start(null);
+$('btnPrev').onclick = () => { if (cur>0){ cur--; paintQ(); } };
+$('btnSkip').onclick = () => { if (cur < order.length-1){ cur++; paintQ(); } else finish(); };
+$('btnNext').onclick = () => { if (cur < order.length-1){ cur++; paintQ(); } else finish(); };
+$('btnSubmit').onclick = finish;
+$('btnRestart').onclick = () => { $('scDone').classList.add('hide'); $('scStart').classList.remove('hide'); window.scrollTo(0,0); };
+paintStatic();
+</script>
