@@ -129,6 +129,15 @@
   .yours b{color:var(--ink);}
   .why{font-size:13.2px; line-height:1.72; color:var(--ink-soft); padding-top:10px; border-top:1px dashed var(--line);}
   .why b{color:var(--ink);}
+  .fb{border-radius:11px; padding:13px 15px; margin:-8px 0 20px; font-size:13.4px; line-height:1.72;}
+  .fb.good{background:var(--green-soft); border-left:3px solid var(--green);}
+  .fb.bad{background:var(--red-soft); border-left:3px solid var(--red);}
+  .fb .verdictline{display:block; font-weight:700; margin-bottom:6px; font-size:14px; letter-spacing:.01em;}
+  .fb.good .verdictline{color:var(--green);}
+  .fb.bad .verdictline{color:var(--red);}
+  .fb .corr{display:block; margin-bottom:8px; color:var(--ink);}
+  .fb .expl{display:block; color:var(--ink-soft); padding-top:9px; border-top:1px dashed var(--line-strong);}
+  .fb code{font-family:var(--fm); font-size:.92em; background:var(--surface); padding:1px 5px; border-radius:4px;}
   .hide{display:none !important;}
   @media print{ .lang,.btn{display:none !important;} .rbody{display:block !important;} body{background:#fff;} }
 </style>
@@ -145,6 +154,7 @@
       <div class="topics" id="topicList"></div>
       <label class="optline"><input type="checkbox" id="optShuffle" checked><span data-en="Shuffle the questions" data-th="สลับลำดับข้อ"></span></label>
       <label class="optline"><input type="checkbox" id="optTimer"><span data-en="Timed — 45 minutes" data-th="จับเวลา 45 นาที"></span></label>
+      <label class="optline"><input type="checkbox" id="optInstant" checked><span data-en="Tell me right or wrong right after each answer, with the reason" data-th="บอกถูกผิดทันทีหลังตอบแต่ละข้อ พร้อมคำอธิบาย"></span></label>
       <div class="row" style="margin-top:16px;">
         <button class="btn" id="btnStart" data-en="Start" data-th="เริ่มทำ"></button>
         <span class="bnum" id="startHint"></span>
@@ -163,6 +173,7 @@
     <div class="card">
       <p class="qtext" id="qtext"></p>
       <div class="opts" id="qopts"></div>
+      <div id="qfb" class="fb hide"></div>
       <div class="row">
         <button class="btn ghost" id="btnPrev" data-en="Back" data-th="ย้อนกลับ"></button>
         <span class="spacer"></span>
@@ -558,6 +569,7 @@ const Q = [
 
 /* ---------- state ---------- */
 let lang = 'en', order = [], cur = 0, ans = [], timer = null, left = 0, pool = null;
+let instant = false, locked = [];
 const $ = id => document.getElementById(id);
 const L = o => (lang === 'th' && o.th) ? o.th : o.en;
 
@@ -595,6 +607,8 @@ function start(subset){
   order = idx.slice();
   if ($('optShuffle').checked) for (let i=order.length-1;i>0;i--){ const j=(Math.random()*(i+1))|0; [order[i],order[j]]=[order[j],order[i]]; }
   ans = new Array(Q.length).fill(-1);
+  locked = new Array(Q.length).fill(false);
+  instant = $('optInstant').checked;
   cur = 0;
   $('scStart').classList.add('hide'); $('scDone').classList.add('hide'); $('scQuiz').classList.remove('hide');
   clearInterval(timer);
@@ -618,14 +632,34 @@ function paintQ(){
   $('qpos').textContent = (lang==='th'?'ข้อ ':'Q ') + (cur+1) + ' / ' + order.length;
   $('qtopic').textContent = L(TOPICS[q.t]);
   $('qtext').innerHTML = L(q.q);
-  $('qopts').innerHTML = q.o.map((o,i) =>
-    '<button class="opt'+(ans[qi]===i?' sel':'')+'" data-i="'+i+'"><span class="k">'+'abcd'[i]+'</span><span>'+L(o)+'</span></button>'
-  ).join('');
-  $('qopts').querySelectorAll('.opt').forEach(b => b.onclick = () => {
+  const shown = instant && locked[qi];
+  $('qopts').innerHTML = q.o.map((o,i) => {
+    let cls = '';
+    if (shown){
+      if (i === q.a) cls = ' ok';
+      else if (i === ans[qi]) cls = ' bad';
+    } else if (ans[qi] === i) cls = ' sel';
+    return '<button class="opt'+cls+'"'+(shown?' disabled':'')+' data-i="'+i+'"><span class="k">'+'abcd'[i]+'</span><span>'+L(o)+'</span></button>';
+  }).join('');
+  if (!shown) $('qopts').querySelectorAll('.opt').forEach(b => b.onclick = () => {
     ans[qi] = +b.dataset.i;
+    if (instant){ locked[qi] = true; paintQ(); return; }
     paintQ();
     setTimeout(()=>{ if (cur < order.length-1){ cur++; paintQ(); } }, 160);
   });
+
+  const fb = $('qfb');
+  if (shown){
+    const ok = ans[qi] === q.a;
+    fb.className = 'fb ' + (ok ? 'good' : 'bad');
+    fb.innerHTML =
+      '<span class="verdictline">' + (ok ? (lang==='th' ? '\u0e16\u0e39\u0e01' : 'Correct') : (lang==='th' ? '\u0e1c\u0e34\u0e14' : 'Wrong')) + '</span>' +
+      (ok ? '' : '<span class="corr">' + (lang==='th' ? '\u0e04\u0e33\u0e15\u0e2d\u0e1a\u0e17\u0e35\u0e48\u0e16\u0e39\u0e01\u0e04\u0e37\u0e2d ' : 'The right answer is ') + '<b>' + 'abcd'[q.a] + ') ' + L(q.o[q.a]) + '</b></span>') +
+      '<span class="expl">' + L(q.why) + '</span>';
+  } else {
+    fb.className = 'fb hide';
+    fb.innerHTML = '';
+  }
   $('btnPrev').disabled = cur === 0;
   $('btnNext').textContent = cur === order.length-1 ? (lang==='th'?'ส่งคำตอบ':'Finish') : (lang==='th'?'ถัดไป':'Next');
   const done = order.filter(i => ans[i] !== -1).length;
