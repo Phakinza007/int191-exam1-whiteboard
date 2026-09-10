@@ -378,6 +378,32 @@
     .cn-tab .act{width:auto; border-right:none; padding-right:0; margin-bottom:5px;}
     .cn-tab td:last-child{padding-left:0;}
   }
+  /* ---- requirement decoder ---- */
+  .dec-wrap{overflow-x:auto; margin-top:6px;}
+  .dec-tab{width:100%; border-collapse:collapse; font-size:12.4px; min-width:660px;}
+  .dec-tab td{padding:10px 12px 10px 0; border-top:1px solid var(--line); vertical-align:top; line-height:1.7;}
+  .dec-tab tr.hd td{
+    border-top:none; padding-top:0; padding-bottom:7px;
+    font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--ink-faint); font-weight:700;
+  }
+  .dec-tab .say{width:34%; color:var(--ink); font-style:italic;}
+  .dec-tab .wr{
+    width:22%; font-family:var(--font-mono); font-size:11.6px; color:var(--accent);
+    line-height:1.75; padding-right:14px;
+  }
+  .dec-tab .wr code{background:var(--accent-soft); padding:1px 5px; border-radius:3px; font-size:1em;}
+  .dec-tab td:last-child{color:var(--ink-soft);}
+  .dec-tab .tiny{display:block; font-family:var(--font-sans); font-size:10.5px; color:var(--ink-faint); margin:3px 0;}
+  .dec-tab code{font-family:var(--font-mono); font-size:.95em;}
+  @media (max-width:720px){
+    .dec-tab{min-width:0;}
+    .dec-tab tr{display:block; border-top:1px solid var(--line); padding:9px 0;}
+    .dec-tab tr.hd{display:none;}
+    .dec-tab td{display:block; border-top:none; padding:0 0 5px;}
+    .dec-tab .say, .dec-tab .wr{width:auto;}
+    .dec-tab .wr{padding:4px 0;}
+  }
 </style>
 
 <div class="board-frame">
@@ -394,7 +420,7 @@
       <span class="rchip on" data-th="W2 · สถาปัตยกรรม">W2 · Architecture</span><span class="rjoin"></span>
       <span class="rchip on" data-th="W3 · Relational Model">W3 · Relational Model</span><span class="rjoin"></span>
       <span class="rchip on" data-th="W4 · ER 1/3">W4 · ER 1/3</span><span class="rjoin"></span>
-      <span class="rchip gap" data-th="W5 · ER 2/3">W5 · ER 2/3</span><span class="rjoin"></span>
+      <span class="rchip on" data-th="W5 · ER 2/3">W5 · ER 2/3</span><span class="rjoin"></span>
       <span class="rchip exam">EXAM 1 · 30%</span><span class="rjoin"></span>
       <span class="rchip faint" data-th="W7–11 · ER 3/3, Mapping, Normalization">W7–11 · ER 3/3, Mapping, Normalization</span><span class="rjoin"></span>
       <span class="rchip faint">EXAM 2 · 35%</span>
@@ -414,7 +440,7 @@
         <tr><td class="wk">2</td><td><span class="topic" data-th="สถาปัตยกรรมและสภาพแวดล้อม">DB Architecture &amp; Environment</span><span class="sub" data-th="สถาปัตยกรรม ANSI-SPARC · แนวคิดการออกแบบฐานข้อมูล · หน้าที่ของ DBMS · สถาปัตยกรรมแบบหลายผู้ใช้ · องค์ประกอบของ DBMS">The ANSI-SPARC Architecture &middot; Database Design Concept &middot; Functions of a DBMS &middot; Multi-user DBMS Architectures &middot; Components of a DBMS</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล &amp; SQL">Design a database &amp; SQL</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr><td class="wk">3</td><td><span class="topic" data-th="แบบจำลองเชิงสัมพันธ์">The Relational Model</span><span class="sub" data-th="แนวคิดและศัพท์ของแบบจำลองเชิงสัมพันธ์ · คีย์ (Relational Key) · ข้อจำกัดความถูกต้อง">Relational Model Concepts and Terminology &middot; Relational Key &middot; Integrity Constraint</span></td><td class="lab" data-th="ออกแบบฐานข้อมูล">Design a database</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr><td class="wk">4</td><td><span class="topic" data-th="ER Model (1/3)">Conceptual DB Design: ER Model (1/3)</span><span class="sub" data-th="ออกแบบฐานข้อมูลด้วย ERD · แนวคิดพื้นฐานของ ER Model">Database Design with ERD &middot; Basic Concepts of the ER Model</span></td><td class="lab" data-th="ใช้ MySQL Workbench ออกแบบฐานข้อมูล">MySQL Workbench</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
-        <tr><td class="wk">5</td><td><span class="topic" data-th="ER Model (2/3)">Conceptual DB Design: ER Model (2/3)</span><span class="sub none" data-th="ไม่ทราบหัวข้อย่อย — ไม่มีสไลด์หรือโน้ตของสัปดาห์นี้ในโฟลเดอร์วิชา">sub-topics unknown &mdash; no slides or notes for this week in the course folder</span></td><td class="lab" data-th="นำเสนอความคืบหน้า Group Project">Group Project progress</td><td class="tag gapt" data-th="ออกสอบ · ไม่มีโน้ต">in scope · no notes</td></tr>
+        <tr><td class="wk">5</td><td><span class="topic" data-th="ER Model (2/3)">Conceptual DB Design: ER Model (2/3)</span><span class="sub" data-th="ฝึกแปลงโจทย์เป็นไดอะแกรม ทั้ง bottom-up และ top-down · จาก LAB05">Turning a brief into a diagram, bottom-up and top-down &middot; from LAB05</span></td><td class="lab" data-th="นำเสนอความคืบหน้า Group Project">Group Project progress</td><td class="tag in" data-th="ออกสอบ">in scope</td></tr>
         <tr class="ex"><td class="wk">6</td><td colspan="2" data-th="<b>Exam#1 — ทฤษฎีล้วน 30%</b> ← วันนี้"><b>Exam#1 — Theory only, 30%</b> &larr; today</td><td class="tag now" data-th="วันนี้">today</td></tr>
         <tr class="dim"><td class="wk">7</td><td data-th="ER Model (3/3)">Conceptual DB Design: ER Model (3/3)</td><td class="lab" data-th="ใช้ MySQL Workbench">MySQL Workbench</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
         <tr class="dim"><td class="wk">8</td><td data-th="Logical DB Design — ERD Mapping">Logical DB Design — ERD Mapping</td><td class="lab" data-th="แปลง ER เป็นตาราง">ER conversion to tables</td><td class="tag" data-th="สอบ 2">Exam 2</td></tr>
@@ -434,7 +460,7 @@
       <span data-th="Quiz#2 5%">Quiz#2 5%</span>
       <span data-th="เข้าเรียน 5%">Attendance 5%</span>
     </div>
-    <p class="ol-note" data-th="สองข้อที่เปลี่ยนไปจากที่พิมพ์ใน outline: <b>Quiz#1 ถูกยกเลิก</b> (อาจารย์ประกาศในคาบ 4 ให้ถือว่าไม่เคยมี ไม่ได้เลื่อน) ทำให้ Quiz#2 รับ 5% ไปเต็มคนเดียวในสัปดาห์ 9 · และเนื้อหาสัปดาห์ 5 ไม่มีเอกสารอยู่ในโฟลเดอร์วิชา จึงเป็นช่องว่างเดียวของบอร์ดนี้">Two things differ from the printed outline: <b>Quiz#1 was cancelled</b> — announced in class 4, to be treated as never having existed and not rescheduled — leaving Quiz#2 in week 9 to carry the whole 5%. And week 5 has no material in the course folder, which is the one gap on this board.</p>
+    <p class="ol-note" data-th="สองข้อที่เปลี่ยนไปจากที่พิมพ์ใน outline: <b>Quiz#1 ถูกยกเลิก</b> (อาจารย์ประกาศในคาบ 4 ให้ถือว่าไม่เคยมี ไม่ได้เลื่อน) ทำให้ Quiz#2 รับ 5% ไปเต็มคนเดียวในสัปดาห์ 9 · ส่วนเนื้อหาสัปดาห์ 5 ทำจาก LAB05 แล้ว">Two things differ from the printed outline: <b>Quiz#1 was cancelled</b> — announced in class 4, to be treated as never having existed and not rescheduled — leaving Quiz#2 in week 9 to carry the whole 5%. Week 5 is covered from its own lab sheet, LAB05.</p>
   </div>
 
   <div class="cram">
@@ -877,21 +903,109 @@
   <section class="band">
     <div class="band-head">
       <span class="wk-pill">W5</span>
-      <h2 data-th="ER Model (2/3) — ช่องที่ยังว่างอยู่">ER Model (2/3) — the gap on this board</h2>
+      <h2 data-th="ER Model (2/3) — ฝึกแปลงโจทย์เป็นไดอะแกรม">ER Model (2/3) — turning a brief into a diagram</h2>
       <span class="band-date">3 Sep 2026</span>
-      <span class="band-tag" data-th="สัปดาห์นี้อยู่ในขอบเขตสอบ แต่ไม่มีโน้ตอยู่ในโฟลเดอร์วิชา — ระบุไว้ตรงๆ ดีกว่าเดาเนื้อหาให้">This week is in scope, but there are no notes for it in the course folder. Saying so plainly beats inventing the content.</span>
+      <span class="band-tag" data-th="คาบนี้ไม่ได้เพิ่มแนวคิดใหม่ แต่เอาแนวคิดของคาบ 4 มาใช้กับโจทย์ที่ใหญ่ขึ้น · ฝึกทั้งสองทาง: bottom-up จากหน้าหนังสือตำราอาหาร และ top-down จากโจทย์ระบบห้องสมุด · ที่มา: LAB05 Conceptual Database Design 2">No new concepts — class 4's ideas applied to a bigger brief. Both directions are practised: bottom-up from a page of a recipe book, and top-down from a library-system brief. Source: LAB05 Conceptual Database Design 2.</span>
     </div>
 
-    <div class="gap-note">
-      <b data-th="ผมไม่มีเนื้อหาสัปดาห์ที่ 5 บนเครื่อง">I have no week 5 material on this machine.</b>
-      <span data-th=" โฟลเดอร์ <code>INT191/</code> มี week1 ถึง week4 เท่านั้น ไม่มีสไลด์ ไม่มีโน้ต ไม่มี lab ของสัปดาห์ 5 · มีแต่ไฟล์ <code>INT191-summary.m4a</code> กับ <code>.mp4</code> ลงวันที่ 4 ก.ย. ซึ่งน่าจะเป็นบันทึกคาบวันที่ 3 ก.ย. แต่ผมถอดเสียงให้ไม่ได้"> The <code>INT191/</code> folder holds week1 through week4 and nothing else — no slides, no notes, no lab for week 5. There is an <code>INT191-summary.m4a</code> and <code>.mp4</code> dated 4 Sep, presumably a recording of the 3 Sep class, but I cannot transcribe audio.</span>
-      <b style="display:block; margin-top:10px;" data-th="สิ่งที่พอรู้ได้จากเอกสารอื่น:">What the other documents do tell us:</b>
-      <ul>
-        <li data-th="Course outline ระบุหัวข้อสัปดาห์ 5 ว่า <strong>Conceptual DB Design: ER Model (2/3)</strong> และ lab คือ <strong>Group Project Progress Presentation</strong>">The outline lists week 5's topic as <strong>Conceptual DB Design: ER Model (2/3)</strong> with <strong>Group Project Progress Presentation</strong> as the lab.</li>
-        <li data-th="ตอนจบคาบ 4 อาจารย์บอกเองว่าคาบหน้าคือ Conceptual Database Design ต่อ ยังตัดสินใจไม่ได้ว่าจะเป็น lab หรือทฤษฎีเพิ่ม แต่<strong>ส่วนหนึ่งของคาบเป็นการนำเสนอความคืบหน้าแน่นอน</strong> และจะ<strong>เฉลย Lab 04</strong> ด้วย">At the end of class 4 she said the next session continues Conceptual Database Design, that she had not yet decided whether it would be a lab or more theory, that <strong>part of it would certainly be the progress presentations</strong>, and that she would <strong>go through the Lab 04 answers</strong>.</li>
-        <li data-th="เดาได้อย่างมีเหตุผลว่าเนื้อหาต่อจาก 1/3 คือส่วนที่สไลด์คาบ 4 ยังไม่ได้ลงลึก — แต่<strong>ผมไม่เดาให้</strong> เพราะเดาผิดในคืนก่อนสอบแย่กว่าไม่มี">It is reasonable to guess it continues where the class 4 slides stopped — but <strong>I am not going to guess for you</strong>. A wrong guess the night before an exam is worse than a gap.</li>
-      </ul>
-      <span style="display:block; margin-top:10px;" data-th="ถ้าหาสไลด์คาบ 5 มาวางในโฟลเดอร์ได้ บอกผมแล้วเดี๋ยวเติมแบนด์นี้ให้ครบเหมือนสัปดาห์อื่น">Drop the week 5 slides into the folder and tell me, and I will fill this band in like the others.</span>
+    <div class="cards">
+      <div class="card">
+        <h3 data-th="ฝึกแบบ Bottom-up">Bottom-up practice</h3>
+        <ul>
+          <li data-th="โจทย์: หน้าหนึ่งจาก <em>Ralph's Raving Recipes</em> · บริษัทสำนักพิมพ์อยากเอาสูตรอาหารขึ้นเว็บให้คนค้นหาได้ง่าย">The brief: one page from <em>Ralph's Raving Recipes</em>. A publisher wants the recipes on the web, easily searchable.</li>
+          <li data-th="ขั้นตอนสามข้อ: <b>1)</b> ไล่ลิสต์ว่าหน้านั้นมีข้อมูลชนิดไหนบ้าง <b>2)</b> จัดกลุ่มเป็นเอนทิตีและแอตทริบิวต์ <b>3)</b> ตั้งชื่อความสัมพันธ์แล้ววาด ER พร้อม PK ด้วย UML notation">Three steps: <b>1)</b> list every type of information on the page, <b>2)</b> group them into entities and attributes, <b>3)</b> name the relationships and draw the ER diagram with primary keys, in UML notation.</li>
+          <li data-th="นี่คืออุปมา “ใบเสร็จ” ที่อาจารย์เล่าไว้ในคาบ 4 เป๊ะ — ได้เอกสารมาหนึ่งใบ แล้วแกะข้อมูลออกมาทีละชิ้นก่อนจัดกลุ่ม">This is exactly the "receipt" analogy from class 4 — you are handed one document and pick the small pieces of data out of it before grouping them.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 data-th="ฝึกแบบ Top-down">Top-down practice</h3>
+        <ul>
+          <li data-th="โจทย์: <b>ระบบจัดการห้องสมุดมหาวิทยาลัย</b> — เก็บ requirement มาจากการสัมภาษณ์เจ้าหน้าที่ห้องสมุด">The brief: a <b>university library management system</b>, its requirements collected by interviewing the library staff.</li>
+          <li data-th="หกกลุ่ม: Members · Library branches · Staff · Books · Loans · Reservations">Six sections: Members · Library branches · Staff · Books · Loans · Reservations.</li>
+          <li data-th="โจทย์นี้ใช้ครบทุกแนวคิดของคาบ 4 — composite, multi-valued, derived, ความสัมพันธ์สองเส้นระหว่างคู่เดิม, *:* ที่มีแอตทริบิวต์, และ 0..1 · ตารางถัดไปคือคู่มือถอดรหัสประโยคพวกนั้น">It exercises every class 4 concept — composite, multi-valued, derived, two relationships between the same pair, an <code>*:*</code> carrying attributes, and a <code>0..1</code>. The table below is the decoder for those sentences.</li>
+        </ul>
+      </div>
+      <div class="card watch">
+        <h3 data-th="ระวังไว้">Watch out</h3>
+        <ul>
+          <li data-th="<b>“ปล่อยว่างไว้ก่อน แล้วค่อยเติมทีหลัง” ไม่ใช่ multi-valued</b> — วันคืนหนังสือที่ยังว่างอยู่ระหว่างยืม คือแอตทริบิวต์ธรรมดาที่เป็น null ได้ · multi-valued แปลว่าหลายค่า<em>พร้อมกัน ณ เวลาเดียว</em>"><b>"Left empty and filled in later" is not multi-valued.</b> A return date that is blank while the book is out is an ordinary nullable attribute. Multi-valued means several values <em>at the same moment</em>.</li>
+          <li data-th="<b>“ห้ามเก็บ ต้องคำนวณเอา” = derived</b> — อายุปัจจุบัน จำนวนเล่มที่ยืมอยู่ และสถานะเกินกำหนด ทั้งสามอันโจทย์สั่งห้ามเก็บตรงๆ ต้องเขียนนำหน้าด้วย <code>/</code>"><b>"Must never be stored, work it out when needed" = derived.</b> Current age, books currently on loan, and whether a loan is overdue — the brief forbids storing all three. Write them with a leading <code>/</code>.</li>
+          <li data-th="<b>Staff กับ Branch มีความสัมพันธ์สองเส้น</b> — “ทำงานอยู่สาขาไหน” กับ “ใครเป็นผู้จัดการสาขา” คนละเรื่องกัน จึงต้องแยกเส้นและใส่ role name · นี่คือรูปเดียวกับ Manages/Has ในสไลด์คาบ 4"><b>Staff and Branch carry two relationships</b> — which branch someone works at, and who manages a branch, are different facts. Two lines, with role names. The same shape as Manages/Has on the class 4 slide.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-h" data-th="ถอดรหัสประโยค requirement → สัญกรณ์ · ทุกแถวยกมาจากโจทย์ห้องสมุดของ LAB05">Decoding a requirement into notation &mdash; every row lifted from LAB05's library brief</div>
+
+    <div class="dec-wrap">
+      <table class="dec-tab">
+        <tr class="hd"><td data-th="ประโยคในโจทย์">What the brief says</td><td data-th="เขียนเป็น">You write</td><td data-th="เพราะอะไร">Why</td></tr>
+        <tr>
+          <td class="say" data-th="“member ID ระบุสมาชิกแต่ละคนได้อย่างไม่ซ้ำ”">"The member ID uniquely identifies each member"</td>
+          <td class="wr"><code>memberID {PK}</code></td>
+          <td data-th="สำนวน “uniquely identifies each …” คือวิธีที่โจทย์บอกว่านี่คือ primary key">"Uniquely identifies each …" is how a brief names a primary key.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“ชื่อเต็มเก็บเป็นชื่อต้นกับนามสกุล และต้องแสดงรวมกันหรือแยกกันก็ได้”">"The full name is recorded as a first name and a last name, and must display together or separately"</td>
+          <td class="wr"><code>name</code><br><code>&nbsp;&nbsp;fName</code><br><code>&nbsp;&nbsp;lName</code></td>
+          <td data-th="<b>composite attribute</b> — เขียนย่อหน้าเข้าไปใต้แอตทริบิวต์แม่ · เหตุผลที่ต้องแยกอยู่ในประโยคเอง: ต้องใช้แยกกันได้"><b>Composite attribute</b>, written as indentation under the parent. The reason to split is in the sentence itself: they must be usable separately.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“ที่อยู่เก็บเป็นบ้านเลขที่ ถนน เขต รหัสไปรษณีย์ และต้องทำรายชื่อส่งจดหมาย<em>แยกตามเขต</em>ได้”">"The address is a house number, street, district and postal code, and mailing lists must be produced <em>by district alone</em>"</td>
+          <td class="wr"><code>address</code><br><code>&nbsp;&nbsp;houseNo</code><br><code>&nbsp;&nbsp;street</code><br><code>&nbsp;&nbsp;district</code><br><code>&nbsp;&nbsp;postcode</code></td>
+          <td data-th="composite อีกอัน และวลี <b>“by district alone”</b> คือเหตุผลที่ต้องแยก — ตรงกับกฎที่อาจารย์สอนไว้: ถ้าจะเอาไป<em>วิเคราะห์</em>ทีหลัง ให้แยก ถ้าเป็นข้อมูลสำรองเก็บก้อนเดียวก็พอ">Composite again — and <b>"by district alone"</b> is the reason to split it, matching her rule exactly: if you will <em>analyse</em> it later, split it; if it is backup data, one field is fine.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“สมาชิกลงทะเบียนเบอร์โทรได้มากกว่าหนึ่งเบอร์ ต้องเก็บครบทุกเบอร์ และแต่ละคนต้องให้อย่างน้อยหนึ่งเบอร์”">"A member may register more than one telephone number, all must be stored, and each must provide at least one"</td>
+          <td class="wr"><code>telNo [1..*]</code></td>
+          <td data-th="<b>multi-valued attribute</b> · เลขในวงเล็บเหลี่ยมมาจากประโยคตรงๆ — “อย่างน้อยหนึ่ง” = 1, “มากกว่าหนึ่ง/ไม่บอกสูงสุด” = *"><b>Multi-valued attribute.</b> The numbers in the brackets come straight from the sentence: "at least one" = 1, no stated maximum = <code>*</code>.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“สมาชิกลงทะเบียนความสนใจทางวิชาการได้หลายอย่าง และ<em>หลายคนไม่ลงเลย</em>”">"A member may register several academic interests, and <em>many register none</em>"</td>
+          <td class="wr"><code>interests [0..*]</code></td>
+          <td data-th="multi-valued เหมือนกัน แต่ min เป็น <b>0</b> เพราะโจทย์บอกว่าหลายคนไม่ลงเลย · เทียบกับเบอร์โทรที่ min เป็น 1 — ประโยคเป็นตัวกำหนด ไม่ใช่เราเดา">Multi-valued too, but the min is <b>0</b> because the brief says many register none. Compare the phone numbers, whose min is 1 — the sentence decides, not you.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“ต้องรายงานอายุปัจจุบันและจำนวนเล่มที่ยืมอยู่ได้ <em>แต่ห้ามเก็บค่าทั้งสอง</em> ต้องคำนวณตอนที่ต้องใช้”">"Must report each member's current age and books on loan, <em>but neither value may ever be stored</em> — both calculated when needed"</td>
+          <td class="wr"><code>/age</code><br><code>/booksOnLoan</code></td>
+          <td data-th="<b>derived attribute</b> · วลี “ห้ามเก็บ ต้องคำนวณ” คือสัญญาณของ derived เสมอ · เขียนนำหน้าด้วยสแลช"><b>Derived attributes.</b> "May never be stored, calculated when needed" is always the signal. Written with a leading slash.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“สาขาเปิดหลายวันในสัปดาห์ ต้องเก็บทุกวันที่เปิด และทุกสาขาเปิดอย่างน้อยหนึ่งวัน”">"A branch opens on several days of the week, all must be stored, and every branch opens on at least one day"</td>
+          <td class="wr"><code>openingDays [1..7]</code></td>
+          <td data-th="multi-valued ที่รู้ค่าสูงสุดจริง — สัปดาห์มีเจ็ดวัน จึงเขียน 7 ได้เลย ไม่ต้องใช้ * · อาจารย์บอกว่าถ้ารู้ค่าสูงสุดที่แน่นอนให้ใส่ ไม่รู้ค่อยใช้ n">Multi-valued with a real known maximum — a week has seven days, so write 7 rather than <code>*</code>. Her rule: if the requirement gives a maximum, use it; only write <code>n</code> when you do not know.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“สมาชิกทุกคนสังกัดสาขาหลักหนึ่งสาขาพอดี · หนึ่งสาขามีสมาชิกได้หลายคน · สาขาที่เพิ่งเปิดอาจยังไม่มีสมาชิกเลย”">"Every member is registered at exactly one home branch; one branch may have many members; a newly opened branch may have none"</td>
+          <td class="wr">Member <code>0..*</code><br>&mdash; RegisteredAt &mdash;<br><code>1..1</code> Branch</td>
+          <td data-th="“exactly one” → <code>1..1</code> ฝั่ง Branch · “many … may have none” → <code>0..*</code> ฝั่ง Member · <b>ตัวเลขไปอยู่ฝั่งปลายทางเสมอ</b> ตามกฎการอ่านของอาจารย์">"Exactly one" → <code>1..1</code> on the Branch side; "many … may have none" → <code>0..*</code> on the Member side. <b>The number always sits on the destination side</b>, per her reading rule.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“พนักงานทุกคนทำงานที่สาขาเดียว” <b>และ</b> “แต่ละสาขามีผู้จัดการหนึ่งคนพอดี พนักงานหนึ่งคนจัดการได้มากสุดหนึ่งสาขา ส่วนใหญ่ไม่ได้จัดการเลย”">"Every staff works at exactly one branch" <b>and</b> "each branch is managed by exactly one staff; a staff may manage at most one branch; most manage none"</td>
+          <td class="wr" data-th="<b>สองเส้น</b> ระหว่างคู่เดิม<br>WorksAt: <code>0..*</code> ↔ <code>1..1</code><br>Manages: <code>0..1</code> ↔ <code>1..1</code>"><b>Two lines</b> between the same pair<br>WorksAt: <code>0..*</code> &harr; <code>1..1</code><br>Manages: <code>0..1</code> &harr; <code>1..1</code></td>
+          <td data-th="เอนทิตีคู่เดิมมีความสัมพันธ์หลายเส้นได้ ถ้าแต่ละเส้นความหมายต่างกัน · ต้องใส่ <b>role name</b> กำกับปลายเส้น · เป็นรูปเดียวกับ Manages/Has ในสไลด์">The same pair may carry several relationships when each means something different, and then each end needs a <b>role name</b>. The same shape as Manages/Has on the slide.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“หนังสือเล่มหนึ่งมีผู้แต่งได้หลายคน ต้องเก็บครบทุกคน และทุกเล่มมีผู้แต่งอย่างน้อยหนึ่งคน”">"A book may have several authors, all stored, and every book has at least one"</td>
+          <td class="wr"><code>authors [1..*]</code></td>
+          <td data-th="โจทย์ไม่ได้ให้ข้อมูลของผู้แต่งเองเลย (ไม่มีชื่อ ไม่มีรหัส) จึงเก็บเป็น multi-valued attribute พอ · ถ้าโจทย์ให้เก็บวันเกิดหรือสัญชาติผู้แต่งด้วย ต้องแยกเป็น<em>เอนทิตี</em>แทน">The brief stores nothing about an author (no name fields, no id), so a multi-valued attribute suffices. Had it asked for an author's birth date or nationality, they would have to become an <em>entity</em> instead.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“สมาชิกหนึ่งคนยืมได้หลายเล่มตลอดเวลาที่ผ่านมา และหนังสือเล่มหนึ่งถูกยืมโดยหลายคน” + “แต่ละการยืมต้องบันทึกวันยืม วันกำหนดคืน และวันที่คืนจริง”">"One member may borrow many books over time and one book may be borrowed by many members" + "each loan records the borrow date, due date and actual return date"</td>
+          <td class="wr"><code>0..*</code> &mdash; Borrows &mdash; <code>0..*</code><br><span class="tiny" data-th="เส้นประลงกล่องหัวว่าง:">dashed line to a blank-headed box:</span><br><code>borrowDate</code> <code>dueDate</code> <code>returnDate</code> <code>/overdue</code></td>
+          <td data-th="<b>*:* ที่มีแอตทริบิวต์ของตัวเอง</b> — ข้อมูลสามอย่างนี้เกิดได้ก็ต่อเมื่อการยืมเกิดขึ้นแล้ว จึงเป็นแอตทริบิวต์ของ relationship ไม่ใช่ของ Member หรือ Book · <code>/overdue</code> เป็น derived เพราะโจทย์ห้ามเก็บ ให้เทียบวันกำหนดคืนกับวันนี้เอา"><b>An <code>*:*</code> carrying its own attributes.</b> These three only exist once a loan happens, so they belong to the relationship, not to Member or Book. <code>/overdue</code> is derived: the brief forbids storing it and says to compare the due date with today.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“วันคืนปล่อยว่างไว้ระหว่างที่ยังยืมอยู่”">"The return date is left empty while the book is still out"</td>
+          <td class="wr"><code>returnDate</code> <span class="tiny" data-th="(ธรรมดา · เป็น null ได้)">(ordinary, nullable)</span></td>
+          <td data-th="<b>กับดัก</b> — “ว่างไว้ก่อน” ไม่ได้แปลว่า multi-valued และไม่ได้แปลว่า derived · เป็นแอตทริบิวต์ธรรมดาที่ยังไม่มีค่า · และในระดับ conceptual เรายัง<b>ไม่เขียน NOT NULL</b> อยู่แล้ว"><b>A trap.</b> "Left empty" means neither multi-valued nor derived — it is an ordinary attribute without a value yet. And at the conceptual level you would <b>not write NOT NULL</b> anyway.</td>
+        </tr>
+        <tr>
+          <td class="say" data-th="“การจองหนึ่งครั้งวางโดยสมาชิกหนึ่งคนพอดี สำหรับหนังสือหนึ่งเล่มพอดี · สมาชิกหนึ่งคนถือการจองที่ยังใช้งานได้มากสุดหนึ่งรายการ · คนที่ไม่ได้จองก็ไม่มีเลย”">"Each reservation is placed by exactly one member for exactly one book; a member holds at most one active reservation; one who has not reserved holds none"</td>
+          <td class="wr">Member <code>0..1</code><br>&mdash; Places &mdash;<br><code>1..1</code> Reservation</td>
+          <td data-th="“at most one … ไม่มีเลยก็ได้” → <code>0..1</code> ตรงตัว · เทียบกับ Loans ที่เป็น <code>0..*</code> — โจทย์คนละประโยคให้ตัวเลขคนละแบบ นี่คือเหตุผลที่ constraint ต้องมาจาก requirement ไม่ใช่จากสามัญสำนึก">"At most one … or none" → <code>0..1</code>, literally. Contrast Loans at <code>0..*</code>: different sentences give different numbers, which is precisely why constraints come from the requirements and not from common sense.</td>
+        </tr>
+      </table>
     </div>
   </section>
 
